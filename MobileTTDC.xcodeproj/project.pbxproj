@@ -25,6 +25,8 @@
 		0FE527301CFB65EB00407AAE /* ExtensionDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE527291CFB65EB00407AAE /* ExtensionDictionary.swift */; };
 		0FE527311CFB65EB00407AAE /* Gloss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE5272B1CFB65EB00407AAE /* Gloss.swift */; };
 		0FE527321CFB65EB00407AAE /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE5272C1CFB65EB00407AAE /* Operators.swift */; };
+		0FE5273A1CFC9FB800407AAE /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE527391CFC9FB800407AAE /* Command.swift */; };
+		0FE5273C1CFCA27E00407AAE /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE5273B1CFCA27E00407AAE /* Network.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,8 @@
 		0FE5272A1CFB65EB00407AAE /* Gloss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gloss.h; sourceTree = "<group>"; };
 		0FE5272B1CFB65EB00407AAE /* Gloss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gloss.swift; sourceTree = "<group>"; };
 		0FE5272C1CFB65EB00407AAE /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
+		0FE527391CFC9FB800407AAE /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		0FE5273B1CFCA27E00407AAE /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				0FE5271E1CFB654300407AAE /* LoginResponse.swift */,
 				0FE5271F1CFB654300407AAE /* NetworkAdapter.swift */,
 				0FE527201CFB654300407AAE /* Person.swift */,
+				0FE527391CFC9FB800407AAE /* Command.swift */,
+				0FE5273B1CFCA27E00407AAE /* Network.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -201,6 +207,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FE5273A1CFC9FB800407AAE /* Command.swift in Sources */,
 				0FCF01841CFA10E200924868 /* AppDelegate.swift in Sources */,
 				0FE527211CFB654300407AAE /* LoginCommand.swift in Sources */,
 				0FE527231CFB654300407AAE /* NetworkAdapter.swift in Sources */,
@@ -210,6 +217,7 @@
 				0F76A87A1CFA165D00BDD499 /* LoginViewController.swift in Sources */,
 				0FE527241CFB654300407AAE /* Person.swift in Sources */,
 				0FE527311CFB65EB00407AAE /* Gloss.swift in Sources */,
+				0FE5273C1CFCA27E00407AAE /* Network.swift in Sources */,
 				0F76A8781CFA160A00BDD499 /* HomeViewController.swift in Sources */,
 				0FE5272D1CFB65EB00407AAE /* Decoder.swift in Sources */,
 				0FE527321CFB65EB00407AAE /* Operators.swift in Sources */,

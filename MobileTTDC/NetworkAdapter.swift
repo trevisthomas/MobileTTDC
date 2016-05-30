@@ -1,7 +1,43 @@
 import Foundation
 
-public class NetworkAdapter {
-    public static func performJsonRequest(urlString: String, json: JSON, completion:(data: NSData?, error: NSError?) -> Void){
+class NetworkAdapter {
+    
+    static func performCommand<R where R: Decodable>(urlString: String, command: Command, completion: (response: R?, error: String?)->Void){
+        
+        NetworkAdapter.performJsonRequest(urlString, json: command.toJSON()!, completion:{(data, error) -> Void in
+            //Jump to UI thread to send response
+            func completeOnUiThread(response response: R?, error: String?){
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion(response: response, error: error)
+                }
+            }
+            
+            if let data = data {
+                var json: [String: AnyObject]!
+                do {
+                    json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? [String: AnyObject]
+                } catch {
+                    completeOnUiThread(response: nil, error: "Failed to parse json request.")
+                }
+                
+                guard let decodableResponse = R(json: json) else {
+                    completeOnUiThread(response: nil, error: "Failed to parse json response.")
+                    return;
+                }
+                
+                completeOnUiThread(response: decodableResponse, error: nil)
+            } else if let error = error {
+                completeOnUiThread(response: nil, error: error.description)
+            }
+            else {
+                completeOnUiThread(response: nil, error: "Login failed.")
+            }
+            
+        })
+    }
+
+    
+    private static func performJsonRequest(urlString: String, json: JSON, completion:(data: NSData?, error: NSError?) -> Void){
         
         let url = NSURL(string: urlString)!
         let request = NSMutableURLRequest(URL: url, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 30)

@@ -31,7 +31,7 @@ class LoginViewController: UIViewController{
     @IBAction func loginButton(sender: UIButton) {
         let cmd = LoginCommand(login: loginTextField.text!, password: passwordTextField.text!)
         
-        performCommand(cmd){
+        Network.performLogin(cmd){
             (response, message) -> Void in
                 guard (response != nil) else {
                     self.presentAlert("Sorry", message: "Invalid login or password")
@@ -40,8 +40,6 @@ class LoginViewController: UIViewController{
                 self.presentAlert("Welcome", message: "Welcome back, \((response?.person?.name)!)")
             
         };
-
-        
     }
     
     func dismissKeyboard(sender: UITapGestureRecognizer){
@@ -57,41 +55,6 @@ class LoginViewController: UIViewController{
         
         self.presentViewController(alertController, animated: true, completion: nil)
     }
-    
-    func performCommand(command: LoginCommand, completion: (response: LoginResponse?, error: String?)->Void){
-        
-        
-        NetworkAdapter.performJsonRequest("http://ttdc.us/restful/login", json: command.toJSON()!, completion:{(data, error) -> Void in
-            
-            func completeOnUiThread(response response: LoginResponse?, error: String?){
-                dispatch_async(dispatch_get_main_queue()) {
-                    completion(response: response, error: error)
-                }
-            }
-            
-            if let data = data {
-                var json: [String: AnyObject]!
-                do {
-                    json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? [String: AnyObject]
-                } catch {
-                    completeOnUiThread(response: nil, error: "Failed to parse json request.")
-                }
-                
-                guard let loginResponse = LoginResponse(json: json) else {
-                    completeOnUiThread(response: nil, error: "Failed to parse json response.")
-                    return;
-                }
-                
-                completeOnUiThread(response: loginResponse, error: nil)
-            
-            } else {
-                completeOnUiThread(response: nil, error: "Login failed.")
-            }
-            
-        })
-    }
-    
-    
     
 }
 

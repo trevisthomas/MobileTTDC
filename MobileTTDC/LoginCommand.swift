@@ -1,9 +1,10 @@
 import Foundation
 
-public class LoginCommand : Encodable{
+public class LoginCommand : Command{
     
-    let login: String;
-    let password: String;
+    let login: String
+    let password: String
+    public var token: String?
     
     public func toJSON() -> JSON? {
         return jsonify([
@@ -15,6 +16,6 @@ public class LoginCommand : Encodable{
     public init( login: String, password: String){
         self.login = login
         self.password = password
-        
     }
+    
 }

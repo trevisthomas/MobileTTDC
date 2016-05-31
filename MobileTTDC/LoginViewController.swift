@@ -48,14 +48,7 @@ class LoginViewController: UIViewController{
         passwordTextField.resignFirstResponder()
     }
     
-    func presentAlert(title: String, message: String){
-        let alertController = UIAlertController(title: title, message:
-            message, preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
         
-        self.presentViewController(alertController, animated: true, completion: nil)
-    }
-    
 }
 
 extension LoginViewController : UITextFieldDelegate {

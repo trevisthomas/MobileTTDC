@@ -27,6 +27,10 @@
 		0FE527321CFB65EB00407AAE /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE5272C1CFB65EB00407AAE /* Operators.swift */; };
 		0FE5273A1CFC9FB800407AAE /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE527391CFC9FB800407AAE /* Command.swift */; };
 		0FE5273C1CFCA27E00407AAE /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE5273B1CFCA27E00407AAE /* Network.swift */; };
+		0FE5273E1CFD058700407AAE /* PostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE5273D1CFD058700407AAE /* PostResponse.swift */; };
+		0FE527401CFD05AE00407AAE /* PostCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE5273F1CFD05AE00407AAE /* PostCommand.swift */; };
+		0FE527421CFD096300407AAE /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE527411CFD096300407AAE /* UIViewController+Alerts.swift */; };
+		0FE527441CFD0E1E00407AAE /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE527431CFD0E1E00407AAE /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +57,10 @@
 		0FE5272C1CFB65EB00407AAE /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		0FE527391CFC9FB800407AAE /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		0FE5273B1CFCA27E00407AAE /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		0FE5273D1CFD058700407AAE /* PostResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostResponse.swift; sourceTree = "<group>"; };
+		0FE5273F1CFD05AE00407AAE /* PostCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCommand.swift; sourceTree = "<group>"; };
+		0FE527411CFD096300407AAE /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
+		0FE527431CFD0E1E00407AAE /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +104,7 @@
 				0FCF01911CFA10E200924868 /* Info.plist */,
 				0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */,
 				0F76A87D1CFA1C9400BDD499 /* ProfileViewController.swift */,
+				0FE527411CFD096300407AAE /* UIViewController+Alerts.swift */,
 			);
 			path = MobileTTDC;
 			sourceTree = "<group>";
@@ -109,6 +118,9 @@
 				0FE527201CFB654300407AAE /* Person.swift */,
 				0FE527391CFC9FB800407AAE /* Command.swift */,
 				0FE5273B1CFCA27E00407AAE /* Network.swift */,
+				0FE5273D1CFD058700407AAE /* PostResponse.swift */,
+				0FE5273F1CFD05AE00407AAE /* PostCommand.swift */,
+				0FE527431CFD0E1E00407AAE /* Post.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -210,6 +222,7 @@
 				0FE5273A1CFC9FB800407AAE /* Command.swift in Sources */,
 				0FCF01841CFA10E200924868 /* AppDelegate.swift in Sources */,
 				0FE527211CFB654300407AAE /* LoginCommand.swift in Sources */,
+				0FE527421CFD096300407AAE /* UIViewController+Alerts.swift in Sources */,
 				0FE527231CFB654300407AAE /* NetworkAdapter.swift in Sources */,
 				0F76A87C1CFA16C300BDD499 /* ForumViewController.swift in Sources */,
 				0F76A87E1CFA1C9400BDD499 /* ProfileViewController.swift in Sources */,
@@ -218,12 +231,15 @@
 				0FE527241CFB654300407AAE /* Person.swift in Sources */,
 				0FE527311CFB65EB00407AAE /* Gloss.swift in Sources */,
 				0FE5273C1CFCA27E00407AAE /* Network.swift in Sources */,
+				0FE527441CFD0E1E00407AAE /* Post.swift in Sources */,
 				0F76A8781CFA160A00BDD499 /* HomeViewController.swift in Sources */,
 				0FE5272D1CFB65EB00407AAE /* Decoder.swift in Sources */,
 				0FE527321CFB65EB00407AAE /* Operators.swift in Sources */,
 				0FE5272E1CFB65EB00407AAE /* Encoder.swift in Sources */,
+				0FE5273E1CFD058700407AAE /* PostResponse.swift in Sources */,
 				0FE527221CFB654300407AAE /* LoginResponse.swift in Sources */,
 				0FE5272F1CFB65EB00407AAE /* ExtensionArray.swift in Sources */,
+				0FE527401CFD05AE00407AAE /* PostCommand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

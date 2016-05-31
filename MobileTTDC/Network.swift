@@ -12,4 +12,8 @@ public class Network {
     public static func performLogin(command : LoginCommand, completion: (response : LoginResponse?, error: String?) -> Void){
         NetworkAdapter.performCommand("http://ttdc.us/restful/login", command: command, completion: completion)
     }
+    
+    public static func performPostCommand(command : PostCommand, completion: (response : PostResponse?, error: String?) -> Void){
+        NetworkAdapter.performCommand("http://ttdc.us/restful/latestposts", command: command, completion: completion)
+    }
 }

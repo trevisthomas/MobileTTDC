@@ -11,20 +11,18 @@ import Foundation
 public struct Post : Decodable{
     let postId : String
     let date : NSDate
-    
-//    private NSDateFormatter
+    let title : String
+    let creator: Person
+    let latestEntry: Entry
+    let entry: String
     
     public init?(json: JSON) {
         postId = ("postId" <~~ json)!
-//        date = Decoder.decodeDate(key: "date", dateFormatter:)
-//        let dateSecondsSince1970String : String = ("date" <~~ json)!
-        
-        let dateSecondsSince1970String : Int64 = ("date" <~~ json)!
-        
-        print(dateSecondsSince1970String)
-        
-        date = NSDate(timeIntervalSince1970: Double(dateSecondsSince1970String) / 1000)
-//        name = ("name" <~~ json)!
+        date = ("date" <~~ json)!
+        title = ("title" <~~ json)!
+        creator = ("creator" <~~ json)!
+        latestEntry = ("latestEntry" <~~ json)!
+        entry = ("entry" <~~ json)!
     }
     
 }

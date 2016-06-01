@@ -21,11 +21,11 @@ class HomeViewController: UIViewController {
                 self.presentAlert("Sorry", message: "Invalid login or password")
                 return;
             }
-//            self.presentAlert("Welcome", message: "Welcome back, \((response?.person?.name)!)")
+
             print(response!.totalResults)
             
             for post in response!.list {
-                print("\(post.postId) at \(post.date)")
+                print("\(post.postId) at \(post.date) by \(post.creator.login) : \(post.creator.image?.name)" )
             }
             
         };

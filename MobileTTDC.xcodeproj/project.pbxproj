@@ -11,6 +11,9 @@
 		0F76A87A1CFA165D00BDD499 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A8791CFA165D00BDD499 /* LoginViewController.swift */; };
 		0F76A87C1CFA16C300BDD499 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */; };
 		0F76A87E1CFA1C9400BDD499 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A87D1CFA1C9400BDD499 /* ProfileViewController.swift */; };
+		0FB2F4941CFF9C77008F386A /* NSDate+Gloss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2F4931CFF9C77008F386A /* NSDate+Gloss.swift */; };
+		0FB2F4961CFFA0E5008F386A /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2F4951CFFA0E5008F386A /* Entry.swift */; };
+		0FB2F4981CFFA8FC008F386A /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2F4971CFFA8FC008F386A /* Image.swift */; };
 		0FCF01841CFA10E200924868 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF01831CFA10E200924868 /* AppDelegate.swift */; };
 		0FCF018B1CFA10E200924868 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FCF01891CFA10E200924868 /* Main.storyboard */; };
 		0FCF018D1CFA10E200924868 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FCF018C1CFA10E200924868 /* Assets.xcassets */; };
@@ -38,6 +41,9 @@
 		0F76A8791CFA165D00BDD499 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
 		0F76A87D1CFA1C9400BDD499 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		0FB2F4931CFF9C77008F386A /* NSDate+Gloss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Gloss.swift"; sourceTree = "<group>"; };
+		0FB2F4951CFFA0E5008F386A /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		0FB2F4971CFFA8FC008F386A /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		0FCF01801CFA10E200924868 /* MobileTTDC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTTDC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FCF01831CFA10E200924868 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0FCF018A1CFA10E200924868 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -74,6 +80,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0FB2F4991CFFAA8D008F386A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0FE527201CFB654300407AAE /* Person.swift */,
+				0FE527431CFD0E1E00407AAE /* Post.swift */,
+				0FB2F4951CFFA0E5008F386A /* Entry.swift */,
+				0FB2F4971CFFA8FC008F386A /* Image.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		0FCF01771CFA10E100924868 = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +110,7 @@
 		0FCF01821CFA10E200924868 /* MobileTTDC */ = {
 			isa = PBXGroup;
 			children = (
+				0FB2F4991CFFAA8D008F386A /* Models */,
 				0FE527341CFB65FA00407AAE /* Libraries */,
 				0FE527251CFB656200407AAE /* Network */,
 				0FCF01831CFA10E200924868 /* AppDelegate.swift */,
@@ -105,6 +123,7 @@
 				0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */,
 				0F76A87D1CFA1C9400BDD499 /* ProfileViewController.swift */,
 				0FE527411CFD096300407AAE /* UIViewController+Alerts.swift */,
+				0FB2F4931CFF9C77008F386A /* NSDate+Gloss.swift */,
 			);
 			path = MobileTTDC;
 			sourceTree = "<group>";
@@ -115,12 +134,10 @@
 				0FE5271D1CFB654300407AAE /* LoginCommand.swift */,
 				0FE5271E1CFB654300407AAE /* LoginResponse.swift */,
 				0FE5271F1CFB654300407AAE /* NetworkAdapter.swift */,
-				0FE527201CFB654300407AAE /* Person.swift */,
 				0FE527391CFC9FB800407AAE /* Command.swift */,
 				0FE5273B1CFCA27E00407AAE /* Network.swift */,
 				0FE5273D1CFD058700407AAE /* PostResponse.swift */,
 				0FE5273F1CFD05AE00407AAE /* PostCommand.swift */,
-				0FE527431CFD0E1E00407AAE /* Post.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -220,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0FE5273A1CFC9FB800407AAE /* Command.swift in Sources */,
+				0FB2F4981CFFA8FC008F386A /* Image.swift in Sources */,
 				0FCF01841CFA10E200924868 /* AppDelegate.swift in Sources */,
 				0FE527211CFB654300407AAE /* LoginCommand.swift in Sources */,
 				0FE527421CFD096300407AAE /* UIViewController+Alerts.swift in Sources */,
@@ -228,12 +246,14 @@
 				0F76A87E1CFA1C9400BDD499 /* ProfileViewController.swift in Sources */,
 				0FE527301CFB65EB00407AAE /* ExtensionDictionary.swift in Sources */,
 				0F76A87A1CFA165D00BDD499 /* LoginViewController.swift in Sources */,
+				0FB2F4941CFF9C77008F386A /* NSDate+Gloss.swift in Sources */,
 				0FE527241CFB654300407AAE /* Person.swift in Sources */,
 				0FE527311CFB65EB00407AAE /* Gloss.swift in Sources */,
 				0FE5273C1CFCA27E00407AAE /* Network.swift in Sources */,
 				0FE527441CFD0E1E00407AAE /* Post.swift in Sources */,
 				0F76A8781CFA160A00BDD499 /* HomeViewController.swift in Sources */,
 				0FE5272D1CFB65EB00407AAE /* Decoder.swift in Sources */,
+				0FB2F4961CFFA0E5008F386A /* Entry.swift in Sources */,
 				0FE527321CFB65EB00407AAE /* Operators.swift in Sources */,
 				0FE5272E1CFB65EB00407AAE /* Encoder.swift in Sources */,
 				0FE5273E1CFD058700407AAE /* PostResponse.swift in Sources */,

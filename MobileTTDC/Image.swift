@@ -16,9 +16,13 @@ public struct Image: Decodable{
     public let height: Int
     
     public init?(json: JSON) {
-        thumbnailName = ("thumbnailName" <~~ json)!
-        name = ("name" <~~ json)!
+        thumbnailName = Image.prependPath(("thumbnailName" <~~ json)!)
+        name = Image.prependPath(("name" <~~ json)!)
         width = ("width" <~~ json)!
         height = ("height" <~~ json)!
+    }
+    
+    private static func prependPath(imageFileName : String) -> String{
+        return "http://ttdc.us/images/\(imageFileName)"
     }
 }

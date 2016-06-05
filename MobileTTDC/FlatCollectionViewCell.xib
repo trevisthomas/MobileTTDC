@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="FlatCollectionViewCell" customModule="MobileTTDC" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ERU-BL-1mk">
+                        <rect key="frame" x="63" y="8" width="537" height="36"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <state key="normal" title="Thread Title"/>
+                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qm0-YV-S7s">
+                        <rect key="frame" x="8" y="8" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="IVG-X2-bDX"/>
+                            <constraint firstAttribute="height" constant="50" id="xnD-zo-Y6G"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEU-jw-UbE">
+                        <rect key="frame" x="63" y="46" width="537" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="12" id="uAV-bk-IEO"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title="01/01/1970"/>
+                    </button>
+                    <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9GD-JM-bda">
+                        <rect key="frame" x="8" y="64" width="584" height="128"/>
+                        <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                    </webView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="mEU-jw-UbE" firstAttribute="leading" secondItem="ERU-BL-1mk" secondAttribute="leading" id="2nB-nb-2J9"/>
+                <constraint firstAttribute="trailing" secondItem="9GD-JM-bda" secondAttribute="trailing" constant="8" id="4Ca-Bc-XBc"/>
+                <constraint firstItem="mEU-jw-UbE" firstAttribute="width" secondItem="ERU-BL-1mk" secondAttribute="width" id="A1f-s2-6Va"/>
+                <constraint firstItem="mEU-jw-UbE" firstAttribute="top" secondItem="ERU-BL-1mk" secondAttribute="bottom" constant="2" id="Bbw-gq-xni"/>
+                <constraint firstAttribute="trailing" secondItem="ERU-BL-1mk" secondAttribute="trailing" id="D8i-zd-9lJ"/>
+                <constraint firstItem="9GD-JM-bda" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="QHL-8C-rLS"/>
+                <constraint firstItem="Qm0-YV-S7s" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="ahc-D2-7hh"/>
+                <constraint firstItem="ERU-BL-1mk" firstAttribute="top" secondItem="Qm0-YV-S7s" secondAttribute="top" id="ic3-k1-zdv"/>
+                <constraint firstItem="ERU-BL-1mk" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="ioz-GH-ROG"/>
+                <constraint firstItem="9GD-JM-bda" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="64" id="jer-21-jjO"/>
+                <constraint firstAttribute="bottom" secondItem="9GD-JM-bda" secondAttribute="bottom" constant="8" id="lfg-IL-Hh6"/>
+                <constraint firstItem="ERU-BL-1mk" firstAttribute="leading" secondItem="Qm0-YV-S7s" secondAttribute="trailing" constant="5" id="mI0-As-SyW"/>
+                <constraint firstItem="Qm0-YV-S7s" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="wxG-QM-pl6"/>
+            </constraints>
+            <size key="customSize" width="414" height="167"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="ic3-k1-zdv"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="contentWebView" destination="9GD-JM-bda" id="WIT-AB-Zwo"/>
+                <outlet property="creatorImageView" destination="Qm0-YV-S7s" id="G6s-RA-CSt"/>
+                <outlet property="dateButton" destination="mEU-jw-UbE" id="0sN-J5-Kfx"/>
+                <outlet property="threadTitleButton" destination="ERU-BL-1mk" id="xj8-MP-KhJ"/>
+            </connections>
+            <point key="canvasLocation" x="467" y="461"/>
+        </collectionViewCell>
+    </objects>
+</document>

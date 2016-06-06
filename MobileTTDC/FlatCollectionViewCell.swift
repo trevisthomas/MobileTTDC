@@ -17,9 +17,32 @@ class FlatCollectionViewCell: UICollectionViewCell {
             contentWebView.scrollView.scrollEnabled = false
             contentWebView.loadHTMLString(post.entry, baseURL: nil)
             
-            labelForSizing.text = post.entry
             
-            print("Lable size \(labelForSizing.intrinsicContentSize())")
+            
+            labelForSizing.text = post.entry
+            let sysfont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+            
+            
+            
+            let modifiedFont = NSString(format:"<span style=\"font-family: \(sysfont.fontName); font-size: \(sysfont.pointSize)\">%@</span>", post.entry) as String
+            
+            if let htmlData = modifiedFont.dataUsingEncoding(NSUnicodeStringEncoding) {
+//                NSAttributedString(
+                
+                do {
+                    
+                    entryTextView.attributedText = try NSMutableAttributedString(data: htmlData,
+                                                                      options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSFontAttributeName: sysfont],
+                                                                      documentAttributes: nil)
+                    
+                } catch let e as NSError {
+                    print("Couldn't translate \(post.entry): \(e.localizedDescription) ")
+                }
+            }
+            
+            
+            
+//            print("Lable size \(labelForSizing.intrinsicContentSize())")
             
 //            contentWebView.frame = CGRectMake(0, 0,  CGFloat.max, 1);
 //            contentWebView.sizeToFit()
@@ -39,8 +62,8 @@ class FlatCollectionViewCell: UICollectionViewCell {
             
             contentWebView.scrollView.contentSize.height = 1
 //            contentWebView.frame.height = 1
-            let heightString = contentWebView.stringByEvaluatingJavaScriptFromString("document.height")
-            print("heightString: \(heightString)")
+//            let heightString = contentWebView.stringByEvaluatingJavaScriptFromString("document.height")
+//            print("heightString: \(heightString)")
             
             
             
@@ -62,6 +85,7 @@ class FlatCollectionViewCell: UICollectionViewCell {
         }
     }
 
+    @IBOutlet weak var entryTextView: UITextView!
     @IBOutlet weak var labelForSizing: UILabel!
     @IBOutlet weak var contentWebView: UIWebView! {
         didSet{
@@ -79,13 +103,39 @@ class FlatCollectionViewCell: UICollectionViewCell {
     
     func webViewDidFinishLoad(webView: UIWebView) {
         
-        print("did finish ScrollHeight: \(contentWebView.scrollView.contentSize.height)")
+     //   print("did finish ScrollHeight: \(contentWebView.scrollView.contentSize.height)")
     }
     
     
 
+    
+
 }
 
+extension FlatCollectionViewCell {
+    func preferredHeight(width : CGFloat) -> CGFloat {
+        
+        let sizeThatFits = entryTextView.customSizeThatFits(width)
+        print("Size that fits \(sizeThatFits)")
+        return ceil(sizeThatFits.height) + 64 + 8 + 8 + 8 + 30
+        
+        
+    }
+}
+
+
+extension UITextView {
+    func customSizeThatFits(width: CGFloat) -> CGSize {
+//        let font = UIFont.systemFontOfSize(14)
+        
+        
+        let templateSize = CGSizeMake(width, CGFloat.max)
+        let textRect = self.attributedText.boundingRectWithSize(templateSize, options: [NSStringDrawingOptions.UsesFontLeading,.UsesLineFragmentOrigin], context: nil)
+        
+        return textRect.size
+        
+    }
+}
 //extension FlatCollectionViewCell : UIWebViewDelegate {
 //    func webViewDidFinishLoad(webView: UIWebView) {
 //        

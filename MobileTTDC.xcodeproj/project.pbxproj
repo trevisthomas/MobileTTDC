@@ -21,6 +21,7 @@
 		0FB2F4AB1D037008008F386A /* UIView+Utillities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2F4AA1D037008008F386A /* UIView+Utillities.swift */; };
 		0FB2F4AE1D04BF05008F386A /* FlatLabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2F4AC1D04BF05008F386A /* FlatLabelCollectionViewCell.swift */; };
 		0FB2F4AF1D04BF05008F386A /* FlatLabelCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FB2F4AD1D04BF05008F386A /* FlatLabelCollectionViewCell.xib */; };
+		0FB2F4B11D05D832008F386A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2F4B01D05D832008F386A /* MainViewController.swift */; };
 		0FCF01841CFA10E200924868 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF01831CFA10E200924868 /* AppDelegate.swift */; };
 		0FCF018B1CFA10E200924868 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FCF01891CFA10E200924868 /* Main.storyboard */; };
 		0FCF018D1CFA10E200924868 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FCF018C1CFA10E200924868 /* Assets.xcassets */; };
@@ -58,6 +59,7 @@
 		0FB2F4AA1D037008008F386A /* UIView+Utillities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utillities.swift"; sourceTree = "<group>"; };
 		0FB2F4AC1D04BF05008F386A /* FlatLabelCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatLabelCollectionViewCell.swift; sourceTree = "<group>"; };
 		0FB2F4AD1D04BF05008F386A /* FlatLabelCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlatLabelCollectionViewCell.xib; sourceTree = "<group>"; };
+		0FB2F4B01D05D832008F386A /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		0FCF01801CFA10E200924868 /* MobileTTDC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTTDC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FCF01831CFA10E200924868 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0FCF018A1CFA10E200924868 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				0FCF01831CFA10E200924868 /* AppDelegate.swift */,
 				0FCF01891CFA10E200924868 /* Main.storyboard */,
 				0F76A8771CFA160A00BDD499 /* HomeViewController.swift */,
+				0FB2F4B01D05D832008F386A /* MainViewController.swift */,
 				0F76A8791CFA165D00BDD499 /* LoginViewController.swift */,
 				0FCF018C1CFA10E200924868 /* Assets.xcassets */,
 				0FCF018E1CFA10E200924868 /* LaunchScreen.storyboard */,
@@ -268,6 +271,7 @@
 				0FE527231CFB654300407AAE /* NetworkAdapter.swift in Sources */,
 				0F76A87C1CFA16C300BDD499 /* ForumViewController.swift in Sources */,
 				0F76A87E1CFA1C9400BDD499 /* ProfileViewController.swift in Sources */,
+				0FB2F4B11D05D832008F386A /* MainViewController.swift in Sources */,
 				0FE527301CFB65EB00407AAE /* ExtensionDictionary.swift in Sources */,
 				0F76A87A1CFA165D00BDD499 /* LoginViewController.swift in Sources */,
 				0FB2F4941CFF9C77008F386A /* NSDate+Gloss.swift in Sources */,

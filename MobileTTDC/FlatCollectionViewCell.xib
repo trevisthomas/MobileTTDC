@@ -14,7 +14,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ERU-BL-1mk">
-                        <rect key="frame" x="63" y="8" width="537" height="36"/>
+                        <rect key="frame" x="63" y="8" width="529" height="36"/>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <state key="normal" title="Thread Title"/>
                     </button>
@@ -26,49 +26,82 @@
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEU-jw-UbE">
-                        <rect key="frame" x="63" y="46" width="537" height="12"/>
+                        <rect key="frame" x="63" y="46" width="529" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="uAV-bk-IEO"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="01/01/1970"/>
                     </button>
-                    <webView contentMode="top" translatesAutoresizingMaskIntoConstraints="NO" id="9GD-JM-bda">
+                    <webView hidden="YES" contentMode="top" translatesAutoresizingMaskIntoConstraints="NO" id="9GD-JM-bda">
                         <rect key="frame" x="8" y="64" width="584" height="128"/>
                         <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                     </webView>
-                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wD6-By-EIJ">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wD6-By-EIJ">
                         <rect key="frame" x="8" y="64" width="584" height="128"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <attributedString key="attributedText">
+                            <fragment content="Label">
+                                <attributes>
+                                    <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e7S-Zo-uOW">
+                        <rect key="frame" x="8" y="64" width="584" height="128"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <attributedString key="attributedText">
+                            <fragment>
+                                <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <attributes>
+                                    <font key="NSFont" size="24" name="HelveticaNeue"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <textInputTraits key="textInputTraits"/>
+                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                    </textView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
                 <constraint firstItem="mEU-jw-UbE" firstAttribute="leading" secondItem="ERU-BL-1mk" secondAttribute="leading" id="2nB-nb-2J9"/>
                 <constraint firstAttribute="trailing" secondItem="9GD-JM-bda" secondAttribute="trailing" constant="8" id="4Ca-Bc-XBc"/>
+                <constraint firstAttribute="bottom" secondItem="e7S-Zo-uOW" secondAttribute="bottom" constant="8" id="8X6-WQ-EGX"/>
                 <constraint firstItem="mEU-jw-UbE" firstAttribute="width" secondItem="ERU-BL-1mk" secondAttribute="width" id="A1f-s2-6Va"/>
                 <constraint firstItem="mEU-jw-UbE" firstAttribute="top" secondItem="ERU-BL-1mk" secondAttribute="bottom" constant="2" id="Bbw-gq-xni"/>
-                <constraint firstAttribute="trailing" secondItem="ERU-BL-1mk" secondAttribute="trailing" id="D8i-zd-9lJ"/>
+                <constraint firstAttribute="trailing" secondItem="ERU-BL-1mk" secondAttribute="trailing" constant="8" id="D8i-zd-9lJ"/>
                 <constraint firstItem="wD6-By-EIJ" firstAttribute="leading" secondItem="9GD-JM-bda" secondAttribute="leading" id="N05-Tx-cdf"/>
                 <constraint firstItem="wD6-By-EIJ" firstAttribute="height" secondItem="9GD-JM-bda" secondAttribute="height" id="Nsg-9g-pEK"/>
                 <constraint firstItem="9GD-JM-bda" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="QHL-8C-rLS"/>
+                <constraint firstItem="e7S-Zo-uOW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="64" id="Vz7-H4-Hk9"/>
                 <constraint firstItem="Qm0-YV-S7s" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="ahc-D2-7hh"/>
                 <constraint firstItem="wD6-By-EIJ" firstAttribute="width" secondItem="9GD-JM-bda" secondAttribute="width" id="eLw-50-ODd"/>
                 <constraint firstItem="ERU-BL-1mk" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="ioz-GH-ROG"/>
                 <constraint firstItem="9GD-JM-bda" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="64" id="jer-21-jjO"/>
+                <constraint firstItem="e7S-Zo-uOW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="kMP-Y1-HRG"/>
                 <constraint firstAttribute="bottom" secondItem="9GD-JM-bda" secondAttribute="bottom" constant="8" id="lfg-IL-Hh6"/>
                 <constraint firstItem="wD6-By-EIJ" firstAttribute="top" secondItem="9GD-JM-bda" secondAttribute="top" id="m6X-Ow-JrX"/>
                 <constraint firstItem="ERU-BL-1mk" firstAttribute="leading" secondItem="Qm0-YV-S7s" secondAttribute="trailing" constant="5" id="mI0-As-SyW"/>
+                <constraint firstAttribute="trailing" secondItem="e7S-Zo-uOW" secondAttribute="trailing" constant="8" id="utI-GN-I6B"/>
                 <constraint firstItem="Qm0-YV-S7s" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="wxG-QM-pl6"/>
             </constraints>
             <size key="customSize" width="414" height="167"/>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="9GD-JM-bda"/>
+                    <exclude reference="wD6-By-EIJ"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="contentWebView" destination="9GD-JM-bda" id="WIT-AB-Zwo"/>
                 <outlet property="creatorImageView" destination="Qm0-YV-S7s" id="G6s-RA-CSt"/>
                 <outlet property="dateButton" destination="mEU-jw-UbE" id="0sN-J5-Kfx"/>
+                <outlet property="entryTextView" destination="e7S-Zo-uOW" id="xE5-E9-9TT"/>
                 <outlet property="labelForSizing" destination="wD6-By-EIJ" id="F4F-kt-vsc"/>
                 <outlet property="threadTitleButton" destination="ERU-BL-1mk" id="xj8-MP-KhJ"/>
             </connections>

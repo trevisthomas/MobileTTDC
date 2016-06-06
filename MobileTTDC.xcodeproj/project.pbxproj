@@ -19,6 +19,8 @@
 		0FB2F4A71D035B4A008F386A /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2F4A61D035B4A008F386A /* Utilities.swift */; };
 		0FB2F4A91D035E34008F386A /* UIImageView+WebLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2F4A81D035E34008F386A /* UIImageView+WebLoad.swift */; };
 		0FB2F4AB1D037008008F386A /* UIView+Utillities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2F4AA1D037008008F386A /* UIView+Utillities.swift */; };
+		0FB2F4AE1D04BF05008F386A /* FlatLabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2F4AC1D04BF05008F386A /* FlatLabelCollectionViewCell.swift */; };
+		0FB2F4AF1D04BF05008F386A /* FlatLabelCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FB2F4AD1D04BF05008F386A /* FlatLabelCollectionViewCell.xib */; };
 		0FCF01841CFA10E200924868 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF01831CFA10E200924868 /* AppDelegate.swift */; };
 		0FCF018B1CFA10E200924868 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FCF01891CFA10E200924868 /* Main.storyboard */; };
 		0FCF018D1CFA10E200924868 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FCF018C1CFA10E200924868 /* Assets.xcassets */; };
@@ -54,6 +56,8 @@
 		0FB2F4A61D035B4A008F386A /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		0FB2F4A81D035E34008F386A /* UIImageView+WebLoad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+WebLoad.swift"; sourceTree = "<group>"; };
 		0FB2F4AA1D037008008F386A /* UIView+Utillities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utillities.swift"; sourceTree = "<group>"; };
+		0FB2F4AC1D04BF05008F386A /* FlatLabelCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatLabelCollectionViewCell.swift; sourceTree = "<group>"; };
+		0FB2F4AD1D04BF05008F386A /* FlatLabelCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlatLabelCollectionViewCell.xib; sourceTree = "<group>"; };
 		0FCF01801CFA10E200924868 /* MobileTTDC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTTDC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FCF01831CFA10E200924868 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0FCF018A1CFA10E200924868 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -139,6 +143,8 @@
 				0FB2F4A61D035B4A008F386A /* Utilities.swift */,
 				0FB2F4A81D035E34008F386A /* UIImageView+WebLoad.swift */,
 				0FB2F4AA1D037008008F386A /* UIView+Utillities.swift */,
+				0FB2F4AC1D04BF05008F386A /* FlatLabelCollectionViewCell.swift */,
+				0FB2F4AD1D04BF05008F386A /* FlatLabelCollectionViewCell.xib */,
 			);
 			path = MobileTTDC;
 			sourceTree = "<group>";
@@ -240,6 +246,7 @@
 			files = (
 				0FCF01901CFA10E200924868 /* LaunchScreen.storyboard in Resources */,
 				0FB2F4A51D033C24008F386A /* FlatCollectionViewCell.xib in Resources */,
+				0FB2F4AF1D04BF05008F386A /* FlatLabelCollectionViewCell.xib in Resources */,
 				0FCF018D1CFA10E200924868 /* Assets.xcassets in Resources */,
 				0FCF018B1CFA10E200924868 /* Main.storyboard in Resources */,
 			);
@@ -275,6 +282,7 @@
 				0FB2F4961CFFA0E5008F386A /* Entry.swift in Sources */,
 				0FE527321CFB65EB00407AAE /* Operators.swift in Sources */,
 				0FE5272E1CFB65EB00407AAE /* Encoder.swift in Sources */,
+				0FB2F4AE1D04BF05008F386A /* FlatLabelCollectionViewCell.swift in Sources */,
 				0FE5273E1CFD058700407AAE /* PostResponse.swift in Sources */,
 				0FE527221CFB654300407AAE /* LoginResponse.swift in Sources */,
 				0FE5272F1CFB65EB00407AAE /* ExtensionArray.swift in Sources */,

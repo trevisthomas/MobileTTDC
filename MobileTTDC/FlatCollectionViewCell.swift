@@ -14,7 +14,12 @@ class FlatCollectionViewCell: UICollectionViewCell {
     var post : Post!{
         didSet{
             dateButton.setTitle(Utilities.singleton.simpleDateFormat(post.date), forState: .Normal)
+            contentWebView.scrollView.scrollEnabled = false
             contentWebView.loadHTMLString(post.entry, baseURL: nil)
+            
+            labelForSizing.text = post.entry
+            
+            print("Lable size \(labelForSizing.intrinsicContentSize())")
             
 //            contentWebView.frame = CGRectMake(0, 0,  CGFloat.max, 1);
 //            contentWebView.sizeToFit()
@@ -24,9 +29,40 @@ class FlatCollectionViewCell: UICollectionViewCell {
             if let url = post.creator.image?.name {
                 creatorImageView.downloadedFrom(link: url, contentMode: .ScaleAspectFit)
             }
+            
+//            contentWebView.setNeedsLayout()
+//            contentWebView.layoutIfNeeded()
+            
+        
+  //          print("scrollZize: \(contentWebView.scrollView.contentSize.height)")
+            
+            
+            contentWebView.scrollView.contentSize.height = 1
+//            contentWebView.frame.height = 1
+            let heightString = contentWebView.stringByEvaluatingJavaScriptFromString("document.height")
+            print("heightString: \(heightString)")
+            
+            
+            
+            
+//            contentWebView.delegate = self
+            
+//            var frame : CGRect = contentWebView.frame;
+//            frame.size.height = 1;
+//            contentWebView.frame = frame;
+//            let fittingSize = contentWebView.sizeThatFits(CGSizeZero)
+//            frame.size = fittingSize;
+//            contentWebView.frame = frame;
+            
+            
+//        print("fittingSize: \(fittingSize)")
+//            print("Size of web that fits: \(contentWebView.sizeThatFits(CGSizeZero))")
+//            print("Size of web: \(contentWebView.intrinsicContentSize())")
+//            print("Size of btn: \(dateButton.intrinsicContentSize())")
         }
     }
 
+    @IBOutlet weak var labelForSizing: UILabel!
     @IBOutlet weak var contentWebView: UIWebView! {
         didSet{
             contentWebView.delegate = self //For url behaviors initially at least.
@@ -41,7 +77,18 @@ class FlatCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
+    func webViewDidFinishLoad(webView: UIWebView) {
+        
+        print("did finish ScrollHeight: \(contentWebView.scrollView.contentSize.height)")
+    }
+    
     
 
 }
+
+//extension FlatCollectionViewCell : UIWebViewDelegate {
+//    func webViewDidFinishLoad(webView: UIWebView) {
+//        
+//    }
+//}
 

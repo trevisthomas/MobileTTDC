@@ -12,19 +12,32 @@ class HomeViewController: UIViewController {
 
     private struct ReuseIdentifiers{
         static let FLAT_POST_CELL = "FlatPostCell"
+        
         static let GROUPED_POST_CELL = "GroupedPostCell"
+        
+        static let FLAT_POST_LABEL_CELL = "FlatPostLabelCell"
     }
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     private var posts : [Post] = []
+    private var sizingFlatCell : FlatLabelCollectionViewCell!
+    
+    var sizeDictionary = [Int: CGSize]()
     
     override func viewDidLoad() {
-        self.collectionView!.registerNib(UINib(nibName: "FlatCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: ReuseIdentifiers.FLAT_POST_CELL)
         
+        
+        
+        let nib = UINib(nibName: "FlatLabelCollectionViewCell", bundle: nil)
+        
+        self.collectionView!.registerNib(nib, forCellWithReuseIdentifier: ReuseIdentifiers.FLAT_POST_LABEL_CELL)
+    
         collectionView.delegate = self //For the layout delegate
         
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "rotated", name: UIInterfaceOrientation, object: nil)
         
+        
+        sizingFlatCell = nib.instantiateWithOwner(nil, options: nil)[0] as! FlatLabelCollectionViewCell
         
         loadDataFromWebservice()
         
@@ -39,9 +52,13 @@ class HomeViewController: UIViewController {
         
         print("Orientation")
         
+        
         coordinator.animateAlongsideTransition(nil, completion:  { (UIViewControllerTransitionCoordinatorContext) -> () in
 //            self.collectionView.invalidateIntrinsicContentSize()
+            
             self.collectionView.performBatchUpdates(nil, completion: nil) //This invalidates the CollectionView sizes
+            
+            self.collectionView.collectionViewLayout.invalidateLayout() //Because the sizes are different, i'm focrcing it to reload the layout
         })
         
 //        self.collectionView.invalidateIntrinsicContentSize()
@@ -75,13 +92,22 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.FLAT_POST_CELL, forIndexPath: indexPath) as! FlatCollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.FLAT_POST_LABEL_CELL, forIndexPath: indexPath) as! FlatLabelCollectionViewCell
+        
         
         // Configure the cell
         
         print("Create reusable for \(indexPath)")
         
+        cell.parentViewController = self
+        cell.rowIndex = indexPath.row
+        cell.maxCellWidth = view.frame.width
+        
         cell.post = posts[indexPath.row]
+//        cell.parentCollectionView = collectionView
+        
+        
+        print("cell dequeued")
         return cell
     }
 
@@ -90,9 +116,56 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
 extension HomeViewController : UICollectionViewDelegateFlowLayout{
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        print("Size for \(indexPath.row)")
+//        if collectionView.numberOfSections() == 0 {
+//            return CGSize(width: collectionView.frame.width,height: 100);
+//        }
         
-        return CGSize(width: collectionView.frame.width, height: 200)
+//        if sizingFlatCell == nil {
+////            sizingFlatCell = FlatCollectionViewCell()
+////            sizingFlatCell.awakeFromNib()
+//            
+//            sizingFlatCell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.FLAT_POST_CELL, forIndexPath: indexPath) as! FlatCollectionViewCell
+//        }
+        
+//        print("Size for \(indexPath.row)")
+        
+        sizingFlatCell.post = posts[indexPath.row]
+        
+        sizingFlatCell.invalidateIntrinsicContentSize()
+        
+//        sizingFlatCell.contentView.setNeedsLayout()
+//        sizingFlatCell.contentView.layoutIfNeeded()
+        
+//        print("Size: \(sizingFlatCell.intrinsicContentSize())")
+//
+//        print("Size alt: \(sizingFlatCell.systemLayoutSizeFittingSize(UILayoutFittingExpandedSize))")
+//        
+//        let size = sizingFlatCell.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
+//        let size = sizingFlatCell.preferredSize(collectionView.frame.size)
+        
+        
+        
+//        print("Size from calc: \(size)")
+        
+//        return size
+        
+//        var size : CGSize = collectionView.frame.size
+        
+        
+        if let size = sizeDictionary[indexPath.row] {
+            print("Size from calc: \(size)")
+            return size
+        } else {
+            return CGSize(width: collectionView.frame.width, height: 64 + 8)
+        }
+        
+        
+        
+        
+        
+        
+        
+//        return CGSize(width: collectionView.frame.width, height: 200)
     }
 }
 

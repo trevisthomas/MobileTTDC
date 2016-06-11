@@ -19,12 +19,12 @@ class FlatCollectionViewCell: UICollectionViewCell {
             
             
             
-            labelForSizing.text = post.entry
+//            labelForSizing.text = post.entry
             let sysfont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
             
             
             
-            let modifiedFont = NSString(format:"<span style=\"font-family: \(sysfont.fontName); font-size: \(sysfont.pointSize)\">%@</span>", post.entry) as String
+            let modifiedFont = NSString(format:"<span style=\"font-family: '\(sysfont.fontName)'; font-size: \(sysfont.pointSize)\">%@</span>", post.entry) as String
             
             if let htmlData = modifiedFont.dataUsingEncoding(NSUnicodeStringEncoding) {
 //                NSAttributedString(
@@ -35,6 +35,7 @@ class FlatCollectionViewCell: UICollectionViewCell {
                                                                       options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSFontAttributeName: sysfont],
                                                                       documentAttributes: nil)
                     
+                    labelForSizing.attributedText = entryTextView.attributedText
                 } catch let e as NSError {
                     print("Couldn't translate \(post.entry): \(e.localizedDescription) ")
                 }
@@ -99,6 +100,8 @@ class FlatCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
@@ -115,19 +118,36 @@ class FlatCollectionViewCell: UICollectionViewCell {
 extension FlatCollectionViewCell {
     func preferredHeight(width : CGFloat) -> CGFloat {
         
-        let sizeThatFits = entryTextView.customSizeThatFits(width)
+        self.invalidateIntrinsicContentSize()
+        
+        self.contentView.setNeedsLayout()
+        self.contentView.layoutIfNeeded()
+        
+        let sizeThatFits = labelForSizing.sizeThatFits(CGSizeMake(width - 16, CGFloat.max))
+        
+//        print("Size that fits too \(sizeThatFits2)")
+        
+//        let sizeThatFits = entryTextView.layoutManager.usedRectForTextContainer(entryTextView.textContainer).size
         print("Size that fits \(sizeThatFits)")
-        return ceil(sizeThatFits.height) + 64 + 8 + 8 + 8 + 30
+        return ceil(sizeThatFits.height) + 64 + 8 + 8 + 50
         
         
     }
 }
 
 
+extension FlatCollectionViewCell : UITextViewDelegate {
+    //http://stackoverflow.com/questions/20541676/ios-uitextview-or-uilabel-with-clickable-links-to-actions
+    func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
+        print("\(URL.absoluteString)")
+        return true;
+    }
+}
+
+
+//** Move this extension!!
 extension UITextView {
     func customSizeThatFits(width: CGFloat) -> CGSize {
-//        let font = UIFont.systemFontOfSize(14)
-        
         
         let templateSize = CGSizeMake(width, CGFloat.max)
         let textRect = self.attributedText.boundingRectWithSize(templateSize, options: [NSStringDrawingOptions.UsesFontLeading,.UsesLineFragmentOrigin], context: nil)
@@ -135,10 +155,24 @@ extension UITextView {
         return textRect.size
         
     }
+    
+    func setHtmlText(html : String, font sysfont : UIFont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)){
+//        let sysfont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        
+        let modifiedFont = NSString(format:"<span style=\"font-family: '\(sysfont.fontName)'; font-size: \(sysfont.pointSize)\">%@</span>", html) as String
+        
+        if let htmlData = modifiedFont.dataUsingEncoding(NSUnicodeStringEncoding) {
+            //                NSAttributedString(
+            
+            do {
+                
+                self.attributedText = try NSMutableAttributedString(data: htmlData,
+                                                                             options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSFontAttributeName: sysfont],
+                                                                             documentAttributes: nil)
+            } catch let e as NSError {
+                print("Couldn't translate \(html): \(e.localizedDescription) ")
+            }
+        }
+    }
 }
-//extension FlatCollectionViewCell : UIWebViewDelegate {
-//    func webViewDidFinishLoad(webView: UIWebView) {
-//        
-//    }
-//}
 

@@ -16,4 +16,9 @@ public class Network {
     public static func performPostCommand(command : PostCommand, completion: (response : PostResponse?, error: String?) -> Void){
         NetworkAdapter.performCommand("http://ttdc.us/restful/latestposts", command: command, completion: completion)
     }
+    
+    public static func performSearchCommand(command : SearchCommand, completion: (response : SearchResponse?, error: String?) -> Void){
+//        NetworkAdapter.performCommand("https://ttdc.us/restful/latestConversations", command: command, completion: completion)
+        NetworkAdapter.performCommand("http://ttdc.us/restful/latestConversations", command: command, completion: completion)
+    }
 }

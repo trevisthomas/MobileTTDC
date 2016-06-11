@@ -15,14 +15,11 @@ class MainViewController: UIViewController {
         
         static let GROUPED_POST_CELL = "GroupedPostCell"
         
-        
     }
     
     @IBOutlet weak var collectionView: UICollectionView!
     private var posts : [Post] = []
     private var sizingFlatCell : FlatCollectionViewCell!
-    
-//    var sizeDictionary = [Int: CGSize]()
     
     override func viewDidLoad() {
         
@@ -61,8 +58,6 @@ class MainViewController: UIViewController {
 
         })
         
-        //        self.collectionView.invalidateIntrinsicContentSize()
-        //        self.collectionView.performBatchUpdates(nil, completion: nil) //This invalidates the CollectionView sizes
     }
     
     /*
@@ -94,17 +89,7 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.FLAT_POST_CELL, forIndexPath: indexPath) as! FlatCollectionViewCell
         
-        
-        // Configure the cell
-        
-//        print("Create reusable for \(indexPath)")
-        
-        
         cell.post = posts[indexPath.row]
-        //        cell.parentCollectionView = collectionView
-        
-        
-//        print("cell dequeued")
         return cell
     }
     
@@ -113,40 +98,12 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
 extension MainViewController : UICollectionViewDelegateFlowLayout{
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        //        if collectionView.numberOfSections() == 0 {
-        //            return CGSize(width: collectionView.frame.width,height: 100);
-        //        }
-        
-        //        if sizingFlatCell == nil {
-        ////            sizingFlatCell = FlatCollectionViewCell()
-        ////            sizingFlatCell.awakeFromNib()
-        //
-        //            sizingFlatCell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.FLAT_POST_CELL, forIndexPath: indexPath) as! FlatCollectionViewCell
-        //        }
-        
-        //        print("Size for \(indexPath.row)")
-        
         sizingFlatCell.post = posts[indexPath.row]
         
-        sizingFlatCell.invalidateIntrinsicContentSize()
-        
-        sizingFlatCell.contentView.setNeedsLayout()
-        sizingFlatCell.contentView.layoutIfNeeded()
-        
-        //        print("Size: \(sizingFlatCell.intrinsicContentSize())")
-        //
-        //        print("Size alt: \(sizingFlatCell.systemLayoutSizeFittingSize(UILayoutFittingExpandedSize))")
-        //
-        //        let size = sizingFlatCell.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
-        //        let size = sizingFlatCell.preferredSize(collectionView.frame.size)
-        
-        
-        
-        //        print("Size from calc: \(size)")
-        
-        //        return size
-        
-        //        var size : CGSize = collectionView.frame.size
+//        sizingFlatCell.invalidateIntrinsicContentSize()
+//        
+//        sizingFlatCell.contentView.setNeedsLayout()
+//        sizingFlatCell.contentView.layoutIfNeeded()
         
         let height = sizingFlatCell.preferredHeight(collectionView.frame.width)
        

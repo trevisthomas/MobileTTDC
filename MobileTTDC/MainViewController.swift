@@ -10,13 +10,6 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-    private struct ReuseIdentifiers{
-        static let FLAT_POST_CELL = "FlatPostCell"
-        
-        static let GROUPED_POST_CELL = "GroupedPostCell"
-        
-    }
-    
     @IBOutlet weak var collectionView: UICollectionView!
     private var posts : [Post] = []
     private var sizingFlatCell : FlatCollectionViewCell!
@@ -49,14 +42,15 @@ class MainViewController: UIViewController {
         
         print("Orientation")
         
+        collectionView.collectionViewLayout.invalidateLayout()
         
-        coordinator.animateAlongsideTransition(nil, completion:  { (UIViewControllerTransitionCoordinatorContext) -> () in
-            //            self.collectionView.invalidateIntrinsicContentSize()
-            
-            self.collectionView.performBatchUpdates(nil, completion: nil) //This invalidates the CollectionView sizes
-            
-
-        })
+//        coordinator.animateAlongsideTransition(nil, completion:  { (UIViewControllerTransitionCoordinatorContext) -> () in
+//            //            self.collectionView.invalidateIntrinsicContentSize()
+//            
+//            self.collectionView.performBatchUpdates(nil, completion: nil) //This invalidates the CollectionView sizes
+//            
+//
+//        })
         
     }
     

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ReplyPostCell" id="gTV-IL-0wX" customClass="ReplyCollectionViewCell" customModule="MobileTTDC" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IRk-3w-sdN">
+                        <rect key="frame" x="32" y="8" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="78J-tv-v2l"/>
+                            <constraint firstAttribute="height" constant="24" id="goA-uq-GBC"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nf3-WH-y9g">
+                        <rect key="frame" x="64" y="8" width="528" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="Zo3-J2-T4X"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="Creator"/>
+                    </button>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zG1-vd-KCD">
+                        <rect key="frame" x="64" y="27" width="528" height="145"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OnK-B8-Fcq">
+                        <rect key="frame" x="64" y="176" width="528" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="Pbl-91-Twb"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="Date added - likes - etc"/>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="nf3-WH-y9g" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="64" id="BuF-G6-xg2"/>
+                <constraint firstItem="nf3-WH-y9g" firstAttribute="leading" secondItem="IRk-3w-sdN" secondAttribute="trailing" constant="8" id="CUq-Ng-vsZ"/>
+                <constraint firstAttribute="trailing" secondItem="nf3-WH-y9g" secondAttribute="trailing" constant="8" id="Fhm-ou-F7z"/>
+                <constraint firstItem="OnK-B8-Fcq" firstAttribute="top" secondItem="zG1-vd-KCD" secondAttribute="bottom" constant="4" id="KOM-ob-rde"/>
+                <constraint firstItem="zG1-vd-KCD" firstAttribute="top" secondItem="nf3-WH-y9g" secondAttribute="bottom" constant="3" id="Kfd-5y-fup"/>
+                <constraint firstAttribute="trailing" secondItem="OnK-B8-Fcq" secondAttribute="trailing" constant="8" id="N01-6O-ml8"/>
+                <constraint firstItem="OnK-B8-Fcq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="64" id="Uvq-DI-4av"/>
+                <constraint firstItem="nf3-WH-y9g" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="ZCa-0L-tPF"/>
+                <constraint firstAttribute="bottom" secondItem="zG1-vd-KCD" secondAttribute="bottom" constant="28" id="jep-gj-lg9"/>
+                <constraint firstItem="zG1-vd-KCD" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="64" id="pqL-we-GQV"/>
+                <constraint firstItem="IRk-3w-sdN" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="sIT-GD-hvA"/>
+                <constraint firstAttribute="trailing" secondItem="zG1-vd-KCD" secondAttribute="trailing" constant="8" id="v74-nh-uvr"/>
+            </constraints>
+            <size key="customSize" width="537" height="167"/>
+            <connections>
+                <outlet property="creatorImageView" destination="IRk-3w-sdN" id="WrH-1T-adm"/>
+                <outlet property="creatorNameButton" destination="nf3-WH-y9g" id="LTd-YT-Z69"/>
+                <outlet property="entryTextView" destination="zG1-vd-KCD" id="tYT-YJ-1Jt"/>
+            </connections>
+            <point key="canvasLocation" x="676" y="377"/>
+        </collectionViewCell>
+    </objects>
+</document>

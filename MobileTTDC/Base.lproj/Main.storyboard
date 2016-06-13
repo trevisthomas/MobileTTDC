@@ -147,7 +147,7 @@
         <!--Conversation Detail View Controller-->
         <scene sceneID="zyH-yX-Kk1">
             <objects>
-                <viewController id="prF-dm-nBN" customClass="ConversationDetailViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConversationDetailViewController" id="prF-dm-nBN" customClass="ConversationDetailViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="If2-uq-vTg"/>
                         <viewControllerLayoutGuide type="bottom" id="kKP-H8-ZJv"/>
@@ -156,16 +156,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A specific conversation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqT-8i-inU">
-                                <rect key="frame" x="20" y="72" width="344" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="h42-9h-B1i">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JJd-Za-o1c">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="xOP-ex-UWT">
+                                        <rect key="frame" x="0.0" y="64" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="prF-dm-nBN" id="ihO-9T-huu"/>
+                                    <outlet property="delegate" destination="prF-dm-nBN" id="6EN-Ce-oGr"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="h42-9h-B1i" firstAttribute="top" secondItem="If2-uq-vTg" secondAttribute="bottom" id="8Yk-1S-gXZ"/>
+                            <constraint firstItem="h42-9h-B1i" firstAttribute="leading" secondItem="tjI-Fy-xZJ" secondAttribute="leading" id="PdV-d0-2kV"/>
+                            <constraint firstItem="kKP-H8-ZJv" firstAttribute="top" secondItem="h42-9h-B1i" secondAttribute="bottom" id="nCD-V4-qxf"/>
+                            <constraint firstAttribute="trailing" secondItem="h42-9h-B1i" secondAttribute="trailing" id="p61-sv-Rba"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Iuc-xk-uhQ"/>
+                    <connections>
+                        <outlet property="collectionView" destination="h42-9h-B1i" id="WFT-FL-y00"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RpY-Su-JVY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -188,7 +215,7 @@
         <!--Main View Controller-->
         <scene sceneID="XtF-6X-KyK">
             <objects>
-                <viewController id="A0t-HO-E5R" customClass="MainViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" id="A0t-HO-E5R" customClass="MainViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kDF-ZK-S9Z"/>
                         <viewControllerLayoutGuide type="bottom" id="ctZ-lp-sNP"/>
@@ -347,7 +374,7 @@
         <!--Navigation Controller-->
         <scene sceneID="KQ7-dy-EFt">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rCi-bD-KO2" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ConversationDetail" automaticallyAdjustsScrollViewInsets="NO" id="rCi-bD-KO2" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ujb-bE-3PC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

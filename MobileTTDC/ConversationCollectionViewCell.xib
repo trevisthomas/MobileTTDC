@@ -13,7 +13,7 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="600" height="249"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1HT-X2-wN2">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1HT-X2-wN2">
                         <rect key="frame" x="63" y="8" width="529" height="36"/>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <state key="normal" title="Thread Title"/>
@@ -34,7 +34,7 @@
                         <state key="normal" title="01/01/1970"/>
                     </button>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yoc-PX-rVd">
-                        <rect key="frame" x="8" y="61" width="584" height="180"/>
+                        <rect key="frame" x="8" y="61" width="584" height="156"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <attributedString key="attributedText">
                             <fragment>
@@ -48,22 +48,41 @@
                         <textInputTraits key="textInputTraits"/>
                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
                     </textView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dde-wL-eIb">
+                        <rect key="frame" x="32" y="221" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="DWs-ag-XPu"/>
+                            <constraint firstAttribute="height" constant="24" id="gXB-06-cD9"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qfn-Qb-zQr">
+                        <rect key="frame" x="64" y="221" width="528" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="5ET-PC-YM4"/>
+                        </constraints>
+                        <state key="normal" title="Replies verbiage"/>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
+                <constraint firstItem="qfn-Qb-zQr" firstAttribute="top" secondItem="yoc-PX-rVd" secondAttribute="bottom" constant="4" id="0sS-ta-AAe"/>
                 <constraint firstItem="aph-4D-4PF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="63" id="2ct-xo-J77"/>
                 <constraint firstItem="yoc-PX-rVd" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="61" id="62r-ib-SGs"/>
                 <constraint firstAttribute="trailing" secondItem="1HT-X2-wN2" secondAttribute="trailing" constant="8" id="8fB-Bo-GhB"/>
+                <constraint firstItem="qfn-Qb-zQr" firstAttribute="leading" secondItem="Dde-wL-eIb" secondAttribute="trailing" constant="8" id="EF8-OB-vY7"/>
                 <constraint firstItem="yoc-PX-rVd" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="EzG-1s-7qA"/>
                 <constraint firstItem="1HT-X2-wN2" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="FuS-eH-gpr"/>
                 <constraint firstAttribute="trailing" secondItem="yoc-PX-rVd" secondAttribute="trailing" constant="8" id="GIi-2h-JfF"/>
                 <constraint firstItem="Yq0-zc-AwV" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="Iu3-sR-AdS"/>
+                <constraint firstItem="qfn-Qb-zQr" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="64" id="LPU-44-aaz"/>
                 <constraint firstItem="1HT-X2-wN2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="63" id="Xd3-F8-9hy"/>
+                <constraint firstAttribute="trailing" secondItem="qfn-Qb-zQr" secondAttribute="trailing" constant="8" id="dMi-9I-KJJ"/>
                 <constraint firstItem="1HT-X2-wN2" firstAttribute="leading" secondItem="Yq0-zc-AwV" secondAttribute="trailing" constant="5" id="dRy-oD-ftV"/>
                 <constraint firstAttribute="trailing" secondItem="aph-4D-4PF" secondAttribute="trailing" constant="8" id="e39-Vv-yEf"/>
                 <constraint firstItem="Yq0-zc-AwV" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="onr-O9-F47"/>
-                <constraint firstAttribute="bottom" secondItem="yoc-PX-rVd" secondAttribute="bottom" constant="8" id="rQb-cO-VPd"/>
+                <constraint firstAttribute="bottom" secondItem="yoc-PX-rVd" secondAttribute="bottom" constant="32" id="rQb-cO-VPd"/>
+                <constraint firstItem="Dde-wL-eIb" firstAttribute="top" secondItem="yoc-PX-rVd" secondAttribute="bottom" constant="4" id="rfg-4x-98Y"/>
                 <constraint firstItem="aph-4D-4PF" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="45" id="uZG-d8-bDA"/>
             </constraints>
             <size key="customSize" width="612" height="249"/>
@@ -71,6 +90,8 @@
                 <outlet property="creatorImageView" destination="Yq0-zc-AwV" id="aDa-Yi-QSK"/>
                 <outlet property="dateButton" destination="aph-4D-4PF" id="u8W-Eo-efM"/>
                 <outlet property="entryTextView" destination="yoc-PX-rVd" id="KMt-qe-Qri"/>
+                <outlet property="repliedPersonImage" destination="Dde-wL-eIb" id="lu4-bW-Ieu"/>
+                <outlet property="repliesButton" destination="qfn-Qb-zQr" id="WRK-6l-BlK"/>
                 <outlet property="titleButton" destination="1HT-X2-wN2" id="Id3-1J-oYD"/>
             </connections>
             <point key="canvasLocation" x="377" y="448.5"/>

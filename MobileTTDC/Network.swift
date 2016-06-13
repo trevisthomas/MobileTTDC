@@ -21,4 +21,8 @@ public class Network {
 //        NetworkAdapter.performCommand("https://ttdc.us/restful/latestConversations", command: command, completion: completion)
         NetworkAdapter.performCommand("http://ttdc.us/restful/latestConversations", command: command, completion: completion)
     }
+    
+    public static func performPostCommand(command : TopicCommand, completion: (response : TopicResponse?, error: String?) -> Void){
+        NetworkAdapter.performCommand("http://ttdc.us/restful/topic", command: command, completion: completion)
+    }
 }

@@ -29,6 +29,11 @@
 		0FD0A32A1D0CAA140030D36F /* ConversationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FD0A3281D0CAA140030D36F /* ConversationCollectionViewCell.xib */; };
 		0FD0A32C1D0CAD0E0030D36F /* SearchCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD0A32B1D0CAD0E0030D36F /* SearchCommand.swift */; };
 		0FD0A32E1D0CB0050030D36F /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD0A32D1D0CB0050030D36F /* SearchResponse.swift */; };
+		0FD0A3391D0DF0160030D36F /* ReplyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD0A3371D0DF0160030D36F /* ReplyCollectionViewCell.swift */; };
+		0FD0A33A1D0DF0160030D36F /* ReplyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FD0A3381D0DF0160030D36F /* ReplyCollectionViewCell.xib */; };
+		0FD0A33C1D0DF4140030D36F /* ReuseIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD0A33B1D0DF4140030D36F /* ReuseIdentifiers.swift */; };
+		0FD0A33E1D0DFDD80030D36F /* TopicCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD0A33D1D0DFDD80030D36F /* TopicCommand.swift */; };
+		0FD0A3401D0DFE980030D36F /* TopicResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD0A33F1D0DFE980030D36F /* TopicResponse.swift */; };
 		0FE527211CFB654300407AAE /* LoginCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE5271D1CFB654300407AAE /* LoginCommand.swift */; };
 		0FE527221CFB654300407AAE /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE5271E1CFB654300407AAE /* LoginResponse.swift */; };
 		0FE527231CFB654300407AAE /* NetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE5271F1CFB654300407AAE /* NetworkAdapter.swift */; };
@@ -72,6 +77,11 @@
 		0FD0A3281D0CAA140030D36F /* ConversationCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConversationCollectionViewCell.xib; sourceTree = "<group>"; };
 		0FD0A32B1D0CAD0E0030D36F /* SearchCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCommand.swift; sourceTree = "<group>"; };
 		0FD0A32D1D0CB0050030D36F /* SearchResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
+		0FD0A3371D0DF0160030D36F /* ReplyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyCollectionViewCell.swift; sourceTree = "<group>"; };
+		0FD0A3381D0DF0160030D36F /* ReplyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplyCollectionViewCell.xib; sourceTree = "<group>"; };
+		0FD0A33B1D0DF4140030D36F /* ReuseIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReuseIdentifiers.swift; sourceTree = "<group>"; };
+		0FD0A33D1D0DFDD80030D36F /* TopicCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCommand.swift; sourceTree = "<group>"; };
+		0FD0A33F1D0DFE980030D36F /* TopicResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicResponse.swift; sourceTree = "<group>"; };
 		0FE5271D1CFB654300407AAE /* LoginCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCommand.swift; sourceTree = "<group>"; };
 		0FE5271E1CFB654300407AAE /* LoginResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		0FE5271F1CFB654300407AAE /* NetworkAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkAdapter.swift; sourceTree = "<group>"; };
@@ -145,6 +155,8 @@
 				0FCF01911CFA10E200924868 /* Info.plist */,
 				0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */,
 				0F76A87D1CFA1C9400BDD499 /* ProfileViewController.swift */,
+				0FD0A3371D0DF0160030D36F /* ReplyCollectionViewCell.swift */,
+				0FD0A3381D0DF0160030D36F /* ReplyCollectionViewCell.xib */,
 				0FE527411CFD096300407AAE /* UIViewController+Alerts.swift */,
 				0FB2F4931CFF9C77008F386A /* NSDate+Gloss.swift */,
 				0FB2F4A21D033C24008F386A /* FlatCollectionViewCell.swift */,
@@ -155,6 +167,7 @@
 				0FD0A3231D0CA37E0030D36F /* ConversationDetailViewController.swift */,
 				0FD0A3271D0CAA140030D36F /* ConversationCollectionViewCell.swift */,
 				0FD0A3281D0CAA140030D36F /* ConversationCollectionViewCell.xib */,
+				0FD0A33B1D0DF4140030D36F /* ReuseIdentifiers.swift */,
 			);
 			path = MobileTTDC;
 			sourceTree = "<group>";
@@ -171,6 +184,8 @@
 				0FE5273F1CFD05AE00407AAE /* PostCommand.swift */,
 				0FD0A32B1D0CAD0E0030D36F /* SearchCommand.swift */,
 				0FD0A32D1D0CB0050030D36F /* SearchResponse.swift */,
+				0FD0A33D1D0DFDD80030D36F /* TopicCommand.swift */,
+				0FD0A33F1D0DFE980030D36F /* TopicResponse.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -257,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0FCF01901CFA10E200924868 /* LaunchScreen.storyboard in Resources */,
+				0FD0A33A1D0DF0160030D36F /* ReplyCollectionViewCell.xib in Resources */,
 				0FB2F4A51D033C24008F386A /* FlatCollectionViewCell.xib in Resources */,
 				0FCF018D1CFA10E200924868 /* Assets.xcassets in Resources */,
 				0FCF018B1CFA10E200924868 /* Main.storyboard in Resources */,
@@ -282,13 +298,16 @@
 				0F76A87E1CFA1C9400BDD499 /* ProfileViewController.swift in Sources */,
 				0FB2F4B11D05D832008F386A /* MainViewController.swift in Sources */,
 				0FE527301CFB65EB00407AAE /* ExtensionDictionary.swift in Sources */,
+				0FD0A33E1D0DFDD80030D36F /* TopicCommand.swift in Sources */,
 				0F76A87A1CFA165D00BDD499 /* LoginViewController.swift in Sources */,
 				0FB2F4941CFF9C77008F386A /* NSDate+Gloss.swift in Sources */,
+				0FD0A3391D0DF0160030D36F /* ReplyCollectionViewCell.swift in Sources */,
 				0FD0A3221D0CA2530030D36F /* ConversationsViewController.swift in Sources */,
 				0FD0A3241D0CA37E0030D36F /* ConversationDetailViewController.swift in Sources */,
 				0FE527241CFB654300407AAE /* Person.swift in Sources */,
 				0FD0A3291D0CAA140030D36F /* ConversationCollectionViewCell.swift in Sources */,
 				0FE527311CFB65EB00407AAE /* Gloss.swift in Sources */,
+				0FD0A3401D0DFE980030D36F /* TopicResponse.swift in Sources */,
 				0FE5273C1CFCA27E00407AAE /* Network.swift in Sources */,
 				0FB2F4A41D033C24008F386A /* FlatCollectionViewCell.swift in Sources */,
 				0FE527441CFD0E1E00407AAE /* Post.swift in Sources */,
@@ -301,6 +320,7 @@
 				0FE5273E1CFD058700407AAE /* PostResponse.swift in Sources */,
 				0FE527221CFB654300407AAE /* LoginResponse.swift in Sources */,
 				0FE5272F1CFB65EB00407AAE /* ExtensionArray.swift in Sources */,
+				0FD0A33C1D0DF4140030D36F /* ReuseIdentifiers.swift in Sources */,
 				0FB2F4AB1D037008008F386A /* UIView+Utillities.swift in Sources */,
 				0FE527401CFD05AE00407AAE /* PostCommand.swift in Sources */,
 				0FD0A32C1D0CAD0E0030D36F /* SearchCommand.swift in Sources */,

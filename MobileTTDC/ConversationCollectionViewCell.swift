@@ -22,6 +22,8 @@ class ConversationCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleButton: UIButton!
     @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var entryTextView: UITextView!
+    @IBOutlet weak var repliesButton: UIButton!
+    @IBOutlet weak var repliedPersonImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,17 +32,22 @@ class ConversationCollectionViewCell: UICollectionViewCell {
 
     func preferredHeight(width : CGFloat) -> CGFloat {
         
-        self.invalidateIntrinsicContentSize()
+//        self.invalidateIntrinsicContentSize()
+//        
+//        self.contentView.setNeedsLayout()
+//        self.contentView.layoutIfNeeded()
         
-        self.contentView.setNeedsLayout()
-        self.contentView.layoutIfNeeded()
         
+//        return 123
+        let sizeThatFits = entryTextView.sizeThatFits(CGSizeMake(width - 16, CGFloat.max))
         
-        return 123
-//        let sizeThatFits = labelForSizing.sizeThatFits(CGSizeMake(width - 16, CGFloat.max))
+        print("Size that fits \(sizeThatFits)")
+        return ceil(sizeThatFits.height) + 64 + 8 + 8 + 50
         
+//        let sizeThatFits = self.contentView.sizeThatFits(CGSizeMake(width - 16, CGFloat.max))
+//        
 //        print("Size that fits \(sizeThatFits)")
-//        return ceil(sizeThatFits.height) + 64 + 8 + 8 + 50
+//        return ceil(sizeThatFits.height)
         
         
     }

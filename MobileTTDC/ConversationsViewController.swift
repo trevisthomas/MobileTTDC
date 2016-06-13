@@ -13,14 +13,8 @@ class ConversationsViewController: UIViewController {
     private var posts : [Post] = []
     private var sizingCellPrototype : ConversationCollectionViewCell!
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView?
     
-    private struct ReuseIdentifiers{
-        static let CONVERSATION_POST_CELL = "ConversationPostCell"
-        
-    }
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,7 +22,7 @@ class ConversationsViewController: UIViewController {
         
         self.collectionView!.registerNib(nib, forCellWithReuseIdentifier: ReuseIdentifiers.CONVERSATION_POST_CELL)
         
-        collectionView.delegate = self //For the layout delegate
+        collectionView?.delegate = self //For the layout delegate
         
         //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "rotated", name: UIInterfaceOrientation, object: nil)
         
@@ -37,23 +31,18 @@ class ConversationsViewController: UIViewController {
         
         loadDataFromWebservice()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewWillAppear(animated: Bool) {
+        collectionView?.collectionViewLayout.invalidateLayout() //Just incase the orientation changed when you werent visible
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        
+        print("Orientation: ConversationsViewController")
+        collectionView?.collectionViewLayout.invalidateLayout()
     }
-    */
 
+ 
 }
 
 extension ConversationsViewController{
@@ -71,7 +60,7 @@ extension ConversationsViewController{
             
             self.posts = (response?.list)!
             
-            self.collectionView.reloadData()
+            self.collectionView?.reloadData()
             
             //            print(response!.totalResults)
             //
@@ -86,14 +75,7 @@ extension ConversationsViewController : UICollectionViewDelegateFlowLayout{
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
         sizingCellPrototype.post = posts[indexPath.row]
-        
-        //        sizingFlatCell.invalidateIntrinsicContentSize()
-        //
-        //        sizingFlatCell.contentView.setNeedsLayout()
-        //        sizingFlatCell.contentView.layoutIfNeeded()
-        
         let height = sizingCellPrototype.preferredHeight(collectionView.frame.width)
-        
         return CGSize(width: collectionView.frame.width, height: height)
     }
 }
@@ -119,4 +101,26 @@ extension ConversationsViewController : UICollectionViewDelegate, UICollectionVi
         return cell
     }
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+
+        
+//        let nav = storyboard?.instantiateViewControllerWithIdentifier("ConversationDetail") as!  UINavigationController
+//        let detail = nav.viewControllers.first as! ConversationDetailViewController
+//        detail.post = posts[indexPath.row]
+//        splitViewController?.showDetailViewController(detail, sender: self)
+        
+        //ConversationDetailViewController
+        //MainViewController
+        
+//        let detail = storyboard?.instantiateViewControllerWithIdentifier("ConversationDetailViewController") as!  ConversationDetailViewController
+//        detail.post = posts[indexPath.row]
+//        splitViewController?.viewControllers.last?.presentViewController(detail, animated: true, completion: nil)
+        
+        let detail = storyboard?.instantiateViewControllerWithIdentifier("ConversationDetailViewController") as!  ConversationDetailViewController
+        detail.post = posts[indexPath.row]
+        
+        let detailNav = splitViewController?.viewControllers.last as! UINavigationController
+        detailNav.pushViewController(detail, animated: true)
+
+    }
 }

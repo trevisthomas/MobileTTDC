@@ -35,6 +35,8 @@ class ConverstionSplitViewController: UISplitViewController {
 }
 
 extension ConversationsViewController: UISplitViewControllerDelegate{
+    
+    //Trevis: I'm not 100% sure that this is doing anything
     func targetDisplayModeForActionInSplitViewController(svc: UISplitViewController) -> UISplitViewControllerDisplayMode {
         if (svc.displayMode == UISplitViewControllerDisplayMode.PrimaryOverlay || svc.displayMode == UISplitViewControllerDisplayMode.PrimaryHidden) {
             return UISplitViewControllerDisplayMode.AllVisible;

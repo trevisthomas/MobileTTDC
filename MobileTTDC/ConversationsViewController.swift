@@ -8,17 +8,22 @@
 
 import UIKit
 
+
+protocol DetailSelectionDelegate: class {
+    func changeDetail(post: Post?)
+}
+
 class ConversationsViewController: UIViewController {
     
     private var posts : [Post] = []
     private var sizingCellPrototype : ConversationCollectionViewCell!
     private(set) var postForSegue : Post! = nil //OUTSTANDING!
-    
+//    private weak var detailDelegate : DetailSelectionDelegate?
     
     @IBOutlet weak var collectionView: UICollectionView?
-    
+
     var closeBarButtonItem: UIBarButtonItem {
-        return UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: #selector(ConversationDetailViewController.closeButtonClicked(_:)))
+        return UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: #selector(closeButtonClicked(_:)))
     }
     
     override func viewDidLoad() {
@@ -44,6 +49,9 @@ class ConversationsViewController: UIViewController {
         //Setting the title of the back button
         let converstionButton = UIBarButtonItem(title: "Conversations", style: .Plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = converstionButton;
+        
+        getDetailViewController()
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -58,8 +66,8 @@ class ConversationsViewController: UIViewController {
     
     
     func closeButtonClicked(sender : UIButton){
-//        print("Sup, playuh")
-//        
+        print("Sup, playuh")
+//
 //        let detailNav = splitViewController?.viewControllers.last as! UINavigationController
 //        detailNav.popViewControllerAnimated(true)
 //
@@ -72,12 +80,19 @@ class ConversationsViewController: UIViewController {
 //        self.navigationController?.popViewControllerAnimated(true)
         
         
-        let vc = storyboard?.instantiateViewControllerWithIdentifier("MainViewController") as!  MainViewController
-        let detailNav = splitViewController?.viewControllers.last as! UINavigationController
-        detailNav.pushViewController(vc, animated: true)
+//        let vc = storyboard?.instantiateViewControllerWithIdentifier("MainViewController") as!  MainViewController
+//        let detailNav = splitViewController?.viewControllers.last as! UINavigationController
+//        detailNav.pushViewController(vc, animated: true)
         
     }
-
+    
+    private func getDetailViewController() -> PostDetailViewController {
+        let detailNavigation = self.splitViewController?.viewControllers.last as! UINavigationController
+        let detailVC = detailNavigation.visibleViewController as! PostDetailViewController
+        
+        print( detailVC.debugDescription )
+        return detailVC
+    }
  
 }
 
@@ -139,19 +154,13 @@ extension ConversationsViewController : UICollectionViewDelegate, UICollectionVi
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        let detail = storyboard?.instantiateViewControllerWithIdentifier("ConversationDetailViewController") as!  ConversationDetailViewController
-        detail.post = posts[indexPath.row]
-        
-        let detailNav = splitViewController?.viewControllers.last as! UINavigationController
-        detailNav.pushViewController(detail, animated: true)
-        
-//        postForSegue = posts[indexPath.row]
+//        let detail = storyboard?.instantiateViewControllerWithIdentifier("ConversationDetailViewController") as!  ConversationDetailViewController
+//        detail.post = posts[indexPath.row]
 //        
-//        performSegueWithIdentifier("Main", sender: self)
+//        let detailNav = splitViewController?.viewControllers.last as! UINavigationController
+//        detailNav.pushViewController(detail, animated: true)
         
-//        performSegueWithIdentifier("MaybeDetailMaybeNot", sender: self)
-        
-//        perform
+        getDetailViewController().changeDisplayMode(PostDetailViewController.DisplayMode.SingleConverstaion, withContext: posts[indexPath.row])
 
     }
     

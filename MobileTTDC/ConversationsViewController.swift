@@ -12,8 +12,14 @@ class ConversationsViewController: UIViewController {
     
     private var posts : [Post] = []
     private var sizingCellPrototype : ConversationCollectionViewCell!
+    private(set) var postForSegue : Post! = nil //OUTSTANDING!
+    
     
     @IBOutlet weak var collectionView: UICollectionView?
+    
+    var closeBarButtonItem: UIBarButtonItem {
+        return UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: #selector(ConversationDetailViewController.closeButtonClicked(_:)))
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +36,14 @@ class ConversationsViewController: UIViewController {
         sizingCellPrototype = nib.instantiateWithOwner(nil, options: nil)[0] as! ConversationCollectionViewCell
         
         loadDataFromWebservice()
+        
+        self.navigationItem.rightBarButtonItem = closeBarButtonItem
+        
+        self.title = "Conversations"
+        
+        //Setting the title of the back button
+        let converstionButton = UIBarButtonItem(title: "Conversations", style: .Plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = converstionButton;
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -40,6 +54,28 @@ class ConversationsViewController: UIViewController {
         
         print("Orientation: ConversationsViewController")
         collectionView?.collectionViewLayout.invalidateLayout()
+    }
+    
+    
+    func closeButtonClicked(sender : UIButton){
+//        print("Sup, playuh")
+//        
+//        let detailNav = splitViewController?.viewControllers.last as! UINavigationController
+//        detailNav.popViewControllerAnimated(true)
+//
+//        postForSegue = nil
+//        performSegueWithIdentifier("Main", sender: self)
+        
+        
+        
+//        self.navigationController?.popToRootViewControllerAnimated(true)
+//        self.navigationController?.popViewControllerAnimated(true)
+        
+        
+        let vc = storyboard?.instantiateViewControllerWithIdentifier("MainViewController") as!  MainViewController
+        let detailNav = splitViewController?.viewControllers.last as! UINavigationController
+        detailNav.pushViewController(vc, animated: true)
+        
     }
 
  
@@ -102,25 +138,52 @@ extension ConversationsViewController : UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-
-        
-//        let nav = storyboard?.instantiateViewControllerWithIdentifier("ConversationDetail") as!  UINavigationController
-//        let detail = nav.viewControllers.first as! ConversationDetailViewController
-//        detail.post = posts[indexPath.row]
-//        splitViewController?.showDetailViewController(detail, sender: self)
-        
-        //ConversationDetailViewController
-        //MainViewController
-        
-//        let detail = storyboard?.instantiateViewControllerWithIdentifier("ConversationDetailViewController") as!  ConversationDetailViewController
-//        detail.post = posts[indexPath.row]
-//        splitViewController?.viewControllers.last?.presentViewController(detail, animated: true, completion: nil)
         
         let detail = storyboard?.instantiateViewControllerWithIdentifier("ConversationDetailViewController") as!  ConversationDetailViewController
         detail.post = posts[indexPath.row]
         
         let detailNav = splitViewController?.viewControllers.last as! UINavigationController
         detailNav.pushViewController(detail, animated: true)
+        
+//        postForSegue = posts[indexPath.row]
+//        
+//        performSegueWithIdentifier("Main", sender: self)
+        
+//        performSegueWithIdentifier("MaybeDetailMaybeNot", sender: self)
+        
+//        perform
 
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var destination = segue.destinationViewController
+        
+//        guard (postForSegue != nil) else{
+//            return;
+//        }
+        
+        if postForSegue == nil {
+            return;
+        }
+        
+        if let navcon = destination as? UINavigationController{
+            destination = navcon.visibleViewController!
+            
+            navcon.performSegueWithIdentifier("ConversationDetail", sender: self)
+        }
+        
+        
+//        //ConversationDetail
+//        if let hvc = destination as? ConversationDetailViewController {
+//            if let identifier = segue.identifier {
+//                print(segue.identifier)
+////                switch identifier{
+////                case "Sad": hvc.happiness = 0
+////                case "Happy": hvc.happiness = 100
+////                case "Nothing" : hvc.happiness = 75
+////                default: hvc.happiness = 50
+////                }
+//            }
+//        }
     }
 }

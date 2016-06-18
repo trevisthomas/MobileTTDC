@@ -14,18 +14,21 @@ class FlatCollectionViewCell: UICollectionViewCell {
     var post : Post!{
         didSet{
             dateButton.setTitle(Utilities.singleton.simpleDateFormat(post.date), forState: .Normal)
-            contentWebView.scrollView.scrollEnabled = false
-            contentWebView.loadHTMLString(post.entry, baseURL: nil)
+//            contentWebView.scrollView.scrollEnabled = false
+//            contentWebView.loadHTMLString(post.entry, baseURL: nil)
             
             
             
 //            labelForSizing.text = post.entry
-            let sysfont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+//            let sysfont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
             
             
             
-            let modifiedFont = NSString(format:"<span style=\"font-family: '\(sysfont.fontName)'; font-size: \(sysfont.pointSize)\">%@</span>", post.entry) as String
+//            let modifiedFont = NSString(format:"<span style=\"font-family: '\(sysfont.fontName)'; font-size: \(sysfont.pointSize)\">%@</span>", post.entry) as String
             
+            entryTextView.setHtmlText(post.entry)
+        
+            /*
             if let htmlData = modifiedFont.dataUsingEncoding(NSUnicodeStringEncoding) {
 //                NSAttributedString(
                 
@@ -35,13 +38,13 @@ class FlatCollectionViewCell: UICollectionViewCell {
                                                                       options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSFontAttributeName: sysfont],
                                                                       documentAttributes: nil)
                     
-                    labelForSizing.attributedText = entryTextView.attributedText
+//                    labelForSizing.attributedText = entryTextView.attributedText
                 } catch let e as NSError {
                     print("Couldn't translate \(post.entry): \(e.localizedDescription) ")
                 }
             }
             
-            
+            */
             
 //            print("Lable size \(labelForSizing.intrinsicContentSize())")
             
@@ -61,7 +64,7 @@ class FlatCollectionViewCell: UICollectionViewCell {
   //          print("scrollZize: \(contentWebView.scrollView.contentSize.height)")
             
             
-            contentWebView.scrollView.contentSize.height = 1
+//            contentWebView.scrollView.contentSize.height = 1
 //            contentWebView.frame.height = 1
 //            let heightString = contentWebView.stringByEvaluatingJavaScriptFromString("document.height")
 //            print("heightString: \(heightString)")
@@ -87,12 +90,12 @@ class FlatCollectionViewCell: UICollectionViewCell {
     }
 
     @IBOutlet weak var entryTextView: UITextView!
-    @IBOutlet weak var labelForSizing: UILabel!
-    @IBOutlet weak var contentWebView: UIWebView! {
-        didSet{
-            contentWebView.delegate = self //For url behaviors initially at least.
-        }
-    }
+//    @IBOutlet weak var labelForSizing: UILabel!
+//    @IBOutlet weak var contentWebView: UIWebView! {
+//        didSet{
+//            contentWebView.delegate = self //For url behaviors initially at least.
+//        }
+//    }
     @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var threadTitleButton: UIButton!
     @IBOutlet weak var creatorImageView: UIImageView!
@@ -116,22 +119,30 @@ class FlatCollectionViewCell: UICollectionViewCell {
 }
 
 extension FlatCollectionViewCell {
+//    func preferredHeight(width : CGFloat) -> CGFloat {
+//        
+//        self.invalidateIntrinsicContentSize()
+//        
+//        self.contentView.setNeedsLayout()
+//        self.contentView.layoutIfNeeded()
+//        
+//        let sizeThatFits = labelForSizing.sizeThatFits(CGSizeMake(width - 16, CGFloat.max))
+//        
+////        print("Size that fits too \(sizeThatFits2)")
+//        
+////        let sizeThatFits = entryTextView.layoutManager.usedRectForTextContainer(entryTextView.textContainer).size
+//        print("Size that fits \(sizeThatFits)")
+//        return ceil(sizeThatFits.height) + 64 + 8 + 8 + 50
+//        
+//        
+//    }
+    
     func preferredHeight(width : CGFloat) -> CGFloat {
         
-        self.invalidateIntrinsicContentSize()
+        let sizeThatFits = entryTextView.sizeThatFits(CGSizeMake(width - 16, CGFloat.max))
         
-        self.contentView.setNeedsLayout()
-        self.contentView.layoutIfNeeded()
-        
-        let sizeThatFits = labelForSizing.sizeThatFits(CGSizeMake(width - 16, CGFloat.max))
-        
-//        print("Size that fits too \(sizeThatFits2)")
-        
-//        let sizeThatFits = entryTextView.layoutManager.usedRectForTextContainer(entryTextView.textContainer).size
-        print("Size that fits \(sizeThatFits)")
+        print("Size that fits flat cell \(sizeThatFits)")
         return ceil(sizeThatFits.height) + 64 + 8 + 8 + 50
-        
-        
     }
 }
 

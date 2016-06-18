@@ -13,7 +13,7 @@ class ReplyCollectionViewCell: UICollectionViewCell {
     var post : Post! {
         didSet{
             creatorNameButton.setTitle(post.creator.login, forState: UIControlState.Normal)
-            
+            entryTextView.setHtmlText(post.entry)
             if let url = post.creator.image?.thumbnailName {
                 creatorImageView.downloadedFrom(link: url, contentMode: .ScaleAspectFit)
             }

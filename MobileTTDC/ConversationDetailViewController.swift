@@ -19,6 +19,10 @@ class ConversationDetailViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     private var sizingCellPrototype : ReplyCollectionViewCell!
     
+    var closeBarButtonItem: UIBarButtonItem {
+        return UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: #selector(ConversationDetailViewController.closeButtonClicked(_:)))
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,6 +35,12 @@ class ConversationDetailViewController: UIViewController {
         if post != nil {
             loadDataFromWebservice()
         }
+        
+        self.navigationItem.rightBarButtonItem = closeBarButtonItem
+        
+        //trying to get expandable functionlality
+        self.navigationItem.leftBarButtonItem = self.splitViewController!.displayModeButtonItem();
+        
     }
 
     func loadDataFromWebservice(){
@@ -48,6 +58,44 @@ class ConversationDetailViewController: UIViewController {
             self.collectionView.reloadData()
             
         };
+    }
+    
+    func closeButtonClicked(sender : UIButton){
+        print("Sup, playuh")
+        
+//        let detailNav = splitViewController?.viewControllers.last as! UINavigationController
+////        detailNav.popViewControllerAnimated(true)
+//        detailNav.popToRootViewControllerAnimated(true)
+        
+//        let detailNav = splitViewController?.viewControllers.first as! UINavigationController
+//        //        detailNav.popViewControllerAnimated(true)
+//        detailNav.popToRootViewControllerAnimated(true)
+        
+//        let detail = storyboard?.instantiateViewControllerWithIdentifier("MainViewController") as!  MainViewController
+//        let conversations = storyboard?.instantiateViewControllerWithIdentifier("ConversationsViewController") as!  ConversationsViewController
+        let detailNav = splitViewController?.viewControllers.last as! UINavigationController
+        let masterNav = splitViewController?.viewControllers.first as! UINavigationController
+//        masterNav.setViewControllers([conversations], animated: true)
+//        detailNav.setViewControllers([detail], animated: true)
+        
+        
+        
+        
+        
+        
+        masterNav.popToRootViewControllerAnimated(true)
+        detailNav.popToRootViewControllerAnimated(true)
+        
+//        detailNav.pushViewController(vc, animated: true)
+//        detailNav.popToViewController(vc, animated: true)
+//        detailNav.setViewControllers([vc], animated: true)
+        
+//        detailNav.popToRootViewControllerAnimated(false)
+//        detailNav.pushViewController(vc, animated: true)
+        
+        
+        
+        
     }
 
 }
@@ -83,6 +131,6 @@ extension ConversationDetailViewController : UICollectionViewDelegate, UICollect
         return cell
     }
     
-    
-    
 }
+
+

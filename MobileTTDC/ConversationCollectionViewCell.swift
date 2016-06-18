@@ -15,6 +15,10 @@ class ConversationCollectionViewCell: UICollectionViewCell {
             titleButton.setTitle(post.title, forState: UIControlState.Normal)
             dateButton.setTitle(Utilities.singleton.simpleDateFormat(post.date), forState: .Normal)
             entryTextView.setHtmlText(post.entry)
+            if let url = post.creator.image?.name {
+                creatorImageView.downloadedFrom(link: url, contentMode: .ScaleAspectFit)
+            }
+            
         }
     }
 
@@ -41,7 +45,7 @@ class ConversationCollectionViewCell: UICollectionViewCell {
 //        return 123
         let sizeThatFits = entryTextView.sizeThatFits(CGSizeMake(width - 16, CGFloat.max))
         
-        print("Size that fits \(sizeThatFits)")
+        print("Size that fits conversation cell \(sizeThatFits)")
         return ceil(sizeThatFits.height) + 64 + 8 + 8 + 50
         
 //        let sizeThatFits = self.contentView.sizeThatFits(CGSizeMake(width - 16, CGFloat.max))

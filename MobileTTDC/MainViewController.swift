@@ -12,11 +12,9 @@ class MainViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     private var posts : [Post] = []
-    private var sizingFlatCell : FlatCollectionViewCell!
+    private var sizingCellPrototype : FlatCollectionViewCell!
     
     override func viewDidLoad() {
-        
-        
         
         let nib = UINib(nibName: "FlatCollectionViewCell", bundle: nil)
         
@@ -27,9 +25,23 @@ class MainViewController: UIViewController {
         //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "rotated", name: UIInterfaceOrientation, object: nil)
         
         
-        sizingFlatCell = nib.instantiateWithOwner(nil, options: nil)[0] as! FlatCollectionViewCell
+        sizingCellPrototype = nib.instantiateWithOwner(nil, options: nil)[0] as! FlatCollectionViewCell
         
         loadDataFromWebservice()
+        
+        
+        
+        if (UIDevice.currentDevice().userInterfaceIdiom == .Phone){
+            self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.Automatic
+        } else {
+            //Forcing the master to be visible all the time on ipad
+            self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
+            
+            
+            //Expanding icon functionality.  If this runs on the iphone you have no button to navigate to the master view
+            self.navigationItem.leftBarButtonItem = self.splitViewController!.displayModeButtonItem();
+        }
+
         
     }
     
@@ -42,7 +54,11 @@ class MainViewController: UIViewController {
         
         print("Orientation")
         
-        collectionView.collectionViewLayout.invalidateLayout()
+        
+    
+        
+        
+        collectionView?.collectionViewLayout.invalidateLayout()
         
 //        coordinator.animateAlongsideTransition(nil, completion:  { (UIViewControllerTransitionCoordinatorContext) -> () in
 //            //            self.collectionView.invalidateIntrinsicContentSize()
@@ -54,16 +70,53 @@ class MainViewController: UIViewController {
         
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destination = segue.destinationViewController
+        
+        //        guard (postForSegue != nil) else{
+        //            return;
+        //        }
+        guard let converstionDetailController = destination as? ConversationDetailViewController else {
+            return;
+        }
+        guard let covversationController = sender as? ConversationsViewController else {
+            return;
+        }
+        
+        converstionDetailController.post = covversationController.postForSegue
+       
+        
+//        if postForSegue == nil {
+//            return;
+//        }
+//        
+//        if let navcon = destination as? UINavigationController{
+//            destination = navcon.visibleViewController!
+//            
+//            navcon.performSegueWithIdentifier("ConversationDetail", sender: self)
+//        }
+        
+        
+        //        //ConversationDetail
+        //        if let hvc = destination as? ConversationDetailViewController {
+        //            if let identifier = segue.identifier {
+        //                print(segue.identifier)
+        ////                switch identifier{
+        ////                case "Sad": hvc.happiness = 0
+        ////                case "Happy": hvc.happiness = 100
+        ////                case "Nothing" : hvc.happiness = 75
+        ////                default: hvc.happiness = 50
+        ////                }
+        //            }
+        //        }
+    }
     
+    
+    //This is here so that the layout will adjust when you "maximize"
+    override func viewWillLayoutSubviews() {
+        collectionView?.collectionViewLayout.invalidateLayout()
+        
+    }
     
 }
 
@@ -92,17 +145,16 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
 extension MainViewController : UICollectionViewDelegateFlowLayout{
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        sizingFlatCell.post = posts[indexPath.row]
+//        sizingCellPrototype.post = posts[indexPath.row]
+//        let height = sizingCellPrototype.preferredHeight(collectionView.frame.width)
+//        return CGSize(width: collectionView.frame.width, height: height)
         
-//        sizingFlatCell.invalidateIntrinsicContentSize()
-//        
-//        sizingFlatCell.contentView.setNeedsLayout()
-//        sizingFlatCell.contentView.layoutIfNeeded()
-        
-        let height = sizingFlatCell.preferredHeight(collectionView.frame.width)
-       
+        sizingCellPrototype.post = posts[indexPath.row]
+        let height = sizingCellPrototype.preferredHeight(collectionView.frame.width)
         return CGSize(width: collectionView.frame.width, height: height)
     }
+    
+    
 }
 
 //Business logic helpers

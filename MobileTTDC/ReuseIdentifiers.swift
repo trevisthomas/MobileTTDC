@@ -13,5 +13,7 @@ public struct ReuseIdentifiers {
     static let FLAT_POST_CELL = "FlatPostCell"
     static let GROUPED_POST_CELL = "GroupedPostCell"
     static let REPLY_POST_CELL = "ReplyPostCell"
+    static let POST_IN_HEADER_VIEW = "PostInHeaderView"
+    static let EMPTY_HEADER_VIEW = "EmptyHeaderView"
     
 }

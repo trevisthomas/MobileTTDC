@@ -32,6 +32,9 @@ class ConversationCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        entryTextView.delegate = self
+//        entryTextView.shouldInteractWithURL()
     }
 
     func preferredHeight(width : CGFloat) -> CGFloat {
@@ -56,5 +59,14 @@ class ConversationCollectionViewCell: UICollectionViewCell {
         
     }
 
+}
+
+extension ConversationCollectionViewCell : UITextViewDelegate {
+    
+    func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
+        print(URL.description)
+        
+        return true;
+    }
 }
 

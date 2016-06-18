@@ -17,7 +17,7 @@ class ConversationsViewController: UIViewController {
     
     private var posts : [Post] = []
     private var sizingCellPrototype : ConversationCollectionViewCell!
-    private(set) var postForSegue : Post! = nil //OUTSTANDING!
+//    private(set) var postForSegue : Post! = nil //OUTSTANDING!
 //    private weak var detailDelegate : DetailSelectionDelegate?
     
     @IBOutlet weak var collectionView: UICollectionView?
@@ -42,15 +42,18 @@ class ConversationsViewController: UIViewController {
         
         loadDataFromWebservice()
         
-        self.navigationItem.rightBarButtonItem = closeBarButtonItem
+        if (UIDevice.currentDevice().userInterfaceIdiom == .Phone){
+            self.navigationItem.rightBarButtonItem = closeBarButtonItem
+        }
         
         self.title = "Conversations"
         
-        //Setting the title of the back button
-        let converstionButton = UIBarButtonItem(title: "Conversations", style: .Plain, target: nil, action: nil)
-        self.navigationItem.backBarButtonItem = converstionButton;
+//        //Setting the title of the back button
+//        let converstionButton = UIBarButtonItem(title: "Conversations", style: .Plain, target: nil, action: nil)
+//        
+//        self.navigationItem.backBarButtonItem = converstionButton;
         
-        getDetailViewController()
+        getDetailViewController().changeDisplayMode()
         
     }
     
@@ -66,7 +69,9 @@ class ConversationsViewController: UIViewController {
     
     
     func closeButtonClicked(sender : UIButton){
-        print("Sup, playuh")
+//        print("Sup, playuh")
+        
+        getDetailViewController().resetToLatestPosts()
 //
 //        let detailNav = splitViewController?.viewControllers.last as! UINavigationController
 //        detailNav.popViewControllerAnimated(true)
@@ -87,11 +92,31 @@ class ConversationsViewController: UIViewController {
     }
     
     private func getDetailViewController() -> PostDetailViewController {
-        let detailNavigation = self.splitViewController?.viewControllers.last as! UINavigationController
-        let detailVC = detailNavigation.visibleViewController as! PostDetailViewController
         
-        print( detailVC.debugDescription )
+        let detailNavigation = self.splitViewController?.viewControllers.last as! UINavigationController
+        
+        if let detailVC = detailNavigation.visibleViewController as? PostDetailViewController {
+            print( detailVC.debugDescription )
+            return detailVC
+        }
+        
+        let detailVC = storyboard?.instantiateViewControllerWithIdentifier("PostDetailViewController") as!  PostDetailViewController
+        
+//        detailNavigation.popToRootViewControllerAnimated(true)
+
+        splitViewController?.showDetailViewController(detailVC, sender: self)
+        
+//        var count = detailNavigation.viewControllers.count
+        
+        print(detailNavigation.visibleViewController.debugDescription)
+        
         return detailVC
+        
+        
+        
+        //let detailVC = detailNavigation.visibleViewController as! PostDetailViewController
+        
+        
     }
  
 }
@@ -164,6 +189,7 @@ extension ConversationsViewController : UICollectionViewDelegate, UICollectionVi
 
     }
     
+    /*
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var destination = segue.destinationViewController
         
@@ -195,4 +221,5 @@ extension ConversationsViewController : UICollectionViewDelegate, UICollectionVi
 //            }
 //        }
     }
+ */
 }

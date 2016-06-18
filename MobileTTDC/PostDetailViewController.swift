@@ -14,6 +14,7 @@ class PostDetailViewController: UIViewController {
     private var posts : [Post] = []
     private var flatPrototypeCell : FlatCollectionViewCell!
     private var replyPrototypeCell : ReplyCollectionViewCell!
+    private var sectionHeaderPrototype : PostInHeaderCollectionReusableView!
     private var post : Post!
     
     enum DisplayMode{
@@ -25,12 +26,16 @@ class PostDetailViewController: UIViewController {
     private var displayMode : DisplayMode = .LatestFlat{ //Trevis, xcode forced you to set a default.  Turns out that setting the default does not execute the didSet.  I would have rathered just defined displaymode as being an explicitly unwrapped optional but that does not compile with xcode 7.3.1
         didSet {
             self.navigationItem.rightBarButtonItem = nil
+            
             switch displayMode {
             case .LatestFlat:
+                self.title = "Latest"
                 loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT)
             case .LatestGrouped:
+                self.title = "Latest"
                 loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED)
             case .SingleConverstaion:
+                self.title = ""
                 self.navigationItem.rightBarButtonItem = closeBarButtonItem
                 loadConversationPostDataFromWebservice(post.postId)
             }
@@ -42,11 +47,6 @@ class PostDetailViewController: UIViewController {
     }
     
     
-    func changeDisplayMode(toDisplayMode: DisplayMode, withContext: Post? = nil) {
-        post = withContext
-        displayMode = toDisplayMode
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,7 +56,11 @@ class PostDetailViewController: UIViewController {
         
         replyPrototypeCell = registerAndCreatePrototypeCellFromNib("ReplyCollectionViewCell", forReuseIdentifier: ReuseIdentifiers.REPLY_POST_CELL) as! ReplyCollectionViewCell
         
-        displayMode = .LatestFlat
+        sectionHeaderPrototype = registerAndCreatePrototypeHeaderViewFromNib("PostInHeaderCollectionReusableView", forReuseIdentifier: ReuseIdentifiers.POST_IN_HEADER_VIEW) as! PostInHeaderCollectionReusableView
+        
+        collectionView.registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: ReuseIdentifiers.EMPTY_HEADER_VIEW)
+        
+//        displayMode = .LatestFlat
         
         
         if (UIDevice.currentDevice().userInterfaceIdiom == .Phone){
@@ -100,6 +104,19 @@ extension PostDetailViewController : UICollectionViewDelegateFlowLayout{
         return CGSize(width: collectionView.frame.width, height: height)
     }
     
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        switch displayMode{
+        case .LatestFlat, .LatestGrouped:
+            return CGSizeZero
+        case .SingleConverstaion:
+            sectionHeaderPrototype.post = post
+            let height = sectionHeaderPrototype.preferredHeight(collectionView.frame.width)
+            return CGSize(width: collectionView.frame.width, height: height)
+        }
+        
+        
+    }
 }
 
 extension PostDetailViewController : UICollectionViewDelegate, UICollectionViewDataSource {
@@ -130,11 +147,42 @@ extension PostDetailViewController : UICollectionViewDelegate, UICollectionViewD
         }
     }
     
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        
+        guard let _ = post else{
+            return collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: ReuseIdentifiers.EMPTY_HEADER_VIEW, forIndexPath: indexPath)
+        }
+        
+        let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind,
+                                                              withReuseIdentifier: ReuseIdentifiers.POST_IN_HEADER_VIEW,
+                                                              forIndexPath: indexPath) as! PostInHeaderCollectionReusableView
+        
+        headerView.post = post
+        
+        return headerView
+    }
+    
 }
 
+//Custom methods and logic.
 extension PostDetailViewController {
     
+    func changeDisplayMode(toDisplayMode: DisplayMode? = nil, withContext: Post? = nil) {
+        guard toDisplayMode != nil else {
+            resetToLatestPosts()
+            return
+        }
+        
+        post = withContext
+        displayMode = toDisplayMode!
+    }
+    
     func closeButtonClicked(sender : UIButton){
+        resetToLatestPosts()
+    }
+    
+    func resetToLatestPosts(){
+        post = nil
         displayMode = .LatestFlat //TODO! Once you add the spliter the close button should revert to what ever the state was before
     }
     
@@ -142,6 +190,12 @@ extension PostDetailViewController {
         let nib = UINib(nibName: withName, bundle: nil)
         self.collectionView!.registerNib(nib, forCellWithReuseIdentifier: forReuseIdentifier)
         return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionViewCell
+    }
+    
+    private func registerAndCreatePrototypeHeaderViewFromNib(withName: String, forReuseIdentifier: String) -> UICollectionReusableView{
+        let nib = UINib(nibName: withName, bundle: nil)
+        self.collectionView!.registerNib(nib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: forReuseIdentifier)
+        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionReusableView
     }
     
     private func loadlatestPostDataFromWebservice(action: PostCommand.Action){

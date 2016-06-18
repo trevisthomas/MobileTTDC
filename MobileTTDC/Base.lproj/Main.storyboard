@@ -130,7 +130,7 @@
         <!--Post Detail View Controller-->
         <scene sceneID="5Yp-Eb-SJc">
             <objects>
-                <viewController id="gtH-Yk-ONR" customClass="PostDetailViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostDetailViewController" id="gtH-Yk-ONR" customClass="PostDetailViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PIL-lH-RQz"/>
                         <viewControllerLayoutGuide type="bottom" id="kVM-aE-H6o"/>

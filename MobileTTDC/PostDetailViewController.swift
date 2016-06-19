@@ -83,6 +83,20 @@ class PostDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        
+        print("Orientation: PostDetailViewController")
+        
+        coordinator.animateAlongsideTransition({ context in
+            // do whatever with your context
+            context.viewControllerForKey(UITransitionContextFromViewControllerKey)
+            }, completion: {context in
+                self.collectionView?.collectionViewLayout.invalidateLayout()
+                
+            }
+        )
+        
+    }
 }
 
 extension PostDetailViewController : UICollectionViewDelegateFlowLayout{

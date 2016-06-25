@@ -12,17 +12,44 @@ class LatestPostsViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    enum DisplayMode{
+        case LatestFlat
+        case LatestGrouped
+    }
+    
     private var posts : [Post] = []
     private var flatPrototypeCell : FlatCollectionViewCell!
     private var replyPrototypeCell : ReplyCollectionViewCell!
     private var sectionHeaderPrototype : PostInHeaderCollectionReusableView!
     private var post : Post!
-    private var displayMode : DisplayMode = .LatestFlat
-    
-    enum DisplayMode{
-        case LatestFlat
-        case LatestGrouped
+    private var displayMode : DisplayMode = .LatestFlat {
+        didSet{
+            handleModeChange()
+        }
     }
+    
+    private var originalHeight : CGFloat!
+    private var containerOriginalY : CGFloat!
+    private var statusBarHeight : CGFloat!
+    private var originalY : CGFloat!
+    
+    @IBOutlet weak var modeSegmentedControl: UISegmentedControl!
+    
+    @IBOutlet weak var modeSelectionView: UIView!
+    
+    @IBOutlet weak var modeSelectionHeightConstraint: NSLayoutConstraint!
+    
+    @IBAction func modeSelectSegmentedControll(sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            print("Selected flat")
+            displayMode = .LatestFlat
+        default:
+            print("Selected grouped")
+            displayMode = .LatestGrouped
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +64,9 @@ class LatestPostsViewController: UIViewController {
         
         collectionView.registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: ReuseIdentifiers.EMPTY_HEADER_VIEW)
         
-        loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT)
+        displayMode = .LatestFlat
+        
+//        loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT)
         
         /*
         if (UIDevice.currentDevice().userInterfaceIdiom == .Phone){
@@ -51,9 +80,18 @@ class LatestPostsViewController: UIViewController {
  */
     }
     
+//    viewdidchan
+    
     //This is here so that the layout will adjust when you "maximize"
     override func viewWillLayoutSubviews() {
         collectionView?.collectionViewLayout.invalidateLayout()
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        originalY = collectionView.frame.origin.y
+        containerOriginalY = originalY - modeSelectionHeightConstraint.constant
+        statusBarHeight = containerOriginalY
     }
     
     override func didReceiveMemoryWarning() {
@@ -117,17 +155,51 @@ extension LatestPostsViewController : UICollectionViewDelegateFlowLayout {
     }
 }
 
+extension LatestPostsViewController : UIScrollViewDelegate {
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        adjustHistoryViewBecauseScrollChangedAllTheWay()
+    }
+    
+    func adjustHistoryViewBecauseScrollChangedAllTheWay(){
+        let yOffset = collectionView.contentOffset.y
+        
+        if(yOffset <= 0){
+            collectionView.frame.origin.y = originalY //144 //144 is the starting point
+            modeSelectionView.frame.origin.y = containerOriginalY
+            
+        } else if yOffset < modeSelectionHeightConstraint.constant + containerOriginalY - statusBarHeight{
+            collectionView.frame.origin.y = originalY - collectionView.contentOffset.y
+            modeSelectionView.frame.origin.y = containerOriginalY - collectionView.contentOffset.y
+        } else {
+            collectionView.frame.origin.y = 0 + statusBarHeight
+            modeSelectionView.frame.origin.y = -modeSelectionHeightConstraint.constant + statusBarHeight
+        }
+    }
+}
+
 extension LatestPostsViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        switch displayMode{
+        case .LatestFlat:
+            return 1
+        case .LatestGrouped:
+            return posts.count
+        }
     }
     
-    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return posts.count
+        switch displayMode{
+        case .LatestFlat:
+            return posts.count
+        case .LatestGrouped:
+//            if let replies = posts[section].posts?.count {
+//                return replies
+//            }
+//            return 0
+            
+            return posts[section].posts!.count
+        }
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -140,22 +212,24 @@ extension LatestPostsViewController : UICollectionViewDelegate, UICollectionView
             
         case .LatestGrouped:
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.REPLY_POST_CELL, forIndexPath: indexPath) as! ReplyCollectionViewCell
-            cell.post = posts[indexPath.row]
+            cell.post = posts[indexPath.section].posts![indexPath.row]
             return cell
         }
     }
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         
-        guard let _ = post else{
-            return collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: ReuseIdentifiers.EMPTY_HEADER_VIEW, forIndexPath: indexPath)
-        }
+//        guard let _ = post else{
+//            return collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: ReuseIdentifiers.EMPTY_HEADER_VIEW, forIndexPath: indexPath)
+//        }
         
         let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind,
                                                                                withReuseIdentifier: ReuseIdentifiers.POST_IN_HEADER_VIEW,
                                                                                forIndexPath: indexPath) as! PostInHeaderCollectionReusableView
         
-        headerView.post = post
+//        headerView.post = post
+        
+        headerView.post = posts[indexPath.section]
         
         return headerView
     }
@@ -165,6 +239,17 @@ extension LatestPostsViewController : UICollectionViewDelegate, UICollectionView
 //Custom methods and logic.
 extension LatestPostsViewController {
     
+    func handleModeChange(){
+        switch displayMode{
+        case .LatestGrouped:
+            modeSegmentedControl.selectedSegmentIndex = 1
+            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED)
+        case .LatestFlat:
+            modeSegmentedControl.selectedSegmentIndex = 0
+            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT)
+        }
+        
+    }
     
     private func registerAndCreatePrototypeCellFromNib(withName: String, forReuseIdentifier: String) -> UICollectionViewCell{
         let nib = UINib(nibName: withName, bundle: nil)

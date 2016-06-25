@@ -10,6 +10,8 @@
 		0F76A87A1CFA165D00BDD499 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A8791CFA165D00BDD499 /* LoginViewController.swift */; };
 		0F76A87C1CFA16C300BDD499 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */; };
 		0F76A87E1CFA1C9400BDD499 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A87D1CFA1C9400BDD499 /* ProfileViewController.swift */; };
+		0F888A6E1D1DDDA0005F960A /* ConversationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F888A6C1D1DDD9F005F960A /* ConversationDetailViewController.swift */; };
+		0F888A6F1D1DDDA0005F960A /* LatestPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F888A6D1D1DDD9F005F960A /* LatestPostsViewController.swift */; };
 		0F9E08FE1D14BB62006676C1 /* ConverstionSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9E08FD1D14BB62006676C1 /* ConverstionSplitViewController.swift */; };
 		0F9E09021D15A83E006676C1 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9E09011D15A83E006676C1 /* PostDetailViewController.swift */; };
 		0F9E09051D15D5D4006676C1 /* PostInHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9E09031D15D5D4006676C1 /* PostInHeaderCollectionReusableView.swift */; };
@@ -58,6 +60,8 @@
 		0F76A8791CFA165D00BDD499 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
 		0F76A87D1CFA1C9400BDD499 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		0F888A6C1D1DDD9F005F960A /* ConversationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationDetailViewController.swift; sourceTree = "<group>"; };
+		0F888A6D1D1DDD9F005F960A /* LatestPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestPostsViewController.swift; sourceTree = "<group>"; };
 		0F9E08FD1D14BB62006676C1 /* ConverstionSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverstionSplitViewController.swift; sourceTree = "<group>"; };
 		0F9E09011D15A83E006676C1 /* PostDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		0F9E09031D15D5D4006676C1 /* PostInHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostInHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -177,6 +181,8 @@
 				0F9E08FD1D14BB62006676C1 /* ConverstionSplitViewController.swift */,
 				0FD0A3211D0CA2530030D36F /* ConversationsViewController.swift */,
 				0F76A8791CFA165D00BDD499 /* LoginViewController.swift */,
+				0F888A6C1D1DDD9F005F960A /* ConversationDetailViewController.swift */,
+				0F888A6D1D1DDD9F005F960A /* LatestPostsViewController.swift */,
 				0FCF018E1CFA10E200924868 /* LaunchScreen.storyboard */,
 				0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */,
 				0F76A87D1CFA1C9400BDD499 /* ProfileViewController.swift */,
@@ -339,7 +345,9 @@
 				0FB2F4A91D035E34008F386A /* UIImageView+WebLoad.swift in Sources */,
 				0FE5272D1CFB65EB00407AAE /* Decoder.swift in Sources */,
 				0FB2F4961CFFA0E5008F386A /* Entry.swift in Sources */,
+				0F888A6E1D1DDDA0005F960A /* ConversationDetailViewController.swift in Sources */,
 				0FE527321CFB65EB00407AAE /* Operators.swift in Sources */,
+				0F888A6F1D1DDDA0005F960A /* LatestPostsViewController.swift in Sources */,
 				0FE5272E1CFB65EB00407AAE /* Encoder.swift in Sources */,
 				0FE5273E1CFD058700407AAE /* PostResponse.swift in Sources */,
 				0FE527221CFB654300407AAE /* LoginResponse.swift in Sources */,

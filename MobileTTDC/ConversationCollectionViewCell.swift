@@ -19,6 +19,19 @@ class ConversationCollectionViewCell: UICollectionViewCell {
                 creatorImageView.downloadedFrom(link: url, contentMode: .ScaleAspectFit)
             }
             
+            var replyTitle : String = ""
+            switch post.replyCount {
+            case 0:
+                replyTitle = "no replies yet"
+            case 1:
+                replyTitle = "\(post.replyCount) reply"
+                
+            default:
+                replyTitle = "\(post.replyCount) replies"
+            }
+            
+            repliesButton.setTitle(replyTitle, forState: UIControlState.Normal)
+            print(replyTitle)
         }
     }
 
@@ -35,6 +48,16 @@ class ConversationCollectionViewCell: UICollectionViewCell {
         
         entryTextView.delegate = self
 //        entryTextView.shouldInteractWithURL()
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(selectCell))
+        
+        entryTextView.addGestureRecognizer(gesture)
+    }
+    
+    func selectCell(){
+        let collectionView = self.superview as! UICollectionView
+        let ip = collectionView.indexPathForCell(self)
+        collectionView.delegate?.collectionView!(collectionView, didSelectItemAtIndexPath: ip!)
     }
 
     func preferredHeight(width : CGFloat) -> CGFloat {

@@ -17,14 +17,15 @@ class ConversationsViewController: UIViewController {
     
     private var posts : [Post] = []
     private var sizingCellPrototype : ConversationCollectionViewCell!
-//    private(set) var postForSegue : Post! = nil //OUTSTANDING!
+    private(set) var postForSegue : Post! = nil //OUTSTANDING!
 //    private weak var detailDelegate : DetailSelectionDelegate?
     
+    @IBOutlet weak var closeBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView?
 
-    var closeBarButtonItem: UIBarButtonItem {
-        return UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: #selector(closeButtonClicked(_:)))
-    }
+//    var closeBarButtonItem: UIBarButtonItem {
+//        return UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: #selector(closeButtonClicked(_:)))
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,9 +43,9 @@ class ConversationsViewController: UIViewController {
         
         loadDataFromWebservice()
         
-        if (UIDevice.currentDevice().userInterfaceIdiom == .Phone){
-            self.navigationItem.rightBarButtonItem = closeBarButtonItem
-        }
+//        if (UIDevice.currentDevice().userInterfaceIdiom == .Phone){
+//            self.navigationItem.rightBarButtonItem = closeBarButtonItem
+//        }
         
         self.title = "Conversations"
         
@@ -53,7 +54,9 @@ class ConversationsViewController: UIViewController {
 //        
 //        self.navigationItem.backBarButtonItem = converstionButton;
         
-        getDetailViewController().changeDisplayMode()
+//        getDetailViewController().changeDisplayMode()
+        
+//        adjustVisibilityOnCloseButtonBecauseAutolayoutDoesntWorkWithBarButtons()
         
     }
     
@@ -65,8 +68,45 @@ class ConversationsViewController: UIViewController {
         
         print("Orientation: ConversationsViewController")
         collectionView?.collectionViewLayout.invalidateLayout()
+        
+        coordinator.animateAlongsideTransition({ context in
+            // do whatever with your context
+            context.viewControllerForKey(UITransitionContextFromViewControllerKey)
+            }, completion: {context in
+                
+                self.adjustVisibilityOnCloseButtonBecauseAutolayoutDoesntWorkWithBarButtons()
+                
+//                if (self.view.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Compact){
+//                    print("Compact width")
+//                    self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.Automatic
+//                } else {
+//                    
+//                    print("Regular width")
+//                    //Forcing the master to be visible all the time on ipad
+//                    self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
+//                    //Expanding icon functionality.  If this runs on the iphone you have no button to navigate to the master view
+//                    self.navigationItem.leftBarButtonItem = self.splitViewController!.displayModeButtonItem();
+//                }
+                
+                
+            }
+        )
+
     }
     
+    private func adjustVisibilityOnCloseButtonBecauseAutolayoutDoesntWorkWithBarButtons(){
+        if self.splitViewController?.childViewControllers.count > 1 {
+//            self.navigationController?.navigationBar.button
+            self.navigationItem.rightBarButtonItem = nil
+        } else {
+//            self.closeBarButtonItem.enabled = true
+            self.navigationItem.rightBarButtonItem = closeBarButtonItem
+        }
+    }
+    
+    @IBAction func closeButton(sender: AnyObject) {
+        getDetailViewController().resetToLatestPosts()
+    }
     
     func closeButtonClicked(sender : UIButton){
 //        print("Sup, playuh")
@@ -118,6 +158,8 @@ class ConversationsViewController: UIViewController {
         
         
     }
+    
+    
  
 }
 
@@ -178,17 +220,36 @@ extension ConversationsViewController : UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
+        postForSegue = posts[indexPath.row]
+        performSegueWithIdentifier("ConversationDetailSegue", sender: self)
 //        let detail = storyboard?.instantiateViewControllerWithIdentifier("ConversationDetailViewController") as!  ConversationDetailViewController
 //        detail.post = posts[indexPath.row]
 //        
 //        let detailNav = splitViewController?.viewControllers.last as! UINavigationController
 //        detailNav.pushViewController(detail, animated: true)
         
-        getDetailViewController().changeDisplayMode(PostDetailViewController.DisplayMode.SingleConverstaion, withContext: posts[indexPath.row])
+//        getDetailViewController().changeDisplayMode(PostDetailViewController.DisplayMode.SingleConverstaion, withContext: posts[indexPath.row])
 
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        
+        if postForSegue == nil {
+            return
+        }
+        
+        switch segue.identifier! {
+            case "ConversationDetailSegue":
+                let destinationVC = segue.destinationViewController as! ConversationDetailViewController
+                destinationVC.post = postForSegue
+            default:
+            break
+        }
+        
+        
+
+    }
     /*
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var destination = segue.destinationViewController

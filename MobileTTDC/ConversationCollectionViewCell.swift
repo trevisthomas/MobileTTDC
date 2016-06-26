@@ -31,7 +31,7 @@ class ConversationCollectionViewCell: UICollectionViewCell {
             }
             
             repliesButton.setTitle(replyTitle, forState: UIControlState.Normal)
-            print(replyTitle)
+//            print(replyTitle)
         }
     }
 

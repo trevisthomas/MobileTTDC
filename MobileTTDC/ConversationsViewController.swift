@@ -58,6 +58,8 @@ class ConversationsViewController: UIViewController {
         
 //        adjustVisibilityOnCloseButtonBecauseAutolayoutDoesntWorkWithBarButtons()
         
+        
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -76,17 +78,17 @@ class ConversationsViewController: UIViewController {
                 
                 self.adjustVisibilityOnCloseButtonBecauseAutolayoutDoesntWorkWithBarButtons()
                 
-//                if (self.view.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Compact){
-//                    print("Compact width")
-//                    self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.Automatic
-//                } else {
-//                    
-//                    print("Regular width")
-//                    //Forcing the master to be visible all the time on ipad
-//                    self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
-//                    //Expanding icon functionality.  If this runs on the iphone you have no button to navigate to the master view
-//                    self.navigationItem.leftBarButtonItem = self.splitViewController!.displayModeButtonItem();
-//                }
+                if (self.view.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.Compact){
+                    print("Compact width")
+                    self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.Automatic
+                } else {
+                    
+                    print("Regular width")
+                    //Forcing the master to be visible all the time on ipad
+                    self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
+                    //Expanding icon functionality.  If this runs on the iphone you have no button to navigate to the master view
+                    self.navigationItem.leftBarButtonItem = self.splitViewController!.displayModeButtonItem();
+                }
                 
                 
             }
@@ -241,8 +243,14 @@ extension ConversationsViewController : UICollectionViewDelegate, UICollectionVi
         
         switch segue.identifier! {
             case "ConversationDetailSegue":
-                let destinationVC = segue.destinationViewController as! ConversationDetailViewController
-                destinationVC.post = postForSegue
+                if let destNav = segue.destinationViewController as? UINavigationController {
+                    let destinationVC = destNav.topViewController as! ConversationDetailViewController
+                    destinationVC.post = postForSegue
+                }
+                else {
+                    let destinationVC = segue.destinationViewController as! ConversationDetailViewController
+                    destinationVC.post = postForSegue
+                }
             default:
             break
         }

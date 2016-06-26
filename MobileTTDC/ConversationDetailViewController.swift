@@ -40,7 +40,14 @@ class ConversationDetailViewController: UIViewController {
         
         collectionView.registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: ReuseIdentifiers.EMPTY_HEADER_VIEW)
         
-        /*
+        
+//        self.splitViewController.preferredDisplayMode = UISplitViewControllerDisplayModePrimaryOverlay
+        
+        
+
+//        self.splitViewController.preferredDisplayMode = 
+        
+        
         if (UIDevice.currentDevice().userInterfaceIdiom == .Phone){
             self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.Automatic
         } else {
@@ -49,7 +56,7 @@ class ConversationDetailViewController: UIViewController {
             //Expanding icon functionality.  If this runs on the iphone you have no button to navigate to the master view
             self.navigationItem.leftBarButtonItem = self.splitViewController!.displayModeButtonItem();
         }
- */
+ 
         
         
     }

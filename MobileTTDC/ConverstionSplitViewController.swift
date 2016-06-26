@@ -12,35 +12,23 @@ class ConverstionSplitViewController: UISplitViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.delegate = self //For some reason interface builder refused to let me wire this.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
-extension ConversationsViewController: UISplitViewControllerDelegate{
+extension ConverstionSplitViewController: UISplitViewControllerDelegate{
     
     //Trevis: I'm not 100% sure that this is doing anything
-    func targetDisplayModeForActionInSplitViewController(svc: UISplitViewController) -> UISplitViewControllerDisplayMode {
-        if (svc.displayMode == UISplitViewControllerDisplayMode.PrimaryOverlay || svc.displayMode == UISplitViewControllerDisplayMode.PrimaryHidden) {
-            return UISplitViewControllerDisplayMode.AllVisible;
-        }
-        return UISplitViewControllerDisplayMode.PrimaryHidden;
+//    func targetDisplayModeForActionInSplitViewController(svc: UISplitViewController) -> UISplitViewControllerDisplayMode {
+////        if (svc.displayMode == UISplitViewControllerDisplayMode.PrimaryOverlay || svc.displayMode == UISplitViewControllerDisplayMode.PrimaryHidden) {
+////            return UISplitViewControllerDisplayMode.AllVisible;
+////        }
+////        return UISplitViewControllerDisplayMode.PrimaryHidden;
+//        return UISplitViewControllerDisplayMode.AllVisible
+//    }
+    
+    //Amazingly, this seems to be the only way to make the master appear first.
+    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController, ontoPrimaryViewController primaryViewController: UIViewController) -> Bool {
+        return true
     }
 }

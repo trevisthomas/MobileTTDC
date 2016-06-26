@@ -29,9 +29,9 @@ class LatestPostsViewController: UIViewController {
     }
     
     private var originalHeight : CGFloat!
-    private var containerOriginalY : CGFloat!
+    private var originalTopOfDisapearingView : CGFloat!
     private var statusBarHeight : CGFloat!
-    private var originalY : CGFloat!
+    private var originalTopOfCollectionView : CGFloat!
     
     @IBOutlet weak var modeSegmentedControl: UISegmentedControl!
     
@@ -65,22 +65,8 @@ class LatestPostsViewController: UIViewController {
         collectionView.registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: ReuseIdentifiers.EMPTY_HEADER_VIEW)
         
         displayMode = .LatestFlat
-        
-//        loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT)
-        
-        /*
-        if (UIDevice.currentDevice().userInterfaceIdiom == .Phone){
-            self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.Automatic
-        } else {
-            //Forcing the master to be visible all the time on ipad
-            self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
-            //Expanding icon functionality.  If this runs on the iphone you have no button to navigate to the master view
-            self.navigationItem.leftBarButtonItem = self.splitViewController!.displayModeButtonItem();
-        }
- */
     }
     
-//    viewdidchan
     
     //This is here so that the layout will adjust when you "maximize"
     override func viewWillLayoutSubviews() {
@@ -89,9 +75,9 @@ class LatestPostsViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        originalY = collectionView.frame.origin.y
-        containerOriginalY = originalY - modeSelectionHeightConstraint.constant
-        statusBarHeight = containerOriginalY
+        originalTopOfCollectionView = collectionView.frame.origin.y
+        originalTopOfDisapearingView = originalTopOfCollectionView - modeSelectionHeightConstraint.constant
+        statusBarHeight = originalTopOfDisapearingView
     }
     
     override func didReceiveMemoryWarning() {
@@ -129,10 +115,8 @@ extension LatestPostsViewController : UICollectionViewDelegateFlowLayout {
             height = flatPrototypeCell.preferredHeight(collectionView.frame.width)
             
         case .LatestGrouped:
-            height = 100 // TODO
-            
-//        case .SingleConverstaion:
-//            height = replyPrototypeCell.preferredHeight(collectionView.frame.width)
+            replyPrototypeCell.post = posts[indexPath.section].posts![indexPath.row]
+            height = replyPrototypeCell.preferredHeight(collectionView.frame.width)
         }
         
         return CGSize(width: collectionView.frame.width, height: height)
@@ -140,17 +124,16 @@ extension LatestPostsViewController : UICollectionViewDelegateFlowLayout {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
-        /*
+        
         switch displayMode{
-        case .LatestFlat, .LatestGrouped:
+        case .LatestFlat:
             return CGSizeZero
-        case .SingleConverstaion:
-            sectionHeaderPrototype.post = post
+        case .LatestGrouped:
+            sectionHeaderPrototype.post = posts[section]
             let height = sectionHeaderPrototype.preferredHeight(collectionView.frame.width)
             return CGSize(width: collectionView.frame.width, height: height)
         }
-        */
-        return CGSizeZero
+        
         
     }
 }
@@ -164,12 +147,12 @@ extension LatestPostsViewController : UIScrollViewDelegate {
         let yOffset = collectionView.contentOffset.y
         
         if(yOffset <= 0){
-            collectionView.frame.origin.y = originalY //144 //144 is the starting point
-            modeSelectionView.frame.origin.y = containerOriginalY
+            collectionView.frame.origin.y = originalTopOfCollectionView 
+            modeSelectionView.frame.origin.y = originalTopOfDisapearingView
             
-        } else if yOffset < modeSelectionHeightConstraint.constant + containerOriginalY - statusBarHeight{
-            collectionView.frame.origin.y = originalY - collectionView.contentOffset.y
-            modeSelectionView.frame.origin.y = containerOriginalY - collectionView.contentOffset.y
+        } else if yOffset < modeSelectionHeightConstraint.constant + originalTopOfDisapearingView - statusBarHeight{
+            collectionView.frame.origin.y = originalTopOfCollectionView - collectionView.contentOffset.y
+            modeSelectionView.frame.origin.y = originalTopOfDisapearingView - collectionView.contentOffset.y
         } else {
             collectionView.frame.origin.y = 0 + statusBarHeight
             modeSelectionView.frame.origin.y = -modeSelectionHeightConstraint.constant + statusBarHeight
@@ -193,11 +176,6 @@ extension LatestPostsViewController : UICollectionViewDelegate, UICollectionView
         case .LatestFlat:
             return posts.count
         case .LatestGrouped:
-//            if let replies = posts[section].posts?.count {
-//                return replies
-//            }
-//            return 0
-            
             return posts[section].posts!.count
         }
     }
@@ -219,16 +197,9 @@ extension LatestPostsViewController : UICollectionViewDelegate, UICollectionView
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         
-//        guard let _ = post else{
-//            return collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: ReuseIdentifiers.EMPTY_HEADER_VIEW, forIndexPath: indexPath)
-//        }
-        
         let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind,
                                                                                withReuseIdentifier: ReuseIdentifiers.POST_IN_HEADER_VIEW,
                                                                                forIndexPath: indexPath) as! PostInHeaderCollectionReusableView
-        
-//        headerView.post = post
-        
         headerView.post = posts[indexPath.section]
         
         return headerView
@@ -242,9 +213,11 @@ extension LatestPostsViewController {
     func handleModeChange(){
         switch displayMode{
         case .LatestGrouped:
+            self.navigationController?.navigationBar.topItem?.title = "Latest - Grouped"
             modeSegmentedControl.selectedSegmentIndex = 1
             loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED)
         case .LatestFlat:
+            self.navigationController?.navigationBar.topItem?.title = "Latest - Flat"
             modeSegmentedControl.selectedSegmentIndex = 0
             loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT)
         }

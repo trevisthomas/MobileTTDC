@@ -11,8 +11,21 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
-
+    var window : UIWindow?
+    var currentToken : String? = nil
+    var authenticatedPerson : Person? = nil
+    
+    func setAuthenticatedPerson(person : Person, token : String){
+        self.currentToken = token
+        self.authenticatedPerson = person
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationConstants.USER_CHANGED, object: self)
+    }
+    
+    func clearAuthentication(){
+        self.currentToken = nil
+        self.authenticatedPerson = nil
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.

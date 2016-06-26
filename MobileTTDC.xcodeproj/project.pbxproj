@@ -16,6 +16,8 @@
 		0F9E09021D15A83E006676C1 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9E09011D15A83E006676C1 /* PostDetailViewController.swift */; };
 		0F9E09051D15D5D4006676C1 /* PostInHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9E09031D15D5D4006676C1 /* PostInHeaderCollectionReusableView.swift */; };
 		0F9E09061D15D5D4006676C1 /* PostInHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F9E09041D15D5D4006676C1 /* PostInHeaderCollectionReusableView.xib */; };
+		0FA556AD1D207294001CEA6E /* NotificationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA556AC1D207294001CEA6E /* NotificationConstants.swift */; };
+		0FA556AF1D2077AC001CEA6E /* UIViewController+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA556AE1D2077AC001CEA6E /* UIViewController+Utilities.swift */; };
 		0FB2F4941CFF9C77008F386A /* NSDate+Gloss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2F4931CFF9C77008F386A /* NSDate+Gloss.swift */; };
 		0FB2F4961CFFA0E5008F386A /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2F4951CFFA0E5008F386A /* Entry.swift */; };
 		0FB2F4981CFFA8FC008F386A /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2F4971CFFA8FC008F386A /* Image.swift */; };
@@ -66,6 +68,8 @@
 		0F9E09011D15A83E006676C1 /* PostDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		0F9E09031D15D5D4006676C1 /* PostInHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostInHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		0F9E09041D15D5D4006676C1 /* PostInHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostInHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
+		0FA556AC1D207294001CEA6E /* NotificationConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationConstants.swift; sourceTree = "<group>"; };
+		0FA556AE1D2077AC001CEA6E /* UIViewController+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utilities.swift"; sourceTree = "<group>"; };
 		0FB2F4931CFF9C77008F386A /* NSDate+Gloss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Gloss.swift"; sourceTree = "<group>"; };
 		0FB2F4951CFFA0E5008F386A /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		0FB2F4971CFFA8FC008F386A /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 				0FE527411CFD096300407AAE /* UIViewController+Alerts.swift */,
 				0FB2F4A81D035E34008F386A /* UIImageView+WebLoad.swift */,
 				0FB2F4AA1D037008008F386A /* UIView+Utillities.swift */,
+				0FA556AE1D2077AC001CEA6E /* UIViewController+Utilities.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -195,6 +200,7 @@
 				0FD0A3271D0CAA140030D36F /* ConversationCollectionViewCell.swift */,
 				0FD0A3281D0CAA140030D36F /* ConversationCollectionViewCell.xib */,
 				0FD0A33B1D0DF4140030D36F /* ReuseIdentifiers.swift */,
+				0FA556AC1D207294001CEA6E /* NotificationConstants.swift */,
 				0F9E09011D15A83E006676C1 /* PostDetailViewController.swift */,
 			);
 			path = MobileTTDC;
@@ -321,6 +327,7 @@
 				0FCF01841CFA10E200924868 /* AppDelegate.swift in Sources */,
 				0FE527211CFB654300407AAE /* LoginCommand.swift in Sources */,
 				0FB2F4A71D035B4A008F386A /* Utilities.swift in Sources */,
+				0FA556AD1D207294001CEA6E /* NotificationConstants.swift in Sources */,
 				0FE527421CFD096300407AAE /* UIViewController+Alerts.swift in Sources */,
 				0FE527231CFB654300407AAE /* NetworkAdapter.swift in Sources */,
 				0F76A87C1CFA16C300BDD499 /* ForumViewController.swift in Sources */,
@@ -338,6 +345,7 @@
 				0FD0A3291D0CAA140030D36F /* ConversationCollectionViewCell.swift in Sources */,
 				0FE527311CFB65EB00407AAE /* Gloss.swift in Sources */,
 				0FD0A3401D0DFE980030D36F /* TopicResponse.swift in Sources */,
+				0FA556AF1D2077AC001CEA6E /* UIViewController+Utilities.swift in Sources */,
 				0FE5273C1CFCA27E00407AAE /* Network.swift in Sources */,
 				0FB2F4A41D033C24008F386A /* FlatCollectionViewCell.swift in Sources */,
 				0FE527441CFD0E1E00407AAE /* Post.swift in Sources */,

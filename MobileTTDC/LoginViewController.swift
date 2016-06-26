@@ -33,10 +33,13 @@ class LoginViewController: UIViewController{
         
         Network.performLogin(cmd){
             (response, message) -> Void in
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                 guard (response != nil) else {
+                    appDelegate.clearAuthentication()
                     self.presentAlert("Sorry", message: "Invalid login or password")
                     return;
                 }
+                appDelegate.setAuthenticatedPerson((response?.person!)!, token: (response?.token)!)
                 self.presentAlert("Welcome", message: "Welcome back, \((response?.person?.name)!)")
             
         };

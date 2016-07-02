@@ -33,6 +33,6 @@ public struct Network {
     
     private static func getToken() -> String? {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        return appDelegate.currentToken
+        return appDelegate.applicationContext.token
     }
 }

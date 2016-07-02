@@ -29,18 +29,12 @@ class LoginViewController: UIViewController{
     }
     
     @IBAction func loginButton(sender: UIButton) {
-        let cmd = LoginCommand(login: loginTextField.text!, password: passwordTextField.text!)
-        
-        Network.performLogin(cmd){
-            (response, message) -> Void in
-                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                guard (response != nil) else {
-                    appDelegate.clearAuthentication()
-                    self.presentAlert("Sorry", message: "Invalid login or password")
-                    return;
-                }
-                appDelegate.setAuthenticatedPerson((response?.person!)!, token: (response?.token)!)
-                self.presentAlert("Welcome", message: "Welcome back, \((response?.person?.name)!)")
+        getApplicationContext().authenticate(loginTextField.text!, password: passwordTextField.text!){ (success, message) -> () in
+            guard success else {
+                self.presentAlert("Sorry", message: message)
+                return
+            }
+            self.tabBarController?.selectedIndex = 0
             
         };
     }
@@ -50,8 +44,6 @@ class LoginViewController: UIViewController{
         loginTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
     }
-    
-        
 }
 
 extension LoginViewController : UITextFieldDelegate {

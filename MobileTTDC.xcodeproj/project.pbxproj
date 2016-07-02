@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F317C641D280D7D00C110AE /* ApplicationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F317C631D280D7D00C110AE /* ApplicationContext.swift */; };
 		0F76A87A1CFA165D00BDD499 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A8791CFA165D00BDD499 /* LoginViewController.swift */; };
 		0F76A87C1CFA16C300BDD499 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */; };
 		0F76A87E1CFA1C9400BDD499 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A87D1CFA1C9400BDD499 /* ProfileViewController.swift */; };
@@ -26,6 +27,8 @@
 		0FB2F4A71D035B4A008F386A /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2F4A61D035B4A008F386A /* Utilities.swift */; };
 		0FB2F4A91D035E34008F386A /* UIImageView+WebLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2F4A81D035E34008F386A /* UIImageView+WebLoad.swift */; };
 		0FB2F4AB1D037008008F386A /* UIView+Utillities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2F4AA1D037008008F386A /* UIView+Utillities.swift */; };
+		0FCC10751D28383E00EA0B25 /* DisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCC10741D28383E00EA0B25 /* DisplayMode.swift */; };
+		0FCC10771D28392300EA0B25 /* LatestPostsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCC10761D28392300EA0B25 /* LatestPostsProtocols.swift */; };
 		0FCF01841CFA10E200924868 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF01831CFA10E200924868 /* AppDelegate.swift */; };
 		0FCF018B1CFA10E200924868 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FCF01891CFA10E200924868 /* Main.storyboard */; };
 		0FCF018D1CFA10E200924868 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FCF018C1CFA10E200924868 /* Assets.xcassets */; };
@@ -59,6 +62,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F317C631D280D7D00C110AE /* ApplicationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationContext.swift; sourceTree = "<group>"; };
 		0F76A8791CFA165D00BDD499 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
 		0F76A87D1CFA1C9400BDD499 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +82,8 @@
 		0FB2F4A61D035B4A008F386A /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		0FB2F4A81D035E34008F386A /* UIImageView+WebLoad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+WebLoad.swift"; sourceTree = "<group>"; };
 		0FB2F4AA1D037008008F386A /* UIView+Utillities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utillities.swift"; sourceTree = "<group>"; };
+		0FCC10741D28383E00EA0B25 /* DisplayMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayMode.swift; sourceTree = "<group>"; };
+		0FCC10761D28392300EA0B25 /* LatestPostsProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestPostsProtocols.swift; sourceTree = "<group>"; };
 		0FCF01801CFA10E200924868 /* MobileTTDC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTTDC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FCF01831CFA10E200924868 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0FCF018A1CFA10E200924868 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -154,6 +160,9 @@
 				0FE527431CFD0E1E00407AAE /* Post.swift */,
 				0FB2F4951CFFA0E5008F386A /* Entry.swift */,
 				0FB2F4971CFFA8FC008F386A /* Image.swift */,
+				0FCC10741D28383E00EA0B25 /* DisplayMode.swift */,
+				0F317C631D280D7D00C110AE /* ApplicationContext.swift */,
+				0FCC10761D28392300EA0B25 /* LatestPostsProtocols.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -339,12 +348,14 @@
 				0FB2F4941CFF9C77008F386A /* NSDate+Gloss.swift in Sources */,
 				0F9E08FE1D14BB62006676C1 /* ConverstionSplitViewController.swift in Sources */,
 				0FD0A3391D0DF0160030D36F /* ReplyCollectionViewCell.swift in Sources */,
+				0FCC10771D28392300EA0B25 /* LatestPostsProtocols.swift in Sources */,
 				0F9E09021D15A83E006676C1 /* PostDetailViewController.swift in Sources */,
 				0FD0A3221D0CA2530030D36F /* ConversationsViewController.swift in Sources */,
 				0FE527241CFB654300407AAE /* Person.swift in Sources */,
 				0FD0A3291D0CAA140030D36F /* ConversationCollectionViewCell.swift in Sources */,
 				0FE527311CFB65EB00407AAE /* Gloss.swift in Sources */,
 				0FD0A3401D0DFE980030D36F /* TopicResponse.swift in Sources */,
+				0FCC10751D28383E00EA0B25 /* DisplayMode.swift in Sources */,
 				0FA556AF1D2077AC001CEA6E /* UIViewController+Utilities.swift in Sources */,
 				0FE5273C1CFCA27E00407AAE /* Network.swift in Sources */,
 				0FB2F4A41D033C24008F386A /* FlatCollectionViewCell.swift in Sources */,
@@ -360,6 +371,7 @@
 				0FE5273E1CFD058700407AAE /* PostResponse.swift in Sources */,
 				0FE527221CFB654300407AAE /* LoginResponse.swift in Sources */,
 				0FE5272F1CFB65EB00407AAE /* ExtensionArray.swift in Sources */,
+				0F317C641D280D7D00C110AE /* ApplicationContext.swift in Sources */,
 				0FD0A33C1D0DF4140030D36F /* ReuseIdentifiers.swift in Sources */,
 				0FB2F4AB1D037008008F386A /* UIView+Utillities.swift in Sources */,
 				0FE527401CFD05AE00407AAE /* PostCommand.swift in Sources */,

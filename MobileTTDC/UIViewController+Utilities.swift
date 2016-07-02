@@ -11,12 +11,12 @@ import UIKit
 extension UIViewController {
     func getToken() -> String? {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        return appDelegate.currentToken
+        return appDelegate.applicationContext.token
     }
     
-    func getAuthenticatedPerson() -> Person? {
+    func getApplicationContext() -> ApplicationContext {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        return appDelegate.authenticatedPerson
+        return appDelegate.applicationContext
     }
 }
 

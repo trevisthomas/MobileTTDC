@@ -9,13 +9,13 @@
 import UIKit
 
 
-protocol DetailSelectionDelegate: class {
-    func changeDetail(post: Post?)
-}
+//protocol DetailSelectionDelegate: class {
+//    func changeDetail(post: Post?)
+//}
 
 class ConversationsViewController: UIViewController {
     
-    private var posts : [Post] = []
+//    private var posts : [Post] = []
     private var sizingCellPrototype : ConversationCollectionViewCell!
     private(set) var postForSegue : Post! = nil //OUTSTANDING!
     @IBOutlet weak var collectionView: UICollectionView?
@@ -30,13 +30,16 @@ class ConversationsViewController: UIViewController {
         
         sizingCellPrototype = nib.instantiateWithOwner(nil, options: nil)[0] as! ConversationCollectionViewCell
         
-        loadDataFromWebservice()
+//        loadDataFromWebservice()
         
         self.title = "Conversations"
         
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ConversationsViewController.loadDataFromWebservice), name: NotificationConstants.USER_CHANGED, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ConversationsViewController.loadDataFromWebservice), name: NotificationConstants.USER_CHANGED, object: nil)
+//        
+        getApplicationContext().latestConversationsObserver = self
         
+//        getApplicationContext().reloadData()
         
     }
     
@@ -74,29 +77,12 @@ class ConversationsViewController: UIViewController {
  
 }
 
-extension ConversationsViewController{
-    
-    
-    func loadDataFromWebservice(){
-        let cmd = SearchCommand(postSearchType: SearchCommand.PostSearchType.CONVERSATIONS)
-        
-        Network.performSearchCommand(cmd){
-            (response, message) -> Void in
-            guard (response != nil) else {
-                self.presentAlert("Sorry", message: "Webservice request failed.")
-                return;
-            }
-            
-            self.posts = (response?.list)!
-            self.collectionView?.reloadData()
-        };
-    }
-}
+
 
 extension ConversationsViewController : UICollectionViewDelegateFlowLayout{
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        sizingCellPrototype.post = posts[indexPath.row]
+        sizingCellPrototype.post = getApplicationContext().latestConversations()[indexPath.row]
         let height = sizingCellPrototype.preferredHeight(collectionView.frame.width)
         return CGSize(width: collectionView.frame.width, height: height)
     }
@@ -113,18 +99,18 @@ extension ConversationsViewController : UICollectionViewDelegate, UICollectionVi
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return posts.count
+        return getApplicationContext().latestConversations().count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.CONVERSATION_POST_CELL, forIndexPath: indexPath) as! ConversationCollectionViewCell
         
-        cell.post = posts[indexPath.row]
+        cell.post = getApplicationContext().latestConversations()[indexPath.row]
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        postForSegue = posts[indexPath.row]
+        postForSegue = getApplicationContext().latestConversations()[indexPath.row]
         performSegueWithIdentifier("ConversationDetailSegue", sender: self)
     }
     
@@ -151,4 +137,35 @@ extension ConversationsViewController : UICollectionViewDelegate, UICollectionVi
 
     }
     
+}
+//
+//extension ConversationsViewController{
+//    
+//    
+//    func loadDataFromWebservice(){
+//        let cmd = SearchCommand(postSearchType: SearchCommand.PostSearchType.CONVERSATIONS)
+//        
+//        Network.performSearchCommand(cmd){
+//            (response, message) -> Void in
+//            guard (response != nil) else {
+//                self.presentAlert("Sorry", message: "Webservice request failed.")
+//                return;
+//            }
+//            
+//            self.posts = (response?.list)!
+//            self.collectionView?.reloadData()
+//        };
+//    }
+//}
+
+extension ConversationsViewController : LatestConversationsObserver {
+    func latestConversationsUpdated() {
+        self.collectionView?.reloadData()
+    }
+    func networkError(error: String) {
+        self.presentAlert("Sorry", message: error)
+    }
+    func authenticatedUserChanged() {
+        print("Conversations VC sees that the user changed.")
+    }
 }

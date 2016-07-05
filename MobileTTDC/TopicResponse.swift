@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct TopicResponse : Decodable {
+public struct TopicResponse : Response {
     public let totalResults: Int
     public let list : [Post]
 

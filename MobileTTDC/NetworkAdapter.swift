@@ -2,7 +2,7 @@ import Foundation
 
 class NetworkAdapter {
     
-    static func performCommand<R where R: Decodable>(urlString: String, command: Command, completion: (response: R?, error: String?)->Void){
+    static func performCommand<R where R: Response>(urlString: String, command: Command, completion: (response: R?, error: String?)->Void){
         
         NetworkAdapter.performJsonRequest(urlString, json: command.toJSON()!, completion:{(data, error) -> Void in
             //Jump to UI thread to send response
@@ -20,10 +20,17 @@ class NetworkAdapter {
                     completeOnUiThread(response: nil, error: "Failed to parse json request.")
                 }
                 
+                if let _ = command.getTransactionId(){
+                    //Sigh.  Due to the value type implentation i couldnt call a simple setter.  So i just stuff the id into the json.
+                    json["transactionId"] = command.getTransactionId()
+                }
+                
                 guard let decodableResponse = R(json: json) else {
                     completeOnUiThread(response: nil, error: "Failed to parse json response.")
                     return;
                 }
+                
+                
                 
                 completeOnUiThread(response: decodableResponse, error: nil)
             } else if let error = error {

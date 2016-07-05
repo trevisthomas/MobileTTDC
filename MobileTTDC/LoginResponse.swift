@@ -1,7 +1,6 @@
 import Foundation
 
-public struct LoginResponse: Decodable {
-    
+public struct LoginResponse: Response {
     public let person: Person?
     public let token: String
     

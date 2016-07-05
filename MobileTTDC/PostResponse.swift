@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct PostResponse : Decodable {
+public struct PostResponse : Response {
 //    public let person: String?
 //    public let postId: String
     public let totalResults: Int

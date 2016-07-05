@@ -1,22 +1,21 @@
 //
-//  Command.swift
+//  Decodable+TransactionId.swift
 //  MobileTTDC
 //
-//  Created by Trevis Thomas on 5/30/16.
+//  Created by Trevis Thomas on 7/4/16.
 //  Copyright © 2016 Trevis Thomas. All rights reserved.
 //
 
 import Foundation
 
-public protocol Command : Encodable{
-    var token : String?{get set}
-    
-    //Trevis... you have got to figure out why you cant do this with a {get set} parameter :-(   Seems like an extention should be able to satisfy the {get set} but they dont
+public protocol Response : Decodable {
+    //Trevis: Seems like
+    // var transactionId : Int {get set} should work but i couldnt figure out how to give that a default implementation
     func getTransactionId() -> Int?
     func setTransactionId(transactionId : Int)
 }
 
-extension Command {
+extension Response {
     public func getTransactionId() -> Int? {
         return nil
     }

@@ -31,8 +31,17 @@ public struct Network {
         NetworkAdapter.performCommand("http://ttdc.us/restful/topic", command: command, completion: completion)
     }
     
+    public static func performAutocompleteCommand(command : AutoCompleteCommand, completion: (response : AutoCompleteResponse?, error: String?) -> Void){
+        command.token = getToken()
+        NetworkAdapter.performCommand("\(getHost())/restful/autocomplete", command: command, completion: completion)
+    }
+    
     private static func getToken() -> String? {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         return appDelegate.applicationContext.token
+    }
+    
+    private static func getHost()-> String{
+        return "http://ttdc.us:8888"
     }
 }

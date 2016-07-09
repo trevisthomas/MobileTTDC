@@ -11,9 +11,13 @@ import Foundation
 public struct AutoCompleteItem : Decodable {
     let postId : String
     let displayTitle : String
+//    let conversationCount: Int
+//    let totalReplyCount : Int
     
     public init?(json: JSON) {
         postId = ("postId" <~~ json)!
         displayTitle = ("displayTitle" <~~ json)!
+//        conversationCount = ("conversationCount" <~~ json)!
+//        totalReplyCount = ("totalReplyCount" <~~ json)!
     }
 }

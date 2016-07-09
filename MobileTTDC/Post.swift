@@ -17,6 +17,7 @@ public struct Post : Decodable{
     let entry: String
     let replyCount : UInt
     let posts : [Post]?
+    let mass : UInt
     
     public init?(json: JSON) {
         postId = ("postId" <~~ json)!
@@ -27,6 +28,7 @@ public struct Post : Decodable{
         entry = ("entry" <~~ json)!
         replyCount = ("replyCount" <~~ json)!
         posts = ("posts" <~~ json)
+        mass = ("mass" <~~ json)!
     }
     
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F0F69AA1D317137009600F7 /* UILabel+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69A91D317137009600F7 /* UILabel+Utilities.swift */; };
+		0F0F69AC1D319DAF009600F7 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69AB1D319DAF009600F7 /* CommentViewController.swift */; };
 		0F317C641D280D7D00C110AE /* ApplicationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F317C631D280D7D00C110AE /* ApplicationContext.swift */; };
 		0F76A87A1CFA165D00BDD499 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A8791CFA165D00BDD499 /* LoginViewController.swift */; };
 		0F76A87C1CFA16C300BDD499 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */; };
@@ -32,9 +34,7 @@
 		0FCC107D1D2ABC2000EA0B25 /* AutoCompleteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCC107C1D2ABC2000EA0B25 /* AutoCompleteItem.swift */; };
 		0FCC107F1D2ABEAA00EA0B25 /* AutoCompleteCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCC107E1D2ABEAA00EA0B25 /* AutoCompleteCommand.swift */; };
 		0FCC10811D2AC38800EA0B25 /* Comment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FCC10801D2AC38800EA0B25 /* Comment.storyboard */; };
-		0FCC10831D2AC51A00EA0B25 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCC10821D2AC51A00EA0B25 /* CommentViewController.swift */; };
-		0FCC10871D2B0DFF00EA0B25 /* AutoCompleteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCC10851D2B0DFF00EA0B25 /* AutoCompleteViewCell.swift */; };
-		0FCC10881D2B0DFF00EA0B25 /* AutoCompleteViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FCC10861D2B0DFF00EA0B25 /* AutoCompleteViewCell.xib */; };
+		0FCC10831D2AC51A00EA0B25 /* ChooseThreadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCC10821D2AC51A00EA0B25 /* ChooseThreadViewController.swift */; };
 		0FCC108A1D2B1CF700EA0B25 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCC10891D2B1CF700EA0B25 /* Response.swift */; };
 		0FCC108C1D2B352500EA0B25 /* UITextView+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCC108B1D2B352500EA0B25 /* UITextView+Utilities.swift */; };
 		0FCF01841CFA10E200924868 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF01831CFA10E200924868 /* AppDelegate.swift */; };
@@ -51,6 +51,8 @@
 		0FD0A33C1D0DF4140030D36F /* ReuseIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD0A33B1D0DF4140030D36F /* ReuseIdentifiers.swift */; };
 		0FD0A33E1D0DFDD80030D36F /* TopicCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD0A33D1D0DFDD80030D36F /* TopicCommand.swift */; };
 		0FD0A3401D0DFE980030D36F /* TopicResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD0A33F1D0DFE980030D36F /* TopicResponse.swift */; };
+		0FD597691D316CD500CAE7FF /* AutoCompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD597671D316CD500CAE7FF /* AutoCompleteTableViewCell.swift */; };
+		0FD5976A1D316CD500CAE7FF /* AutoCompleteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FD597681D316CD500CAE7FF /* AutoCompleteTableViewCell.xib */; };
 		0FE527211CFB654300407AAE /* LoginCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE5271D1CFB654300407AAE /* LoginCommand.swift */; };
 		0FE527221CFB654300407AAE /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE5271E1CFB654300407AAE /* LoginResponse.swift */; };
 		0FE527231CFB654300407AAE /* NetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE5271F1CFB654300407AAE /* NetworkAdapter.swift */; };
@@ -70,6 +72,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F0F69A91D317137009600F7 /* UILabel+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Utilities.swift"; sourceTree = "<group>"; };
+		0F0F69AB1D319DAF009600F7 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		0F317C631D280D7D00C110AE /* ApplicationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationContext.swift; sourceTree = "<group>"; };
 		0F76A8791CFA165D00BDD499 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
@@ -95,9 +99,7 @@
 		0FCC107C1D2ABC2000EA0B25 /* AutoCompleteItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoCompleteItem.swift; sourceTree = "<group>"; };
 		0FCC107E1D2ABEAA00EA0B25 /* AutoCompleteCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoCompleteCommand.swift; sourceTree = "<group>"; };
 		0FCC10801D2AC38800EA0B25 /* Comment.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Comment.storyboard; sourceTree = "<group>"; };
-		0FCC10821D2AC51A00EA0B25 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
-		0FCC10851D2B0DFF00EA0B25 /* AutoCompleteViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoCompleteViewCell.swift; sourceTree = "<group>"; };
-		0FCC10861D2B0DFF00EA0B25 /* AutoCompleteViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutoCompleteViewCell.xib; sourceTree = "<group>"; };
+		0FCC10821D2AC51A00EA0B25 /* ChooseThreadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseThreadViewController.swift; sourceTree = "<group>"; };
 		0FCC10891D2B1CF700EA0B25 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		0FCC108B1D2B352500EA0B25 /* UITextView+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Utilities.swift"; sourceTree = "<group>"; };
 		0FCF01801CFA10E200924868 /* MobileTTDC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTTDC.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,6 +118,8 @@
 		0FD0A33B1D0DF4140030D36F /* ReuseIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReuseIdentifiers.swift; sourceTree = "<group>"; };
 		0FD0A33D1D0DFDD80030D36F /* TopicCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCommand.swift; sourceTree = "<group>"; };
 		0FD0A33F1D0DFE980030D36F /* TopicResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicResponse.swift; sourceTree = "<group>"; };
+		0FD597671D316CD500CAE7FF /* AutoCompleteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoCompleteTableViewCell.swift; sourceTree = "<group>"; };
+		0FD597681D316CD500CAE7FF /* AutoCompleteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutoCompleteTableViewCell.xib; sourceTree = "<group>"; };
 		0FE5271D1CFB654300407AAE /* LoginCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCommand.swift; sourceTree = "<group>"; };
 		0FE5271E1CFB654300407AAE /* LoginResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		0FE5271F1CFB654300407AAE /* NetworkAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkAdapter.swift; sourceTree = "<group>"; };
@@ -155,6 +159,7 @@
 				0FB2F4AA1D037008008F386A /* UIView+Utillities.swift */,
 				0FA556AE1D2077AC001CEA6E /* UIViewController+Utilities.swift */,
 				0FCC108B1D2B352500EA0B25 /* UITextView+Utilities.swift */,
+				0F0F69A91D317137009600F7 /* UILabel+Utilities.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -189,9 +194,10 @@
 			isa = PBXGroup;
 			children = (
 				0FCC10801D2AC38800EA0B25 /* Comment.storyboard */,
-				0FCC10821D2AC51A00EA0B25 /* CommentViewController.swift */,
-				0FCC10851D2B0DFF00EA0B25 /* AutoCompleteViewCell.swift */,
-				0FCC10861D2B0DFF00EA0B25 /* AutoCompleteViewCell.xib */,
+				0F0F69AB1D319DAF009600F7 /* CommentViewController.swift */,
+				0FCC10821D2AC51A00EA0B25 /* ChooseThreadViewController.swift */,
+				0FD597671D316CD500CAE7FF /* AutoCompleteTableViewCell.swift */,
+				0FD597681D316CD500CAE7FF /* AutoCompleteTableViewCell.xib */,
 			);
 			name = Comment;
 			sourceTree = "<group>";
@@ -346,9 +352,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0FCC10881D2B0DFF00EA0B25 /* AutoCompleteViewCell.xib in Resources */,
 				0FCF01901CFA10E200924868 /* LaunchScreen.storyboard in Resources */,
 				0F9E09061D15D5D4006676C1 /* PostInHeaderCollectionReusableView.xib in Resources */,
+				0FD5976A1D316CD500CAE7FF /* AutoCompleteTableViewCell.xib in Resources */,
 				0FD0A33A1D0DF0160030D36F /* ReplyCollectionViewCell.xib in Resources */,
 				0FCC10811D2AC38800EA0B25 /* Comment.storyboard in Resources */,
 				0FB2F4A51D033C24008F386A /* FlatCollectionViewCell.xib in Resources */,
@@ -386,13 +392,13 @@
 				0FCC10771D28392300EA0B25 /* LatestPostsProtocols.swift in Sources */,
 				0F9E09021D15A83E006676C1 /* PostDetailViewController.swift in Sources */,
 				0FD0A3221D0CA2530030D36F /* ConversationsViewController.swift in Sources */,
-				0FCC10871D2B0DFF00EA0B25 /* AutoCompleteViewCell.swift in Sources */,
-				0FCC10831D2AC51A00EA0B25 /* CommentViewController.swift in Sources */,
+				0FCC10831D2AC51A00EA0B25 /* ChooseThreadViewController.swift in Sources */,
 				0FCC107F1D2ABEAA00EA0B25 /* AutoCompleteCommand.swift in Sources */,
 				0FE527241CFB654300407AAE /* Person.swift in Sources */,
 				0FD0A3291D0CAA140030D36F /* ConversationCollectionViewCell.swift in Sources */,
 				0FE527311CFB65EB00407AAE /* Gloss.swift in Sources */,
 				0FD0A3401D0DFE980030D36F /* TopicResponse.swift in Sources */,
+				0F0F69AC1D319DAF009600F7 /* CommentViewController.swift in Sources */,
 				0FCC10751D28383E00EA0B25 /* DisplayMode.swift in Sources */,
 				0FA556AF1D2077AC001CEA6E /* UIViewController+Utilities.swift in Sources */,
 				0FE5273C1CFCA27E00407AAE /* Network.swift in Sources */,
@@ -400,6 +406,8 @@
 				0FB2F4A41D033C24008F386A /* FlatCollectionViewCell.swift in Sources */,
 				0FCC107D1D2ABC2000EA0B25 /* AutoCompleteItem.swift in Sources */,
 				0FE527441CFD0E1E00407AAE /* Post.swift in Sources */,
+				0F0F69AA1D317137009600F7 /* UILabel+Utilities.swift in Sources */,
+				0FD597691D316CD500CAE7FF /* AutoCompleteTableViewCell.swift in Sources */,
 				0FD0A32E1D0CB0050030D36F /* SearchResponse.swift in Sources */,
 				0FB2F4A91D035E34008F386A /* UIImageView+WebLoad.swift in Sources */,
 				0FE5272D1CFB65EB00407AAE /* Decoder.swift in Sources */,

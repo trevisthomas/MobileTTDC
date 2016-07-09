@@ -10,7 +10,6 @@ import Foundation
 
 public struct AutoCompleteResponse: Response {
     public var transactionId: Int?
-    
     let items : [AutoCompleteItem]
     
     public init?(json: JSON) {

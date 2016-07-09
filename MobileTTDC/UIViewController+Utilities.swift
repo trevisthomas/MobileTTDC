@@ -18,5 +18,11 @@ extension UIViewController {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         return appDelegate.applicationContext
     }
+    
+    func invokeLater(completion : () -> ()) {
+        dispatch_async(dispatch_get_main_queue()) {
+            completion()
+        }
+    }
 }
 

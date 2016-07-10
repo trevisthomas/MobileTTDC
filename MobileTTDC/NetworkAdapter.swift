@@ -20,9 +20,9 @@ class NetworkAdapter {
                     completeOnUiThread(response: nil, error: "Failed to parse json request.")
                 }
                 
-                if let _ = command.getTransactionId(){
+                if let _ = command.transactionId{
                     //Sigh.  Due to the value type implentation i couldnt call a simple setter.  So i just stuff the id into the json.
-                    json["transactionId"] = command.getTransactionId()
+                    json["transactionId"] = command.transactionId
                 }
                 
                 guard let decodableResponse = R(json: json) else {

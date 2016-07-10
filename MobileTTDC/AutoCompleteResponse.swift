@@ -16,8 +16,4 @@ public struct AutoCompleteResponse: Response {
         items = ("items" <~~ json)!
         transactionId = ("transactionId" <~~ json)
     }
-    
-    public func getTransactionId() -> Int? {
-        return transactionId
-    }
 }

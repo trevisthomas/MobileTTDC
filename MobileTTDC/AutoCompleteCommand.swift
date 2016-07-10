@@ -23,13 +23,4 @@ public class AutoCompleteCommand : Command{
         self.query = query
         self.transactionId = transactionId
     }
-    
-    //Sigh.  Maybe make command a base class and move this there.
-    public func setTransactionId(transactionId: Int) {
-        self.transactionId = transactionId
-    }
-    
-    public func getTransactionId() -> Int? {
-        return transactionId
-    }
 }

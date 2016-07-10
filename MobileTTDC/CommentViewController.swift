@@ -15,43 +15,101 @@ class CommentViewController: UIViewController {
     @IBOutlet weak var commentTextArea: UITextView!
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-//    var item : AutoCompleteItem? {
-//        didSet{
-//            threadTitle = item.displayTitle
-//            threadSummaryLabel = "debug: todo..."
-//            //just let this controller get all detail by retriving the post. Hm.  Needs more thought because creation has to handle new posts.
-//        }
-//    }
     
-    var post : Post? {
+    var parentPost : Post? {
         didSet{
-            threadTitle.text = post?.title
+            threadTitle.text = parentPost?.title
+            threadSummaryLabel.text = "Topic currently contains \(parentPost!.mass) replies in \(parentPost!.replyCount) conversations."
         }
     }
     
+    var parentId : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        commentTextArea.text = ""
 
-        // Do any additional setup after loading the view.
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentViewController.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if parentPost == nil {
+            fetchPost(parentId!)
+        }
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     @IBAction func postComment(sender: AnyObject) {
         print(commentTextArea.text)
+        postComment(parentId!, body: commentTextArea.text)
     }
 
-    /*
-    // MARK: - Navigation
+    
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+}
+
+extension CommentViewController {
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardFrame = notification.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue() {
+            invokeLater {
+                self.bottomConstraint.constant = keyboardFrame.height - 50 //Hm, is this 50px becaues of tabbar?!
+            }
+        }
     }
-    */
+    
+    func keyboardDidHide(notification: NSNotification) {
+        invokeLater {
+            self.bottomConstraint.constant = 0.0
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardDidHideNotification, object: nil)
+    }
+
+}
+
+extension CommentViewController {
+    func fetchPost(postId: String){
+        
+        let cmd = PostCrudCommand(postId: postId)
+        
+        Network.performPostCrudCommand(cmd){
+            (response, message) -> Void in
+            guard (response != nil) else {
+                print(message)
+                self.presentAlert("Error", message: "Failed to load post")
+                return;
+            }
+            
+            self.invokeLater{
+                self.parentPost = (response?.post)!
+                self.commentTextArea.becomeFirstResponder()
+            }
+            
+        };
+    }
+    
+    func postComment(parentId: String, body: String){
+        
+        let cmd = PostCrudCommand(parentId: parentId, body: body)
+        
+        Network.performPostCrudCommand(cmd){
+            (response, message) -> Void in
+            guard response != nil else {
+                self.presentAlert("Error", message: "Failed to create post.  Server error.")
+                return
+            }
+            self.getApplicationContext().reloadLatestPosts()
+            self.getApplicationContext().reloadLatestConversations()
+            self.performSegueWithIdentifier("Main", sender: self)
+            
+        };
+    }
+    
 
 }

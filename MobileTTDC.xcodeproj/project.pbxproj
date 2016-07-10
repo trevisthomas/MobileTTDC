@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		0F0F69AA1D317137009600F7 /* UILabel+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69A91D317137009600F7 /* UILabel+Utilities.swift */; };
 		0F0F69AC1D319DAF009600F7 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69AB1D319DAF009600F7 /* CommentViewController.swift */; };
+		0F0F69AE1D32986B009600F7 /* PostCrudCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69AD1D32986B009600F7 /* PostCrudCommand.swift */; };
+		0F0F69B01D329887009600F7 /* PostCrudResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69AF1D329887009600F7 /* PostCrudResponse.swift */; };
+		0F0F69B21D329B61009600F7 /* TransactionTrackable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69B11D329B61009600F7 /* TransactionTrackable.swift */; };
 		0F317C641D280D7D00C110AE /* ApplicationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F317C631D280D7D00C110AE /* ApplicationContext.swift */; };
 		0F76A87A1CFA165D00BDD499 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A8791CFA165D00BDD499 /* LoginViewController.swift */; };
 		0F76A87C1CFA16C300BDD499 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */; };
@@ -74,6 +77,9 @@
 /* Begin PBXFileReference section */
 		0F0F69A91D317137009600F7 /* UILabel+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Utilities.swift"; sourceTree = "<group>"; };
 		0F0F69AB1D319DAF009600F7 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		0F0F69AD1D32986B009600F7 /* PostCrudCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCrudCommand.swift; sourceTree = "<group>"; };
+		0F0F69AF1D329887009600F7 /* PostCrudResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCrudResponse.swift; sourceTree = "<group>"; };
+		0F0F69B11D329B61009600F7 /* TransactionTrackable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionTrackable.swift; sourceTree = "<group>"; };
 		0F317C631D280D7D00C110AE /* ApplicationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationContext.swift; sourceTree = "<group>"; };
 		0F76A8791CFA165D00BDD499 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
@@ -253,20 +259,23 @@
 		0FE527251CFB656200407AAE /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				0F0F69B11D329B61009600F7 /* TransactionTrackable.swift */,
+				0FCC10891D2B1CF700EA0B25 /* Response.swift */,
+				0FE527391CFC9FB800407AAE /* Command.swift */,
+				0FE5273B1CFCA27E00407AAE /* Network.swift */,
+				0FE5271F1CFB654300407AAE /* NetworkAdapter.swift */,
 				0FCC107A1D2ABB9800EA0B25 /* AutoCompleteResponse.swift */,
 				0FCC107E1D2ABEAA00EA0B25 /* AutoCompleteCommand.swift */,
 				0FE5271D1CFB654300407AAE /* LoginCommand.swift */,
 				0FE5271E1CFB654300407AAE /* LoginResponse.swift */,
-				0FE5271F1CFB654300407AAE /* NetworkAdapter.swift */,
-				0FE527391CFC9FB800407AAE /* Command.swift */,
-				0FE5273B1CFCA27E00407AAE /* Network.swift */,
 				0FE5273D1CFD058700407AAE /* PostResponse.swift */,
-				0FCC10891D2B1CF700EA0B25 /* Response.swift */,
 				0FE5273F1CFD05AE00407AAE /* PostCommand.swift */,
 				0FD0A32B1D0CAD0E0030D36F /* SearchCommand.swift */,
 				0FD0A32D1D0CB0050030D36F /* SearchResponse.swift */,
 				0FD0A33D1D0DFDD80030D36F /* TopicCommand.swift */,
 				0FD0A33F1D0DFE980030D36F /* TopicResponse.swift */,
+				0F0F69AD1D32986B009600F7 /* PostCrudCommand.swift */,
+				0F0F69AF1D329887009600F7 /* PostCrudResponse.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -392,6 +401,7 @@
 				0FCC10771D28392300EA0B25 /* LatestPostsProtocols.swift in Sources */,
 				0F9E09021D15A83E006676C1 /* PostDetailViewController.swift in Sources */,
 				0FD0A3221D0CA2530030D36F /* ConversationsViewController.swift in Sources */,
+				0F0F69AE1D32986B009600F7 /* PostCrudCommand.swift in Sources */,
 				0FCC10831D2AC51A00EA0B25 /* ChooseThreadViewController.swift in Sources */,
 				0FCC107F1D2ABEAA00EA0B25 /* AutoCompleteCommand.swift in Sources */,
 				0FE527241CFB654300407AAE /* Person.swift in Sources */,
@@ -401,6 +411,7 @@
 				0F0F69AC1D319DAF009600F7 /* CommentViewController.swift in Sources */,
 				0FCC10751D28383E00EA0B25 /* DisplayMode.swift in Sources */,
 				0FA556AF1D2077AC001CEA6E /* UIViewController+Utilities.swift in Sources */,
+				0F0F69B01D329887009600F7 /* PostCrudResponse.swift in Sources */,
 				0FE5273C1CFCA27E00407AAE /* Network.swift in Sources */,
 				0FCC108C1D2B352500EA0B25 /* UITextView+Utilities.swift in Sources */,
 				0FB2F4A41D033C24008F386A /* FlatCollectionViewCell.swift in Sources */,
@@ -411,6 +422,7 @@
 				0FD0A32E1D0CB0050030D36F /* SearchResponse.swift in Sources */,
 				0FB2F4A91D035E34008F386A /* UIImageView+WebLoad.swift in Sources */,
 				0FE5272D1CFB65EB00407AAE /* Decoder.swift in Sources */,
+				0F0F69B21D329B61009600F7 /* TransactionTrackable.swift in Sources */,
 				0FB2F4961CFFA0E5008F386A /* Entry.swift in Sources */,
 				0F888A6E1D1DDDA0005F960A /* ConversationDetailViewController.swift in Sources */,
 				0FE527321CFB65EB00407AAE /* Operators.swift in Sources */,

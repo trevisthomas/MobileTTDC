@@ -8,21 +8,6 @@
 
 import Foundation
 
-public protocol Command : Encodable{
+public protocol Command : Encodable, TransactionTrackable{
     var token : String?{get set}
-    
-    //Trevis... you have got to figure out why you cant do this with a {get set} parameter :-(   Seems like an extention should be able to satisfy the {get set} but they dont
-    func getTransactionId() -> Int?
-    func setTransactionId(transactionId : Int)
-}
-
-extension Command {
-    public func getTransactionId() -> Int? {
-        return nil
-    }
-    
-    public func setTransactionId(transactionId : Int){
-        //Error?
-    }
-    
 }

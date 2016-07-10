@@ -29,6 +29,8 @@ class ChooseThreadViewController: UIViewController {
         let nib = UINib(nibName: "AutoCompleteTableViewCell", bundle: nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: ReuseIdentifiers.AUTO_TOPIC_CELL)
         
+        topicSelectorTextField.delegate = self
+        
         //Looks for single or multiple taps.
 //        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CommentViewController.dismissKeyboard))
 //       tableView.addGestureRecognizer(tap)
@@ -49,12 +51,25 @@ class ChooseThreadViewController: UIViewController {
         super.viewDidAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChooseThreadViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChooseThreadViewController.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
+        
+        topicSelectorTextField.text = ""
+        autoCompleteItems = []
+        tableView.reloadData()
+        topicSelectorTextField.becomeFirstResponder()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let indexPath = sender as! NSIndexPath
         
+//        guard let nav = segue.destinationViewController as? UINavigationController else {
+//            return
+//        }
+     
+        guard let vc = segue.destinationViewController as? CommentViewController else {
+            return
+        }
         
+        vc.parentId = autoCompleteItems[indexPath.row].postId
         
     }
 }
@@ -84,8 +99,6 @@ extension ChooseThreadViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardDidHideNotification, object: nil)
     }
-    
-    
 }
 
 extension ChooseThreadViewController {
@@ -113,7 +126,7 @@ extension ChooseThreadViewController {
                 return;
             }
             
-            if (self.transactionId == response?.getTransactionId()){
+            if (self.transactionId == response?.transactionId){
                 
                 dispatch_async(dispatch_get_main_queue()) {
                     self.autoCompleteItems = (response?.items)!
@@ -153,5 +166,12 @@ extension ChooseThreadViewController : UITableViewDelegate, UITableViewDataSourc
         cell.autoCompleteText = autoCompleteItems[indexPath.row].displayTitle
         
         return cell
+    }
+}
+
+extension ChooseThreadViewController : UITextFieldDelegate {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
     }
 }

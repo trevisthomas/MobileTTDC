@@ -46,7 +46,13 @@
                             <constraint firstItem="wdG-IH-ZQa" firstAttribute="top" secondItem="sPW-EO-OqB" secondAttribute="bottom" id="t4r-PL-lua"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="z2n-2S-Z99"/>
+                    <navigationItem key="navigationItem" id="z2n-2S-Z99">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="JHg-NP-H3o">
+                            <connections>
+                                <action selector="doneButtonTapped:" destination="yhJ-Fp-Mba" id="ula-dw-8GJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bottomConstraintTableView" destination="t4r-PL-lua" id="Wrc-AY-Vhv"/>
                         <outlet property="tableView" destination="sPW-EO-OqB" id="Wun-0V-3VI"/>
@@ -150,7 +156,7 @@
         <!--Navigation Controller-->
         <scene sceneID="zxt-MY-onO">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oBV-jA-dQ8" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CommentCreator" automaticallyAdjustsScrollViewInsets="NO" id="oBV-jA-dQ8" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IbD-Lp-9Hm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

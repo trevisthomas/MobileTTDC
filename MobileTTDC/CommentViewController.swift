@@ -29,8 +29,8 @@ class CommentViewController: UIViewController {
         super.viewDidLoad()
         commentTextArea.text = ""
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentViewController.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentViewController.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -50,28 +50,28 @@ class CommentViewController: UIViewController {
 
 }
 
-extension CommentViewController {
-    func keyboardWillShow(notification: NSNotification) {
-        if let keyboardFrame = notification.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue() {
-            invokeLater {
-                self.bottomConstraint.constant = keyboardFrame.height - 50 //Hm, is this 50px becaues of tabbar?!
-            }
-        }
-    }
-    
-    func keyboardDidHide(notification: NSNotification) {
-        invokeLater {
-            self.bottomConstraint.constant = 0.0
-        }
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardDidHideNotification, object: nil)
-    }
-
-}
+//extension CommentViewController {
+//    func keyboardWillShow(notification: NSNotification) {
+//        if let keyboardFrame = notification.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue() {
+////            invokeLater {
+////                self.bottomConstraint.constant = keyboardFrame.height - 50 //Hm, is this 50px becaues of tabbar?!
+////            }
+//        }
+//    }
+//    
+//    func keyboardDidHide(notification: NSNotification) {
+////        invokeLater {
+////            self.bottomConstraint.constant = 0.0
+////        }
+//    }
+//    
+//    override func viewWillDisappear(animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+//        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardDidHideNotification, object: nil)
+//    }
+//
+//}
 
 extension CommentViewController {
     func fetchPost(postId: String){
@@ -106,7 +106,8 @@ extension CommentViewController {
             }
             self.getApplicationContext().reloadLatestPosts()
             self.getApplicationContext().reloadLatestConversations()
-            self.performSegueWithIdentifier("Main", sender: self)
+//            self.performSegueWithIdentifier("Main", sender: self)
+            self.dismissViewControllerAnimated(true, completion: nil)
             
         };
     }

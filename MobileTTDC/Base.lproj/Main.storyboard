@@ -362,7 +362,13 @@
                             <constraint firstAttribute="trailing" secondItem="Sdd-xr-J9t" secondAttribute="trailing" id="wMq-OY-t2X"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Latest" id="pOH-4u-kxX"/>
+                    <navigationItem key="navigationItem" title="Latest" id="pOH-4u-kxX">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="YE9-Z0-V2r">
+                            <connections>
+                                <action selector="presentCommentCreationView:" destination="gyI-c6-Blm" id="9xD-ZM-Ti2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Sdd-xr-J9t" id="NRx-sG-irQ"/>
                         <outlet property="modeSegmentedControl" destination="XVd-yt-4Wc" id="Q6q-c9-gez"/>

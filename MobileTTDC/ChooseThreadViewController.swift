@@ -55,6 +55,7 @@ class ChooseThreadViewController: UIViewController {
         topicSelectorTextField.text = ""
         autoCompleteItems = []
         tableView.reloadData()
+        
         topicSelectorTextField.becomeFirstResponder()
     }
     
@@ -72,6 +73,9 @@ class ChooseThreadViewController: UIViewController {
         vc.parentId = autoCompleteItems[indexPath.row].postId
         
     }
+    @IBAction func doneButtonTapped(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }
 
 extension ChooseThreadViewController {
@@ -81,17 +85,17 @@ extension ChooseThreadViewController {
     }
     
     func keyboardWillShow(notification: NSNotification) {
-        if let keyboardFrame = notification.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue() {
-            invokeLater {
-                self.bottomConstraintTableView.constant = keyboardFrame.height - 50 //Hm, is this 50px becaues of tabbar?!
-            }
-        }
+//        if let keyboardFrame = notification.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue() {
+//            invokeLater {
+//                self.bottomConstraintTableView.constant = keyboardFrame.height - 50 //Hm, is this 50px becaues of tabbar?!
+//            }
+//        }
     }
     
     func keyboardDidHide(notification: NSNotification) {
-        invokeLater {
-            self.bottomConstraintTableView.constant = 0.0
-        }
+//        invokeLater {
+//            self.bottomConstraintTableView.constant = 0.0
+//        }
     }
     
     override func viewWillDisappear(animated: Bool) {

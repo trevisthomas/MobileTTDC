@@ -39,6 +39,20 @@ class LatestPostsViewController: UIViewController {
         
     }
     
+    @IBAction func presentCommentCreationView(sender: UIBarButtonItem) {
+        
+        //http://www.appcoda.com/presentation-controllers-tutorial/
+        
+        let storyboard : UIStoryboard = UIStoryboard(name: "Comment", bundle: nil)
+        let vc = storyboard.instantiateViewControllerWithIdentifier("CommentCreator") as! UINavigationController
+        vc.modalPresentationStyle = UIModalPresentationStyle.Popover
+        let popover: UIPopoverPresentationController = vc.popoverPresentationController!
+        popover.delegate = self
+        popover.barButtonItem = sender
+        presentViewController(vc, animated: true, completion:nil)
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -237,4 +251,25 @@ extension LatestPostsViewController : LatestPostsObserver {
     func networkError(error : String){
         self.presentAlert("Sorry", message: error)
     }
+}
+
+extension LatestPostsViewController : UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+//        return UIModalPresentationStyle.FullScreen
+         return UIModalPresentationStyle.None
+    }
+    
+//    func presentationController(controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
+//        let navigationController = UINavigationController(rootViewController: controller.presentedViewController)
+////        let btnDone = UIBarButtonItem(title: "Done", style: .Done, target: self, action: "dismiss")
+////        navigationController.topViewController.navigationItem.rightBarButtonItem = btnDone
+//        
+//        print("Compact?")
+//        
+//        return navigationController
+//        
+//        
+//        
+////        return controller.presentingViewController
+//    }
 }

@@ -15,6 +15,9 @@ class ChooseThreadViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bottomConstraintTableView: NSLayoutConstraint!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    @IBOutlet weak var bottomSpacingConstraint: NSLayoutConstraint!
     
     private var autoCompleteItems : [AutoCompleteItem] = []
     
@@ -29,7 +32,9 @@ class ChooseThreadViewController: UIViewController {
         let nib = UINib(nibName: "AutoCompleteTableViewCell", bundle: nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: ReuseIdentifiers.AUTO_TOPIC_CELL)
         
-        topicSelectorTextField.delegate = self
+        //topicSelectorTextField.delegate = self
+        
+        searchBar.delegate = self
         
         //Looks for single or multiple taps.
 //        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CommentViewController.dismissKeyboard))
@@ -39,7 +44,8 @@ class ChooseThreadViewController: UIViewController {
     //Calls this function when the tap is recognized.
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        topicSelectorTextField.endEditing(true)
+//        topicSelectorTextField.endEditing(true)
+        searchBar.endEditing(true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,11 +58,11 @@ class ChooseThreadViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChooseThreadViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChooseThreadViewController.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
         
-        topicSelectorTextField.text = ""
+//        topicSelectorTextField.text = ""
         autoCompleteItems = []
         tableView.reloadData()
         
-        topicSelectorTextField.becomeFirstResponder()
+        searchBar.becomeFirstResponder()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -70,7 +76,9 @@ class ChooseThreadViewController: UIViewController {
             return
         }
         
-        vc.parentId = autoCompleteItems[indexPath.row].postId
+        let item = autoCompleteItems[indexPath.row]
+        print(item.postId)
+        vc.parentId = item.postId
         
     }
     @IBAction func doneButtonTapped(sender: UIBarButtonItem) {
@@ -80,9 +88,10 @@ class ChooseThreadViewController: UIViewController {
 
 extension ChooseThreadViewController {
     //Keyboard stuff
-    @IBAction func textFieldTextChanged(sender: UITextField) {
-        performQuery(sender.text!)
-    }
+//    @IBAction func textFieldTextChanged(sender: UITextField) {
+//        performQuery(sender.text!)
+//        
+//    }
     
     func keyboardWillShow(notification: NSNotification) {
 //        if let keyboardFrame = notification.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue() {
@@ -171,6 +180,17 @@ extension ChooseThreadViewController : UITableViewDelegate, UITableViewDataSourc
         
         return cell
     }
+}
+extension ChooseThreadViewController : UISearchBarDelegate {
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+//        performQuery(searchBar.text!)
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        performQuery(searchText)
+    }
+    
+//    searchBarD
 }
 
 extension ChooseThreadViewController : UITextFieldDelegate {

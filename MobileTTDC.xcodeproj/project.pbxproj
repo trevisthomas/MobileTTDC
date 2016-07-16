@@ -12,6 +12,10 @@
 		0F0F69AE1D32986B009600F7 /* PostCrudCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69AD1D32986B009600F7 /* PostCrudCommand.swift */; };
 		0F0F69B01D329887009600F7 /* PostCrudResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69AF1D329887009600F7 /* PostCrudResponse.swift */; };
 		0F0F69B21D329B61009600F7 /* TransactionTrackable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69B11D329B61009600F7 /* TransactionTrackable.swift */; };
+		0F0F69B61D370987009600F7 /* AccessoryCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F0F69B51D370987009600F7 /* AccessoryCommentView.xib */; };
+		0F0F69B81D383730009600F7 /* AccessoryCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69B71D383730009600F7 /* AccessoryCommentView.swift */; };
+		0F0F69BA1D3AB511009600F7 /* RegisterCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69B91D3AB511009600F7 /* RegisterCommand.swift */; };
+		0F0F69BC1D3AB65B009600F7 /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69BB1D3AB65B009600F7 /* RegisterResponse.swift */; };
 		0F317C641D280D7D00C110AE /* ApplicationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F317C631D280D7D00C110AE /* ApplicationContext.swift */; };
 		0F76A87A1CFA165D00BDD499 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A8791CFA165D00BDD499 /* LoginViewController.swift */; };
 		0F76A87C1CFA16C300BDD499 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */; };
@@ -80,6 +84,10 @@
 		0F0F69AD1D32986B009600F7 /* PostCrudCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCrudCommand.swift; sourceTree = "<group>"; };
 		0F0F69AF1D329887009600F7 /* PostCrudResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCrudResponse.swift; sourceTree = "<group>"; };
 		0F0F69B11D329B61009600F7 /* TransactionTrackable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionTrackable.swift; sourceTree = "<group>"; };
+		0F0F69B51D370987009600F7 /* AccessoryCommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccessoryCommentView.xib; sourceTree = "<group>"; };
+		0F0F69B71D383730009600F7 /* AccessoryCommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessoryCommentView.swift; sourceTree = "<group>"; };
+		0F0F69B91D3AB511009600F7 /* RegisterCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterCommand.swift; sourceTree = "<group>"; };
+		0F0F69BB1D3AB65B009600F7 /* RegisterResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterResponse.swift; sourceTree = "<group>"; };
 		0F317C631D280D7D00C110AE /* ApplicationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationContext.swift; sourceTree = "<group>"; };
 		0F76A8791CFA165D00BDD499 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
@@ -174,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				0FCF01831CFA10E200924868 /* AppDelegate.swift */,
+				0F317C631D280D7D00C110AE /* ApplicationContext.swift */,
 				0FCF018C1CFA10E200924868 /* Assets.xcassets */,
 				0FCF01911CFA10E200924868 /* Info.plist */,
 				0FB2F4A61D035B4A008F386A /* Utilities.swift */,
@@ -189,7 +198,6 @@
 				0FB2F4951CFFA0E5008F386A /* Entry.swift */,
 				0FB2F4971CFFA8FC008F386A /* Image.swift */,
 				0FCC10741D28383E00EA0B25 /* DisplayMode.swift */,
-				0F317C631D280D7D00C110AE /* ApplicationContext.swift */,
 				0FCC10761D28392300EA0B25 /* LatestPostsProtocols.swift */,
 				0FCC107C1D2ABC2000EA0B25 /* AutoCompleteItem.swift */,
 			);
@@ -204,6 +212,8 @@
 				0FCC10821D2AC51A00EA0B25 /* ChooseThreadViewController.swift */,
 				0FD597671D316CD500CAE7FF /* AutoCompleteTableViewCell.swift */,
 				0FD597681D316CD500CAE7FF /* AutoCompleteTableViewCell.xib */,
+				0F0F69B51D370987009600F7 /* AccessoryCommentView.xib */,
+				0F0F69B71D383730009600F7 /* AccessoryCommentView.swift */,
 			);
 			name = Comment;
 			sourceTree = "<group>";
@@ -276,6 +286,8 @@
 				0FD0A33F1D0DFE980030D36F /* TopicResponse.swift */,
 				0F0F69AD1D32986B009600F7 /* PostCrudCommand.swift */,
 				0F0F69AF1D329887009600F7 /* PostCrudResponse.swift */,
+				0F0F69B91D3AB511009600F7 /* RegisterCommand.swift */,
+				0F0F69BB1D3AB65B009600F7 /* RegisterResponse.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -366,6 +378,7 @@
 				0FD5976A1D316CD500CAE7FF /* AutoCompleteTableViewCell.xib in Resources */,
 				0FD0A33A1D0DF0160030D36F /* ReplyCollectionViewCell.xib in Resources */,
 				0FCC10811D2AC38800EA0B25 /* Comment.storyboard in Resources */,
+				0F0F69B61D370987009600F7 /* AccessoryCommentView.xib in Resources */,
 				0FB2F4A51D033C24008F386A /* FlatCollectionViewCell.xib in Resources */,
 				0FCF018D1CFA10E200924868 /* Assets.xcassets in Resources */,
 				0FCF018B1CFA10E200924868 /* Main.storyboard in Resources */,
@@ -385,6 +398,7 @@
 				0FCF01841CFA10E200924868 /* AppDelegate.swift in Sources */,
 				0FE527211CFB654300407AAE /* LoginCommand.swift in Sources */,
 				0FB2F4A71D035B4A008F386A /* Utilities.swift in Sources */,
+				0F0F69B81D383730009600F7 /* AccessoryCommentView.swift in Sources */,
 				0FE527421CFD096300407AAE /* UIViewController+Alerts.swift in Sources */,
 				0FE527231CFB654300407AAE /* NetworkAdapter.swift in Sources */,
 				0F76A87C1CFA16C300BDD499 /* ForumViewController.swift in Sources */,
@@ -418,6 +432,7 @@
 				0FCC107D1D2ABC2000EA0B25 /* AutoCompleteItem.swift in Sources */,
 				0FE527441CFD0E1E00407AAE /* Post.swift in Sources */,
 				0F0F69AA1D317137009600F7 /* UILabel+Utilities.swift in Sources */,
+				0F0F69BC1D3AB65B009600F7 /* RegisterResponse.swift in Sources */,
 				0FD597691D316CD500CAE7FF /* AutoCompleteTableViewCell.swift in Sources */,
 				0FD0A32E1D0CB0050030D36F /* SearchResponse.swift in Sources */,
 				0FB2F4A91D035E34008F386A /* UIImageView+WebLoad.swift in Sources */,
@@ -435,6 +450,7 @@
 				0FD0A33C1D0DF4140030D36F /* ReuseIdentifiers.swift in Sources */,
 				0FB2F4AB1D037008008F386A /* UIView+Utillities.swift in Sources */,
 				0FE527401CFD05AE00407AAE /* PostCommand.swift in Sources */,
+				0F0F69BA1D3AB511009600F7 /* RegisterCommand.swift in Sources */,
 				0FD0A32C1D0CAD0E0030D36F /* SearchCommand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -554,7 +570,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MobileTTDC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.ttdc.MobileTTDC;
+				PRODUCT_BUNDLE_IDENTIFIER = us.ttdc.MobileTTDC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -568,7 +584,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MobileTTDC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.ttdc.MobileTTDC;
+				PRODUCT_BUNDLE_IDENTIFIER = us.ttdc.MobileTTDC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

@@ -12,6 +12,17 @@ import UIKit
 public class ApplicationContext : AuthenticatedUserDataProvider {
     private var _currentUser : Person? = nil
     private(set) public var token: String? = nil //WTF both?
+    
+    public var deviceToken: String? = nil {
+        didSet{
+            registerForPush()
+        }
+    }
+    
+    init(){
+        
+    }
+    
     private var _latestPosts : [Post] = [] {
         didSet{
             latestPostsObserver?.latestPostsUpdated()
@@ -55,8 +66,28 @@ public class ApplicationContext : AuthenticatedUserDataProvider {
             }
             self.token = response?.token
             self._currentUser = response?.person
+            self.registerForPush()
             completion(success: true, details: "Welcome back, \((response?.person?.name)!)")
             self.reloadAllData()
+        };
+    }
+    
+    private func registerForPush(){
+        guard let _ = token, let deviceToken = deviceToken else {
+            print("Conditions not ready to register for push.  Missing either token or device token.")
+            return
+        }
+        
+        let cmd = RegisterCommand(deviceToken: deviceToken)
+        
+        Network.performRegisterForPushCommand(cmd){
+            (response, message) -> Void in
+            if message != nil {
+                print("Push notification registration failed: \(message)")
+                return;
+            } else {
+                print("Registered for push notifications.")
+            }
         };
     }
 }

@@ -53,4 +53,9 @@ public struct Network {
         NetworkAdapter.performCommand("\(getHost())/restful/post", command: command, completion: completion)
     }
     
+    public static func performRegisterForPushCommand(command: RegisterCommand, completion: (response: RegisterResponse?, error: String?)->Void){
+        command.token = getToken()
+        NetworkAdapter.performCommand("\(getHost())/restful/register", command: command, completion: completion)
+    }
+    
 }

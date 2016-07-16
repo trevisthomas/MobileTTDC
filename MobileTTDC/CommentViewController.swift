@@ -16,6 +16,7 @@ class CommentViewController: UIViewController {
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
+    
     var parentPost : Post? {
         didSet{
             threadTitle.text = parentPost?.title
@@ -28,6 +29,24 @@ class CommentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         commentTextArea.text = ""
+        
+        //TODO: Trevis, util for extention?
+//        let storyboard : UIStoryboard = UIStoryboard(name: "Comment", bundle: nil)
+        
+        let view = NSBundle.mainBundle().loadNibNamed("AccessoryCommentView", owner: commentTextArea, options: nil).first as! AccessoryCommentView
+        
+        view.delegate = self
+        commentTextArea.inputAccessoryView = view
+        
+        
+//        threadTitle.inputAccessoryView = view
+        
+        
+//        let vc = storyboard.instantiateViewControllerWithIdentifier("AccessoryCommentViewController") as! UIViewController
+        
+        //AccessoryCommentViewController
+//        commentTextArea.inputAccessoryView = vc.view
+//        commentTextArea.inputAccessoryViewController = vc
 
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentViewController.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
@@ -46,8 +65,15 @@ class CommentViewController: UIViewController {
         postComment(parentId!, body: commentTextArea.text)
     }
 
-    
+    @IBAction func handleTap(recognizer:UITapGestureRecognizer) {
+        commentAccessoryBecomeFirstResponder()
+    }
 
+    func commentAccessoryBecomeFirstResponder() {
+        commentTextArea.becomeFirstResponder()
+        let accessory = commentTextArea.inputAccessoryView as! AccessoryCommentView
+        accessory.becomeFirstResponder()
+    }
 }
 
 //extension CommentViewController {
@@ -88,7 +114,8 @@ extension CommentViewController {
             
             self.invokeLater{
                 self.parentPost = (response?.post)!
-                self.commentTextArea.becomeFirstResponder()
+//                self.commentTextArea.becomeFirstResponder()
+                self.commentAccessoryBecomeFirstResponder()
             }
             
         };
@@ -111,6 +138,10 @@ extension CommentViewController {
             
         };
     }
-    
+}
 
+extension CommentViewController: AccessoryCommentViewDelegate {
+    func accessoryCommentView(commentText commentText: String) {
+        commentTextArea.text = commentText
+    }
 }

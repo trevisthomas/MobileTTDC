@@ -18,6 +18,7 @@ class NetworkAdapter {
                     json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? [String: AnyObject]
                 } catch {
                     completeOnUiThread(response: nil, error: "Failed to parse json request.")
+                    return
                 }
                 
                 if let _ = command.transactionId{
@@ -37,7 +38,7 @@ class NetworkAdapter {
                 completeOnUiThread(response: nil, error: error.description)
             }
             else {
-                completeOnUiThread(response: nil, error: "Login failed.")
+                completeOnUiThread(response: nil, error: nil)
             }
             
         })
@@ -62,10 +63,16 @@ class NetworkAdapter {
                 if let responseError = error {
                     completion(data: nil, error: responseError)
                 } else if let httpResponse = response as? NSHTTPURLResponse {
-                    if httpResponse.statusCode != 200 {
-                        completion(data: nil, error: createError(httpResponse.statusCode, message: "Unepxected http response code:"))
-                    } else {
+                    if httpResponse.statusCode == 200{
                         completion(data: data, error: nil)
+                    }
+                    else if httpResponse.statusCode == 202{
+                        //Do nothing?
+                        completion(data: nil, error: nil)
+                    }
+                    else {
+                        completion(data: nil, error: createError(httpResponse.statusCode, message: "Unepxected http response code:"))
+                        
                     }
                 }
             }

@@ -45,11 +45,26 @@ class LatestPostsViewController: UIViewController {
         
         let storyboard : UIStoryboard = UIStoryboard(name: "Comment", bundle: nil)
         let vc = storyboard.instantiateViewControllerWithIdentifier("CommentCreator") as! UINavigationController
-        vc.modalPresentationStyle = UIModalPresentationStyle.Popover
-        let popover: UIPopoverPresentationController = vc.popoverPresentationController!
-        popover.delegate = self
-        popover.barButtonItem = sender
+//        vc.modalPresentationStyle = UIModalPresentationStyle.Popover
+//        let popover: UIPopoverPresentationController = vc.popoverPresentationController!
+//        popover.delegate = self
+//        popover.barButtonItem = sender
+        
+//        popover.sourceView = modeSegmentedControl
+//        popover.sourceView = self.view
+//        let center = CGPoint(x: CGRectGetMidX(view.bounds), y: CGRectGetMidY(view.bounds))
+//        popover.sourceRect = CGRect(origin: center, size: CGSize(width: 10, height: 10))
+        
+//        popover.sourceRect = CGRect(x: view.bounds.width / 2 - 200, y: view.bounds.height / 2, width: 1, height: 1)
+//        
+//        presentViewController(vc, animated: true, completion:nil)
+        
+        vc.modalPresentationStyle = UIModalPresentationStyle.FormSheet
         presentViewController(vc, animated: true, completion:nil)
+
+//        vc.modalPresentationStyle = UIModalPresentationStyle.PageSheet
+//        presentViewController(vc, animated: true, completion:nil)
+
     }
     
     
@@ -136,8 +151,6 @@ extension LatestPostsViewController : UICollectionViewDelegateFlowLayout {
             let height = sectionHeaderPrototype.preferredHeight(collectionView.frame.width)
             return CGSize(width: collectionView.frame.width, height: height)
         }
-        
-        
     }
 }
 
@@ -255,21 +268,23 @@ extension LatestPostsViewController : LatestPostsObserver {
 
 extension LatestPostsViewController : UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-//        return UIModalPresentationStyle.FullScreen
-         return UIModalPresentationStyle.None
+        print("Am i only caled on the iphone?")
+        return UIModalPresentationStyle.FullScreen
+//         return UIModalPresentationStyle.None
     }
-    
+//    
 //    func presentationController(controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
-//        let navigationController = UINavigationController(rootViewController: controller.presentedViewController)
-////        let btnDone = UIBarButtonItem(title: "Done", style: .Done, target: self, action: "dismiss")
-////        navigationController.topViewController.navigationItem.rightBarButtonItem = btnDone
+////        let navigationController = UINavigationController(rootViewController: controller.presentedViewController)
+//////        let btnDone = UIBarButtonItem(title: "Done", style: .Done, target: self, action: "dismiss")
+//////        navigationController.topViewController.navigationItem.rightBarButtonItem = btnDone
+////        
+////        print("Compact?")
+////        
+////        return navigationController
 //        
-//        print("Compact?")
+//
+////        return controller
 //        
-//        return navigationController
-//        
-//        
-//        
-////        return controller.presentingViewController
+//        return controller.presentingViewController
 //    }
 }

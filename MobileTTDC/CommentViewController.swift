@@ -59,6 +59,9 @@ class CommentViewController: UIViewController {
         
     }
 
+    @IBAction func closeAction(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     
     @IBAction func postComment(sender: AnyObject) {
         print(commentTextArea.text)

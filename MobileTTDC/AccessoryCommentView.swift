@@ -21,6 +21,7 @@ class AccessoryCommentView: UIView {
    
     @IBAction func postButtonAction(sender: UIButton) {
         delegate.accessoryCommentView(commentText: postTextView.text)
+        postTextView.resignFirstResponder()
     }
     
     override func becomeFirstResponder() -> Bool {

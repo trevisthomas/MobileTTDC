@@ -276,22 +276,11 @@
                         <segue destination="cHa-a9-SvU" kind="relationship" relationship="viewControllers" id="ZRD-Fu-q5z"/>
                         <segue destination="TD1-jc-Xqs" kind="relationship" relationship="viewControllers" id="pCa-DR-yxV"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
-                        <segue destination="HbH-2w-H39" kind="relationship" relationship="viewControllers" id="9u5-1q-WJG"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="220" y="-216"/>
-        </scene>
-        <!--Comment-->
-        <scene sceneID="JTc-Js-nWN">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Comment" id="HbH-2w-H39" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="7a7-3X-qI7"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VGT-Mo-HiM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="774" y="-472"/>
         </scene>
         <!--Latest-->
         <scene sceneID="FL4-mH-Lzz">

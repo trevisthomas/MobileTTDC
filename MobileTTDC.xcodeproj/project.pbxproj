@@ -16,6 +16,8 @@
 		0F0F69B81D383730009600F7 /* AccessoryCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69B71D383730009600F7 /* AccessoryCommentView.swift */; };
 		0F0F69BA1D3AB511009600F7 /* RegisterCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69B91D3AB511009600F7 /* RegisterCommand.swift */; };
 		0F0F69BC1D3AB65B009600F7 /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69BB1D3AB65B009600F7 /* RegisterResponse.swift */; };
+		0F0F69C01D3ADB5D009600F7 /* TopicCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69BF1D3ADB5D009600F7 /* TopicCreationViewController.swift */; };
+		0F0F69C21D3ADCB7009600F7 /* ForumSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69C11D3ADCB7009600F7 /* ForumSelectionViewController.swift */; };
 		0F317C641D280D7D00C110AE /* ApplicationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F317C631D280D7D00C110AE /* ApplicationContext.swift */; };
 		0F76A87A1CFA165D00BDD499 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A8791CFA165D00BDD499 /* LoginViewController.swift */; };
 		0F76A87C1CFA16C300BDD499 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */; };
@@ -88,6 +90,8 @@
 		0F0F69B71D383730009600F7 /* AccessoryCommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessoryCommentView.swift; sourceTree = "<group>"; };
 		0F0F69B91D3AB511009600F7 /* RegisterCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterCommand.swift; sourceTree = "<group>"; };
 		0F0F69BB1D3AB65B009600F7 /* RegisterResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterResponse.swift; sourceTree = "<group>"; };
+		0F0F69BF1D3ADB5D009600F7 /* TopicCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCreationViewController.swift; sourceTree = "<group>"; };
+		0F0F69C11D3ADCB7009600F7 /* ForumSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumSelectionViewController.swift; sourceTree = "<group>"; };
 		0F317C631D280D7D00C110AE /* ApplicationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationContext.swift; sourceTree = "<group>"; };
 		0F76A8791CFA165D00BDD499 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
@@ -214,6 +218,8 @@
 				0FD597681D316CD500CAE7FF /* AutoCompleteTableViewCell.xib */,
 				0F0F69B51D370987009600F7 /* AccessoryCommentView.xib */,
 				0F0F69B71D383730009600F7 /* AccessoryCommentView.swift */,
+				0F0F69BF1D3ADB5D009600F7 /* TopicCreationViewController.swift */,
+				0F0F69C11D3ADCB7009600F7 /* ForumSelectionViewController.swift */,
 			);
 			name = Comment;
 			sourceTree = "<group>";
@@ -416,6 +422,7 @@
 				0F9E09021D15A83E006676C1 /* PostDetailViewController.swift in Sources */,
 				0FD0A3221D0CA2530030D36F /* ConversationsViewController.swift in Sources */,
 				0F0F69AE1D32986B009600F7 /* PostCrudCommand.swift in Sources */,
+				0F0F69C21D3ADCB7009600F7 /* ForumSelectionViewController.swift in Sources */,
 				0FCC10831D2AC51A00EA0B25 /* ChooseThreadViewController.swift in Sources */,
 				0FCC107F1D2ABEAA00EA0B25 /* AutoCompleteCommand.swift in Sources */,
 				0FE527241CFB654300407AAE /* Person.swift in Sources */,
@@ -434,6 +441,7 @@
 				0F0F69AA1D317137009600F7 /* UILabel+Utilities.swift in Sources */,
 				0F0F69BC1D3AB65B009600F7 /* RegisterResponse.swift in Sources */,
 				0FD597691D316CD500CAE7FF /* AutoCompleteTableViewCell.swift in Sources */,
+				0F0F69C01D3ADB5D009600F7 /* TopicCreationViewController.swift in Sources */,
 				0FD0A32E1D0CB0050030D36F /* SearchResponse.swift in Sources */,
 				0FB2F4A91D035E34008F386A /* UIImageView+WebLoad.swift in Sources */,
 				0FE5272D1CFB65EB00407AAE /* Decoder.swift in Sources */,

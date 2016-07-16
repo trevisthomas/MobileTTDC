@@ -68,9 +68,20 @@ class ChooseThreadViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let indexPath = sender as! NSIndexPath
         
+      
+//        let nav = segue.destinationViewController as! UINavigationController
+//
 //        guard let nav = segue.destinationViewController as? UINavigationController else {
 //            return
 //        }
+//        
+//        guard let vc = nav.viewControllers.last as? CommentViewController else {
+//            return
+//        }
+        
+//        let nav = segue.destinationViewController as! UINavigationController
+//        let vc = nav.viewControllers.first as! CommentViewController
+
      
         guard let vc = segue.destinationViewController as? CommentViewController else {
             return
@@ -143,6 +154,9 @@ extension ChooseThreadViewController {
                 
                 dispatch_async(dispatch_get_main_queue()) {
                     self.autoCompleteItems = (response?.items)!
+                    
+                    let createNewTopicItem = AutoCompleteItem(displayTitle: "Create: \(query)")
+                    self.autoCompleteItems.append(createNewTopicItem)
                     self.tableView.reloadData()
                 }
                 

@@ -23,6 +23,6 @@ public struct Image: Decodable{
     }
     
     private static func prependPath(imageFileName : String) -> String{
-        return "http://ttdc.us/images/\(imageFileName)"
+        return "\(Network.getHost())/images/\(imageFileName)"
     }
 }

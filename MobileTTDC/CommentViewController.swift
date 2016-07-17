@@ -16,6 +16,23 @@ class CommentViewController: UIViewController {
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var closeBarButtonItem: UIBarButtonItem!
+    var postBarButtonItem : UIBarButtonItem!
+    
+    var forum: Forum!
+    var topicTitle: String!
+    var topicDescription: String!
+    
+    
+    private var validForPost: Bool = false {
+        didSet{
+            if validForPost {
+                navigationItem.rightBarButtonItem = postBarButtonItem
+            } else {
+                navigationItem.rightBarButtonItem = closeBarButtonItem
+            }
+        }
+    }
     
     var parentPost : Post? {
         didSet{
@@ -28,7 +45,7 @@ class CommentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        commentTextArea.text = ""
+        commentTextArea.attributedText = getApplicationContext().commentStash
         
         //TODO: Trevis, util for extention?
 //        let storyboard : UIStoryboard = UIStoryboard(name: "Comment", bundle: nil)
@@ -37,6 +54,10 @@ class CommentViewController: UIViewController {
         
         view.delegate = self
         commentTextArea.inputAccessoryView = view
+        
+        
+        postBarButtonItem = UIBarButtonItem(title: "Post", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CommentViewController.decidePostTypeAndPost))
+        
         
         
 //        threadTitle.inputAccessoryView = view
@@ -50,13 +71,20 @@ class CommentViewController: UIViewController {
 
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentViewController.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
+        
+        
     }
     
     override func viewDidAppear(animated: Bool) {
-        if parentPost == nil {
+        if parentId != nil {
             fetchPost(parentId!)
+        } else {
+            threadTitle.text = topicTitle
+            threadSummaryLabel.text = "You are creating the first conversation in a brand new topic."
+            commentAccessoryBecomeFirstResponder()
+            
         }
-        
+        validateForPost()
     }
 
     @IBAction func closeAction(sender: AnyObject) {
@@ -76,6 +104,31 @@ class CommentViewController: UIViewController {
         commentTextArea.becomeFirstResponder()
         let accessory = commentTextArea.inputAccessoryView as! AccessoryCommentView
         accessory.becomeFirstResponder()
+        commentTextArea.inputAccessoryView?.hidden = false
+    }
+    
+    func decidePostTypeAndPost(){
+        if(parentId != nil) {
+            postComment(parentId!, body: commentTextArea.text)
+        }
+        else {
+            postComment(forum.tagId, topicTitle: topicTitle, topicDescription: topicDescription, body: commentTextArea.text)
+        }
+    }
+    
+    func validateForPost(){
+        if(parentId != nil && !commentTextArea.text.isEmpty) {
+            validForPost = true
+        } else if forum != nil && topicTitle != nil && topicDescription != nil && !commentTextArea.text.isEmpty{
+            validForPost = true
+        }
+        else {
+            validForPost = false
+        }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        getApplicationContext().commentStash = commentTextArea.attributedText
     }
 }
 
@@ -128,23 +181,41 @@ extension CommentViewController {
         
         let cmd = PostCrudCommand(parentId: parentId, body: body)
         
-        Network.performPostCrudCommand(cmd){
+        Network.performPostCrudCommand(cmd, completion: handleResponse)
+        /*{
             (response, message) -> Void in
-            guard response != nil else {
-                self.presentAlert("Error", message: "Failed to create post.  Server error.")
-                return
-            }
-            self.getApplicationContext().reloadLatestPosts()
-            self.getApplicationContext().reloadLatestConversations()
-//            self.performSegueWithIdentifier("Main", sender: self)
-            self.dismissViewControllerAnimated(true, completion: nil)
             
-        };
+            
+        };*/
+    }
+    
+    func postComment(forumTagId: String, topicTitle: String, topicDescription: String, body: String){
+        let cmd = PostCrudCommand(title: topicTitle, body: body, forumId: forumTagId, topicDescription: topicDescription)
+        Network.performPostCrudCommand(cmd, completion: handleResponse)
+    }
+    
+    func handleResponse(response: PostCrudResponse?, error: String?){
+        guard response != nil else {
+            self.presentAlert("Error", message: "Failed to create post.  Server error.")
+            return
+        }
+        self.getApplicationContext().reloadLatestPosts()
+        self.getApplicationContext().reloadLatestConversations()
+        
+        self.getApplicationContext().commentStash = nil
+        self.getApplicationContext().topicStash = nil
+        
+        self.commentTextArea.attributedText = nil //So that it doesnt get stashed when you post!
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
 
 extension CommentViewController: AccessoryCommentViewDelegate {
     func accessoryCommentView(commentText commentText: String) {
         commentTextArea.text = commentText
+        commentTextArea.inputAccessoryView?.hidden = true
+        
+        validateForPost()
     }
 }

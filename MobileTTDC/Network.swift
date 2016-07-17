@@ -16,7 +16,7 @@ public struct Network {
         return appDelegate.applicationContext.token
     }
     
-    private static func getHost()-> String{
+    public static func getHost()-> String{
         return "http://ttdc.us:8888"
 //        return "http://ttdc.us"
 //        return "https://ttdc.us"
@@ -56,6 +56,11 @@ public struct Network {
     public static func performRegisterForPushCommand(command: RegisterCommand, completion: (response: RegisterResponse?, error: String?)->Void){
         command.token = getToken()
         NetworkAdapter.performCommand("\(getHost())/restful/register", command: command, completion: completion)
+    }
+    
+    public static func performForumCommand(command : ForumCommand, completion: (response : ForumResponse?, error: String?) -> Void){
+        command.token = getToken()
+        NetworkAdapter.performCommand("\(getHost())/restful/forum", command: command, completion: completion)
     }
     
 }

@@ -59,8 +59,8 @@ class ChooseThreadViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChooseThreadViewController.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
         
 //        topicSelectorTextField.text = ""
-        autoCompleteItems = []
-        tableView.reloadData()
+//        autoCompleteItems = []
+//        tableView.reloadData()
         
         searchBar.becomeFirstResponder()
     }
@@ -82,14 +82,20 @@ class ChooseThreadViewController: UIViewController {
 //        let nav = segue.destinationViewController as! UINavigationController
 //        let vc = nav.viewControllers.first as! CommentViewController
 
-     
-        guard let vc = segue.destinationViewController as? CommentViewController else {
-            return
-        }
         
-        let item = autoCompleteItems[indexPath.row]
-        print(item.postId)
-        vc.parentId = item.postId
+        
+//     
+//        guard let vc = segue.destinationViewController as? CommentViewController else {
+//            return
+//        }
+        
+        if let vc = segue.destinationViewController as? CommentViewController {
+            let item = autoCompleteItems[indexPath.row]
+            vc.parentId = item.postId
+        } else if let vc = segue.destinationViewController as? TopicCreationViewController {
+            let item = autoCompleteItems[indexPath.row]
+            vc.topicTitle = item.displayTitle
+        }
         
     }
     @IBAction func doneButtonTapped(sender: UIBarButtonItem) {
@@ -155,7 +161,7 @@ extension ChooseThreadViewController {
                 dispatch_async(dispatch_get_main_queue()) {
                     self.autoCompleteItems = (response?.items)!
                     
-                    let createNewTopicItem = AutoCompleteItem(displayTitle: "Create: \(query)")
+                    let createNewTopicItem = AutoCompleteItem(displayTitle: query)
                     self.autoCompleteItems.append(createNewTopicItem)
                     self.tableView.reloadData()
                 }
@@ -178,10 +184,14 @@ extension ChooseThreadViewController : UITableViewDelegate, UITableViewDataSourc
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.dismissKeyboard()
-//        let item = autoCompleteItems[indexPath.row]
+        let item = autoCompleteItems[indexPath.row]
         
-        //Maybe here?  Go get the post and when it responds, segue.
-        performSegueWithIdentifier("CommentViewController", sender: indexPath)
+        if(item.postId == nil) {
+            performSegueWithIdentifier("TopicCreationViewController", sender: indexPath)
+        } else {
+            performSegueWithIdentifier("CommentViewController", sender: indexPath)
+        }
+        
     }
     
     
@@ -190,7 +200,7 @@ extension ChooseThreadViewController : UITableViewDelegate, UITableViewDataSourc
         
         let cell = tableView.dequeueReusableCellWithIdentifier(ReuseIdentifiers.AUTO_TOPIC_CELL, forIndexPath: indexPath) as! AutoCompleteTableViewCell
         
-        cell.autoCompleteText = autoCompleteItems[indexPath.row].displayTitle
+        cell.item = autoCompleteItems[indexPath.row]
         
         return cell
     }

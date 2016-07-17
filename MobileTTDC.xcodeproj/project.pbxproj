@@ -18,6 +18,9 @@
 		0F0F69BC1D3AB65B009600F7 /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69BB1D3AB65B009600F7 /* RegisterResponse.swift */; };
 		0F0F69C01D3ADB5D009600F7 /* TopicCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69BF1D3ADB5D009600F7 /* TopicCreationViewController.swift */; };
 		0F0F69C21D3ADCB7009600F7 /* ForumSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69C11D3ADCB7009600F7 /* ForumSelectionViewController.swift */; };
+		0F0F69C41D3BE113009600F7 /* ForumCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69C31D3BE113009600F7 /* ForumCommand.swift */; };
+		0F0F69C61D3BE23D009600F7 /* ForumResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69C51D3BE23D009600F7 /* ForumResponse.swift */; };
+		0F0F69C81D3BE371009600F7 /* Forum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69C71D3BE371009600F7 /* Forum.swift */; };
 		0F317C641D280D7D00C110AE /* ApplicationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F317C631D280D7D00C110AE /* ApplicationContext.swift */; };
 		0F76A87A1CFA165D00BDD499 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A8791CFA165D00BDD499 /* LoginViewController.swift */; };
 		0F76A87C1CFA16C300BDD499 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */; };
@@ -92,6 +95,9 @@
 		0F0F69BB1D3AB65B009600F7 /* RegisterResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterResponse.swift; sourceTree = "<group>"; };
 		0F0F69BF1D3ADB5D009600F7 /* TopicCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCreationViewController.swift; sourceTree = "<group>"; };
 		0F0F69C11D3ADCB7009600F7 /* ForumSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumSelectionViewController.swift; sourceTree = "<group>"; };
+		0F0F69C31D3BE113009600F7 /* ForumCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumCommand.swift; sourceTree = "<group>"; };
+		0F0F69C51D3BE23D009600F7 /* ForumResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumResponse.swift; sourceTree = "<group>"; };
+		0F0F69C71D3BE371009600F7 /* Forum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forum.swift; sourceTree = "<group>"; };
 		0F317C631D280D7D00C110AE /* ApplicationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationContext.swift; sourceTree = "<group>"; };
 		0F76A8791CFA165D00BDD499 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
@@ -204,6 +210,7 @@
 				0FCC10741D28383E00EA0B25 /* DisplayMode.swift */,
 				0FCC10761D28392300EA0B25 /* LatestPostsProtocols.swift */,
 				0FCC107C1D2ABC2000EA0B25 /* AutoCompleteItem.swift */,
+				0F0F69C71D3BE371009600F7 /* Forum.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -294,6 +301,8 @@
 				0F0F69AF1D329887009600F7 /* PostCrudResponse.swift */,
 				0F0F69B91D3AB511009600F7 /* RegisterCommand.swift */,
 				0F0F69BB1D3AB65B009600F7 /* RegisterResponse.swift */,
+				0F0F69C31D3BE113009600F7 /* ForumCommand.swift */,
+				0F0F69C51D3BE23D009600F7 /* ForumResponse.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -436,10 +445,13 @@
 				0FE5273C1CFCA27E00407AAE /* Network.swift in Sources */,
 				0FCC108C1D2B352500EA0B25 /* UITextView+Utilities.swift in Sources */,
 				0FB2F4A41D033C24008F386A /* FlatCollectionViewCell.swift in Sources */,
+				0F0F69C81D3BE371009600F7 /* Forum.swift in Sources */,
 				0FCC107D1D2ABC2000EA0B25 /* AutoCompleteItem.swift in Sources */,
 				0FE527441CFD0E1E00407AAE /* Post.swift in Sources */,
+				0F0F69C41D3BE113009600F7 /* ForumCommand.swift in Sources */,
 				0F0F69AA1D317137009600F7 /* UILabel+Utilities.swift in Sources */,
 				0F0F69BC1D3AB65B009600F7 /* RegisterResponse.swift in Sources */,
+				0F0F69C61D3BE23D009600F7 /* ForumResponse.swift in Sources */,
 				0FD597691D316CD500CAE7FF /* AutoCompleteTableViewCell.swift in Sources */,
 				0F0F69C01D3ADB5D009600F7 /* TopicCreationViewController.swift in Sources */,
 				0FD0A32E1D0CB0050030D36F /* SearchResponse.swift in Sources */,

@@ -15,6 +15,12 @@ protocol AccessoryCommentViewDelegate {
 class AccessoryCommentView: UIView {
     var delegate : AccessoryCommentViewDelegate!
     
+    var defaultText: NSAttributedString! {
+        didSet{
+             postTextView.attributedText = self.defaultText
+        }
+    }
+    
     @IBOutlet weak var postTextView: UITextView!
     @IBAction func photoButtonAction(sender: AnyObject) {
     }

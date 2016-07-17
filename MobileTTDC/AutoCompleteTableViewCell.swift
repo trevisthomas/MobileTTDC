@@ -12,9 +12,14 @@ class AutoCompleteTableViewCell: UITableViewCell {
 
     @IBOutlet weak var contentLabel: UILabel!
     
-    var autoCompleteText : String! {
+    var item : AutoCompleteItem! {
         didSet{
-            self.contentLabel.setHtmlText(autoCompleteText)
+            
+            if(item.postId == nil) {
+                 self.contentLabel.setHtmlText("Create: \(item.displayTitle)")
+            } else {
+                self.contentLabel.setHtmlText(item.displayTitle)
+            }
         }
     }
     

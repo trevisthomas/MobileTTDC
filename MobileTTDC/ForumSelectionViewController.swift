@@ -8,11 +8,20 @@
 
 import UIKit
 
+protocol ForumSelectionDelegate{
+    func selectedForum(forum: Forum);
+}
+
 class ForumSelectionViewController: UIViewController {
+    
+    private var forums : [Forum] = []
+    @IBOutlet weak var tableView: UITableView!
+    
+    var delegate: ForumSelectionDelegate!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        loadForums()
         // Do any additional setup after loading the view.
     }
 
@@ -32,4 +41,48 @@ class ForumSelectionViewController: UIViewController {
     }
     */
 
+}
+
+
+extension ForumSelectionViewController{
+    func loadForums(){
+        let cmd = ForumCommand()
+        
+        Network.performForumCommand(cmd){
+            (response, message) -> Void in
+            guard let list = response?.list else {
+                print(message)
+                self.presentAlert("Error", message: "Failed to load forum list.")
+                return;
+            }
+            
+            self.invokeLater{
+                self.forums = list
+                self.tableView.reloadData()
+            }
+            
+        };
+    }
+}
+
+extension ForumSelectionViewController : UITableViewDelegate, UITableViewDataSource {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return forums.count
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print(forums[indexPath.row])
+        
+        self.dismissViewControllerAnimated(true){
+            self.delegate.selectedForum(self.forums[indexPath.row])
+        }
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("ForumTableCell")!
+        
+        cell.textLabel?.setHtmlText(forums[indexPath.row].displayValue)
+        
+        return cell
+    }
 }

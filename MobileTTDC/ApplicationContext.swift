@@ -13,6 +13,10 @@ public class ApplicationContext : AuthenticatedUserDataProvider {
     private var _currentUser : Person? = nil
     private(set) public var token: String? = nil //WTF both?
     
+    //Trevis: Your thought for these stashes was just to have a temporary place to hang on to user entered text in dialogs so that if they accidentally leave and the VC closes, that coming back, the text would still be avail.
+    public var commentStash : NSAttributedString? = nil
+    public var topicStash: NSAttributedString? = nil
+    
     public var deviceToken: String? = nil {
         didSet{
             registerForPush()

@@ -18,6 +18,7 @@ public struct Post : Decodable{
     let replyCount : UInt
     let posts : [Post]?
     let mass : UInt
+    let threadId: String?
     
     public init?(json: JSON) {
         postId = ("postId" <~~ json)!
@@ -29,6 +30,8 @@ public struct Post : Decodable{
         replyCount = ("replyCount" <~~ json)!
         posts = ("posts" <~~ json)
         mass = ("mass" <~~ json)!
+//        thread = ("thread" <~~ json)!
+        threadId = ("thread.postId" <~~ json)
     }
     
 }

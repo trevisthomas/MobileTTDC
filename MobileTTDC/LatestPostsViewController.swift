@@ -120,6 +120,37 @@ class LatestPostsViewController: UIViewController {
     override func canPerformUnwindSegueAction(action: Selector, fromViewController: UIViewController, withSender sender: AnyObject) -> Bool {
         return true;
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let indexPath = sender as? NSIndexPath else {
+            return
+        }
+        
+        guard let nav = segue.destinationViewController as? UINavigationController else {
+            return
+        }
+        
+        guard let vc = nav.topViewController as? ConversationWithReplyViewController else {
+            return
+        }
+        
+        
+        var threadId : String!
+        switch (getApplicationContext().displayMode) {
+            case .LatestFlat:
+            let post = getApplicationContext().latestPosts()[indexPath.row]
+            threadId = post.threadId
+            
+            case .LatestGrouped:
+            let post = getApplicationContext().latestPosts()[indexPath.section].posts![indexPath.row]
+            threadId = post.threadId
+        }
+        
+        
+        print(threadId)
+    
+        vc.postId = threadId
+    }
 }
 
 
@@ -195,6 +226,25 @@ extension LatestPostsViewController : UICollectionViewDelegate, UICollectionView
             return getApplicationContext().latestPosts()[section].posts!.count
         }
     }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+//        switch (getApplicationContext().displayMode) {
+        
+        performSegueWithIdentifier("ConversationWithReplyView", sender: indexPath)
+            
+//        case .LatestFlat:
+//            let post = getApplicationContext().latestPosts()[indexPath.row]
+//            print(post.postId)
+//            
+//            performSegueWithIdentifier("ConversationWithReplyView", sender: indexPath)
+//            
+//        case .LatestGrouped:
+//            let post = getApplicationContext().latestPosts()[indexPath.section].posts![indexPath.row]
+//            print(post.postId)
+//        }
+    }
+    
+//    func collec
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         

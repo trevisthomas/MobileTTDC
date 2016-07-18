@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="86g-UR-D9t">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Conversation With Reply View Controller-->
+        <scene sceneID="QTb-hQ-AMi">
+            <objects>
+                <viewController id="Cca-WZ-WCM" customClass="ConversationWithReplyViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3zK-C4-90f"/>
+                        <viewControllerLayoutGuide type="bottom" id="yCo-Gb-BNk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Zac-OS-XHQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Rn9-dX-02U">
+                                <rect key="frame" x="20" y="0.0" width="560" height="510"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XNS-YZ-frX">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="0T2-69-GwL">
+                                        <rect key="frame" x="0.0" y="64" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Cca-WZ-WCM" id="HRK-36-QqY"/>
+                                    <outlet property="delegate" destination="Cca-WZ-WCM" id="4k3-n6-g88"/>
+                                </connections>
+                            </collectionView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tap here to reply..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w7d-iJ-i5z">
+                                <rect key="frame" x="20" y="562" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yCo-Gb-BNk" firstAttribute="top" secondItem="w7d-iJ-i5z" secondAttribute="bottom" constant="8" id="GPr-cE-eDY"/>
+                            <constraint firstItem="w7d-iJ-i5z" firstAttribute="top" secondItem="Rn9-dX-02U" secondAttribute="bottom" constant="8" id="XoU-5F-jfS"/>
+                            <constraint firstItem="Rn9-dX-02U" firstAttribute="leading" secondItem="Zac-OS-XHQ" secondAttribute="leadingMargin" id="bhP-vJ-cch"/>
+                            <constraint firstItem="w7d-iJ-i5z" firstAttribute="leading" secondItem="Zac-OS-XHQ" secondAttribute="leadingMargin" id="dUv-2h-Koe"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Rn9-dX-02U" secondAttribute="trailing" id="mxZ-Qi-7Te"/>
+                            <constraint firstItem="Rn9-dX-02U" firstAttribute="top" secondItem="3zK-C4-90f" secondAttribute="bottom" constant="-64" id="tzA-XF-5iv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="w7d-iJ-i5z" secondAttribute="trailing" id="xEv-cd-ZC5"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="H86-3x-HtS"/>
+                        <barButtonItem title="Item" id="Yny-mc-Lto"/>
+                        <barButtonItem title="Item" id="iDp-ud-oIO"/>
+                        <barButtonItem title="Item" id="iPl-xf-gMS"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="fA0-tm-Mkb">
+                        <barButtonItem key="rightBarButtonItem" title="Close" id="7o1-WI-J4H">
+                            <connections>
+                                <action selector="closeAction:" destination="Cca-WZ-WCM" id="s6H-4u-yAU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="collectionView" destination="Rn9-dX-02U" id="5Vl-DS-FWm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uzQ-JS-Zy9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2329" y="2069"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3fv-g3-I2r">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="86g-UR-D9t" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1hr-X7-L9M">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Cca-WZ-WCM" kind="relationship" relationship="rootViewController" id="BnA-Uw-ofu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Eq8-fs-kkr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1517" y="2069"/>
+        </scene>
+    </scenes>
+</document>

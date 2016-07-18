@@ -85,15 +85,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jb5-36-HXd">
-                                <rect key="frame" x="20" y="550" width="31" height="30"/>
-                                <state key="normal" title="Post"/>
-                                <connections>
-                                    <action selector="postComment:" destination="0xa-SC-Ajo" eventType="touchUpInside" id="CeQ-bu-EqD"/>
-                                </connections>
-                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nSQ-Wu-CiH">
-                                <rect key="frame" x="20" y="111" width="560" height="431"/>
+                                <rect key="frame" x="20" y="111" width="560" height="481"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -107,16 +100,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="leadingMargin" secondItem="nSQ-Wu-CiH" secondAttribute="leading" id="L9v-LX-TeM"/>
-                            <constraint firstItem="ibz-6M-S0S" firstAttribute="top" secondItem="jb5-36-HXd" secondAttribute="bottom" constant="20" id="M7a-fL-wC7"/>
                             <constraint firstItem="nSQ-Wu-CiH" firstAttribute="top" secondItem="VuK-fx-aAS" secondAttribute="bottom" constant="3" id="MDL-OL-60u"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nSQ-Wu-CiH" secondAttribute="trailing" id="SyP-mI-jtq"/>
                             <constraint firstAttribute="leadingMargin" secondItem="VuK-fx-aAS" secondAttribute="leading" id="Vjf-4m-470"/>
                             <constraint firstItem="bvo-yc-5d6" firstAttribute="top" secondItem="S5Z-ux-3ca" secondAttribute="bottom" id="YVB-VE-0ZW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bvo-yc-5d6" secondAttribute="trailing" id="aac-JK-9hp"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="jb5-36-HXd" secondAttribute="leading" id="e3W-du-HVr"/>
                             <constraint firstItem="VuK-fx-aAS" firstAttribute="top" secondItem="bvo-yc-5d6" secondAttribute="bottom" id="pCR-MP-P9w"/>
                             <constraint firstItem="bvo-yc-5d6" firstAttribute="leading" secondItem="IhN-sX-JCL" secondAttribute="leadingMargin" id="t4o-gW-7Sy"/>
-                            <constraint firstItem="ibz-6M-S0S" firstAttribute="top" secondItem="nSQ-Wu-CiH" secondAttribute="bottom" constant="58" id="xI0-5v-zhF"/>
+                            <constraint firstItem="ibz-6M-S0S" firstAttribute="top" secondItem="nSQ-Wu-CiH" secondAttribute="bottom" constant="8" id="xI0-5v-zhF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="VuK-fx-aAS" secondAttribute="trailing" id="zYa-rx-vX4"/>
                         </constraints>
                     </view>
@@ -130,7 +121,6 @@
                     <connections>
                         <outlet property="closeBarButtonItem" destination="bUo-f1-8fd" id="a5i-rF-fKy"/>
                         <outlet property="commentTextArea" destination="nSQ-Wu-CiH" id="jYx-LJ-mCh"/>
-                        <outlet property="postButton" destination="jb5-36-HXd" id="voQ-VQ-KsR"/>
                         <outlet property="threadSummaryLabel" destination="VuK-fx-aAS" id="Co5-rg-hLO"/>
                         <outlet property="threadTitle" destination="bvo-yc-5d6" id="3oZ-aX-e3r"/>
                         <segue destination="a0u-xe-K7W" kind="show" identifier="Main" id="fQT-Dd-0bS"/>
@@ -286,7 +276,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ONh-WQ-iTP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1721" y="1305"/>
+            <point key="canvasLocation" x="1855" y="1193"/>
         </scene>
         <!--Main-->
         <scene sceneID="CW1-i9-6oa">
@@ -294,7 +284,7 @@
                 <viewControllerPlaceholder storyboardName="Main" id="a0u-xe-K7W" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hhc-4b-aM2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2036" y="1012"/>
+            <point key="canvasLocation" x="2546" y="274"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zxt-MY-onO">

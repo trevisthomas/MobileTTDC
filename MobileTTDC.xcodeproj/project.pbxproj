@@ -21,6 +21,8 @@
 		0F0F69C41D3BE113009600F7 /* ForumCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69C31D3BE113009600F7 /* ForumCommand.swift */; };
 		0F0F69C61D3BE23D009600F7 /* ForumResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69C51D3BE23D009600F7 /* ForumResponse.swift */; };
 		0F0F69C81D3BE371009600F7 /* Forum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69C71D3BE371009600F7 /* Forum.swift */; };
+		0F0F69CA1D3C9863009600F7 /* ConversationWithReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69C91D3C9863009600F7 /* ConversationWithReplyViewController.swift */; };
+		0F0F69CC1D3C9D09009600F7 /* Conversation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F0F69CB1D3C9D09009600F7 /* Conversation.storyboard */; };
 		0F317C641D280D7D00C110AE /* ApplicationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F317C631D280D7D00C110AE /* ApplicationContext.swift */; };
 		0F76A87A1CFA165D00BDD499 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A8791CFA165D00BDD499 /* LoginViewController.swift */; };
 		0F76A87C1CFA16C300BDD499 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */; };
@@ -98,6 +100,8 @@
 		0F0F69C31D3BE113009600F7 /* ForumCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumCommand.swift; sourceTree = "<group>"; };
 		0F0F69C51D3BE23D009600F7 /* ForumResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumResponse.swift; sourceTree = "<group>"; };
 		0F0F69C71D3BE371009600F7 /* Forum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forum.swift; sourceTree = "<group>"; };
+		0F0F69C91D3C9863009600F7 /* ConversationWithReplyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationWithReplyViewController.swift; sourceTree = "<group>"; };
+		0F0F69CB1D3C9D09009600F7 /* Conversation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Conversation.storyboard; sourceTree = "<group>"; };
 		0F317C631D280D7D00C110AE /* ApplicationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationContext.swift; sourceTree = "<group>"; };
 		0F76A8791CFA165D00BDD499 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
@@ -219,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				0FCC10801D2AC38800EA0B25 /* Comment.storyboard */,
+				0F0F69CB1D3C9D09009600F7 /* Conversation.storyboard */,
 				0F0F69AB1D319DAF009600F7 /* CommentViewController.swift */,
 				0FCC10821D2AC51A00EA0B25 /* ChooseThreadViewController.swift */,
 				0FD597671D316CD500CAE7FF /* AutoCompleteTableViewCell.swift */,
@@ -227,6 +232,7 @@
 				0F0F69B71D383730009600F7 /* AccessoryCommentView.swift */,
 				0F0F69BF1D3ADB5D009600F7 /* TopicCreationViewController.swift */,
 				0F0F69C11D3ADCB7009600F7 /* ForumSelectionViewController.swift */,
+				0F0F69C91D3C9863009600F7 /* ConversationWithReplyViewController.swift */,
 			);
 			name = Comment;
 			sourceTree = "<group>";
@@ -392,6 +398,7 @@
 				0F9E09061D15D5D4006676C1 /* PostInHeaderCollectionReusableView.xib in Resources */,
 				0FD5976A1D316CD500CAE7FF /* AutoCompleteTableViewCell.xib in Resources */,
 				0FD0A33A1D0DF0160030D36F /* ReplyCollectionViewCell.xib in Resources */,
+				0F0F69CC1D3C9D09009600F7 /* Conversation.storyboard in Resources */,
 				0FCC10811D2AC38800EA0B25 /* Comment.storyboard in Resources */,
 				0F0F69B61D370987009600F7 /* AccessoryCommentView.xib in Resources */,
 				0FB2F4A51D033C24008F386A /* FlatCollectionViewCell.xib in Resources */,
@@ -466,6 +473,7 @@
 				0FE5273E1CFD058700407AAE /* PostResponse.swift in Sources */,
 				0FE527221CFB654300407AAE /* LoginResponse.swift in Sources */,
 				0FE5272F1CFB65EB00407AAE /* ExtensionArray.swift in Sources */,
+				0F0F69CA1D3C9863009600F7 /* ConversationWithReplyViewController.swift in Sources */,
 				0F317C641D280D7D00C110AE /* ApplicationContext.swift in Sources */,
 				0FD0A33C1D0DF4140030D36F /* ReuseIdentifiers.swift in Sources */,
 				0FB2F4AB1D037008008F386A /* UIView+Utillities.swift in Sources */,

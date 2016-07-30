@@ -14,37 +14,8 @@ class FlatCollectionViewCell: UICollectionViewCell {
     var post : Post!{
         didSet{
             dateButton.setTitle(Utilities.singleton.simpleDateFormat(post.date), forState: .Normal)
-//            contentWebView.scrollView.scrollEnabled = false
-//            contentWebView.loadHTMLString(post.entry, baseURL: nil)
-            
-            
-            
-//            labelForSizing.text = post.entry
-//            let sysfont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-            
-            
-            
-//            let modifiedFont = NSString(format:"<span style=\"font-family: '\(sysfont.fontName)'; font-size: \(sysfont.pointSize)\">%@</span>", post.entry) as String
-            
             entryTextView.setHtmlText(post.entry)
         
-            /*
-            if let htmlData = modifiedFont.dataUsingEncoding(NSUnicodeStringEncoding) {
-//                NSAttributedString(
-                
-                do {
-                    
-                    entryTextView.attributedText = try NSMutableAttributedString(data: htmlData,
-                                                                      options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSFontAttributeName: sysfont],
-                                                                      documentAttributes: nil)
-                    
-//                    labelForSizing.attributedText = entryTextView.attributedText
-                } catch let e as NSError {
-                    print("Couldn't translate \(post.entry): \(e.localizedDescription) ")
-                }
-            }
-            
-            */
             
 //            print("Lable size \(labelForSizing.intrinsicContentSize())")
             
@@ -55,6 +26,12 @@ class FlatCollectionViewCell: UICollectionViewCell {
             
             if let url = post.creator.image?.name {
                 creatorImageView.downloadedFrom(link: url, contentMode: .ScaleAspectFit)
+            }
+            
+            if post.mass == 1 {
+                viewCommentsButton.setTitle("1 Comment", forState: .Normal)
+            } else {
+                viewCommentsButton.setTitle("\(post.mass) Comments", forState: .Normal)
             }
             
 //            contentWebView.setNeedsLayout()
@@ -88,6 +65,9 @@ class FlatCollectionViewCell: UICollectionViewCell {
 //            print("Size of btn: \(dateButton.intrinsicContentSize())")
         }
     }
+    @IBOutlet weak var viewCommentsButton: UIButton!
+    @IBOutlet weak var commentButton: UIButton!
+    @IBOutlet weak var likeButton: UIButton!
 
     @IBOutlet weak var entryTextView: UITextView!
 //    @IBOutlet weak var labelForSizing: UILabel!
@@ -99,6 +79,9 @@ class FlatCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var threadTitleButton: UIButton!
     @IBOutlet weak var creatorImageView: UIImageView!
+    
+    
+    var delegate: PostViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -113,8 +96,16 @@ class FlatCollectionViewCell: UICollectionViewCell {
     }
     
     
+    @IBAction func viewCommentsAction(sender: UIButton) {
+//        performSegueWithIdentifier("ConversationWithReplyView", sender: indexPath)
+        delegate?.viewComments(post)
+    }
 
+    @IBAction func commentAction(sender: UIButton) {
+    }
     
+    @IBAction func likeAction(sender: UIButton) {
+    }
 
 }
 

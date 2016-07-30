@@ -122,10 +122,10 @@ class LatestPostsViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard let indexPath = sender as? NSIndexPath else {
-            return
-        }
-        
+//        guard let indexPath = sender as? NSIndexPath else {
+//            return
+//        }
+//        
         guard let nav = segue.destinationViewController as? UINavigationController else {
             return
         }
@@ -133,19 +133,20 @@ class LatestPostsViewController: UIViewController {
         guard let vc = nav.topViewController as? ConversationWithReplyViewController else {
             return
         }
+//
+//        
+//        var threadId : String!
+//        switch (getApplicationContext().displayMode) {
+//            case .LatestFlat:
+//            let post = getApplicationContext().latestPosts()[indexPath.row]
+//            threadId = post.threadId
+//            
+//            case .LatestGrouped:
+//            let post = getApplicationContext().latestPosts()[indexPath.section].posts![indexPath.row]
+//            threadId = post.threadId
+//        }
         
-        
-        var threadId : String!
-        switch (getApplicationContext().displayMode) {
-            case .LatestFlat:
-            let post = getApplicationContext().latestPosts()[indexPath.row]
-            threadId = post.threadId
-            
-            case .LatestGrouped:
-            let post = getApplicationContext().latestPosts()[indexPath.section].posts![indexPath.row]
-            threadId = post.threadId
-        }
-        
+        let threadId = sender as! String
         
         print(threadId)
     
@@ -252,7 +253,8 @@ extension LatestPostsViewController : UICollectionViewDelegate, UICollectionView
         case .LatestFlat:
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.FLAT_POST_CELL, forIndexPath: indexPath) as! FlatCollectionViewCell
             cell.post = getApplicationContext().latestPosts()[indexPath.row]
-            return cell;
+            cell.delegate = self
+            return cell
             
         case .LatestGrouped:
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.REPLY_POST_CELL, forIndexPath: indexPath) as! ReplyCollectionViewCell
@@ -337,4 +339,16 @@ extension LatestPostsViewController : UIPopoverPresentationControllerDelegate {
 //        
 //        return controller.presentingViewController
 //    }
+}
+
+extension LatestPostsViewController : PostViewCellDelegate{
+    func likePost(post: Post){
+        
+    }
+    func viewComments(post: Post){
+        performSegueWithIdentifier("ConversationWithReplyView", sender: post.threadId)
+    }
+    func commentOnPost(post: Post){
+        
+    }
 }

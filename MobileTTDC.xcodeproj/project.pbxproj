@@ -23,6 +23,7 @@
 		0F0F69C81D3BE371009600F7 /* Forum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69C71D3BE371009600F7 /* Forum.swift */; };
 		0F0F69CA1D3C9863009600F7 /* ConversationWithReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69C91D3C9863009600F7 /* ConversationWithReplyViewController.swift */; };
 		0F0F69CC1D3C9D09009600F7 /* Conversation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F0F69CB1D3C9D09009600F7 /* Conversation.storyboard */; };
+		0F0F69CE1D4D4F53009600F7 /* PostViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69CD1D4D4F53009600F7 /* PostViewCellDelegate.swift */; };
 		0F317C641D280D7D00C110AE /* ApplicationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F317C631D280D7D00C110AE /* ApplicationContext.swift */; };
 		0F76A87A1CFA165D00BDD499 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A8791CFA165D00BDD499 /* LoginViewController.swift */; };
 		0F76A87C1CFA16C300BDD499 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */; };
@@ -102,6 +103,7 @@
 		0F0F69C71D3BE371009600F7 /* Forum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forum.swift; sourceTree = "<group>"; };
 		0F0F69C91D3C9863009600F7 /* ConversationWithReplyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationWithReplyViewController.swift; sourceTree = "<group>"; };
 		0F0F69CB1D3C9D09009600F7 /* Conversation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Conversation.storyboard; sourceTree = "<group>"; };
+		0F0F69CD1D4D4F53009600F7 /* PostViewCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewCellDelegate.swift; sourceTree = "<group>"; };
 		0F317C631D280D7D00C110AE /* ApplicationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationContext.swift; sourceTree = "<group>"; };
 		0F76A8791CFA165D00BDD499 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				0F9E09031D15D5D4006676C1 /* PostInHeaderCollectionReusableView.swift */,
 				0F9E09041D15D5D4006676C1 /* PostInHeaderCollectionReusableView.xib */,
 				0FB2F4A21D033C24008F386A /* FlatCollectionViewCell.swift */,
+				0F0F69CD1D4D4F53009600F7 /* PostViewCellDelegate.swift */,
 				0FB2F4A31D033C24008F386A /* FlatCollectionViewCell.xib */,
 				0FD0A3271D0CAA140030D36F /* ConversationCollectionViewCell.swift */,
 				0FD0A3281D0CAA140030D36F /* ConversationCollectionViewCell.xib */,
@@ -418,6 +421,7 @@
 				0FE5273A1CFC9FB800407AAE /* Command.swift in Sources */,
 				0FB2F4981CFFA8FC008F386A /* Image.swift in Sources */,
 				0FCF01841CFA10E200924868 /* AppDelegate.swift in Sources */,
+				0F0F69CE1D4D4F53009600F7 /* PostViewCellDelegate.swift in Sources */,
 				0FE527211CFB654300407AAE /* LoginCommand.swift in Sources */,
 				0FB2F4A71D035B4A008F386A /* Utilities.swift in Sources */,
 				0F0F69B81D383730009600F7 /* AccessoryCommentView.swift in Sources */,

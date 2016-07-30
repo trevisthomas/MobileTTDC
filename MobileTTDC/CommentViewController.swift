@@ -53,6 +53,7 @@ class CommentViewController: UIViewController {
         let view = NSBundle.mainBundle().loadNibNamed("AccessoryCommentView", owner: commentTextArea, options: nil).first as! AccessoryCommentView
         
         view.delegate = self
+        view.defaultText = commentTextArea.attributedText
         commentTextArea.inputAccessoryView = view
         
         

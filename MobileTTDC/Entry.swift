@@ -14,6 +14,7 @@ public struct Entry : Decodable {
     
     public init?(json: JSON) {
         summary = ("summary" <~~ json)!
+//        summary = "?"
         body = ("body" <~~ json)!
     }
 }

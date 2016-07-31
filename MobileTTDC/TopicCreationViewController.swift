@@ -48,7 +48,6 @@ class TopicCreationViewController: UIViewController {
         topicDescriptionTextView.attributedText = getApplicationContext().topicStash
 
         let view = NSBundle.mainBundle().loadNibNamed("AccessoryCommentView", owner: topicDescriptionTextView, options: nil).first as! AccessoryCommentView
-        
         view.delegate = self
         topicDescriptionTextView.inputAccessoryView = view
         
@@ -95,9 +94,12 @@ class TopicCreationViewController: UIViewController {
         getApplicationContext().topicStash = topicDescriptionTextView.attributedText
     }
     
-    @IBAction func handleTap(recognizer:UITapGestureRecognizer) {
+    @IBAction func handleTapGesture(recognizer:UITapGestureRecognizer) {
         commentAccessoryBecomeFirstResponder()
     }
+    
+    
+    
     
     func commentAccessoryBecomeFirstResponder() {
         

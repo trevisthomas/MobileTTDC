@@ -11,6 +11,8 @@ import UIKit
 class ConversationWithReplyViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var replyTextView: UITextView!
+    
     
     var postId: String! {
         didSet{
@@ -29,12 +31,30 @@ class ConversationWithReplyViewController: UIViewController {
         
         sectionHeaderPrototype = registerAndCreatePrototypeHeaderViewFromNib("PostInHeaderCollectionReusableView", forReuseIdentifier: ReuseIdentifiers.POST_IN_HEADER_VIEW) as! PostInHeaderCollectionReusableView
         
+        let view = NSBundle.mainBundle().loadNibNamed("AccessoryCommentView", owner: replyTextView, options: nil).first as! AccessoryCommentView
+        view.delegate = self
+        replyTextView.inputAccessoryView = view
+        
     }
     @IBAction func closeAction(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
+    @IBAction func handleTap(recognizer:UITapGestureRecognizer) {
+        commentAccessoryBecomeFirstResponder()
+    }
   
+    func commentAccessoryBecomeFirstResponder() {
+        replyTextView.becomeFirstResponder() //This causes the keyboard to open.
+        let accessory = replyTextView.inputAccessoryView as! AccessoryCommentView
+        
+//        accessory.defaultText = replyTextView.attributedText
+        
+        accessory.becomeFirstResponder() //This puts the accessory view in focus.
+        //NOTE:  The actual text view needs to have it's "editibale" flag set to false or else it will get focus after dismssing the keyboard+accessory.
+        replyTextView.inputAccessoryView?.hidden = false
+        
+    }
 }
 
 extension ConversationWithReplyViewController {
@@ -144,4 +164,11 @@ extension ConversationWithReplyViewController : UICollectionViewDelegate, UIColl
     }
     
     
+}
+
+extension ConversationWithReplyViewController: AccessoryCommentViewDelegate {
+    func accessoryCommentView(commentText commentText: String){
+        replyTextView.text = commentText
+        replyTextView.inputAccessoryView?.hidden = true
+    }
 }

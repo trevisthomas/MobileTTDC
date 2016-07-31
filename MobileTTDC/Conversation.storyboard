@@ -42,21 +42,28 @@
                                     <outlet property="delegate" destination="Cca-WZ-WCM" id="4k3-n6-g88"/>
                                 </connections>
                             </collectionView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tap here to reply..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w7d-iJ-i5z">
-                                <rect key="frame" x="20" y="562" width="560" height="30"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Tap here to reply..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="s61-UN-Dnk">
+                                <rect key="frame" x="20" y="518" width="560" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Oz9-jf-ItJ"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="hmo-Ke-Sk5" appends="YES" id="Rev-e1-j85"/>
+                                </connections>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="yCo-Gb-BNk" firstAttribute="top" secondItem="w7d-iJ-i5z" secondAttribute="bottom" constant="8" id="GPr-cE-eDY"/>
-                            <constraint firstItem="w7d-iJ-i5z" firstAttribute="top" secondItem="Rn9-dX-02U" secondAttribute="bottom" constant="8" id="XoU-5F-jfS"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="s61-UN-Dnk" secondAttribute="leading" id="Bqr-X1-dJt"/>
+                            <constraint firstItem="yCo-Gb-BNk" firstAttribute="top" secondItem="s61-UN-Dnk" secondAttribute="bottom" constant="8" id="KMY-8M-HiY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="s61-UN-Dnk" secondAttribute="trailing" id="QFy-Q7-vSZ"/>
                             <constraint firstItem="Rn9-dX-02U" firstAttribute="leading" secondItem="Zac-OS-XHQ" secondAttribute="leadingMargin" id="bhP-vJ-cch"/>
-                            <constraint firstItem="w7d-iJ-i5z" firstAttribute="leading" secondItem="Zac-OS-XHQ" secondAttribute="leadingMargin" id="dUv-2h-Koe"/>
+                            <constraint firstItem="s61-UN-Dnk" firstAttribute="top" secondItem="Rn9-dX-02U" secondAttribute="bottom" constant="8" id="fG8-Qp-pkF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Rn9-dX-02U" secondAttribute="trailing" id="mxZ-Qi-7Te"/>
                             <constraint firstItem="Rn9-dX-02U" firstAttribute="top" secondItem="3zK-C4-90f" secondAttribute="bottom" constant="-64" id="tzA-XF-5iv"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="w7d-iJ-i5z" secondAttribute="trailing" id="xEv-cd-ZC5"/>
                         </constraints>
                     </view>
                     <toolbarItems>
@@ -75,9 +82,15 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="Rn9-dX-02U" id="5Vl-DS-FWm"/>
+                        <outlet property="replyTextView" destination="s61-UN-Dnk" id="cwv-Bn-3JW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uzQ-JS-Zy9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="hmo-Ke-Sk5">
+                    <connections>
+                        <action selector="handleTap:" destination="Cca-WZ-WCM" id="MX4-rp-Ueh"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2329" y="2069"/>
         </scene>

@@ -200,11 +200,7 @@ extension CommentViewController {
             self.presentAlert("Error", message: "Failed to create post.  Server error.")
             return
         }
-        self.getApplicationContext().reloadLatestPosts()
-        self.getApplicationContext().reloadLatestConversations()
-        
-        self.getApplicationContext().commentStash = nil
-        self.getApplicationContext().topicStash = nil
+        self.getApplicationContext().reloadAllData()
         
         self.commentTextArea.attributedText = nil //So that it doesnt get stashed when you post!
         

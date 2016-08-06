@@ -102,6 +102,7 @@ class FlatCollectionViewCell: UICollectionViewCell {
     }
 
     @IBAction func commentAction(sender: UIButton) {
+        delegate?.commentOnPost(post)
     }
     
     @IBAction func likeAction(sender: UIButton) {

@@ -146,11 +146,18 @@ class LatestPostsViewController: UIViewController {
 //            threadId = post.threadId
 //        }
         
-        let threadId = sender as! String
+        let dict = sender as! [String: String]
         
-        print(threadId)
+//        let threadId = sender as! String
+        
+        print(dict["threadId"])
     
-        vc.postId = threadId
+//        vc.postId = dict["threadId"]
+        
+        vc.postId = dict["threadId"]
+        if let postId = dict["postId"] {
+            vc.replyToPostId = postId
+        }
     }
 }
 
@@ -228,10 +235,11 @@ extension LatestPostsViewController : UICollectionViewDelegate, UICollectionView
         }
     }
     
+    /*
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
 //        switch (getApplicationContext().displayMode) {
         
-        performSegueWithIdentifier("ConversationWithReplyView", sender: indexPath)
+//        performSegueWithIdentifier("ConversationWithReplyView", sender: indexPath)
             
 //        case .LatestFlat:
 //            let post = getApplicationContext().latestPosts()[indexPath.row]
@@ -244,6 +252,7 @@ extension LatestPostsViewController : UICollectionViewDelegate, UICollectionView
 //            print(post.postId)
 //        }
     }
+ */
     
 //    func collec
     
@@ -346,9 +355,14 @@ extension LatestPostsViewController : PostViewCellDelegate{
         
     }
     func viewComments(post: Post){
-        performSegueWithIdentifier("ConversationWithReplyView", sender: post.threadId)
+        var dict = [String: String]()
+        dict["threadId"] = post.threadId
+        performSegueWithIdentifier("ConversationWithReplyView", sender: dict)
     }
     func commentOnPost(post: Post){
-        
+        var dict = [String: String]()
+        dict["threadId"] = post.threadId
+        dict["postId"] = post.postId
+        performSegueWithIdentifier("ConversationWithReplyView", sender: dict)
     }
 }

@@ -14,6 +14,7 @@ protocol AccessoryCommentViewDelegate {
 
 class AccessoryCommentView: UIView {
     var delegate : AccessoryCommentViewDelegate!
+    var postId : String!
     
     var defaultText: NSAttributedString! {
         didSet{

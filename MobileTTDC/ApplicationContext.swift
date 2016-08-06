@@ -53,6 +53,10 @@ public class ApplicationContext : AuthenticatedUserDataProvider {
     public func reloadAllData(){
         reloadLatestPosts()
         reloadLatestConversations()
+        
+        commentStash = nil
+        topicStash = nil
+
     }
     
     public func authenticate(login: String, password: String, completion: (success: Bool, details: String) -> ()) {
@@ -127,6 +131,8 @@ extension ApplicationContext : LatestPostsDataProvider {
             self._latestPosts = (response?.list)!
         };
     }
+    
+    
 }
 
 extension ApplicationContext : LatestConversationsDataProvider {

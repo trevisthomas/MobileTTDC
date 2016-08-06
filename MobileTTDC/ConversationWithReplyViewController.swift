@@ -21,6 +21,13 @@ class ConversationWithReplyViewController: UIViewController {
     }
     var post : Post!
     
+    var replyToPostId: String!{
+        didSet{
+//            commentAccessoryBecomeFirstResponder()
+            postId = replyToPostId
+        }
+    }
+    
     private var replyPrototypeCell : ReplyCollectionViewCell!
     private var sectionHeaderPrototype : PostInHeaderCollectionReusableView!
     
@@ -41,12 +48,14 @@ class ConversationWithReplyViewController: UIViewController {
     }
 
     @IBAction func handleTap(recognizer:UITapGestureRecognizer) {
-        commentAccessoryBecomeFirstResponder()
+//        replyToPostId = post.postId //When they just tap the text, reply to the conversation.
+        commentAccessoryBecomeFirstResponder(post.postId)
     }
   
-    func commentAccessoryBecomeFirstResponder() {
+    func commentAccessoryBecomeFirstResponder(postId: String) {
         replyTextView.becomeFirstResponder() //This causes the keyboard to open.
         let accessory = replyTextView.inputAccessoryView as! AccessoryCommentView
+        accessory.postId = postId
         
 //        accessory.defaultText = replyTextView.attributedText
         
@@ -100,6 +109,10 @@ extension ConversationWithReplyViewController {
             self.invokeLater{
                 self.post = response?.list.first
                 self.collectionView.reloadData()
+                
+                if self.replyToPostId != nil {
+                    self.commentAccessoryBecomeFirstResponder(self.replyToPostId)
+                }
             }
             
         }
@@ -166,9 +179,33 @@ extension ConversationWithReplyViewController : UICollectionViewDelegate, UIColl
     
 }
 
+extension ConversationWithReplyViewController {
+    func handleResponse(response: PostCrudResponse?, error: String?){
+        guard response != nil else {
+            self.presentAlert("Error", message: "Failed to create post.  Server error.")
+            return
+        }
+        self.getApplicationContext().reloadAllData()
+        
+//        self.commentTextArea.attributedText = nil //So that it doesnt get stashed when you post!
+        
+//        self.dismissViewControllerAnimated(true, completion: nil)
+//        self.replyToPostId = nil  //sigh.  This is so that the first responder stays resigned!
+        loadPost(postId)
+    }
+}
+
 extension ConversationWithReplyViewController: AccessoryCommentViewDelegate {
     func accessoryCommentView(commentText commentText: String){
-        replyTextView.text = commentText
-        replyTextView.inputAccessoryView?.hidden = true
+//        replyTextView.text = commentText
+//        replyTextView.inputAccessoryView?.hidden = true
+        
+        let accessory = replyTextView.inputAccessoryView as! AccessoryCommentView
+        
+        let cmd = PostCrudCommand(parentId: accessory.postId, body: commentText)
+        
+        Network.performPostCrudCommand(cmd, completion: handleResponse)
+        
     }
+    
 }

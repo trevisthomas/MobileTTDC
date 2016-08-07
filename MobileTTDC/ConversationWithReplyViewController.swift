@@ -21,12 +21,13 @@ class ConversationWithReplyViewController: UIViewController {
     }
     var post : Post!
     
-    var replyToPostId: String!{
-        didSet{
-//            commentAccessoryBecomeFirstResponder()
-            postId = replyToPostId
-        }
-    }
+    var replyToPostId: String!
+//        {
+//        didSet{
+////            commentAccessoryBecomeFirstResponder()
+//            postId = replyToPostId
+//        }
+//    }
     
     private var replyPrototypeCell : ReplyCollectionViewCell!
     private var sectionHeaderPrototype : PostInHeaderCollectionReusableView!
@@ -42,6 +43,9 @@ class ConversationWithReplyViewController: UIViewController {
         view.delegate = self
         replyTextView.inputAccessoryView = view
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ConversationWithReplyViewController.handleTapToResign(_:)))
+//        tap.delegate = self
+        self.view.addGestureRecognizer(tap)
     }
     @IBAction func closeAction(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -50,6 +54,14 @@ class ConversationWithReplyViewController: UIViewController {
     @IBAction func handleTap(recognizer:UITapGestureRecognizer) {
 //        replyToPostId = post.postId //When they just tap the text, reply to the conversation.
         commentAccessoryBecomeFirstResponder(post.postId)
+    }
+    
+    func handleTapToResign(recognizer:UITapGestureRecognizer) {
+        let accessory = replyTextView.inputAccessoryView as! AccessoryCommentView
+        accessory.resignFirstResponder()
+        replyTextView.resignFirstResponder()
+        
+        scrollToBottom()
     }
   
     func commentAccessoryBecomeFirstResponder(postId: String) {
@@ -107,17 +119,64 @@ extension ConversationWithReplyViewController {
             }
             
             self.invokeLater{
+                
                 self.post = response?.list.first
                 self.collectionView.reloadData()
+                
+//                self.collectionView.reloadData(){
+//                    self.scrollToBottom()
+//                }
+                
+                let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 1 * Int64(NSEC_PER_SEC))
+                dispatch_after(time, dispatch_get_main_queue()) {
+                    //put your code which should be executed with a delay here
+                    self.scrollToBottom()
+                    
+                }
+                
                 
                 if self.replyToPostId != nil {
                     self.commentAccessoryBecomeFirstResponder(self.replyToPostId)
                 }
+              
             }
+            
+            
             
         }
     }
+    
+    override func viewDidLayoutSubviews() {
+//        scrollToBottom()
+    }
+    
+
+    
+    private func scrollToBottom() {
+//        let lastSectionIndex = (collectionView?.numberOfSections())! - 1
+//        let lastItemIndex = (collectionView?.numberOfItemsInSection(lastSectionIndex))! - 1
+//        let indexPath = NSIndexPath(forItem: lastItemIndex, inSection: lastSectionIndex)
+        
+        guard post != nil else {
+            return
+        }
+        
+        let row = (post.posts?.count)! - 1
+        
+        let indexPath = NSIndexPath(forRow: row, inSection: 0)
+        
+        
+        collectionView!.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.Bottom, animated: true)
+    }
 }
+
+
+//extension UICollectionView {
+//    func reloadData(completion: ()->()) {
+//        UIView.animateWithDuration(0, animations: { self.reloadData() })
+//        { _ in completion() }
+//    }
+//}
 
 extension ConversationWithReplyViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -162,6 +221,7 @@ extension ConversationWithReplyViewController : UICollectionViewDelegate, UIColl
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.REPLY_POST_CELL, forIndexPath: indexPath) as! ReplyCollectionViewCell
         cell.post = post.posts![indexPath.row]
+        cell.delegate = self
         return cell
     
     }
@@ -179,6 +239,18 @@ extension ConversationWithReplyViewController : UICollectionViewDelegate, UIColl
     
 }
 
+extension ConversationWithReplyViewController : PostViewCellDelegate {
+    func likePost(post: Post){
+        //TODO: Something.
+    }
+    func viewComments(post: Post){
+        //not used on reply
+    }
+    func commentOnPost(post: Post){
+        self.commentAccessoryBecomeFirstResponder(post.postId)
+    }
+}
+
 extension ConversationWithReplyViewController {
     func handleResponse(response: PostCrudResponse?, error: String?){
         guard response != nil else {
@@ -191,6 +263,8 @@ extension ConversationWithReplyViewController {
         
 //        self.dismissViewControllerAnimated(true, completion: nil)
 //        self.replyToPostId = nil  //sigh.  This is so that the first responder stays resigned!
+//        self.view.becomeFirstResponder()
+//        replyTextView.resignFirstResponder()
         loadPost(postId)
     }
 }
@@ -205,6 +279,8 @@ extension ConversationWithReplyViewController: AccessoryCommentViewDelegate {
         let cmd = PostCrudCommand(parentId: accessory.postId, body: commentText)
         
         Network.performPostCrudCommand(cmd, completion: handleResponse)
+        
+        replyTextView.resignFirstResponder()
         
     }
     

@@ -27,13 +27,19 @@ class AccessoryCommentView: UIView {
     }
    
     @IBAction func postButtonAction(sender: UIButton) {
-        delegate.accessoryCommentView(commentText: postTextView.text)
         postTextView.resignFirstResponder()
+        delegate.accessoryCommentView(commentText: postTextView.text)
+        
     }
     
     override func becomeFirstResponder() -> Bool {
         super.becomeFirstResponder() //Maybe?
         return postTextView.becomeFirstResponder()
+    }
+    
+    override func resignFirstResponder() -> Bool {
+        super.resignFirstResponder() // Shrug
+        return postTextView.resignFirstResponder()
     }
     
     /*

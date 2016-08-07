@@ -23,11 +23,23 @@ class ReplyCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var creatorImageView: UIImageView!
     @IBOutlet weak var creatorNameButton: UIButton!
     @IBOutlet weak var entryTextView: UITextView!
+    @IBOutlet weak var dateButton: UIButton!
+    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var replyButton: UIButton!
     
+    var delegate : PostViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    @IBAction func replyAction(sender: UIButton) {
+        delegate?.commentOnPost(post)
+    }
+    
+    @IBAction func likeAction(sender: UIButton) {
+        delegate?.likePost(post)
     }
     
     func preferredHeight(width : CGFloat) -> CGFloat {

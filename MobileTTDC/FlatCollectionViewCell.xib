@@ -25,16 +25,8 @@
                             <constraint firstAttribute="height" constant="50" id="xnD-zo-Y6G"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEU-jw-UbE">
-                        <rect key="frame" x="63" y="46" width="529" height="12"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="12" id="uAV-bk-IEO"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <state key="normal" title="01/01/1970"/>
-                    </button>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e7S-Zo-uOW">
-                        <rect key="frame" x="8" y="64" width="584" height="80"/>
+                        <rect key="frame" x="8" y="64" width="584" height="112"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <attributedString key="attributedText">
                             <fragment>
@@ -51,32 +43,111 @@
                             <outlet property="delegate" destination="gTV-IL-0wX" id="gLd-PI-Z9j"/>
                         </connections>
                     </textView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfi-Td-3QF">
-                        <rect key="frame" x="495" y="143" width="97" height="26"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="97" id="tIe-VU-wrJ"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                        <state key="normal" title="? Comment(s)"/>
-                        <connections>
-                            <action selector="viewCommentsAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="QwP-kF-xKV"/>
-                        </connections>
-                    </button>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="lgl-R0-r94">
-                        <rect key="frame" x="8" y="170" width="113" height="30"/>
+                        <rect key="frame" x="8" y="180" width="113" height="16"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adW-yk-Ef9">
-                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                <rect key="frame" x="0.0" y="0.0" width="30" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="OME-a0-Tvc"/>
+                                </constraints>
                                 <state key="normal" title="Like"/>
                                 <connections>
                                     <action selector="likeAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="lIu-gS-bQz"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n8z-3W-9MN">
-                                <rect key="frame" x="46" y="0.0" width="67" height="30"/>
+                                <rect key="frame" x="46" y="0.0" width="67" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="nUi-Ux-zY9"/>
+                                </constraints>
                                 <state key="normal" title="Comment"/>
                                 <connections>
                                     <action selector="commentAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="SvS-7y-Yhi"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="RKm-dY-jvy" userLabel="to Parent Creator Stack View">
+                        <rect key="frame" x="306" y="47" width="119" height="12"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQe-L6-32Q">
+                                <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="F7G-AH-1UZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twh-x2-RQa">
+                                <rect key="frame" x="14" y="0.0" width="105" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="parentPostCreator"/>
+                                <connections>
+                                    <action selector="viewCommentsAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="mr2-62-1HE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="A8V-7K-Hhs" userLabel="by Creator on Date Stack View">
+                        <rect key="frame" x="63" y="47" width="138" height="12"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6VE-a9-19A">
+                                <rect key="frame" x="0.0" y="0.0" width="14" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="tcv-TD-WqF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bhh-7o-FFv">
+                                <rect key="frame" x="16" y="0.0" width="41" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="IZg-ai-IQa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="creator"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="on" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBX-8W-rcg">
+                                <rect key="frame" x="59" y="0.0" width="15" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="rd5-yu-qbP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEU-jw-UbE">
+                                <rect key="frame" x="76" y="0.0" width="62" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="uAV-bk-IEO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="01/01/1970"/>
+                            </button>
+                        </subviews>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="s8s-4Z-rph" userLabel="in Reply Stack View">
+                        <rect key="frame" x="209" y="47" width="92" height="12"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tpd-pc-SYt">
+                                <rect key="frame" x="0.0" y="0.0" width="10" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="BIY-R1-1FC"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="12" id="M3q-PF-ISP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfi-Td-3QF">
+                                <rect key="frame" x="12" y="0.0" width="80" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="? Comment(s)"/>
+                                <connections>
+                                    <action selector="viewCommentsAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="QwP-kF-xKV"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -85,31 +156,45 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
-                <constraint firstItem="mEU-jw-UbE" firstAttribute="leading" secondItem="ERU-BL-1mk" secondAttribute="leading" id="2nB-nb-2J9"/>
-                <constraint firstItem="xfi-Td-3QF" firstAttribute="trailing" secondItem="e7S-Zo-uOW" secondAttribute="trailing" id="4ob-Db-BsV"/>
-                <constraint firstAttribute="bottom" secondItem="e7S-Zo-uOW" secondAttribute="bottom" constant="56" id="8X6-WQ-EGX"/>
-                <constraint firstItem="mEU-jw-UbE" firstAttribute="width" secondItem="ERU-BL-1mk" secondAttribute="width" id="A1f-s2-6Va"/>
-                <constraint firstItem="mEU-jw-UbE" firstAttribute="top" secondItem="ERU-BL-1mk" secondAttribute="bottom" constant="2" id="Bbw-gq-xni"/>
+                <constraint firstItem="RKm-dY-jvy" firstAttribute="leading" secondItem="s8s-4Z-rph" secondAttribute="trailing" constant="5" id="4cd-aO-yIU"/>
+                <constraint firstAttribute="bottom" secondItem="e7S-Zo-uOW" secondAttribute="bottom" constant="24" id="8X6-WQ-EGX"/>
                 <constraint firstAttribute="trailing" secondItem="ERU-BL-1mk" secondAttribute="trailing" constant="8" id="D8i-zd-9lJ"/>
+                <constraint firstItem="A8V-7K-Hhs" firstAttribute="top" secondItem="ERU-BL-1mk" secondAttribute="bottom" constant="3" id="FBB-4s-hUc"/>
+                <constraint firstItem="RKm-dY-jvy" firstAttribute="leading" secondItem="s8s-4Z-rph" secondAttribute="trailing" constant="8" id="RO7-nv-EWM"/>
                 <constraint firstItem="e7S-Zo-uOW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="64" id="Vz7-H4-Hk9"/>
-                <constraint firstAttribute="bottom" secondItem="lgl-R0-r94" secondAttribute="bottom" id="Yek-Mg-4KN"/>
+                <constraint firstAttribute="bottom" secondItem="lgl-R0-r94" secondAttribute="bottom" constant="4" id="Yek-Mg-4KN"/>
                 <constraint firstItem="Qm0-YV-S7s" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="ahc-D2-7hh"/>
+                <constraint firstItem="RKm-dY-jvy" firstAttribute="baseline" secondItem="s8s-4Z-rph" secondAttribute="baseline" id="dj8-eb-Gmc"/>
                 <constraint firstItem="ERU-BL-1mk" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="ioz-GH-ROG"/>
                 <constraint firstItem="lgl-R0-r94" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="jGO-Zs-RrA"/>
                 <constraint firstItem="e7S-Zo-uOW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="kMP-Y1-HRG"/>
                 <constraint firstItem="ERU-BL-1mk" firstAttribute="leading" secondItem="Qm0-YV-S7s" secondAttribute="trailing" constant="5" id="mI0-As-SyW"/>
-                <constraint firstItem="xfi-Td-3QF" firstAttribute="top" secondItem="e7S-Zo-uOW" secondAttribute="bottom" constant="-1" id="sqR-z5-ndq"/>
+                <constraint firstItem="s8s-4Z-rph" firstAttribute="leading" secondItem="mEU-jw-UbE" secondAttribute="trailing" constant="8" id="mof-FY-G6f"/>
+                <constraint firstItem="s8s-4Z-rph" firstAttribute="baseline" secondItem="mEU-jw-UbE" secondAttribute="baseline" id="pFx-wu-1cS"/>
+                <constraint firstItem="A8V-7K-Hhs" firstAttribute="leading" secondItem="ERU-BL-1mk" secondAttribute="leading" id="u6L-1J-hts"/>
                 <constraint firstAttribute="trailing" secondItem="e7S-Zo-uOW" secondAttribute="trailing" constant="8" id="utI-GN-I6B"/>
+                <constraint firstItem="RKm-dY-jvy" firstAttribute="baseline" secondItem="s8s-4Z-rph" secondAttribute="baseline" id="vD3-8t-C7O"/>
                 <constraint firstItem="Qm0-YV-S7s" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="wxG-QM-pl6"/>
             </constraints>
             <size key="customSize" width="414" height="167"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="RO7-nv-EWM"/>
+                    <exclude reference="dj8-eb-Gmc"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="commentButton" destination="n8z-3W-9MN" id="ZqD-yb-7Hp"/>
+                <outlet property="creatorButton" destination="Bhh-7o-FFv" id="mdc-af-spT"/>
                 <outlet property="creatorImageView" destination="Qm0-YV-S7s" id="G6s-RA-CSt"/>
                 <outlet property="dateButton" destination="mEU-jw-UbE" id="0sN-J5-Kfx"/>
                 <outlet property="entryTextView" destination="e7S-Zo-uOW" id="xE5-E9-9TT"/>
+                <outlet property="inReplyPrefixLabel" destination="Tpd-pc-SYt" id="4s8-hK-Pib"/>
+                <outlet property="inReplyStackView" destination="s8s-4Z-rph" id="KMg-T9-K5I"/>
                 <outlet property="likeButton" destination="adW-yk-Ef9" id="qPr-Zq-hLk"/>
+                <outlet property="parentPostCreatorButton" destination="twh-x2-RQa" id="c69-7Q-rPv"/>
                 <outlet property="threadTitleButton" destination="ERU-BL-1mk" id="xj8-MP-KhJ"/>
+                <outlet property="toParentCreatorStackView" destination="RKm-dY-jvy" id="XxC-BG-yIh"/>
                 <outlet property="viewCommentsButton" destination="xfi-Td-3QF" id="Q7s-pW-A6Q"/>
             </connections>
             <point key="canvasLocation" x="467" y="461"/>

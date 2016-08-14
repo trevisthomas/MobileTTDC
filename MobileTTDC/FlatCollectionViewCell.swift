@@ -28,10 +28,35 @@ class FlatCollectionViewCell: UICollectionViewCell {
                 creatorImageView.downloadedFrom(link: url, contentMode: .ScaleAspectFit)
             }
             
-            if post.mass == 1 {
-                viewCommentsButton.setTitle("1 Comment", forState: .Normal)
+//            if post.mass == 1 {
+//                viewCommentsButton.setTitle("1 Comment", forState: .Normal)
+//            } else {
+//                viewCommentsButton.setTitle("\(post.mass) Comments", forState: .Normal)
+//            }
+            
+            
+            creatorButton.setTitle("\(post.creator.login)", forState: .Normal)
+            
+//            viewCommentsButton.hidden = false
+            inReplyStackView.hidden = false
+            if post.threadPost {
+                toParentCreatorStackView.hidden = true
+                if post.mass == 0 {
+                    inReplyStackView.hidden = true
+                }
+                else if post.mass == 1 {
+                    inReplyPrefixLabel.text = "view"
+                    viewCommentsButton.setTitle("conversation", forState: .Normal)
+                } else {
+                    inReplyPrefixLabel.text = "view"
+                    viewCommentsButton.setTitle("\(post.mass) replies to conversation", forState: .Normal)
+                }
+                
             } else {
-                viewCommentsButton.setTitle("\(post.mass) Comments", forState: .Normal)
+                toParentCreatorStackView.hidden = false
+                parentPostCreatorButton.setTitle("\(post.parentPostCreator)", forState: .Normal)
+                inReplyPrefixLabel.text = "in"
+                viewCommentsButton.setTitle("response", forState: .Normal)
             }
             
 //            contentWebView.setNeedsLayout()
@@ -68,8 +93,13 @@ class FlatCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var viewCommentsButton: UIButton!
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var parentPostCreatorButton: UIButton!
 
+    @IBOutlet weak var inReplyPrefixLabel: UILabel!
+    @IBOutlet weak var inReplyStackView: UIStackView!
+    @IBOutlet weak var creatorButton: UIButton!
     @IBOutlet weak var entryTextView: UITextView!
+    @IBOutlet weak var toParentCreatorStackView: UIStackView!
 //    @IBOutlet weak var labelForSizing: UILabel!
 //    @IBOutlet weak var contentWebView: UIWebView! {
 //        didSet{

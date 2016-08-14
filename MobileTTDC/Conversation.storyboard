@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Rn9-dX-02U">
-                                <rect key="frame" x="20" y="0.0" width="560" height="510"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="510"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XNS-YZ-frX">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -60,9 +60,9 @@
                             <constraint firstAttribute="leadingMargin" secondItem="s61-UN-Dnk" secondAttribute="leading" id="Bqr-X1-dJt"/>
                             <constraint firstItem="yCo-Gb-BNk" firstAttribute="top" secondItem="s61-UN-Dnk" secondAttribute="bottom" constant="8" id="KMY-8M-HiY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="s61-UN-Dnk" secondAttribute="trailing" id="QFy-Q7-vSZ"/>
-                            <constraint firstItem="Rn9-dX-02U" firstAttribute="leading" secondItem="Zac-OS-XHQ" secondAttribute="leadingMargin" id="bhP-vJ-cch"/>
+                            <constraint firstItem="Rn9-dX-02U" firstAttribute="leading" secondItem="Zac-OS-XHQ" secondAttribute="leading" id="bhP-vJ-cch"/>
                             <constraint firstItem="s61-UN-Dnk" firstAttribute="top" secondItem="Rn9-dX-02U" secondAttribute="bottom" constant="8" id="fG8-Qp-pkF"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Rn9-dX-02U" secondAttribute="trailing" id="mxZ-Qi-7Te"/>
+                            <constraint firstAttribute="trailing" secondItem="Rn9-dX-02U" secondAttribute="trailing" id="mxZ-Qi-7Te"/>
                             <constraint firstItem="Rn9-dX-02U" firstAttribute="top" secondItem="3zK-C4-90f" secondAttribute="bottom" constant="-64" id="tzA-XF-5iv"/>
                         </constraints>
                     </view>

@@ -19,6 +19,9 @@ public struct Post : Decodable{
     let posts : [Post]?
     let mass : UInt
     let threadId: String?
+    let threadPost: Bool //For conversations this is true.
+    let parentPostCreator: String!
+    let parentPostCreatorId: String!
     
     public init?(json: JSON) {
         postId = ("postId" <~~ json)!
@@ -32,6 +35,10 @@ public struct Post : Decodable{
         mass = ("mass" <~~ json)!
 //        thread = ("thread" <~~ json)!
         threadId = ("thread.postId" <~~ json)
+        threadPost = ("threadPost" <~~ json)! //isThreadPost
+        parentPostCreator = ("parentPostCreator" <~~ json)
+        parentPostCreatorId = ("parentPostCreatorId" <~~ json)
+        
     }
     
 }

@@ -282,6 +282,16 @@
             </objects>
             <point key="canvasLocation" x="220" y="-216"/>
         </scene>
+        <!--Search-->
+        <scene sceneID="3Tq-pj-D3j">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Search" id="l4R-G9-EDl" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Search" id="EWx-Ak-zvU"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mjS-oo-tEk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1806.5" y="1222"/>
+        </scene>
         <!--Latest-->
         <scene sceneID="FL4-mH-Lzz">
             <objects>
@@ -353,9 +363,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Latest" id="pOH-4u-kxX">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="YE9-Z0-V2r">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="YE9-Z0-V2r">
                             <connections>
                                 <action selector="presentCommentCreationView:" destination="gyI-c6-Blm" id="9xD-ZM-Ti2"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="GPm-n3-HeH">
+                            <connections>
+                                <segue destination="l4R-G9-EDl" kind="show" identifier="SearchViewController" id="9Vg-Ml-7lr"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -377,7 +392,7 @@
                 <viewControllerPlaceholder storyboardName="Conversation" id="Rsi-aW-7qZ" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DYG-mx-0q2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1857" y="1387"/>
+            <point key="canvasLocation" x="1837" y="1567"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qCc-dH-B8t">

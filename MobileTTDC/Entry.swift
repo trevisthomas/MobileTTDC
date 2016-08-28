@@ -9,11 +9,11 @@
 import Foundation
 
 public struct Entry : Decodable {
-    let summary : String
+    let summary : String?
     let body : String
     
     public init?(json: JSON) {
-        summary = ("summary" <~~ json)!
+        summary = ("summary" <~~ json)
 //        summary = "?"
         body = ("body" <~~ json)!
     }

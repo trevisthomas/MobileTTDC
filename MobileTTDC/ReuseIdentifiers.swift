@@ -16,5 +16,6 @@ public struct ReuseIdentifiers {
     static let POST_IN_HEADER_VIEW = "PostInHeaderView"
     static let EMPTY_HEADER_VIEW = "EmptyHeaderView"
     static let AUTO_TOPIC_CELL = "AutoCompleteTopicCell"
+    static let AUTO_COLLECTION_CELL = "AutoCompleteCollectionViewCell"
     
 }

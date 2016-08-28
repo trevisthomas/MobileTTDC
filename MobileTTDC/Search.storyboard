@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Mic-U1-DU4">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Search-->
+        <scene sceneID="XKr-Sn-dYN">
+            <objects>
+                <viewController title="Search" id="ocp-Xg-cr8" customClass="SearchViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8nt-Jp-hoh"/>
+                        <viewControllerLayoutGuide type="bottom" id="C9N-Cw-uTo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="292-uD-SfE">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="VjJ-DD-Fuc">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xie-yZ-WUa">
+                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="ocp-Xg-cr8" id="vyl-IY-2VN"/>
+                                    <outlet property="delegate" destination="ocp-Xg-cr8" id="j27-7j-m7q"/>
+                                </connections>
+                            </tableView>
+                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VxX-CQ-H19">
+                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iiD-W4-sus">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Knj-Gn-A6l">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="ocp-Xg-cr8" id="QlM-ED-2Ye"/>
+                                    <outlet property="delegate" destination="ocp-Xg-cr8" id="gTW-eR-GSI"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xie-yZ-WUa" firstAttribute="trailing" secondItem="VxX-CQ-H19" secondAttribute="trailing" id="08W-Nq-qTp"/>
+                            <constraint firstItem="VxX-CQ-H19" firstAttribute="leading" secondItem="VjJ-DD-Fuc" secondAttribute="leading" id="2iA-kF-M0S"/>
+                            <constraint firstItem="VxX-CQ-H19" firstAttribute="trailing" secondItem="VjJ-DD-Fuc" secondAttribute="trailing" id="OiQ-eq-yMx"/>
+                            <constraint firstItem="VjJ-DD-Fuc" firstAttribute="top" secondItem="8nt-Jp-hoh" secondAttribute="bottom" id="QiK-Qj-ZnF"/>
+                            <constraint firstItem="VxX-CQ-H19" firstAttribute="top" secondItem="VjJ-DD-Fuc" secondAttribute="bottom" id="Upv-36-OBf"/>
+                            <constraint firstItem="xie-yZ-WUa" firstAttribute="top" secondItem="VxX-CQ-H19" secondAttribute="top" id="a3d-RG-Ak9"/>
+                            <constraint firstItem="VjJ-DD-Fuc" firstAttribute="leading" secondItem="292-uD-SfE" secondAttribute="leading" id="ahl-Av-9fW"/>
+                            <constraint firstItem="xie-yZ-WUa" firstAttribute="bottom" secondItem="C9N-Cw-uTo" secondAttribute="top" id="aiO-Ms-HFt"/>
+                            <constraint firstItem="VxX-CQ-H19" firstAttribute="bottom" secondItem="C9N-Cw-uTo" secondAttribute="top" id="ek7-OA-UYK"/>
+                            <constraint firstAttribute="trailing" secondItem="VjJ-DD-Fuc" secondAttribute="trailing" id="jdQ-uT-f4y"/>
+                            <constraint firstItem="xie-yZ-WUa" firstAttribute="leading" secondItem="VxX-CQ-H19" secondAttribute="leading" id="lCa-RI-Clm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Search" id="Jpd-Mp-x5J">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="x1t-Ew-Csa">
+                            <connections>
+                                <action selector="doneButtonAction:" destination="ocp-Xg-cr8" id="o5D-8x-6FO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="VxX-CQ-H19" id="VIu-gM-B8T"/>
+                        <outlet property="searchBar" destination="VjJ-DD-Fuc" id="krj-1i-ZhL"/>
+                        <outlet property="tableView" destination="xie-yZ-WUa" id="2lX-sE-IqF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BmA-YQ-zGK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1073" y="243"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Au8-bj-aHY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mic-U1-DU4" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PhD-58-fAd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ocp-Xg-cr8" kind="relationship" relationship="rootViewController" id="gqH-fu-eHP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="URC-L1-iVJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="261" y="243"/>
+        </scene>
+    </scenes>
+</document>

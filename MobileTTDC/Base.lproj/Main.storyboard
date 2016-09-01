@@ -140,7 +140,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eck-Hb-z4t">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eck-Hb-z4t">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="KpD-F6-ZEb">
                                     <size key="itemSize" width="50" height="50"/>
@@ -380,6 +380,7 @@
                         <outlet property="modeSelectionHeightConstraint" destination="qGZ-qn-Dgk" id="by0-bz-VN3"/>
                         <outlet property="modeSelectionView" destination="Efd-hk-DWs" id="6gF-u8-YOI"/>
                         <segue destination="Rsi-aW-7qZ" kind="presentation" identifier="ConversationWithReplyView" modalPresentationStyle="formSheet" id="Tbg-Sh-HGH"/>
+                        <segue destination="iT6-UF-28K" kind="show" identifier="ThreadView" id="gvA-9t-fNh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Af-58-Ddn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -393,6 +394,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DYG-mx-0q2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1837" y="1567"/>
+        </scene>
+        <!--Thread-->
+        <scene sceneID="aHS-nB-6ui">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Thread" id="iT6-UF-28K" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FJ3-vd-ARC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1677.5" y="1853"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qCc-dH-B8t">
@@ -455,6 +464,6 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="V0P-fe-WpZ"/>
+        <segue reference="aK4-2r-U1Q"/>
     </inferredMetricsTieBreakers>
 </document>

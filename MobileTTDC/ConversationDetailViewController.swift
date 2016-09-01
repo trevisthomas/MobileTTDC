@@ -147,22 +147,26 @@ extension ConversationDetailViewController : UICollectionViewDelegate, UICollect
         return headerView
     }
     
+    override func getCollectionView() -> UICollectionView? {
+        return collectionView
+    }
+    
 }
 
 //Custom methods and logic.
 extension ConversationDetailViewController {
     
-    private func registerAndCreatePrototypeCellFromNib(withName: String, forReuseIdentifier: String) -> UICollectionViewCell{
-        let nib = UINib(nibName: withName, bundle: nil)
-        self.collectionView!.registerNib(nib, forCellWithReuseIdentifier: forReuseIdentifier)
-        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionViewCell
-    }
-    
-    private func registerAndCreatePrototypeHeaderViewFromNib(withName: String, forReuseIdentifier: String) -> UICollectionReusableView{
-        let nib = UINib(nibName: withName, bundle: nil)
-        self.collectionView!.registerNib(nib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: forReuseIdentifier)
-        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionReusableView
-    }
+//    private func registerAndCreatePrototypeCellFromNib(withName: String, forReuseIdentifier: String) -> UICollectionViewCell{
+//        let nib = UINib(nibName: withName, bundle: nil)
+//        self.collectionView!.registerNib(nib, forCellWithReuseIdentifier: forReuseIdentifier)
+//        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionViewCell
+//    }
+//    
+//    private func registerAndCreatePrototypeHeaderViewFromNib(withName: String, forReuseIdentifier: String) -> UICollectionReusableView{
+//        let nib = UINib(nibName: withName, bundle: nil)
+//        self.collectionView!.registerNib(nib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: forReuseIdentifier)
+//        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionReusableView
+//    }
     
     private func loadConversationPostDataFromWebservice(postId : String){
         let cmd = TopicCommand(type: .CONVERSATION, postId: postId)

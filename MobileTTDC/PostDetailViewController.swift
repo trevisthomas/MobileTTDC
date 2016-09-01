@@ -200,17 +200,17 @@ extension PostDetailViewController {
         displayMode = .LatestFlat //TODO! Once you add the spliter the close button should revert to what ever the state was before
     }
     
-    private func registerAndCreatePrototypeCellFromNib(withName: String, forReuseIdentifier: String) -> UICollectionViewCell{
-        let nib = UINib(nibName: withName, bundle: nil)
-        self.collectionView!.registerNib(nib, forCellWithReuseIdentifier: forReuseIdentifier)
-        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionViewCell
-    }
-    
-    private func registerAndCreatePrototypeHeaderViewFromNib(withName: String, forReuseIdentifier: String) -> UICollectionReusableView{
-        let nib = UINib(nibName: withName, bundle: nil)
-        self.collectionView!.registerNib(nib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: forReuseIdentifier)
-        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionReusableView
-    }
+//    private func registerAndCreatePrototypeCellFromNib(withName: String, forReuseIdentifier: String) -> UICollectionViewCell{
+//        let nib = UINib(nibName: withName, bundle: nil)
+//        self.collectionView!.registerNib(nib, forCellWithReuseIdentifier: forReuseIdentifier)
+//        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionViewCell
+//    }
+//    
+//    private func registerAndCreatePrototypeHeaderViewFromNib(withName: String, forReuseIdentifier: String) -> UICollectionReusableView{
+//        let nib = UINib(nibName: withName, bundle: nil)
+//        self.collectionView!.registerNib(nib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: forReuseIdentifier)
+//        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionReusableView
+//    }
     
     private func loadlatestPostDataFromWebservice(action: PostCommand.Action){
         let cmd = PostCommand(action: action, pageNumber: 1)
@@ -242,5 +242,9 @@ extension PostDetailViewController {
             self.collectionView.reloadData()
             
         };
+    }
+    
+    override func getCollectionView() -> UICollectionView? {
+        return collectionView
     }
 }

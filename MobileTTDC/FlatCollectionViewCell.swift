@@ -138,6 +138,10 @@ class FlatCollectionViewCell: UICollectionViewCell {
     @IBAction func likeAction(sender: UIButton) {
     }
 
+    @IBAction func threadTitleButton(sender: UIButton) {
+        delegate?.viewThread(post)
+    }
+    
 }
 
 extension FlatCollectionViewCell {

@@ -125,8 +125,16 @@ class LatestPostsViewController: UIViewController {
 //        guard let indexPath = sender as? NSIndexPath else {
 //            return
 //        }
+        
+        
 //        
         guard let nav = segue.destinationViewController as? UINavigationController else {
+            return
+        }
+        
+        if let destVC = nav.topViewController as? ThreadViewController {
+            let postId = sender as! String
+            destVC.rootPostId = postId
             return
         }
         
@@ -279,6 +287,8 @@ extension LatestPostsViewController : UICollectionViewDelegate, UICollectionView
                                                                                forIndexPath: indexPath) as! PostInHeaderCollectionReusableView
         headerView.post = getApplicationContext().latestPosts()[indexPath.section]
         
+        headerView.delegate = self
+        
         return headerView
     }
     
@@ -299,16 +309,20 @@ extension LatestPostsViewController {
         
     }
     
-    private func registerAndCreatePrototypeCellFromNib(withName: String, forReuseIdentifier: String) -> UICollectionViewCell{
-        let nib = UINib(nibName: withName, bundle: nil)
-        self.collectionView!.registerNib(nib, forCellWithReuseIdentifier: forReuseIdentifier)
-        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionViewCell
-    }
+//    private func registerAndCreatePrototypeCellFromNib(withName: String, forReuseIdentifier: String) -> UICollectionViewCell{
+//        let nib = UINib(nibName: withName, bundle: nil)
+//        self.collectionView!.registerNib(nib, forCellWithReuseIdentifier: forReuseIdentifier)
+//        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionViewCell
+//    }
+//    
+//    private func registerAndCreatePrototypeHeaderViewFromNib(withName: String, forReuseIdentifier: String) -> UICollectionReusableView{
+//        let nib = UINib(nibName: withName, bundle: nil)
+//        self.collectionView!.registerNib(nib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: forReuseIdentifier)
+//        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionReusableView
+//    }
     
-    private func registerAndCreatePrototypeHeaderViewFromNib(withName: String, forReuseIdentifier: String) -> UICollectionReusableView{
-        let nib = UINib(nibName: withName, bundle: nil)
-        self.collectionView!.registerNib(nib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: forReuseIdentifier)
-        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionReusableView
+    override func getCollectionView() -> UICollectionView? {
+        return collectionView
     }
 }
 
@@ -364,5 +378,8 @@ extension LatestPostsViewController : PostViewCellDelegate{
         dict["threadId"] = post.threadId
         dict["postId"] = post.postId
         performSegueWithIdentifier("ConversationWithReplyView", sender: dict)
+    }
+    func viewThread(post: Post) {
+        performSegueWithIdentifier("ThreadView", sender: post.postId)
     }
 }

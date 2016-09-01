@@ -37,12 +37,12 @@ class SearchViewController : UIViewController {
         
         searchBar.becomeFirstResponder()
     }
-    
-    private func registerAndCreatePrototypeCellFromNib(withName: String, forReuseIdentifier: String) -> UICollectionViewCell{
-        let nib = UINib(nibName: withName, bundle: nil)
-        self.collectionView!.registerNib(nib, forCellWithReuseIdentifier: forReuseIdentifier)
-        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionViewCell
-    }
+//    
+//    func registerAndCreatePrototypeCellFromNib(withName: String, forReuseIdentifier: String) -> UICollectionViewCell{
+//        let nib = UINib(nibName: withName, bundle: nil)
+//        self.collectionView!.registerNib(nib, forCellWithReuseIdentifier: forReuseIdentifier)
+//        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionViewCell
+//    }
     
     func switchToTable(){
         autoCompleteItems.removeAll()
@@ -58,6 +58,10 @@ class SearchViewController : UIViewController {
         
         tableView.hidden = true
         collectionView.hidden = false
+    }
+    
+    override func getCollectionView() -> UICollectionView? {
+        return collectionView
     }
 }
 
@@ -143,10 +147,24 @@ extension SearchViewController {
                 
         };
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard sender != nil else {
+            return
+        }
+        
+        let threadId = sender as! String
+        
+        let vc = segue.destinationViewController.childViewControllers.first as! ThreadViewController
+        
+        vc.rootPostId = threadId
+    }
 }
 
 extension SearchViewController : UICollectionViewDelegate {
-    
+//    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+//        code
+//    }
 }
 
 extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
@@ -224,4 +242,8 @@ extension SearchViewController : PostViewCellDelegate {
     func commentOnPost(post: Post){
         
     }
+    func viewThread(post: Post){
+        performSegueWithIdentifier("ThreadView", sender: post.threadId)
+    }
+
 }

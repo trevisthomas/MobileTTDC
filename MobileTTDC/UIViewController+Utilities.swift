@@ -24,5 +24,23 @@ extension UIViewController {
             completion()
         }
     }
+    
+    func registerAndCreatePrototypeCellFromNib(withName: String, forReuseIdentifier: String) -> UICollectionViewCell{
+        let nib = UINib(nibName: withName, bundle: nil)
+        self.getCollectionView()!.registerNib(nib, forCellWithReuseIdentifier: forReuseIdentifier)
+        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionViewCell
+    }
+    
+    func registerAndCreatePrototypeHeaderViewFromNib(withName: String, forReuseIdentifier: String) -> UICollectionReusableView{
+        let nib = UINib(nibName: withName, bundle: nil)
+        self.getCollectionView()!.registerNib(nib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: forReuseIdentifier)
+        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionReusableView
+    }
+    
+    func getCollectionView() -> UICollectionView? {
+        return nil
+    }
+    
+    
 }
 

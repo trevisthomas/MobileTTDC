@@ -14,6 +14,9 @@ class PostInHeaderCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var creatorImageView: UIImageView!
     @IBOutlet weak var entryTextView: UITextView!
+    
+    var delegate: PostViewCellDelegate?
+    
     var post : Post! {
         didSet{
             titleButton.setTitle(post.title, forState: UIControlState.Normal)
@@ -36,6 +39,10 @@ class PostInHeaderCollectionReusableView: UICollectionReusableView {
 //        print("Size that fits conversation cell \(sizeThatFits)")
         return ceil(sizeThatFits.height) + 64 + 8 + 8 + 50
         
+        
     }
     
+    @IBAction func titleButton(sender: UIButton) {
+        delegate?.commentOnPost(post)
+    }
 }

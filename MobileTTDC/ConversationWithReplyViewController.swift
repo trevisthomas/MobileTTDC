@@ -76,21 +76,25 @@ class ConversationWithReplyViewController: UIViewController {
         replyTextView.inputAccessoryView?.hidden = false
         
     }
+    
+    override func getCollectionView() -> UICollectionView? {
+        return collectionView
+    }
 }
 
 extension ConversationWithReplyViewController {
     
-    private func registerAndCreatePrototypeHeaderViewFromNib(withName: String, forReuseIdentifier: String) -> UICollectionReusableView{
-        let nib = UINib(nibName: withName, bundle: nil)
-        self.collectionView!.registerNib(nib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: forReuseIdentifier)
-        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionReusableView
-    }
-    
-    private func registerAndCreatePrototypeCellFromNib(withName: String, forReuseIdentifier: String) -> UICollectionViewCell{
-        let nib = UINib(nibName: withName, bundle: nil)
-        self.collectionView!.registerNib(nib, forCellWithReuseIdentifier: forReuseIdentifier)
-        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionViewCell
-    }
+//    private func registerAndCreatePrototypeHeaderViewFromNib(withName: String, forReuseIdentifier: String) -> UICollectionReusableView{
+//        let nib = UINib(nibName: withName, bundle: nil)
+//        self.collectionView!.registerNib(nib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: forReuseIdentifier)
+//        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionReusableView
+//    }
+//    
+//    private func registerAndCreatePrototypeCellFromNib(withName: String, forReuseIdentifier: String) -> UICollectionViewCell{
+//        let nib = UINib(nibName: withName, bundle: nil)
+//        self.collectionView!.registerNib(nib, forCellWithReuseIdentifier: forReuseIdentifier)
+//        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionViewCell
+//    }
     
     private func loadPost(postId: String){
 //        let cmd = PostCrudCommand(postId: postId)
@@ -248,6 +252,10 @@ extension ConversationWithReplyViewController : PostViewCellDelegate {
     }
     func commentOnPost(post: Post){
         self.commentAccessoryBecomeFirstResponder(post.postId)
+    }
+    
+    func viewThread(post: Post) {
+        print("Show the thread, here too. Dummy.")
     }
 }
 

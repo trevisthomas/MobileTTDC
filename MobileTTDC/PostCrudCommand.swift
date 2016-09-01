@@ -42,6 +42,7 @@ public class PostCrudCommand : Command {
     let forumId: String?
     let title: String?
     let topicDescription: String?
+    let loadRootAncestor: Bool?
     
     public var token: String?
     
@@ -55,11 +56,16 @@ public class PostCrudCommand : Command {
             "parentId" ~~> self.parentId ?? nil,
             "body" ~~> self.body ?? nil,
             "forumId" ~~> self.forumId ?? nil,
-            "topicDescription" ~~> self.topicDescription ?? nil
+            "topicDescription" ~~> self.topicDescription ?? nil,
+            "loadRootAncestor" ~~> self.loadRootAncestor ?? nil
             ])
     }
     
-    public init( postId: String ){
+    convenience public init( postId: String){
+        self.init(postId: postId, loadRootAncestor: false)
+    }
+    
+    public init( postId: String, loadRootAncestor: Bool ){
         self.action = Action.READ
         self.postId = postId
         self.parentId = nil
@@ -67,6 +73,7 @@ public class PostCrudCommand : Command {
         self.forumId = nil
         self.title = nil
         self.topicDescription = nil
+        self.loadRootAncestor = loadRootAncestor
     }
     
     public init ( parentId: String, body: String) {
@@ -77,6 +84,7 @@ public class PostCrudCommand : Command {
         self.forumId = nil
         self.title = nil
         self.topicDescription = nil
+        self.loadRootAncestor = nil
     }
     
     public init ( title: String, body: String, forumId: String, topicDescription: String) {
@@ -87,6 +95,8 @@ public class PostCrudCommand : Command {
         self.forumId = forumId
         self.title = title
         self.topicDescription = topicDescription
+        self.loadRootAncestor = nil
+        
     }
     
     

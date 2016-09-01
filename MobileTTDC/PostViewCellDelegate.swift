@@ -12,4 +12,5 @@ protocol PostViewCellDelegate {
     func likePost(post: Post)
     func viewComments(post: Post)
     func commentOnPost(post: Post)
+    func viewThread(post: Post)
 }

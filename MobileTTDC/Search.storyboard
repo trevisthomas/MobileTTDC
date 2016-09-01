@@ -81,11 +81,20 @@
                         <outlet property="collectionView" destination="VxX-CQ-H19" id="VIu-gM-B8T"/>
                         <outlet property="searchBar" destination="VjJ-DD-Fuc" id="krj-1i-ZhL"/>
                         <outlet property="tableView" destination="xie-yZ-WUa" id="2lX-sE-IqF"/>
+                        <segue destination="Pr6-g5-bUn" kind="show" identifier="ThreadView" id="y7h-fR-xkr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BmA-YQ-zGK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1073" y="243"/>
+        </scene>
+        <!--Thread-->
+        <scene sceneID="jHr-hH-a2P">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Thread" id="Pr6-g5-bUn" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JJj-d6-NHJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1094.5" y="707"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Au8-bj-aHY">

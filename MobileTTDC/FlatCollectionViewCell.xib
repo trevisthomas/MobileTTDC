@@ -17,6 +17,9 @@
                         <rect key="frame" x="63" y="8" width="529" height="36"/>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <state key="normal" title="Thread Title"/>
+                        <connections>
+                            <action selector="threadTitleButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="6nv-ha-fix"/>
+                        </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qm0-YV-S7s">
                         <rect key="frame" x="8" y="8" width="50" height="50"/>
@@ -193,7 +196,7 @@
                 <outlet property="inReplyStackView" destination="s8s-4Z-rph" id="KMg-T9-K5I"/>
                 <outlet property="likeButton" destination="adW-yk-Ef9" id="qPr-Zq-hLk"/>
                 <outlet property="parentPostCreatorButton" destination="twh-x2-RQa" id="c69-7Q-rPv"/>
-                <outlet property="threadTitleButton" destination="ERU-BL-1mk" id="xj8-MP-KhJ"/>
+                <outlet property="threadTitleButton" destination="ERU-BL-1mk" id="RqO-Po-IXL"/>
                 <outlet property="toParentCreatorStackView" destination="RKm-dY-jvy" id="XxC-BG-yIh"/>
                 <outlet property="viewCommentsButton" destination="xfi-Td-3QF" id="Q7s-pW-A6Q"/>
             </connections>

@@ -50,7 +50,7 @@ class CommentViewController: UIViewController {
         //TODO: Trevis, util for extention?
 //        let storyboard : UIStoryboard = UIStoryboard(name: "Comment", bundle: nil)
         
-        let view = NSBundle.mainBundle().loadNibNamed("AccessoryCommentView", owner: commentTextArea, options: nil).first as! AccessoryCommentView
+        let view = NSBundle.mainBundle().loadNibNamed("AccessoryCommentView", owner: commentTextArea, options: nil)!.first as! AccessoryCommentView
         
         view.delegate = self
         view.defaultText = commentTextArea.attributedText

@@ -191,7 +191,7 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier(ReuseIdentifiers.AUTO_TOPIC_CELL, forIndexPath: indexPath) as! AutoCompleteTableViewCell
-        
+        //Caught an out of range exception below.  How was that possible? (10/8)
         cell.item = autoCompleteItems[indexPath.row]
         
         return cell

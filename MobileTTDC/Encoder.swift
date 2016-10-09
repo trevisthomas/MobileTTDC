@@ -334,7 +334,7 @@ public struct Encoder {
             url in
             
             if let url = url {
-                return [key : url.absoluteString]
+                return [key : url.absoluteString!]
             }
             
             return nil

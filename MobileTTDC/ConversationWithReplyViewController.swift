@@ -39,7 +39,7 @@ class ConversationWithReplyViewController: UIViewController {
         
         sectionHeaderPrototype = registerAndCreatePrototypeHeaderViewFromNib("PostInHeaderCollectionReusableView", forReuseIdentifier: ReuseIdentifiers.POST_IN_HEADER_VIEW) as! PostInHeaderCollectionReusableView
         
-        let view = NSBundle.mainBundle().loadNibNamed("AccessoryCommentView", owner: replyTextView, options: nil).first as! AccessoryCommentView
+        let view = NSBundle.mainBundle().loadNibNamed("AccessoryCommentView", owner: replyTextView, options: nil)!.first as! AccessoryCommentView
         view.delegate = self
         replyTextView.inputAccessoryView = view
         

@@ -405,6 +405,7 @@
 					0FCF017F1CFA10E200924868 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = KRNJ229R7J;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -645,6 +646,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = us.ttdc.MobileTTDC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -659,6 +661,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = us.ttdc.MobileTTDC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};

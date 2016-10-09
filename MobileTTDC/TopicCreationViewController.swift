@@ -47,7 +47,7 @@ class TopicCreationViewController: UIViewController {
         titleLabel.setHtmlText(topicTitle)
         topicDescriptionTextView.attributedText = getApplicationContext().topicStash
 
-        let view = NSBundle.mainBundle().loadNibNamed("AccessoryCommentView", owner: topicDescriptionTextView, options: nil).first as! AccessoryCommentView
+        let view = NSBundle.mainBundle().loadNibNamed("AccessoryCommentView", owner: topicDescriptionTextView, options: nil)!.first as! AccessoryCommentView
         view.delegate = self
         topicDescriptionTextView.inputAccessoryView = view
         

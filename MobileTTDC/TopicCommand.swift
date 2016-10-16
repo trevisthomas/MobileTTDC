@@ -19,8 +19,9 @@ public class TopicCommand : Command {
     
     
     let type: Type
-    let pageNumber: Int
+    let pageNumber: Int  //Page -1 makes ttdc find the page containing your post!
     let postId: String
+    let pageSize: Int
     public var token: String?
     
     public func toJSON() -> JSON? {
@@ -28,13 +29,15 @@ public class TopicCommand : Command {
             "type" ~~> self.type,
             "pageNumber" ~~> self.pageNumber,
             "token" ~~> self.token ?? nil,
-            "postId" ~~> self.postId
+            "postId" ~~> self.postId,
+            "pageSize" ~~> self.pageSize
             ])
     }
     
-    public init( type: Type, postId: String, pageNumber: Int = 1){
+    public init( type: Type, postId: String, pageNumber: Int = 1, pageSize: Int = 10){
         self.type = type
         self.pageNumber = pageNumber
         self.postId = postId
+        self.pageSize = pageSize
     }
 }

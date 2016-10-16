@@ -180,6 +180,7 @@ extension LatestPostsViewController : UICollectionViewDelegateFlowLayout {
             height = flatPrototypeCell.preferredHeight(collectionView.frame.width)
             
         case .LatestGrouped:
+            //TODO: Out of range exception caugt on the line below.
             replyPrototypeCell.post = getApplicationContext().latestPosts()[indexPath.section].posts![indexPath.row]
             height = replyPrototypeCell.preferredHeight(collectionView.frame.width)
         }

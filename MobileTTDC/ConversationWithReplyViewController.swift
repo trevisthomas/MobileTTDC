@@ -16,6 +16,7 @@ class ConversationWithReplyViewController: UIViewController {
     
     var postId: String! {
         didSet{
+            print("ConversationWithReplyViewController is loading \(postId)")
             loadPost(postId)
         }
     }
@@ -113,7 +114,7 @@ extension ConversationWithReplyViewController {
 //            
 //        }
         
-        let cmd = TopicCommand(type: .NESTED_THREAD_SUMMARY, postId: postId)
+        let cmd = TopicCommand(type: .NESTED_THREAD_SUMMARY, postId: postId, pageNumber: -1, pageSize: 1)
         Network.performPostCommand(cmd){
             (response, message) -> Void in
             guard (response != nil) else {
@@ -162,6 +163,10 @@ extension ConversationWithReplyViewController {
 //        let indexPath = NSIndexPath(forItem: lastItemIndex, inSection: lastSectionIndex)
         
         guard post != nil else {
+            return
+        }
+        
+        guard post.posts?.count > 0 else {
             return
         }
         
@@ -273,6 +278,10 @@ extension ConversationWithReplyViewController {
 //        self.replyToPostId = nil  //sigh.  This is so that the first responder stays resigned!
 //        self.view.becomeFirstResponder()
 //        replyTextView.resignFirstResponder()
+        
+        let accessory = replyTextView.inputAccessoryView as! AccessoryCommentView
+        accessory.postTextView.text = ""
+        replyToPostId = nil //So that it w
         loadPost(postId)
     }
 }

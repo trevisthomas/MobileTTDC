@@ -41,6 +41,13 @@ class PostInHeaderCollectionReusableView: UICollectionReusableView {
         
         
     }
+    @IBAction func likeAction(sender: UIButton){
+        delegate?.likePost(post)
+    }
+    
+    @IBAction func commentAction(sender: UIButton) {
+        delegate?.commentOnPost(post)
+    }
     
     @IBAction func titleButton(sender: UIButton) {
         delegate?.commentOnPost(post)

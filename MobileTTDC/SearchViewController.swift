@@ -50,6 +50,8 @@ class SearchViewController : UIViewController {
         
         tableView.hidden = false
         collectionView.hidden = true
+        
+        tableView.reloadData()
     }
     
     func switchToCollectionView(){
@@ -158,6 +160,8 @@ extension SearchViewController {
         let vc = segue.destinationViewController.childViewControllers.first as! ThreadViewController
         
         vc.rootPostId = threadId
+        
+        
     }
 }
 
@@ -183,6 +187,8 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
 //        }
         
         print(item.displayTitle)
+        
+        performSegueWithIdentifier("ThreadView", sender: item.postId)
         
     }
     

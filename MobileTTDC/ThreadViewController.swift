@@ -84,6 +84,54 @@ class ThreadViewController: UIViewController {
     override func getCollectionView() -> UICollectionView? {
         return collectionView
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        //        guard let indexPath = sender as? NSIndexPath else {
+        //            return
+        //        }
+        
+        
+        //
+        guard let nav = segue.destinationViewController as? UINavigationController else {
+            return
+        }
+        
+        if let destVC = nav.topViewController as? ThreadViewController {
+            let postId = sender as! String
+            destVC.rootPostId = postId
+            return
+        }
+        
+        guard let vc = nav.topViewController as? ConversationWithReplyViewController else {
+            return
+        }
+        //
+        //
+        //        var threadId : String!
+        //        switch (getApplicationContext().displayMode) {
+        //            case .LatestFlat:
+        //            let post = getApplicationContext().latestPosts()[indexPath.row]
+        //            threadId = post.threadId
+        //
+        //            case .LatestGrouped:
+        //            let post = getApplicationContext().latestPosts()[indexPath.section].posts![indexPath.row]
+        //            threadId = post.threadId
+        //        }
+        
+        let dict = sender as! [String: String]
+        
+        //        let threadId = sender as! String
+        
+        print(dict["threadId"])
+        
+        //        vc.postId = dict["threadId"]
+        
+        vc.postId = dict["threadId"]
+        if let postId = dict["postId"] {
+            vc.replyToPostId = postId
+        }
+    }
+
 }
 
 extension ThreadViewController : UICollectionViewDelegate {
@@ -118,6 +166,7 @@ extension ThreadViewController : UICollectionViewDataSource {
         headerView.post = posts[indexPath.section]
        
 //        headerView.post = posts[indexPath.section]
+        headerView.delegate = self
         
         
         return headerView
@@ -151,7 +200,13 @@ extension ThreadViewController : PostViewCellDelegate {
         
     }
     func commentOnPost(post: Post){
+        print("Comment on Post - ThreadViewController\(post.postId)")
         
+        var dict = [String: String]()
+        dict["threadId"] = post.threadId
+        dict["postId"] = post.postId
+        performSegueWithIdentifier("ConversationWithReplyView", sender: dict)
+
     }
     func viewThread(post: Post){
         

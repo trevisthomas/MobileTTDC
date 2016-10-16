@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,7 +13,6 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G54-nQ-cne">
-                    <rect key="frame" x="63" y="8" width="529" height="36"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <state key="normal" title="Thread Title"/>
                     <connections>
@@ -20,14 +20,12 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kj3-ej-iA4">
-                    <rect key="frame" x="8" y="8" width="50" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="QdP-rD-Dso"/>
                         <constraint firstAttribute="width" constant="50" id="Uwe-eE-D0A"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0p-j8-cHc">
-                    <rect key="frame" x="63" y="45" width="529" height="12"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="12" id="4k7-HA-6jw"/>
                     </constraints>
@@ -35,8 +33,7 @@
                     <state key="normal" title="01/01/1970"/>
                 </button>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6GS-Pb-J3i">
-                    <rect key="frame" x="8" y="61" width="584" height="181"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <attributedString key="attributedText">
                         <fragment>
                             <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -49,13 +46,37 @@
                     <textInputTraits key="textInputTraits"/>
                     <dataDetectorType key="dataDetectorTypes" link="YES"/>
                 </textView>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="nDK-X4-Tjp">
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LFp-aI-Rlf">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="16" id="LBx-G1-yJE"/>
+                            </constraints>
+                            <state key="normal" title="Like"/>
+                            <connections>
+                                <action selector="titleButtonWithSender:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="PvH-0O-ebo"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HMW-Gt-Aau">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="16" id="iLf-OX-vGd"/>
+                            </constraints>
+                            <state key="normal" title="Comment"/>
+                            <connections>
+                                <action selector="commentAction:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="X1I-DK-ITW"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
             </subviews>
             <constraints>
                 <constraint firstItem="6GS-Pb-J3i" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="8" id="1y3-ph-7gA"/>
                 <constraint firstItem="6GS-Pb-J3i" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="61" id="4EP-X3-Vlz"/>
                 <constraint firstItem="v0p-j8-cHc" firstAttribute="trailing" secondItem="G54-nQ-cne" secondAttribute="trailing" id="8aG-85-3tU"/>
+                <constraint firstAttribute="bottom" secondItem="nDK-X4-Tjp" secondAttribute="bottom" constant="4" id="Dao-bt-uha"/>
                 <constraint firstAttribute="trailing" secondItem="6GS-Pb-J3i" secondAttribute="trailing" constant="8" id="Hao-uI-M7h"/>
-                <constraint firstAttribute="bottom" secondItem="6GS-Pb-J3i" secondAttribute="bottom" constant="8" id="RPC-Sg-UhB"/>
+                <constraint firstItem="nDK-X4-Tjp" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="8" id="K7U-CZ-Hwq"/>
+                <constraint firstAttribute="bottom" secondItem="6GS-Pb-J3i" secondAttribute="bottom" constant="24" id="RPC-Sg-UhB"/>
                 <constraint firstItem="v0p-j8-cHc" firstAttribute="top" secondItem="G54-nQ-cne" secondAttribute="bottom" constant="1" id="TvH-Z2-y9Q"/>
                 <constraint firstItem="G54-nQ-cne" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="8" id="XIZ-e3-Z1C"/>
                 <constraint firstItem="G54-nQ-cne" firstAttribute="leading" secondItem="kj3-ej-iA4" secondAttribute="trailing" constant="5" id="cwu-bJ-rDp"/>

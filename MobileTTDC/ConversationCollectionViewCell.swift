@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+//TODO Find out where this is used
 class ConversationCollectionViewCell: UICollectionViewCell {
     
     var post : Post! {
@@ -69,17 +71,21 @@ class ConversationCollectionViewCell: UICollectionViewCell {
         
         
 //        return 123
-        let sizeThatFits = entryTextView.sizeThatFits(CGSizeMake(width - 16, CGFloat.max))
+//        let sizeThatFits = entryTextView.sizeThatFits(CGSizeMake(width - 16, CGFloat.max))
         
-        print("Size that fits conversation cell \(sizeThatFits)")
-        return ceil(sizeThatFits.height) + 64 + 8 + 8 + 50
+//        print("Size that fits conversation cell \(sizeThatFits)")
+//        return ceil(sizeThatFits.height) + 64 + 8 + 8 + 50
         
 //        let sizeThatFits = self.contentView.sizeThatFits(CGSizeMake(width - 16, CGFloat.max))
 //        
 //        print("Size that fits \(sizeThatFits)")
 //        return ceil(sizeThatFits.height)
         
+        let sizeThatFits = entryTextView.sizeThatFits(CGSizeMake(width, CGFloat.max))
+        let insets: UIEdgeInsets = entryTextView.textContainerInset;
+        let heightThatFits = sizeThatFits.height + insets.top + insets.bottom + 60 + 24
         
+        return heightThatFits
     }
 
 }

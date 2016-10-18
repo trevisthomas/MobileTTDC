@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,9 +15,9 @@
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nf3-WH-y9g">
-                        <rect key="frame" x="64" y="8" width="46" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="Zo3-J2-T4X"/>
                         </constraints>
@@ -24,26 +25,22 @@
                         <state key="normal" title="Creator"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4NY-qo-MWE">
-                        <rect key="frame" x="118" y="8" width="136" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <state key="normal" title="Nevervember 32, 2101"/>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IRk-3w-sdN">
-                        <rect key="frame" x="32" y="8" width="24" height="24"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="24" id="78J-tv-v2l"/>
                             <constraint firstAttribute="height" constant="24" id="goA-uq-GBC"/>
                         </constraints>
                     </imageView>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zG1-vd-KCD">
-                        <rect key="frame" x="64" y="32" width="528" height="140"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OnK-B8-Fcq">
-                        <rect key="frame" x="64" y="176" width="30" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="Pbl-91-Twb"/>
                         </constraints>
@@ -54,7 +51,6 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RLq-5W-ppo">
-                        <rect key="frame" x="102" y="176" width="34" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="gCa-1x-j1i"/>
                         </constraints>
@@ -65,7 +61,6 @@
                         </connections>
                     </button>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
                 <constraint firstItem="zG1-vd-KCD" firstAttribute="leading" secondItem="IRk-3w-sdN" secondAttribute="trailing" constant="8" symbolic="YES" id="3uF-qY-B2G"/>
@@ -81,7 +76,7 @@
                 <constraint firstItem="nf3-WH-y9g" firstAttribute="baseline" secondItem="4NY-qo-MWE" secondAttribute="firstBaseline" id="aBa-WH-Usr"/>
                 <constraint firstItem="zG1-vd-KCD" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="32" id="ek0-dh-dUb"/>
                 <constraint firstItem="RLq-5W-ppo" firstAttribute="leading" secondItem="OnK-B8-Fcq" secondAttribute="trailing" constant="8" id="hLI-Af-5jV"/>
-                <constraint firstAttribute="bottom" secondItem="zG1-vd-KCD" secondAttribute="bottom" constant="28" id="jep-gj-lg9"/>
+                <constraint firstAttribute="bottom" secondItem="zG1-vd-KCD" secondAttribute="bottom" constant="24" id="jep-gj-lg9"/>
                 <constraint firstItem="zG1-vd-KCD" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="64" id="pqL-we-GQV"/>
                 <constraint firstItem="IRk-3w-sdN" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="sIT-GD-hvA"/>
                 <constraint firstItem="nf3-WH-y9g" firstAttribute="baseline" secondItem="4NY-qo-MWE" secondAttribute="baseline" id="sTZ-kk-x4m"/>
@@ -100,7 +95,11 @@
                 <outlet property="creatorImageView" destination="IRk-3w-sdN" id="WrH-1T-adm"/>
                 <outlet property="creatorNameButton" destination="nf3-WH-y9g" id="LTd-YT-Z69"/>
                 <outlet property="dateButton" destination="4NY-qo-MWE" id="gaL-UB-dLG"/>
+                <outlet property="entryBottomConstraint" destination="jep-gj-lg9" id="vb3-Lh-a4f"/>
+                <outlet property="entryLeftConstraint" destination="pqL-we-GQV" id="Thj-OS-a7H"/>
+                <outlet property="entryRightConstraint" destination="v74-nh-uvr" id="s2F-wM-5XB"/>
                 <outlet property="entryTextView" destination="zG1-vd-KCD" id="tYT-YJ-1Jt"/>
+                <outlet property="entryTopConstraint" destination="ek0-dh-dUb" id="hwL-4k-juJ"/>
                 <outlet property="likeButton" destination="OnK-B8-Fcq" id="MLV-e0-NMR"/>
                 <outlet property="replyButton" destination="RLq-5W-ppo" id="X72-sW-1iL"/>
             </connections>

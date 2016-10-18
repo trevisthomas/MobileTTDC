@@ -27,6 +27,10 @@ class ReplyCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var replyButton: UIButton!
     
+    @IBOutlet weak var entryTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var entryBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var entryLeftConstraint: NSLayoutConstraint!
+    @IBOutlet weak var entryRightConstraint: NSLayoutConstraint!
     var delegate : PostViewCellDelegate?
     
     override func awakeFromNib() {
@@ -43,10 +47,17 @@ class ReplyCollectionViewCell: UICollectionViewCell {
     }
     
     func preferredHeight(width : CGFloat) -> CGFloat {
-        let sizeThatFits = entryTextView.sizeThatFits(CGSizeMake(width - 16, CGFloat.max))
+//        let sizeThatFits = entryTextView.sizeThatFits(CGSizeMake(width - 16, CGFloat.max))
         
 //        print("Size that fits \(sizeThatFits)")
-        return ceil(sizeThatFits.height) + 12 + 4 + 4 + 16 + 8 + 50
+//        return ceil(sizeThatFits.height) + 12 + 4 + 4 + 16 + 8 + 50
+        
+        
+        let sizeThatFits = entryTextView.sizeThatFits(CGSizeMake(width - entryLeftConstraint.constant - entryRightConstraint.constant, CGFloat.max))
+        let insets: UIEdgeInsets = entryTextView.textContainerInset;
+        let heightThatFits = sizeThatFits.height + insets.top + insets.bottom + entryTopConstraint.constant + entryBottomConstraint.constant
+        
+        return heightThatFits
         
     }
 

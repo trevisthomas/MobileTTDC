@@ -67,8 +67,7 @@
                             </button>
                         </subviews>
                     </stackView>
-                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="RKm-dY-jvy" userLabel="to Parent Creator Stack View">
-                        <frame key="frameInset" minX="306" minY="47" width="119" height="12"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="RKm-dY-jvy" userLabel="to Parent Creator Stack View">
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQe-L6-32Q">
                                 <constraints>
@@ -87,8 +86,7 @@
                             </button>
                         </subviews>
                     </stackView>
-                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="A8V-7K-Hhs" userLabel="by Creator on Date Stack View">
-                        <frame key="frameInset" minX="63" minY="47" width="138" height="12"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="A8V-7K-Hhs" userLabel="by Creator on Date Stack View">
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6VE-a9-19A">
                                 <constraints>
@@ -122,8 +120,7 @@
                             </button>
                         </subviews>
                     </stackView>
-                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="s8s-4Z-rph" userLabel="in Reply Stack View">
-                        <frame key="frameInset" minX="209" minY="47" width="92" height="12"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="s8s-4Z-rph" userLabel="in Reply Stack View">
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tpd-pc-SYt">
                                 <constraints>
@@ -178,6 +175,10 @@
                 <outlet property="creatorButton" destination="Bhh-7o-FFv" id="mdc-af-spT"/>
                 <outlet property="creatorImageView" destination="Qm0-YV-S7s" id="G6s-RA-CSt"/>
                 <outlet property="dateButton" destination="mEU-jw-UbE" id="0sN-J5-Kfx"/>
+                <outlet property="entryConstraintBottom" destination="8X6-WQ-EGX" id="uLe-0L-bfb"/>
+                <outlet property="entryConstraintTop" destination="Vz7-H4-Hk9" id="4sF-RP-hiT"/>
+                <outlet property="entryLeftConstraint" destination="kMP-Y1-HRG" id="WMq-nw-txh"/>
+                <outlet property="entryRightConstraint" destination="utI-GN-I6B" id="koG-g5-eAY"/>
                 <outlet property="entryTextView" destination="e7S-Zo-uOW" id="xE5-E9-9TT"/>
                 <outlet property="inReplyPrefixLabel" destination="Tpd-pc-SYt" id="4s8-hK-Pib"/>
                 <outlet property="inReplyStackView" destination="s8s-4Z-rph" id="KMg-T9-K5I"/>

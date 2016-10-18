@@ -11,6 +11,11 @@ import UIKit
 class FlatCollectionViewCell: UICollectionViewCell {
     
     
+    @IBOutlet weak var entryConstraintBottom: NSLayoutConstraint!
+    @IBOutlet weak var entryConstraintTop: NSLayoutConstraint!
+    
+    @IBOutlet weak var entryRightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var entryLeftConstraint: NSLayoutConstraint!
     var post : Post!{
         didSet{
             dateButton.setTitle(Utilities.singleton.simpleDateFormat(post.date), forState: .Normal)
@@ -165,10 +170,15 @@ extension FlatCollectionViewCell {
     
     func preferredHeight(width : CGFloat) -> CGFloat {
         
-        let sizeThatFits = entryTextView.sizeThatFits(CGSizeMake(width - 16, CGFloat.max))
+//        let sizeThatFits = entryTextView.sizeThatFits(CGSizeMake(width - 16, CGFloat.max))
+//        
+//        print("Size that fits flat cell \(sizeThatFits)")
+//        return ceil(sizeThatFits.height) + 64 + 8 + 8 + 50
         
-        print("Size that fits flat cell \(sizeThatFits)")
-        return ceil(sizeThatFits.height) + 64 + 8 + 8 + 50
+        let sizeThatFits = entryTextView.sizeThatFits(CGSizeMake(width - entryLeftConstraint.constant - entryRightConstraint.constant, CGFloat.max))
+        let insets: UIEdgeInsets = entryTextView.textContainerInset;
+        let heightThatFits = sizeThatFits.height + insets.top + insets.bottom + entryConstraintTop.constant + entryConstraintBottom.constant
+        return heightThatFits
     }
 }
 

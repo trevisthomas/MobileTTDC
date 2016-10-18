@@ -15,6 +15,11 @@ class PostInHeaderCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var creatorImageView: UIImageView!
     @IBOutlet weak var entryTextView: UITextView!
     
+    @IBOutlet weak var entryRightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var entryLeftConstraint: NSLayoutConstraint!
+    @IBOutlet weak var entryBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var entryTopConstraint: NSLayoutConstraint!
+    
     var delegate: PostViewCellDelegate?
     
     var post : Post! {
@@ -34,10 +39,16 @@ class PostInHeaderCollectionReusableView: UICollectionReusableView {
     }
     
     func preferredHeight(width : CGFloat) -> CGFloat {
-        let sizeThatFits = entryTextView.sizeThatFits(CGSizeMake(width - 16, CGFloat.max))
+//        let sizeThatFits = entryTextView.sizeThatFits(CGSizeMake(width - 16, CGFloat.max))
+//        let sizeThatFits = entryTextView.sizeThatFits(CGSizeMake(entryTextView.frame.size.width, CGFloat.max))
+        let sizeThatFits = entryTextView.sizeThatFits(CGSizeMake(width - entryRightConstraint.constant - entryLeftConstraint.constant, CGFloat.max))
+//        let
+        let insets: UIEdgeInsets = entryTextView.textContainerInset;
+        let heightThatFits = sizeThatFits.height + insets.top + insets.bottom + entryTopConstraint.constant + entryBottomConstraint.constant
         
-//        print("Size that fits conversation cell \(sizeThatFits)")
-        return ceil(sizeThatFits.height) + 64 + 8 + 8 + 50
+        print("Size that fits PostInHeader cell h: \(sizeThatFits.height) w: \(sizeThatFits.width) Width arg: \(width) Hight that fits \(heightThatFits) entryTextView width: \(entryTextView.frame.size.width)")
+        return heightThatFits
+//        return ceil(sizeThatFits.height) + 64 + 8 + 8 + 50
         
         
     }

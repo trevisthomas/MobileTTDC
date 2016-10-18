@@ -132,6 +132,19 @@ class ThreadViewController: UIViewController {
         }
     }
 
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        
+        print("Orientation: PostDetailViewController")
+        
+        coordinator.animateAlongsideTransition({ context in
+            // do whatever with your context
+            context.viewControllerForKey(UITransitionContextFromViewControllerKey)
+            }, completion: {context in
+                self.collectionView?.collectionViewLayout.invalidateLayout()
+                
+            }
+        )
+    }
 }
 
 extension ThreadViewController : UICollectionViewDelegate {
@@ -186,7 +199,8 @@ extension ThreadViewController : UICollectionViewDelegateFlowLayout {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
-        sectionHeaderPrototype.post = getApplicationContext().latestPosts()[section]
+        sectionHeaderPrototype.post = posts[section]
+        
         let height = sectionHeaderPrototype.preferredHeight(collectionView.frame.width)
         return CGSize(width: collectionView.frame.width, height: height)
     }

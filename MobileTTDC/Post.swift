@@ -42,3 +42,20 @@ public struct Post : Decodable{
     }
     
 }
+
+//Entending array so that it can flatten groupped posts
+extension SequenceType where Generator.Element == Post {
+    func flattenPosts() -> [Post]{
+        var flatPosts : [Post] = []
+        for post in self {
+            flatPosts.append(post)
+            guard (post.posts != nil) else {
+                continue
+            }
+            for reply in post.posts! {
+                flatPosts.append(reply)
+            }
+        }
+        return flatPosts
+    }
+}

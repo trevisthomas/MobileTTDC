@@ -129,6 +129,10 @@ extension ApplicationContext : LatestPostsDataProvider {
             }
             
             self._latestPosts = (response?.list)!
+            
+            if self.displayMode == .LatestGrouped {
+                self._latestPosts = self._latestPosts.flattenPosts()
+            }
         };
     }
     

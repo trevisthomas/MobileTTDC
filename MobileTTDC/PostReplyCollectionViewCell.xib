@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ReplyPostCell" id="tHN-IQ-gWD" customClass="PostReplyCollectionViewCell" customModule="MobileTTDC" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PostReplyCollectionViewCell" id="tHN-IQ-gWD" customClass="PostReplyCollectionViewCell" customModule="MobileTTDC" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -55,7 +55,7 @@
                             <constraint firstAttribute="height" constant="16" id="Eif-bq-BTl"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <state key="normal" title="Reply"/>
+                        <state key="normal" title="Comment"/>
                         <connections>
                             <action selector="replyAction:" destination="tHN-IQ-gWD" eventType="touchUpInside" id="2cp-j1-sze"/>
                         </connections>

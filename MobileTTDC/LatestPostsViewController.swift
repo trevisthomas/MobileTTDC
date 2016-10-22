@@ -12,7 +12,7 @@ class LatestPostsViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private var flatPrototypeCell : FlatCollectionViewCell!
+    private var flatPrototypeCell : PostCollectionViewCell!
     private var replyPrototypeCell : ReplyCollectionViewCell!
     private var sectionHeaderPrototype : PostInHeaderCollectionReusableView!
     
@@ -74,7 +74,7 @@ class LatestPostsViewController: UIViewController {
         getApplicationContext().latestPostsObserver = self
         collectionView.delegate = self //For the layout delegate
         
-        flatPrototypeCell = registerAndCreatePrototypeCellFromNib("FlatCollectionViewCell", forReuseIdentifier: ReuseIdentifiers.FLAT_POST_CELL) as! FlatCollectionViewCell
+        flatPrototypeCell = registerAndCreatePrototypeCellFromNib(ReuseIdentifiers.POST_CELL, forReuseIdentifier: ReuseIdentifiers.POST_CELL) as! PostCollectionViewCell
         
         replyPrototypeCell = registerAndCreatePrototypeCellFromNib("ReplyCollectionViewCell", forReuseIdentifier: ReuseIdentifiers.REPLY_POST_CELL) as! ReplyCollectionViewCell
         
@@ -269,7 +269,7 @@ extension LatestPostsViewController : UICollectionViewDelegate, UICollectionView
         
         switch (getApplicationContext().displayMode) {
         case .LatestFlat:
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.FLAT_POST_CELL, forIndexPath: indexPath) as! FlatCollectionViewCell
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.POST_CELL, forIndexPath: indexPath) as! PostCollectionViewCell
             cell.post = getApplicationContext().latestPosts()[indexPath.row]
             cell.delegate = self
             return cell

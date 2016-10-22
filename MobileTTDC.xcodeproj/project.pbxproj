@@ -36,6 +36,17 @@
 		0F9E09021D15A83E006676C1 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9E09011D15A83E006676C1 /* PostDetailViewController.swift */; };
 		0F9E09061D15D5D4006676C1 /* PostInHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F9E09041D15D5D4006676C1 /* PostInHeaderCollectionReusableView.xib */; };
 		0FA3F2421DAAB2F700268DC1 /* PostInHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA3F2411DAAB2F700268DC1 /* PostInHeaderCollectionReusableView.swift */; };
+		0FA3F2471DB983D700268DC1 /* FullPostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FA3F2461DB983D700268DC1 /* FullPostView.xib */; };
+		0FA3F2491DB986F300268DC1 /* FullPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA3F2481DB986F300268DC1 /* FullPostView.swift */; };
+		0FA3F2501DB9CA4100268DC1 /* FullPostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA3F24E1DB9CA4100268DC1 /* FullPostCollectionViewCell.swift */; };
+		0FA3F2511DB9CA4100268DC1 /* FullPostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FA3F24F1DB9CA4100268DC1 /* FullPostCollectionViewCell.xib */; };
+		0FA3F25A1DBADB0200268DC1 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA3F2581DBADB0200268DC1 /* PostViewController.swift */; };
+		0FA3F25B1DBADB0200268DC1 /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FA3F2591DBADB0200268DC1 /* PostViewController.xib */; };
+		0FA3F25E1DBBC7EA00268DC1 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA3F25C1DBBC7EA00268DC1 /* PostCollectionViewCell.swift */; };
+		0FA3F25F1DBBC7EA00268DC1 /* PostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FA3F25D1DBBC7EA00268DC1 /* PostCollectionViewCell.xib */; };
+		0FA3F2621DBBC7FE00268DC1 /* PostReplyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA3F2601DBBC7FE00268DC1 /* PostReplyCollectionViewCell.swift */; };
+		0FA3F2631DBBC7FE00268DC1 /* PostReplyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FA3F2611DBBC7FE00268DC1 /* PostReplyCollectionViewCell.xib */; };
+		0FA3F2651DBBCAA100268DC1 /* UICollectionViewCell+TTDC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA3F2641DBBCAA100268DC1 /* UICollectionViewCell+TTDC.swift */; };
 		0FA556AF1D2077AC001CEA6E /* UIViewController+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA556AE1D2077AC001CEA6E /* UIViewController+Utilities.swift */; };
 		0FB2F4941CFF9C77008F386A /* NSDate+Gloss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2F4931CFF9C77008F386A /* NSDate+Gloss.swift */; };
 		0FB2F4961CFFA0E5008F386A /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2F4951CFFA0E5008F386A /* Entry.swift */; };
@@ -122,6 +133,17 @@
 		0F9E09011D15A83E006676C1 /* PostDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		0F9E09041D15D5D4006676C1 /* PostInHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostInHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 		0FA3F2411DAAB2F700268DC1 /* PostInHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostInHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		0FA3F2461DB983D700268DC1 /* FullPostView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullPostView.xib; sourceTree = "<group>"; };
+		0FA3F2481DB986F300268DC1 /* FullPostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullPostView.swift; sourceTree = "<group>"; };
+		0FA3F24E1DB9CA4100268DC1 /* FullPostCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullPostCollectionViewCell.swift; sourceTree = "<group>"; };
+		0FA3F24F1DB9CA4100268DC1 /* FullPostCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullPostCollectionViewCell.xib; sourceTree = "<group>"; };
+		0FA3F2581DBADB0200268DC1 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		0FA3F2591DBADB0200268DC1 /* PostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostViewController.xib; sourceTree = "<group>"; };
+		0FA3F25C1DBBC7EA00268DC1 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
+		0FA3F25D1DBBC7EA00268DC1 /* PostCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostCollectionViewCell.xib; sourceTree = "<group>"; };
+		0FA3F2601DBBC7FE00268DC1 /* PostReplyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostReplyCollectionViewCell.swift; sourceTree = "<group>"; };
+		0FA3F2611DBBC7FE00268DC1 /* PostReplyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostReplyCollectionViewCell.xib; sourceTree = "<group>"; };
+		0FA3F2641DBBCAA100268DC1 /* UICollectionViewCell+TTDC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+TTDC.swift"; sourceTree = "<group>"; };
 		0FA556AE1D2077AC001CEA6E /* UIViewController+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utilities.swift"; sourceTree = "<group>"; };
 		0FB2F4931CFF9C77008F386A /* NSDate+Gloss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Gloss.swift"; sourceTree = "<group>"; };
 		0FB2F4951CFFA0E5008F386A /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
@@ -213,6 +235,7 @@
 				0FA556AE1D2077AC001CEA6E /* UIViewController+Utilities.swift */,
 				0FCC108B1D2B352500EA0B25 /* UITextView+Utilities.swift */,
 				0F0F69A91D317137009600F7 /* UILabel+Utilities.swift */,
+				0FA3F2641DBBCAA100268DC1 /* UICollectionViewCell+TTDC.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -227,6 +250,23 @@
 				0FB2F4A61D035B4A008F386A /* Utilities.swift */,
 			);
 			name = Core;
+			sourceTree = "<group>";
+		};
+		0FA3F2431DB982CD00268DC1 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				0FA3F2461DB983D700268DC1 /* FullPostView.xib */,
+				0FA3F2481DB986F300268DC1 /* FullPostView.swift */,
+				0FA3F24E1DB9CA4100268DC1 /* FullPostCollectionViewCell.swift */,
+				0FA3F24F1DB9CA4100268DC1 /* FullPostCollectionViewCell.xib */,
+				0FA3F2591DBADB0200268DC1 /* PostViewController.xib */,
+				0FA3F2581DBADB0200268DC1 /* PostViewController.swift */,
+				0FA3F25C1DBBC7EA00268DC1 /* PostCollectionViewCell.swift */,
+				0FA3F25D1DBBC7EA00268DC1 /* PostCollectionViewCell.xib */,
+				0FA3F2601DBBC7FE00268DC1 /* PostReplyCollectionViewCell.swift */,
+				0FA3F2611DBBC7FE00268DC1 /* PostReplyCollectionViewCell.xib */,
+			);
+			name = Post;
 			sourceTree = "<group>";
 		};
 		0FB2F4991CFFAA8D008F386A /* Models */ = {
@@ -295,6 +335,7 @@
 				0F888A6D1D1DDD9F005F960A /* LatestPostsViewController.swift */,
 				0FF896641D73707A007813F7 /* Thread */,
 				0FCF018E1CFA10E200924868 /* LaunchScreen.storyboard */,
+				0FA3F2431DB982CD00268DC1 /* Post */,
 				0FCC10841D2AC52500EA0B25 /* Comment */,
 				0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */,
 				0F76A87D1CFA1C9400BDD499 /* ProfileViewController.swift */,
@@ -434,15 +475,20 @@
 			files = (
 				0FCF01901CFA10E200924868 /* LaunchScreen.storyboard in Resources */,
 				0F9E09061D15D5D4006676C1 /* PostInHeaderCollectionReusableView.xib in Resources */,
+				0FA3F2631DBBC7FE00268DC1 /* PostReplyCollectionViewCell.xib in Resources */,
 				0FD5976A1D316CD500CAE7FF /* AutoCompleteTableViewCell.xib in Resources */,
+				0FA3F25B1DBADB0200268DC1 /* PostViewController.xib in Resources */,
+				0FA3F2511DB9CA4100268DC1 /* FullPostCollectionViewCell.xib in Resources */,
 				0FD0A33A1D0DF0160030D36F /* ReplyCollectionViewCell.xib in Resources */,
 				0F0F69CC1D3C9D09009600F7 /* Conversation.storyboard in Resources */,
 				0FCC10811D2AC38800EA0B25 /* Comment.storyboard in Resources */,
 				0F0F69B61D370987009600F7 /* AccessoryCommentView.xib in Resources */,
+				0FA3F2471DB983D700268DC1 /* FullPostView.xib in Resources */,
 				0FB2F4A51D033C24008F386A /* FlatCollectionViewCell.xib in Resources */,
 				0FF8966A1D73767A007813F7 /* AutoCompleteCollectionViewCell.xib in Resources */,
 				0FCF018D1CFA10E200924868 /* Assets.xcassets in Resources */,
 				0FF896661D737096007813F7 /* Thread.storyboard in Resources */,
+				0FA3F25F1DBBC7EA00268DC1 /* PostCollectionViewCell.xib in Resources */,
 				0FCF018B1CFA10E200924868 /* Main.storyboard in Resources */,
 				0F83CF3E1D734AAF001A7F8F /* Search.storyboard in Resources */,
 				0FD0A32A1D0CAA140030D36F /* ConversationCollectionViewCell.xib in Resources */,
@@ -456,7 +502,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FA3F25A1DBADB0200268DC1 /* PostViewController.swift in Sources */,
 				0FE5273A1CFC9FB800407AAE /* Command.swift in Sources */,
+				0FA3F25E1DBBC7EA00268DC1 /* PostCollectionViewCell.swift in Sources */,
 				0FB2F4981CFFA8FC008F386A /* Image.swift in Sources */,
 				0FCF01841CFA10E200924868 /* AppDelegate.swift in Sources */,
 				0F0F69CE1D4D4F53009600F7 /* PostViewCellDelegate.swift in Sources */,
@@ -475,6 +523,7 @@
 				0FCC107B1D2ABB9800EA0B25 /* AutoCompleteResponse.swift in Sources */,
 				0F9E08FE1D14BB62006676C1 /* ConverstionSplitViewController.swift in Sources */,
 				0FD0A3391D0DF0160030D36F /* ReplyCollectionViewCell.swift in Sources */,
+				0FA3F2651DBBCAA100268DC1 /* UICollectionViewCell+TTDC.swift in Sources */,
 				0FCC10771D28392300EA0B25 /* LatestPostsProtocols.swift in Sources */,
 				0F9E09021D15A83E006676C1 /* PostDetailViewController.swift in Sources */,
 				0FD0A3221D0CA2530030D36F /* ConversationsViewController.swift in Sources */,
@@ -485,6 +534,7 @@
 				0FE527241CFB654300407AAE /* Person.swift in Sources */,
 				0FA3F2421DAAB2F700268DC1 /* PostInHeaderCollectionReusableView.swift in Sources */,
 				0FD0A3291D0CAA140030D36F /* ConversationCollectionViewCell.swift in Sources */,
+				0FA3F2491DB986F300268DC1 /* FullPostView.swift in Sources */,
 				0FE527311CFB65EB00407AAE /* Gloss.swift in Sources */,
 				0FD0A3401D0DFE980030D36F /* TopicResponse.swift in Sources */,
 				0F0F69AC1D319DAF009600F7 /* CommentViewController.swift in Sources */,
@@ -510,6 +560,7 @@
 				0FE5272D1CFB65EB00407AAE /* Decoder.swift in Sources */,
 				0F0F69B21D329B61009600F7 /* TransactionTrackable.swift in Sources */,
 				0FF896631D736F60007813F7 /* ThreadViewController.swift in Sources */,
+				0FA3F2621DBBC7FE00268DC1 /* PostReplyCollectionViewCell.swift in Sources */,
 				0FB2F4961CFFA0E5008F386A /* Entry.swift in Sources */,
 				0F888A6E1D1DDDA0005F960A /* ConversationDetailViewController.swift in Sources */,
 				0FE527321CFB65EB00407AAE /* Operators.swift in Sources */,
@@ -524,6 +575,7 @@
 				0FB2F4AB1D037008008F386A /* UIView+Utillities.swift in Sources */,
 				0FE527401CFD05AE00407AAE /* PostCommand.swift in Sources */,
 				0F0F69BA1D3AB511009600F7 /* RegisterCommand.swift in Sources */,
+				0FA3F2501DB9CA4100268DC1 /* FullPostCollectionViewCell.swift in Sources */,
 				0FD0A32C1D0CAD0E0030D36F /* SearchCommand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

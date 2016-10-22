@@ -183,15 +183,5 @@ extension FlatCollectionViewCell {
 }
 
 
-extension FlatCollectionViewCell : UITextViewDelegate {
-    //http://stackoverflow.com/questions/20541676/ios-uitextview-or-uilabel-with-clickable-links-to-actions
-    func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
-        print("\(URL.absoluteString)")
-        return true;
-    }
-}
-
-
-//** Move this extension!!
 
 

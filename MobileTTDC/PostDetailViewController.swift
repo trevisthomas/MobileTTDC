@@ -8,6 +8,9 @@
 
 import UIKit
 
+
+//Trevis, this might be deprecated.
+
 class PostDetailViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
@@ -49,6 +52,8 @@ class PostDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         collectionView.delegate = self //For the layout delegate
         

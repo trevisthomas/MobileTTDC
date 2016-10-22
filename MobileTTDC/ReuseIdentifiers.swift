@@ -9,6 +9,10 @@
 import Foundation
 
 public struct ReuseIdentifiers {
+    static let POST_CELL = "PostCollectionViewCell"
+    static let POST_REPLY_CELL = "PostReplyCollectionViewCell"
+    
+    static let FULL_POST_CELL = "FullPostCollectionViewCell"
     static let CONVERSATION_POST_CELL = "ConversationPostCell"
     static let FLAT_POST_CELL = "FlatPostCell"
     static let GROUPED_POST_CELL = "GroupedPostCell"

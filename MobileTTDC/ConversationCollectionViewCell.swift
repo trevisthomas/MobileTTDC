@@ -90,12 +90,5 @@ class ConversationCollectionViewCell: UICollectionViewCell {
 
 }
 
-extension ConversationCollectionViewCell : UITextViewDelegate {
-    
-    func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
-        print(URL.description)
-        
-        return true;
-    }
-}
+
 

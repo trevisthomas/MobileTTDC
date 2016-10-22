@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PostCollectionViewCell" id="RoR-zW-R4a" customClass="PostCollectionViewCell" customModule="MobileTTDC" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaU-h5-V0o">
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <state key="normal" title="Thread Title"/>
+                        <connections>
+                            <action selector="threadTitleButton:" destination="RoR-zW-R4a" eventType="touchUpInside" id="QJz-EH-3pK"/>
+                        </connections>
+                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TGF-XQ-j4s">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="X7e-Hj-IMV"/>
+                            <constraint firstAttribute="width" constant="50" id="fzv-c7-Fvs"/>
+                        </constraints>
+                    </imageView>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iaW-Bm-g0V">
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <attributedString key="attributedText">
+                            <fragment>
+                                <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <attributes>
+                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <textInputTraits key="textInputTraits"/>
+                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                        <connections>
+                            <outlet property="delegate" destination="RoR-zW-R4a" id="pah-Of-TDR"/>
+                        </connections>
+                    </textView>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="cSY-Ng-cAg">
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DXF-oW-dN7">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="ePF-ua-jYm"/>
+                                </constraints>
+                                <state key="normal" title="Like"/>
+                                <connections>
+                                    <action selector="likeAction:" destination="RoR-zW-R4a" eventType="touchUpInside" id="ijW-Db-uMj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LjP-7r-a6R">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="MZL-RO-gMa"/>
+                                </constraints>
+                                <state key="normal" title="Comment"/>
+                                <connections>
+                                    <action selector="commentAction:" destination="RoR-zW-R4a" eventType="touchUpInside" id="8fu-OT-6On"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="5QN-6B-o4d" userLabel="to Parent Creator Stack View">
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TPv-lG-pgF">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="EgR-BP-wqN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YFo-as-I72">
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="parentPostCreator"/>
+                                <connections>
+                                    <action selector="viewCommentsAction:" destination="RoR-zW-R4a" eventType="touchUpInside" id="YJj-q7-m7l"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="mwD-hN-7wj" userLabel="by Creator on Date Stack View">
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yfm-Ev-aW1">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="1t2-TA-rTw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F4g-j4-699">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="gDQ-yx-JCP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="creator"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="on" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWf-c4-sUb">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="xn0-lV-hSA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZWn-63-keS">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="xFI-ci-Koq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="01/01/1970"/>
+                            </button>
+                        </subviews>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="jNz-m3-z8q" userLabel="in Reply Stack View">
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Sr-22-Y69">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="Xhc-mC-Jod"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="12" id="tep-9C-Qsx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bam-6G-5m4">
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="? Comment(s)"/>
+                                <connections>
+                                    <action selector="viewCommentsAction:" destination="RoR-zW-R4a" eventType="touchUpInside" id="bp0-0G-Ogb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </stackView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="cSY-Ng-cAg" secondAttribute="bottom" constant="4" id="CB4-p7-rwe"/>
+                <constraint firstAttribute="trailing" secondItem="ZaU-h5-V0o" secondAttribute="trailing" constant="8" id="EMX-wA-1P8"/>
+                <constraint firstItem="iaW-Bm-g0V" firstAttribute="top" secondItem="RoR-zW-R4a" secondAttribute="top" constant="64" id="FbO-pC-iIo"/>
+                <constraint firstAttribute="trailing" secondItem="iaW-Bm-g0V" secondAttribute="trailing" constant="8" id="GkN-Wk-mDf"/>
+                <constraint firstItem="cSY-Ng-cAg" firstAttribute="leading" secondItem="RoR-zW-R4a" secondAttribute="leading" constant="8" id="Iyh-gT-Uag"/>
+                <constraint firstItem="jNz-m3-z8q" firstAttribute="baseline" secondItem="ZWn-63-keS" secondAttribute="baseline" id="JHa-ke-ddN"/>
+                <constraint firstItem="5QN-6B-o4d" firstAttribute="leading" secondItem="jNz-m3-z8q" secondAttribute="trailing" constant="5" id="QFy-YA-OpR"/>
+                <constraint firstItem="5QN-6B-o4d" firstAttribute="leading" secondItem="jNz-m3-z8q" secondAttribute="trailing" constant="8" id="S7Y-ay-xsp"/>
+                <constraint firstItem="ZaU-h5-V0o" firstAttribute="top" secondItem="RoR-zW-R4a" secondAttribute="top" constant="8" id="S7a-wA-6Wz"/>
+                <constraint firstItem="5QN-6B-o4d" firstAttribute="baseline" secondItem="jNz-m3-z8q" secondAttribute="baseline" id="VSv-wA-q3J"/>
+                <constraint firstItem="iaW-Bm-g0V" firstAttribute="leading" secondItem="RoR-zW-R4a" secondAttribute="leading" constant="8" id="ZtL-pH-BeH"/>
+                <constraint firstItem="mwD-hN-7wj" firstAttribute="leading" secondItem="ZaU-h5-V0o" secondAttribute="leading" id="aA0-zu-Daf"/>
+                <constraint firstItem="ZaU-h5-V0o" firstAttribute="leading" secondItem="TGF-XQ-j4s" secondAttribute="trailing" constant="5" id="ajw-1l-6DP"/>
+                <constraint firstItem="jNz-m3-z8q" firstAttribute="leading" secondItem="ZWn-63-keS" secondAttribute="trailing" constant="8" id="f3l-le-C3m"/>
+                <constraint firstItem="TGF-XQ-j4s" firstAttribute="top" secondItem="RoR-zW-R4a" secondAttribute="top" constant="8" id="fIi-UI-KJu"/>
+                <constraint firstItem="5QN-6B-o4d" firstAttribute="baseline" secondItem="jNz-m3-z8q" secondAttribute="baseline" id="hxt-kJ-9Mz"/>
+                <constraint firstItem="TGF-XQ-j4s" firstAttribute="leading" secondItem="RoR-zW-R4a" secondAttribute="leading" constant="8" id="ieB-br-tWF"/>
+                <constraint firstAttribute="bottom" secondItem="iaW-Bm-g0V" secondAttribute="bottom" constant="24" id="l5O-mO-VhV"/>
+                <constraint firstItem="mwD-hN-7wj" firstAttribute="top" secondItem="ZaU-h5-V0o" secondAttribute="bottom" constant="3" id="ozS-n3-a5j"/>
+            </constraints>
+            <size key="customSize" width="414" height="167"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="S7Y-ay-xsp"/>
+                    <exclude reference="VSv-wA-q3J"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="commentButton" destination="LjP-7r-a6R" id="Z1o-dd-s1j"/>
+                <outlet property="creatorButton" destination="F4g-j4-699" id="gdB-KM-RK4"/>
+                <outlet property="creatorImageView" destination="TGF-XQ-j4s" id="e8U-2r-dLt"/>
+                <outlet property="dateButton" destination="ZWn-63-keS" id="spL-Ga-pEf"/>
+                <outlet property="entryConstraintBottom" destination="l5O-mO-VhV" id="n36-UW-krj"/>
+                <outlet property="entryConstraintTop" destination="FbO-pC-iIo" id="8PE-PT-zt7"/>
+                <outlet property="entryLeftConstraint" destination="ZtL-pH-BeH" id="Xnw-dn-TQP"/>
+                <outlet property="entryRightConstraint" destination="GkN-Wk-mDf" id="1DN-zX-UEc"/>
+                <outlet property="entryTextView" destination="iaW-Bm-g0V" id="G93-Df-1vs"/>
+                <outlet property="inReplyPrefixLabel" destination="5Sr-22-Y69" id="ezD-n0-xq7"/>
+                <outlet property="inReplyStackView" destination="jNz-m3-z8q" id="YEB-iB-ak1"/>
+                <outlet property="likeButton" destination="DXF-oW-dN7" id="H7q-pq-ahZ"/>
+                <outlet property="parentPostCreatorButton" destination="YFo-as-I72" id="HVP-bA-qSf"/>
+                <outlet property="threadTitleButton" destination="ZaU-h5-V0o" id="D2h-wc-PP4"/>
+                <outlet property="toParentCreatorStackView" destination="5QN-6B-o4d" id="BTa-mN-W2C"/>
+                <outlet property="viewCommentsButton" destination="Bam-6G-5m4" id="4Es-HL-smA"/>
+            </connections>
+            <point key="canvasLocation" x="467" y="461"/>
+        </collectionViewCell>
+    </objects>
+</document>

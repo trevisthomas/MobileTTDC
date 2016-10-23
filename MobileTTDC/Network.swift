@@ -20,7 +20,7 @@ public struct Network {
         return "http://ttdc.us:8888"
 //        return "http://ttdc.us"
 //        return "https://ttdc.us"
-
+//        return "http://192.168.1.106:8888"
     }
     
     public static func performLogin(command : LoginCommand, completion: (response : LoginResponse?, error: String?) -> Void){

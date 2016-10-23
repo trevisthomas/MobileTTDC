@@ -118,12 +118,21 @@
                     <navigationItem key="navigationItem" title="Conversations" id="bbp-Mn-KVt"/>
                     <connections>
                         <outlet property="collectionView" destination="Yla-c6-SoW" id="5Z8-kB-3yf"/>
-                        <segue destination="Kp8-BA-sQD" kind="showDetail" identifier="ConversationDetailSegue" id="aK4-2r-U1Q"/>
+                        <segue destination="Kiz-7g-BiQ" kind="showDetail" identifier="ConversationWithReplyView" id="gHb-0D-wlU"/>
+                        <segue destination="iT6-UF-28K" kind="show" identifier="ThreadView" id="dl3-XF-a5V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KtH-j2-iSw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-474" y="3174"/>
+            <point key="canvasLocation" x="-1260" y="3099"/>
+        </scene>
+        <!--Conversation-->
+        <scene sceneID="AAZ-XR-wYU">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Conversation" id="Kiz-7g-BiQ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xXZ-Ps-1Bf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="105" y="3782"/>
         </scene>
         <!--Conversation Detail View Controller-->
         <scene sceneID="5Yp-Eb-SJc">
@@ -177,6 +186,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CK3-7n-EDg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="774" y="3163"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="d5E-JU-NW8">
+            <objects>
+                <navigationController id="wS3-mg-khx" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="eAk-Nl-p8v"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="URz-9t-cjA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Cyb-pt-76o" kind="relationship" relationship="rootViewController" id="DvZ-ZA-J9J"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SAN-IG-aoS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1318" y="1404"/>
         </scene>
         <!--Conversations-->
         <scene sceneID="T9n-5C-z8S">
@@ -272,6 +298,7 @@
                         <segue destination="cHa-a9-SvU" kind="relationship" relationship="viewControllers" id="ZRD-Fu-q5z"/>
                         <segue destination="TD1-jc-Xqs" kind="relationship" relationship="viewControllers" id="pCa-DR-yxV"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="wS3-mg-khx" kind="relationship" relationship="viewControllers" id="rDQ-j4-zsa"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -458,6 +485,7 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aK4-2r-U1Q"/>
+        <segue reference="DvZ-ZA-J9J"/>
+        <segue reference="dl3-XF-a5V"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -17,6 +17,7 @@ class PostReplyCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
             if let url = post.creator.image?.thumbnailName {
                 creatorImageView.downloadedFrom(link: url, contentMode: .ScaleAspectFit)
             }
+            dateButton.setTitle(Utilities.singleton.simpleDateTimeFormat(post.date), forState: .Normal)
         }
     }
     

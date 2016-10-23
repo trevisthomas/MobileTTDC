@@ -108,6 +108,7 @@ class LatestPostsViewController: PostBaseViewController {
         return true;
     }
     
+    /*
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
       
         guard let nav = segue.destinationViewController as? UINavigationController else {
@@ -133,6 +134,7 @@ class LatestPostsViewController: PostBaseViewController {
             vc.replyToPostId = postId
         }
     }
+ */
 }
 
 

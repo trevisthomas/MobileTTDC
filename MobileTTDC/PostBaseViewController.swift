@@ -38,6 +38,32 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
     func viewThread(post: Post) {
         performSegueWithIdentifier("ThreadView", sender: post.postId)
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        guard let nav = segue.destinationViewController as? UINavigationController else {
+            return
+        }
+        
+        if let destVC = nav.topViewController as? ThreadViewController {
+            let postId = sender as! String
+            destVC.rootPostId = postId
+            return
+        }
+        
+        guard let vc = nav.topViewController as? ConversationWithReplyViewController else {
+            return
+        }
+        
+        let dict = sender as! [String: String]
+        
+        print(dict["threadId"])
+        
+        vc.postId = dict["threadId"]
+        if let postId = dict["postId"] {
+            vc.replyToPostId = postId
+        }
+    }
 
     func dequeueCell(post : Post, indexPath : NSIndexPath, allowHierarchy : Bool = false) -> UICollectionViewCell {
         if allowHierarchy && !post.threadPost {
@@ -72,7 +98,7 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
         let height : CGFloat
         let frameSize = getCollectionView()!.frame.size
         
-        if (!p.threadPost) {
+        if (allowHierarchy && !p.threadPost) {
             replyPrototypeCell.post = p
             height = replyPrototypeCell.preferredHeight(frameSize.width)
         } else {

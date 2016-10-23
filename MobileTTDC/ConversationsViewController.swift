@@ -9,37 +9,21 @@
 import UIKit
 
 
-//protocol DetailSelectionDelegate: class {
-//    func changeDetail(post: Post?)
-//}
-
-class ConversationsViewController: UIViewController {
+class ConversationsViewController: PostBaseViewController {
     
-//    private var posts : [Post] = []
-    private var sizingCellPrototype : ConversationCollectionViewCell!
-    private(set) var postForSegue : Post! = nil //OUTSTANDING!
+   // private(set) var postForSegue : Post! = nil //OUTSTANDING!
+    
     @IBOutlet weak var collectionView: UICollectionView?
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let nib = UINib(nibName: "ConversationCollectionViewCell", bundle: nil)
-        self.collectionView!.registerNib(nib, forCellWithReuseIdentifier: ReuseIdentifiers.CONVERSATION_POST_CELL)
         collectionView?.delegate = self //For the layout delegate
-        
-        sizingCellPrototype = nib.instantiateWithOwner(nil, options: nil)[0] as! ConversationCollectionViewCell
-        
-//        loadDataFromWebservice()
         
         self.title = "Conversations"
         
-        
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ConversationsViewController.loadDataFromWebservice), name: NotificationConstants.USER_CHANGED, object: nil)
-//        
         getApplicationContext().latestConversationsObserver = self
-        
-//        getApplicationContext().reloadData()
         
     }
     
@@ -75,6 +59,9 @@ class ConversationsViewController: UIViewController {
 
     }
  
+    override func getCollectionView() -> UICollectionView? {
+        return collectionView
+    }
 }
 
 
@@ -82,9 +69,13 @@ class ConversationsViewController: UIViewController {
 extension ConversationsViewController : UICollectionViewDelegateFlowLayout{
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        sizingCellPrototype.post = getApplicationContext().latestConversations()[indexPath.row]
-        let height = sizingCellPrototype.preferredHeight(collectionView.frame.width)
-        return CGSize(width: collectionView.frame.width, height: height)
+//        sizingCellPrototype.post = getApplicationContext().latestConversations()[indexPath.row]
+//        let height = sizingCellPrototype.preferredHeight(collectionView.frame.width)
+//        return CGSize(width: collectionView.frame.width, height: height)
+        
+        let post = getApplicationContext().latestConversations()[indexPath.row]
+        
+        return prototypeCellSize(post: post, allowHierarchy: false)
     }
 }
 
@@ -103,39 +94,47 @@ extension ConversationsViewController : UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.CONVERSATION_POST_CELL, forIndexPath: indexPath) as! ConversationCollectionViewCell
         
-        cell.post = getApplicationContext().latestConversations()[indexPath.row]
-        return cell
+        let post = getApplicationContext().latestConversations()[indexPath.row]
+        
+        return dequeueCell(post, indexPath: indexPath, allowHierarchy: false)
+        
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        postForSegue = getApplicationContext().latestConversations()[indexPath.row]
-        performSegueWithIdentifier("ConversationDetailSegue", sender: self)
+        let post = getApplicationContext().latestConversations()[indexPath.row]
+//        performSegueWithIdentifier("ConversationDetailSegue", sender: self)
+        
+        var dict = [String: String]()
+        dict["threadId"] = post.threadId
+//        dict["postId"] = post.postId
+        performSegueWithIdentifier("ConversationWithReplyView", sender: dict)
+        
+        
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if postForSegue == nil {
-            return
-        }
-        
-        switch segue.identifier! {
-            case "ConversationDetailSegue":
-                //During dev i had it seguing directly to the VC as well as the Nav.  The condition below is to handle both
-                if let destNav = segue.destinationViewController as? UINavigationController {
-                    let destinationVC = destNav.topViewController as! ConversationDetailViewController
-                    destinationVC.post = postForSegue
-                }
-                else {
-                    let destinationVC = segue.destinationViewController as! ConversationDetailViewController
-                    destinationVC.post = postForSegue
-                }
-            default:
-            break
-        }
-
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        
+//        if postForSegue == nil {
+//            return
+//        }
+//        
+//        switch segue.identifier! {
+//            case "ConversationDetailSegue":
+//                //During dev i had it seguing directly to the VC as well as the Nav.  The condition below is to handle both
+//                if let destNav = segue.destinationViewController as? UINavigationController {
+//                    let destinationVC = destNav.topViewController as! ConversationDetailViewController
+//                    destinationVC.post = postForSegue
+//                }
+//                else {
+//                    let destinationVC = segue.destinationViewController as! ConversationDetailViewController
+//                    destinationVC.post = postForSegue
+//                }
+//            default:
+//            break
+//        }
+//
+//    }
     
 }
 //

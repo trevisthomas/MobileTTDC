@@ -13,16 +13,27 @@ public class Utilities{
     public static let singleton : Utilities = Utilities()
     
     let simpleDateFormatter : NSDateFormatter
+    let simpleDateTimeFormatter : NSDateFormatter
     
     init () {
         simpleDateFormatter = NSDateFormatter()
         simpleDateFormatter.locale = NSLocale(localeIdentifier: "en_US")
         simpleDateFormatter.dateStyle = .MediumStyle
         simpleDateFormatter.timeStyle = .NoStyle
+        
+        simpleDateTimeFormatter = NSDateFormatter()
+        simpleDateTimeFormatter.locale = NSLocale(localeIdentifier: "en_US")
+        simpleDateTimeFormatter.dateFormat = "MMM d yyyy, H:mm a"
     }
+    
+    
     
     func simpleDateFormat(date: NSDate) -> String{
         return simpleDateFormatter.stringFromDate(date)
+    }
+    
+    func simpleDateTimeFormat(date: NSDate) -> String{
+        return simpleDateTimeFormatter.stringFromDate(date)
     }
     
 }

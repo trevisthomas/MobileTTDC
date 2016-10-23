@@ -115,7 +115,12 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        entryTextView.layoutMargins.bottom = 0
+        entryTextView.layoutMargins.top = 0
     }
+    
+    
     
     //
     func webViewDidFinishLoad(webView: UIWebView) {

@@ -18,7 +18,7 @@ class SearchViewController : PostBaseViewController {
     private var autoCompleteItems : [AutoCompleteItem] = []
     private var posts : [Post] = []
     
-    private var flatPrototypeCell : FlatCollectionViewCell!
+//    private var flatPrototypeCell : FlatCollectionViewCell!
     
     @IBAction func doneButtonAction(sender: UIBarButtonItem) {
         self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
@@ -28,7 +28,7 @@ class SearchViewController : PostBaseViewController {
 //        let nib = UINib(nibName: "AutoCompleteCollectionViewCell", bundle: nil)
 //        self.collectionView!.registerNib(nib, forCellWithReuseIdentifier: ReuseIdentifiers.AUTO_COLLECTION_CELL)
        
-        flatPrototypeCell = registerAndCreatePrototypeCellFromNib("FlatCollectionViewCell", forReuseIdentifier: ReuseIdentifiers.FLAT_POST_CELL) as! FlatCollectionViewCell
+//        flatPrototypeCell = registerAndCreatePrototypeCellFromNib("FlatCollectionViewCell", forReuseIdentifier: ReuseIdentifiers.FLAT_POST_CELL) as! FlatCollectionViewCell
 
         let nib = UINib(nibName: "AutoCompleteTableViewCell", bundle: nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: ReuseIdentifiers.AUTO_TOPIC_CELL)
@@ -231,11 +231,13 @@ extension SearchViewController : UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        var height : CGFloat
-        flatPrototypeCell.post = posts[indexPath.row]
-        height = flatPrototypeCell.preferredHeight(collectionView.frame.width)
+//        var height : CGFloat
+//        flatPrototypeCell.post = posts[indexPath.row]
+//        height = flatPrototypeCell.preferredHeight(collectionView.frame.width)
+//        
+//        return CGSize(width: collectionView.frame.width, height: height)
         
-        return CGSize(width: collectionView.frame.width, height: height)
+        return prototypeCellSize(post: posts[indexPath.row])
     }
 }
 

@@ -8,13 +8,11 @@
 
 import UIKit
 
-class ConversationDetailViewController: UIViewController {
+class ConversationDetailViewController: PostBaseViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
   private var posts : [Post] = []
-    private var replyPrototypeCell : ReplyCollectionViewCell!
-    private var sectionHeaderPrototype : PostInHeaderCollectionReusableView!
     var post : Post! {
         didSet{
             loadConversationPostDataFromWebservice(post.postId)
@@ -34,11 +32,11 @@ class ConversationDetailViewController: UIViewController {
         collectionView.delegate = self //For the layout delegate
         
         
-        replyPrototypeCell = registerAndCreatePrototypeCellFromNib("ReplyCollectionViewCell", forReuseIdentifier: ReuseIdentifiers.REPLY_POST_CELL) as! ReplyCollectionViewCell
-        
-        sectionHeaderPrototype = registerAndCreatePrototypeHeaderViewFromNib("PostInHeaderCollectionReusableView", forReuseIdentifier: ReuseIdentifiers.POST_IN_HEADER_VIEW) as! PostInHeaderCollectionReusableView
-        
-        collectionView.registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: ReuseIdentifiers.EMPTY_HEADER_VIEW)
+//        replyPrototypeCell = registerAndCreatePrototypeCellFromNib("ReplyCollectionViewCell", forReuseIdentifier: ReuseIdentifiers.REPLY_POST_CELL) as! ReplyCollectionViewCell
+//        
+//        sectionHeaderPrototype = registerAndCreatePrototypeHeaderViewFromNib("PostInHeaderCollectionReusableView", forReuseIdentifier: ReuseIdentifiers.POST_IN_HEADER_VIEW) as! PostInHeaderCollectionReusableView
+//        
+//        collectionView.registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: ReuseIdentifiers.EMPTY_HEADER_VIEW)
         
         
 //        self.splitViewController.preferredDisplayMode = UISplitViewControllerDisplayModePrimaryOverlay
@@ -98,22 +96,24 @@ class ConversationDetailViewController: UIViewController {
 extension ConversationDetailViewController : UICollectionViewDelegateFlowLayout{
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        let height = replyPrototypeCell.preferredHeight(collectionView.frame.width)
+//        let height = replyPrototypeCell.preferredHeight(collectionView.frame.width)
+//        
+//        return CGSize(width: collectionView.frame.width, height: height)
         
-        return CGSize(width: collectionView.frame.width, height: height)
+        return prototypeCellSize(post: posts[indexPath.row])
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        
-        if post == nil {
-            return CGSizeZero
-        }
-        
-        sectionHeaderPrototype.post = post
-        let height = sectionHeaderPrototype.preferredHeight(collectionView.frame.width)
-        return CGSize(width: collectionView.frame.width, height: height)
-        
-    }
+//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//        
+//        if post == nil {
+//            return CGSizeZero
+//        }
+//        
+//        sectionHeaderPrototype.post = post
+//        let height = sectionHeaderPrototype.preferredHeight(collectionView.frame.width)
+//        return CGSize(width: collectionView.frame.width, height: height)
+//        
+//    }
 }
 
 extension ConversationDetailViewController : UICollectionViewDelegate, UICollectionViewDataSource {
@@ -131,21 +131,23 @@ extension ConversationDetailViewController : UICollectionViewDelegate, UICollect
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.REPLY_POST_CELL, forIndexPath: indexPath) as! ReplyCollectionViewCell
-        cell.post = posts[indexPath.row]
-        return cell
+//        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.REPLY_POST_CELL, forIndexPath: indexPath) as! ReplyCollectionViewCell
+//        cell.post = posts[indexPath.row]
+//        return cell
+        
+        return dequeueCell(posts[indexPath.row], indexPath: indexPath, allowHierarchy: true)
     
     }
     
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        
-        let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind,
-                                                                               withReuseIdentifier: ReuseIdentifiers.POST_IN_HEADER_VIEW,
-                                                                               forIndexPath: indexPath) as! PostInHeaderCollectionReusableView
-        headerView.post = post
-        
-        return headerView
-    }
+//    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+//        
+//        let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind,
+//                                                                               withReuseIdentifier: ReuseIdentifiers.POST_IN_HEADER_VIEW,
+//                                                                               forIndexPath: indexPath) as! PostInHeaderCollectionReusableView
+//        headerView.post = post
+//        
+//        return headerView
+//    }
     
     override func getCollectionView() -> UICollectionView? {
         return collectionView

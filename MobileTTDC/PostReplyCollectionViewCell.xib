@@ -60,6 +60,20 @@
                             <action selector="replyAction:" destination="tHN-IQ-gWD" eventType="touchUpInside" id="2cp-j1-sze"/>
                         </connections>
                     </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XBO-V5-UIX" customClass="PostSeperator" customModule="MobileTTDC" customModuleProvider="target">
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="4" id="haf-6f-RzG"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="thickness">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                 </subviews>
             </view>
             <constraints>
@@ -72,14 +86,17 @@
                 <constraint firstItem="uE3-b6-xUH" firstAttribute="baseline" secondItem="39b-cV-HGy" secondAttribute="baseline" id="NPb-11-kMS"/>
                 <constraint firstItem="39b-cV-HGy" firstAttribute="baseline" secondItem="uE3-b6-xUH" secondAttribute="firstBaseline" id="NVE-2N-Abf"/>
                 <constraint firstItem="BPY-CK-hbz" firstAttribute="leading" secondItem="tHN-IQ-gWD" secondAttribute="leading" constant="64" id="Ncs-QV-yzJ"/>
+                <constraint firstAttribute="bottom" secondItem="XBO-V5-UIX" secondAttribute="bottom" id="P5C-4m-lfR"/>
                 <constraint firstItem="39b-cV-HGy" firstAttribute="baseline" secondItem="uE3-b6-xUH" secondAttribute="baseline" id="RqY-Wj-U97"/>
                 <constraint firstItem="uE3-b6-xUH" firstAttribute="top" secondItem="39b-cV-HGy" secondAttribute="top" id="Vgm-Pq-baD"/>
                 <constraint firstItem="uE3-b6-xUH" firstAttribute="firstBaseline" secondItem="39b-cV-HGy" secondAttribute="baseline" id="Yhh-ew-C43"/>
                 <constraint firstItem="uE3-b6-xUH" firstAttribute="leading" secondItem="39b-cV-HGy" secondAttribute="trailing" constant="8" id="bYg-eN-w2p"/>
                 <constraint firstAttribute="bottom" secondItem="BPY-CK-hbz" secondAttribute="bottom" constant="24" id="d6h-yi-2WT"/>
                 <constraint firstAttribute="trailing" secondItem="BPY-CK-hbz" secondAttribute="trailing" constant="8" id="fTY-KL-6m2"/>
+                <constraint firstItem="XBO-V5-UIX" firstAttribute="leading" secondItem="tHN-IQ-gWD" secondAttribute="leading" constant="8" id="hYx-Fo-gqS"/>
                 <constraint firstItem="BPY-CK-hbz" firstAttribute="leading" secondItem="fWg-v2-BuY" secondAttribute="trailing" constant="8" symbolic="YES" id="l4D-cN-waf"/>
                 <constraint firstItem="39b-cV-HGy" firstAttribute="top" secondItem="fWg-v2-BuY" secondAttribute="top" id="sIM-I3-Xwe"/>
+                <constraint firstAttribute="trailing" secondItem="XBO-V5-UIX" secondAttribute="trailing" constant="8" id="tCp-yN-sDV"/>
                 <constraint firstItem="fWg-v2-BuY" firstAttribute="top" secondItem="tHN-IQ-gWD" secondAttribute="top" constant="8" id="tfU-M6-ZbJ"/>
                 <constraint firstItem="Kfi-fM-QCv" firstAttribute="leading" secondItem="kOV-Zn-ol9" secondAttribute="trailing" constant="8" id="uBQ-Sq-NCW"/>
             </constraints>

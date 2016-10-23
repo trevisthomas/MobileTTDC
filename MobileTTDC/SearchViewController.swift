@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController : UIViewController {
+class SearchViewController : PostBaseViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -221,10 +221,12 @@ extension SearchViewController : UICollectionViewDataSource {
         
 //        return UICollectionViewCell()
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.FLAT_POST_CELL, forIndexPath: indexPath) as! FlatCollectionViewCell
-        cell.post = posts[indexPath.row]
-        cell.delegate = self
-        return cell
+//        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.FLAT_POST_CELL, forIndexPath: indexPath) as! FlatCollectionViewCell
+//        cell.post = posts[indexPath.row]
+//        cell.delegate = self
+//        return cell
+        
+        return dequeueCell(posts[indexPath.section].posts![indexPath.row], indexPath: indexPath)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -237,7 +239,7 @@ extension SearchViewController : UICollectionViewDataSource {
     }
 }
 
-
+/*
 extension SearchViewController : PostViewCellDelegate {
     func likePost(post: Post){
         
@@ -253,3 +255,4 @@ extension SearchViewController : PostViewCellDelegate {
     }
 
 }
+*/

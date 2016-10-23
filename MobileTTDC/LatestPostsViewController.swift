@@ -8,13 +8,9 @@
 
 import UIKit
 
-class LatestPostsViewController: UIViewController {
+class LatestPostsViewController: PostBaseViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    private var postPrototypeCell : PostCollectionViewCell!
-    private var replyPrototypeCell : PostReplyCollectionViewCell!
-    private var sectionHeaderPrototype : PostInHeaderCollectionReusableView!
     
     private var originalHeight : CGFloat!
     private var originalTopOfDisapearingView : CGFloat!
@@ -74,16 +70,7 @@ class LatestPostsViewController: UIViewController {
         getApplicationContext().latestPostsObserver = self
         collectionView.delegate = self //For the layout delegate
         
-        postPrototypeCell = registerAndCreatePrototypeCellFromNib(ReuseIdentifiers.POST_CELL, forReuseIdentifier: ReuseIdentifiers.POST_CELL) as! PostCollectionViewCell
-        
-        replyPrototypeCell = registerAndCreatePrototypeCellFromNib(ReuseIdentifiers.POST_REPLY_CELL, forReuseIdentifier: ReuseIdentifiers.POST_REPLY_CELL) as! PostReplyCollectionViewCell
-        
-        sectionHeaderPrototype = registerAndCreatePrototypeHeaderViewFromNib("PostInHeaderCollectionReusableView", forReuseIdentifier: ReuseIdentifiers.POST_IN_HEADER_VIEW) as! PostInHeaderCollectionReusableView
-        
-        collectionView.registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: ReuseIdentifiers.EMPTY_HEADER_VIEW)
-        
         handleModeChange()
-//        getApplicationContext().displayMode = .LatestFlat
     }
     
     //This is here so that the layout will adjust when you "maximize"
@@ -122,12 +109,7 @@ class LatestPostsViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        guard let indexPath = sender as? NSIndexPath else {
-//            return
-//        }
-        
-        
-//        
+      
         guard let nav = segue.destinationViewController as? UINavigationController else {
             return
         }
@@ -141,27 +123,11 @@ class LatestPostsViewController: UIViewController {
         guard let vc = nav.topViewController as? ConversationWithReplyViewController else {
             return
         }
-//
-//        
-//        var threadId : String!
-//        switch (getApplicationContext().displayMode) {
-//            case .LatestFlat:
-//            let post = getApplicationContext().latestPosts()[indexPath.row]
-//            threadId = post.threadId
-//            
-//            case .LatestGrouped:
-//            let post = getApplicationContext().latestPosts()[indexPath.section].posts![indexPath.row]
-//            threadId = post.threadId
-//        }
-        
+
         let dict = sender as! [String: String]
-        
-//        let threadId = sender as! String
         
         print(dict["threadId"])
     
-//        vc.postId = dict["threadId"]
-        
         vc.postId = dict["threadId"]
         if let postId = dict["postId"] {
             vc.replyToPostId = postId
@@ -173,39 +139,11 @@ class LatestPostsViewController: UIViewController {
 extension LatestPostsViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        
-        let height = prototypeCellSize(indexPath, width: collectionView.frame.width)
-        
-        return CGSize(width: collectionView.frame.width, height: height)
-    }
-    
-    func prototypeCellSize(indexPath : NSIndexPath, width : CGFloat) -> CGFloat {
         let post = getApplicationContext().latestPosts()[indexPath.row]
-        if ((getApplicationContext().displayMode == .LatestGrouped) && !post.threadPost) {
-            replyPrototypeCell.post = post
-            return replyPrototypeCell.preferredHeight(width)
-        } else {
-            postPrototypeCell.post = post
-            return postPrototypeCell.preferredHeight(width)
-            
-        }
+        
+        return prototypeCellSize(post: post, allowHierarchy: (getApplicationContext().displayMode == .LatestGrouped))
     }
-
     
-    /*
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        
-        
-        switch getApplicationContext().displayMode {
-        case .LatestFlat:
-            return CGSizeZero
-        case .LatestGrouped:
-            sectionHeaderPrototype.post = getApplicationContext().latestPosts()[section]
-            let height = sectionHeaderPrototype.preferredHeight(collectionView.frame.width)
-            return CGSize(width: collectionView.frame.width, height: height)
-        }
-    }
- */
 }
 
 extension LatestPostsViewController : UIScrollViewDelegate {
@@ -233,95 +171,22 @@ extension LatestPostsViewController : UIScrollViewDelegate {
 extension LatestPostsViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-//        switch getApplicationContext().displayMode{
-//        case .LatestFlat:
-//            return 1
-//        case .LatestGrouped:
-//            return getApplicationContext().latestPosts().count
-//        }
         return 1
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        switch getApplicationContext().displayMode{
-//        case .LatestFlat:
-//            return getApplicationContext().latestPosts().count
-//        case .LatestGrouped:
-//            return getApplicationContext().latestPosts()[section].posts!.count
-//        }
         return getApplicationContext().latestPosts().count
     }
     
-    /*
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-//        switch (getApplicationContext().displayMode) {
-        
-//        performSegueWithIdentifier("ConversationWithReplyView", sender: indexPath)
-            
-//        case .LatestFlat:
-//            let post = getApplicationContext().latestPosts()[indexPath.row]
-//            print(post.postId)
-//            
-//            performSegueWithIdentifier("ConversationWithReplyView", sender: indexPath)
-//            
-//        case .LatestGrouped:
-//            let post = getApplicationContext().latestPosts()[indexPath.section].posts![indexPath.row]
-//            print(post.postId)
-//        }
-    }
- */
-    
-//    func collec
-    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
-//        switch (getApplicationContext().displayMode) {
-//        case .LatestFlat:
-//            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.POST_CELL, forIndexPath: indexPath) as! PostCollectionViewCell
-//            cell.post = getApplicationContext().latestPosts()[indexPath.row]
-//            cell.delegate = self
-//            return cell
-//            
-//        case .LatestGrouped:
-//            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.POST_REPLY_CELL, forIndexPath: indexPath) as! PostReplyCollectionViewCell
-//            cell.post = getApplicationContext().latestPosts()[indexPath.section].posts![indexPath.row]
-//            return cell
-//        }
-        
+
         let post = getApplicationContext().latestPosts()[indexPath.row]
         
-        return dequeueCell(post, indexPath: indexPath)
-    }
-    
-    func dequeueCell(post : Post, indexPath : NSIndexPath) -> UICollectionViewCell {
-        if ((getApplicationContext().displayMode == .LatestGrouped) && !post.threadPost) {
-            let cell =  collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.POST_REPLY_CELL, forIndexPath: indexPath) as! PostReplyCollectionViewCell
-            
-            cell.post = post
-            cell.delegate = self
-            return cell
-        } else {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.POST_CELL, forIndexPath: indexPath) as! PostCollectionViewCell
-            
-            cell.post = post
-            cell.delegate = self
-            return cell
-        }
+        return dequeueCell(post, indexPath: indexPath, allowHierarchy : (getApplicationContext().displayMode == .LatestGrouped))
     }
     
     
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        
-        let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind,
-                                                                               withReuseIdentifier: ReuseIdentifiers.POST_IN_HEADER_VIEW,
-                                                                               forIndexPath: indexPath) as! PostInHeaderCollectionReusableView
-        headerView.post = getApplicationContext().latestPosts()[indexPath.section]
-        
-        headerView.delegate = self
-        
-        return headerView
-    }
-    
+   
 }
 
 //Custom methods and logic.
@@ -338,19 +203,7 @@ extension LatestPostsViewController {
         }
         
     }
-    
-//    private func registerAndCreatePrototypeCellFromNib(withName: String, forReuseIdentifier: String) -> UICollectionViewCell{
-//        let nib = UINib(nibName: withName, bundle: nil)
-//        self.collectionView!.registerNib(nib, forCellWithReuseIdentifier: forReuseIdentifier)
-//        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionViewCell
-//    }
-//    
-//    private func registerAndCreatePrototypeHeaderViewFromNib(withName: String, forReuseIdentifier: String) -> UICollectionReusableView{
-//        let nib = UINib(nibName: withName, bundle: nil)
-//        self.collectionView!.registerNib(nib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: forReuseIdentifier)
-//        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionReusableView
-//    }
-    
+
     override func getCollectionView() -> UICollectionView? {
         return collectionView
     }
@@ -375,41 +228,5 @@ extension LatestPostsViewController : UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         print("Am i only caled on the iphone?")
         return UIModalPresentationStyle.FullScreen
-//         return UIModalPresentationStyle.None
-    }
-//    
-//    func presentationController(controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
-////        let navigationController = UINavigationController(rootViewController: controller.presentedViewController)
-//////        let btnDone = UIBarButtonItem(title: "Done", style: .Done, target: self, action: "dismiss")
-//////        navigationController.topViewController.navigationItem.rightBarButtonItem = btnDone
-////        
-////        print("Compact?")
-////        
-////        return navigationController
-//        
-//
-////        return controller
-//        
-//        return controller.presentingViewController
-//    }
-}
-
-extension LatestPostsViewController : PostViewCellDelegate{
-    func likePost(post: Post){
-        
-    }
-    func viewComments(post: Post){
-        var dict = [String: String]()
-        dict["threadId"] = post.threadId
-        performSegueWithIdentifier("ConversationWithReplyView", sender: dict)
-    }
-    func commentOnPost(post: Post){
-        var dict = [String: String]()
-        dict["threadId"] = post.threadId
-        dict["postId"] = post.postId
-        performSegueWithIdentifier("ConversationWithReplyView", sender: dict)
-    }
-    func viewThread(post: Post) {
-        performSegueWithIdentifier("ThreadView", sender: post.postId)
     }
 }

@@ -27,6 +27,48 @@ public class ApplicationContext : AuthenticatedUserDataProvider {
         
     }
     
+    private struct PersistantKeys {
+        static let token = "token"
+    }
+    
+    public func saveState(){
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        defaults.setValue(token, forKey: PersistantKeys.token)
+        
+        defaults.synchronize()
+    }
+    
+    public func loadState(){
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        if let t = defaults.stringForKey(PersistantKeys.token){
+            
+            _currentUser = nil
+            self.token = t
+            
+            let cmd = ValidateCommand()
+            
+            Network.performValidate(cmd){
+                (response, message) -> Void in
+                guard (response != nil) else {
+                    self._currentUser = nil
+                    self.token = nil
+                    return;
+                }
+                self.token = response?.token
+                self._currentUser = response?.person
+                self.registerForPush()
+                self.reloadAllData()
+            };
+        } else {
+            self._currentUser = nil
+            self.token = nil
+            self.reloadAllData()
+        }
+        
+    }
+    
     private var _latestPosts : [Post] = [] {
         didSet{
             latestPostsObserver?.latestPostsUpdated()
@@ -74,6 +116,7 @@ public class ApplicationContext : AuthenticatedUserDataProvider {
             }
             self.token = response?.token
             self._currentUser = response?.person
+            self.saveState()
             self.registerForPush()
             completion(success: true, details: "Welcome back, \((response?.person?.name)!)")
             self.reloadAllData()

@@ -23,6 +23,11 @@ public struct Network {
 //        return "http://192.168.1.106:8888"
     }
     
+    public static func performValidate(command : ValidateCommand, completion: (response : ValidateResponse?, error: String?) -> Void){
+        command.token = getToken()
+        NetworkAdapter.performCommand("\(getHost())/restful/validate", command: command, completion: completion)
+    }
+    
     public static func performLogin(command : LoginCommand, completion: (response : LoginResponse?, error: String?) -> Void){
         NetworkAdapter.performCommand("\(getHost())/restful/login", command: command, completion: completion)
     }

@@ -34,6 +34,8 @@
 		0F888A6F1D1DDDA0005F960A /* LatestPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F888A6D1D1DDD9F005F960A /* LatestPostsViewController.swift */; };
 		0F9E08FE1D14BB62006676C1 /* ConverstionSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9E08FD1D14BB62006676C1 /* ConverstionSplitViewController.swift */; };
 		0F9FB1E21DBD56EF00B901ED /* PostSeperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9FB1E11DBD56EF00B901ED /* PostSeperator.swift */; };
+		0F9FB1E41DBDC23800B901ED /* ValidateCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9FB1E31DBDC23800B901ED /* ValidateCommand.swift */; };
+		0F9FB1E61DBDC29C00B901ED /* ValidateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9FB1E51DBDC29C00B901ED /* ValidateResponse.swift */; };
 		0FA3F25E1DBBC7EA00268DC1 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA3F25C1DBBC7EA00268DC1 /* PostCollectionViewCell.swift */; };
 		0FA3F25F1DBBC7EA00268DC1 /* PostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FA3F25D1DBBC7EA00268DC1 /* PostCollectionViewCell.xib */; };
 		0FA3F2621DBBC7FE00268DC1 /* PostReplyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA3F2601DBBC7FE00268DC1 /* PostReplyCollectionViewCell.swift */; };
@@ -119,6 +121,8 @@
 		0F888A6D1D1DDD9F005F960A /* LatestPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestPostsViewController.swift; sourceTree = "<group>"; };
 		0F9E08FD1D14BB62006676C1 /* ConverstionSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverstionSplitViewController.swift; sourceTree = "<group>"; };
 		0F9FB1E11DBD56EF00B901ED /* PostSeperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostSeperator.swift; sourceTree = "<group>"; };
+		0F9FB1E31DBDC23800B901ED /* ValidateCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidateCommand.swift; sourceTree = "<group>"; };
+		0F9FB1E51DBDC29C00B901ED /* ValidateResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidateResponse.swift; sourceTree = "<group>"; };
 		0FA3F25C1DBBC7EA00268DC1 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
 		0FA3F25D1DBBC7EA00268DC1 /* PostCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostCollectionViewCell.xib; sourceTree = "<group>"; };
 		0FA3F2601DBBC7FE00268DC1 /* PostReplyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostReplyCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -342,6 +346,8 @@
 				0F0F69BB1D3AB65B009600F7 /* RegisterResponse.swift */,
 				0F0F69C31D3BE113009600F7 /* ForumCommand.swift */,
 				0F0F69C51D3BE23D009600F7 /* ForumResponse.swift */,
+				0F9FB1E31DBDC23800B901ED /* ValidateCommand.swift */,
+				0F9FB1E51DBDC29C00B901ED /* ValidateResponse.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -511,8 +517,10 @@
 				0FB2F4A91D035E34008F386A /* UIImageView+WebLoad.swift in Sources */,
 				0FE5272D1CFB65EB00407AAE /* Decoder.swift in Sources */,
 				0F0F69B21D329B61009600F7 /* TransactionTrackable.swift in Sources */,
+				0F9FB1E41DBDC23800B901ED /* ValidateCommand.swift in Sources */,
 				0FF896631D736F60007813F7 /* ThreadViewController.swift in Sources */,
 				0FA3F2621DBBC7FE00268DC1 /* PostReplyCollectionViewCell.swift in Sources */,
+				0F9FB1E61DBDC29C00B901ED /* ValidateResponse.swift in Sources */,
 				0FB2F4961CFFA0E5008F386A /* Entry.swift in Sources */,
 				0F888A6E1D1DDDA0005F960A /* ConversationDetailViewController.swift in Sources */,
 				0FE527321CFB65EB00407AAE /* Operators.swift in Sources */,

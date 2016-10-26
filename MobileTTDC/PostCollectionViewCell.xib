@@ -15,25 +15,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaU-h5-V0o">
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="pUJ-Cz-P2g"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                        <inset key="titleEdgeInsets" minX="0.0" minY="-8" maxX="0.0" maxY="0.0"/>
-                        <state key="normal" title="Thread Title">
-                            <color key="titleColor" red="0.058823529409999999" green="0.058823529409999999" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
-                        </state>
-                        <connections>
-                            <action selector="threadTitleButton:" destination="RoR-zW-R4a" eventType="touchUpInside" id="QJz-EH-3pK"/>
-                        </connections>
-                    </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TGF-XQ-j4s">
-                        <constraints>
-                            <constraint firstAttribute="height" constant="50" id="X7e-Hj-IMV"/>
-                            <constraint firstAttribute="width" constant="50" id="fzv-c7-Fvs"/>
-                        </constraints>
-                    </imageView>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iaW-Bm-g0V">
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <attributedString key="attributedText">
@@ -51,31 +32,25 @@
                             <outlet property="delegate" destination="RoR-zW-R4a" id="pah-Of-TDR"/>
                         </connections>
                     </textView>
-                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="cSY-Ng-cAg">
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DXF-oW-dN7">
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <state key="normal" title="Like">
-                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="likeAction:" destination="RoR-zW-R4a" eventType="touchUpInside" id="ijW-Db-uMj"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LjP-7r-a6R">
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <state key="normal" title="Comment">
-                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="commentAction:" destination="RoR-zW-R4a" eventType="touchUpInside" id="8fu-OT-6On"/>
-                                </connections>
-                            </button>
-                        </subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaU-h5-V0o">
                         <constraints>
-                            <constraint firstAttribute="height" constant="12" id="rQO-WY-4S4"/>
+                            <constraint firstAttribute="height" constant="20" id="pUJ-Cz-P2g"/>
                         </constraints>
-                    </stackView>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                        <inset key="titleEdgeInsets" minX="0.0" minY="-8" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="Thread Title">
+                            <color key="titleColor" red="0.058823529409999999" green="0.058823529409999999" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="threadTitleButton:" destination="RoR-zW-R4a" eventType="touchUpInside" id="QJz-EH-3pK"/>
+                        </connections>
+                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TGF-XQ-j4s">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="X7e-Hj-IMV"/>
+                            <constraint firstAttribute="width" constant="40" id="fzv-c7-Fvs"/>
+                        </constraints>
+                    </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="mwD-hN-7wj" userLabel="by Creator on Date Stack View">
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F4g-j4-699">
@@ -106,53 +81,24 @@
                             </button>
                         </subviews>
                     </stackView>
-                    <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="jNz-m3-z8q" userLabel="in Reply Stack View">
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Sr-22-Y69">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="12" id="Xhc-mC-Jod"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="12" id="tep-9C-Qsx"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bam-6G-5m4">
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <state key="normal" title="? Comment(s)">
-                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="viewCommentsAction:" destination="RoR-zW-R4a" eventType="touchUpInside" id="bp0-0G-Ogb"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                    </stackView>
-                    <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="5QN-6B-o4d" userLabel="to Parent Creator Stack View">
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TPv-lG-pgF">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="12" id="EgR-BP-wqN"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YFo-as-I72">
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <state key="normal" title="parentPostCreator">
-                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="viewCommentsAction:" destination="RoR-zW-R4a" eventType="touchUpInside" id="YJj-q7-m7l"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                    </stackView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MRv-Dn-eNR" customClass="PostSeperator" customModule="MobileTTDC" customModuleProvider="target">
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="4" id="LW6-hh-aJr"/>
+                            <constraint firstAttribute="height" constant="8" id="LW6-hh-aJr"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                <color key="value" red="0.97601928378974356" green="0.97601928378974356" blue="0.97601928378974356" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="thickness">
+                                <real key="value" value="16"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0lz-6j-jrr" customClass="PostSeperator" customModule="MobileTTDC" customModuleProvider="target">
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="4" id="pOu-KX-ht6"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
@@ -163,29 +109,75 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4c-A6-yxm">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="flJ-6m-Nwe"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YFo-as-I72">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="Z4s-gP-GXe"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                        <state key="normal" title="parentPostCreator">
+                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="viewCommentsAction:" destination="RoR-zW-R4a" eventType="touchUpInside" id="YJj-q7-m7l"/>
+                        </connections>
+                    </button>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="cSY-Ng-cAg">
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DXF-oW-dN7">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <state key="normal" title="Like">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="likeAction:" destination="RoR-zW-R4a" eventType="touchUpInside" id="ijW-Db-uMj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LjP-7r-a6R">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <state key="normal" title="Reply">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="commentAction:" destination="RoR-zW-R4a" eventType="touchUpInside" id="8fu-OT-6On"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </stackView>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="mwD-hN-7wj" firstAttribute="top" secondItem="ZaU-h5-V0o" secondAttribute="bottom" constant="1" id="AYl-7t-79n"/>
-                <constraint firstAttribute="bottom" secondItem="cSY-Ng-cAg" secondAttribute="bottom" constant="4" id="CB4-p7-rwe"/>
-                <constraint firstItem="5QN-6B-o4d" firstAttribute="leading" secondItem="jNz-m3-z8q" secondAttribute="trailing" constant="2" id="EzN-d1-ftY"/>
-                <constraint firstItem="iaW-Bm-g0V" firstAttribute="top" secondItem="RoR-zW-R4a" secondAttribute="top" constant="42" id="FbO-pC-iIo"/>
-                <constraint firstAttribute="trailing" secondItem="iaW-Bm-g0V" secondAttribute="trailing" constant="8" id="GkN-Wk-mDf"/>
-                <constraint firstItem="cSY-Ng-cAg" firstAttribute="leading" secondItem="RoR-zW-R4a" secondAttribute="leading" constant="62" id="Iyh-gT-Uag"/>
+                <constraint firstItem="MRv-Dn-eNR" firstAttribute="top" secondItem="cSY-Ng-cAg" secondAttribute="bottom" constant="3" id="2lJ-gP-gjp"/>
+                <constraint firstAttribute="trailing" secondItem="YFo-as-I72" secondAttribute="trailing" constant="15" id="4Lt-Q3-EQW"/>
+                <constraint firstItem="mwD-hN-7wj" firstAttribute="top" secondItem="ZaU-h5-V0o" secondAttribute="bottom" constant="3" id="AYl-7t-79n"/>
+                <constraint firstItem="cSY-Ng-cAg" firstAttribute="top" secondItem="0lz-6j-jrr" secondAttribute="bottom" constant="3" id="CQy-Gs-YBO"/>
+                <constraint firstItem="iaW-Bm-g0V" firstAttribute="top" secondItem="RoR-zW-R4a" secondAttribute="top" constant="48" id="FbO-pC-iIo"/>
+                <constraint firstAttribute="trailing" secondItem="iaW-Bm-g0V" secondAttribute="trailing" constant="4" id="GkN-Wk-mDf"/>
                 <constraint firstItem="ZaU-h5-V0o" firstAttribute="trailing" secondItem="iaW-Bm-g0V" secondAttribute="trailing" id="NoU-yI-R5Z"/>
                 <constraint firstItem="ZaU-h5-V0o" firstAttribute="top" secondItem="TGF-XQ-j4s" secondAttribute="top" id="Ooq-r7-gKc"/>
-                <constraint firstItem="jNz-m3-z8q" firstAttribute="top" secondItem="5QN-6B-o4d" secondAttribute="top" id="Our-k1-AYH"/>
-                <constraint firstItem="jNz-m3-z8q" firstAttribute="leading" secondItem="cSY-Ng-cAg" secondAttribute="trailing" constant="1" id="PxR-mg-dvj"/>
+                <constraint firstItem="0lz-6j-jrr" firstAttribute="top" secondItem="YFo-as-I72" secondAttribute="bottom" constant="2" id="QpI-dP-rTG"/>
+                <constraint firstItem="v4c-A6-yxm" firstAttribute="leading" secondItem="RoR-zW-R4a" secondAttribute="leading" constant="15" id="Ryd-Un-07t"/>
+                <constraint firstAttribute="trailing" secondItem="0lz-6j-jrr" secondAttribute="trailing" constant="8" id="T2S-fe-Mh7"/>
                 <constraint firstAttribute="bottom" secondItem="MRv-Dn-eNR" secondAttribute="bottom" id="UeE-wk-kxe"/>
                 <constraint firstItem="ZaU-h5-V0o" firstAttribute="leading" secondItem="TGF-XQ-j4s" secondAttribute="trailing" constant="4" id="WCN-YD-oFY"/>
-                <constraint firstItem="jNz-m3-z8q" firstAttribute="top" secondItem="cSY-Ng-cAg" secondAttribute="top" id="WNP-ia-LeW"/>
-                <constraint firstItem="iaW-Bm-g0V" firstAttribute="leading" secondItem="RoR-zW-R4a" secondAttribute="leading" constant="62" id="ZtL-pH-BeH"/>
+                <constraint firstItem="cSY-Ng-cAg" firstAttribute="centerX" secondItem="0lz-6j-jrr" secondAttribute="centerX" id="WgH-H9-BwO"/>
+                <constraint firstItem="iaW-Bm-g0V" firstAttribute="leading" secondItem="RoR-zW-R4a" secondAttribute="leading" constant="4" id="ZtL-pH-BeH"/>
                 <constraint firstItem="ZaU-h5-V0o" firstAttribute="leading" secondItem="mwD-hN-7wj" secondAttribute="leading" id="bkn-aE-uqZ"/>
-                <constraint firstAttribute="trailing" secondItem="MRv-Dn-eNR" secondAttribute="trailing" constant="8" id="doB-Te-jY0"/>
+                <constraint firstAttribute="trailing" secondItem="MRv-Dn-eNR" secondAttribute="trailing" id="doB-Te-jY0"/>
                 <constraint firstItem="TGF-XQ-j4s" firstAttribute="top" secondItem="RoR-zW-R4a" secondAttribute="top" constant="8" id="fIi-UI-KJu"/>
+                <constraint firstItem="0lz-6j-jrr" firstAttribute="leading" secondItem="RoR-zW-R4a" secondAttribute="leading" constant="8" id="goD-NQ-fq0"/>
+                <constraint firstItem="0lz-6j-jrr" firstAttribute="top" secondItem="v4c-A6-yxm" secondAttribute="bottom" constant="2" id="hOE-2c-lmP"/>
                 <constraint firstItem="TGF-XQ-j4s" firstAttribute="leading" secondItem="RoR-zW-R4a" secondAttribute="leading" constant="8" id="ieB-br-tWF"/>
-                <constraint firstAttribute="bottom" secondItem="iaW-Bm-g0V" secondAttribute="bottom" constant="18" id="l5O-mO-VhV"/>
-                <constraint firstItem="MRv-Dn-eNR" firstAttribute="leading" secondItem="RoR-zW-R4a" secondAttribute="leading" constant="8" id="rrv-g6-5PZ"/>
+                <constraint firstAttribute="bottom" secondItem="0lz-6j-jrr" secondAttribute="bottom" constant="32" id="k0M-aq-k2o"/>
+                <constraint firstAttribute="bottom" secondItem="iaW-Bm-g0V" secondAttribute="bottom" constant="56" id="l5O-mO-VhV"/>
+                <constraint firstItem="MRv-Dn-eNR" firstAttribute="leading" secondItem="RoR-zW-R4a" secondAttribute="leading" id="rrv-g6-5PZ"/>
             </constraints>
             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
             <size key="customSize" width="414" height="167"/>
@@ -199,13 +191,9 @@
                 <outlet property="entryLeftConstraint" destination="ZtL-pH-BeH" id="Xnw-dn-TQP"/>
                 <outlet property="entryRightConstraint" destination="GkN-Wk-mDf" id="1DN-zX-UEc"/>
                 <outlet property="entryTextView" destination="iaW-Bm-g0V" id="G93-Df-1vs"/>
-                <outlet property="inReplyPrefixLabel" destination="5Sr-22-Y69" id="ezD-n0-xq7"/>
-                <outlet property="inReplyStackView" destination="jNz-m3-z8q" id="YEB-iB-ak1"/>
                 <outlet property="likeButton" destination="DXF-oW-dN7" id="H7q-pq-ahZ"/>
                 <outlet property="parentPostCreatorButton" destination="YFo-as-I72" id="HVP-bA-qSf"/>
                 <outlet property="threadTitleButton" destination="ZaU-h5-V0o" id="D2h-wc-PP4"/>
-                <outlet property="toParentCreatorStackView" destination="5QN-6B-o4d" id="BTa-mN-W2C"/>
-                <outlet property="viewCommentsButton" destination="Bam-6G-5m4" id="4Es-HL-smA"/>
             </connections>
             <point key="canvasLocation" x="467" y="461"/>
         </collectionViewCell>

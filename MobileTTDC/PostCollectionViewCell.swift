@@ -43,27 +43,49 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
             creatorButton.setTitle("\(post.creator.login)", forState: .Normal)
             
             //            viewCommentsButton.hidden = false
-            inReplyStackView.hidden = false
+//            inReplyStackView.hidden = false
+//            if post.threadPost {
+//                toParentCreatorStackView.hidden = true
+//                if post.mass == 0 {
+//                    inReplyStackView.hidden = true
+//                }
+//                else if post.mass == 1 {
+//                    inReplyPrefixLabel.text = "view"
+//                    viewCommentsButton.setTitle("conversation", forState: .Normal)
+//                } else {
+//                    inReplyPrefixLabel.text = "view"
+//                    viewCommentsButton.setTitle("\(post.mass) replies to conversation", forState: .Normal)
+//                }
+//                
+//            } else {
+//                toParentCreatorStackView.hidden = false
+//                parentPostCreatorButton.setTitle("\(post.parentPostCreator)", forState: .Normal)
+//                inReplyPrefixLabel.text = "in"
+//                viewCommentsButton.setTitle("response", forState: .Normal)
+//            }
+            
+
+            parentPostCreatorButton.hidden = false
             if post.threadPost {
-                toParentCreatorStackView.hidden = true
                 if post.mass == 0 {
-                    inReplyStackView.hidden = true
+                    parentPostCreatorButton.hidden = true
                 }
                 else if post.mass == 1 {
-                    inReplyPrefixLabel.text = "view"
-                    viewCommentsButton.setTitle("conversation", forState: .Normal)
+//                    inReplyPrefixLabel.text = "view"
+                    parentPostCreatorButton.setTitle("one comment", forState: .Normal)
                 } else {
-                    inReplyPrefixLabel.text = "view"
-                    viewCommentsButton.setTitle("\(post.mass) replies to conversation", forState: .Normal)
+//                    inReplyPrefixLabel.text = "view"
+                    parentPostCreatorButton.setTitle("\(post.mass) comments", forState: .Normal)
                 }
                 
             } else {
-                toParentCreatorStackView.hidden = false
-                parentPostCreatorButton.setTitle("\(post.parentPostCreator)", forState: .Normal)
-                inReplyPrefixLabel.text = "in"
-                viewCommentsButton.setTitle("response", forState: .Normal)
+//                toParentCreatorStackView.hidden = false
+//                parentPostCreatorButton.setTitle("\(post.parentPostCreator)", forState: .Normal)
+//                inReplyPrefixLabel.text = "in"
+                parentPostCreatorButton.setTitle("in response to \(post.parentPostCreator)", forState: .Normal)
             }
             
+//            
             //            contentWebView.setNeedsLayout()
             //            contentWebView.layoutIfNeeded()
             
@@ -100,11 +122,8 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var parentPostCreatorButton: UIButton!
     
-    @IBOutlet weak var inReplyPrefixLabel: UILabel!
-    @IBOutlet weak var inReplyStackView: UIStackView!
     @IBOutlet weak var creatorButton: UIButton!
     @IBOutlet weak var entryTextView: UITextView!
-    @IBOutlet weak var toParentCreatorStackView: UIStackView!
     @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var threadTitleButton: UIButton!
     @IBOutlet weak var creatorImageView: UIImageView!
@@ -116,8 +135,8 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
         super.awakeFromNib()
         // Initialization code
         
-        entryTextView.layoutMargins.bottom = 0
-        entryTextView.layoutMargins.top = 0
+        
+        entryTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0)
     }
     
     

@@ -115,6 +115,8 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
             //            print("Size of web that fits: \(contentWebView.sizeThatFits(CGSizeZero))")
             //            print("Size of web: \(contentWebView.intrinsicContentSize())")
             //            print("Size of btn: \(dateButton.intrinsicContentSize())")
+            
+            likesLabel.text = post.formatLikesString()
         }
     }
     @IBOutlet weak var viewCommentsButton: UIButton!
@@ -127,6 +129,7 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
     @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var threadTitleButton: UIButton!
     @IBOutlet weak var creatorImageView: UIImageView!
+    @IBOutlet weak var likesLabel: UILabel!
     
     
     var delegate: PostViewCellDelegate?

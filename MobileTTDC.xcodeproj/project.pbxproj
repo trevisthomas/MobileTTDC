@@ -25,6 +25,8 @@
 		0F0F69CC1D3C9D09009600F7 /* Conversation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F0F69CB1D3C9D09009600F7 /* Conversation.storyboard */; };
 		0F0F69CE1D4D4F53009600F7 /* PostViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69CD1D4D4F53009600F7 /* PostViewCellDelegate.swift */; };
 		0F317C641D280D7D00C110AE /* ApplicationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F317C631D280D7D00C110AE /* ApplicationContext.swift */; };
+		0F3CEAB01DC07046003CD432 /* TagAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3CEAAF1DC07046003CD432 /* TagAssociation.swift */; };
+		0F3CEAB21DC07056003CD432 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3CEAB11DC07056003CD432 /* Tag.swift */; };
 		0F76A87A1CFA165D00BDD499 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A8791CFA165D00BDD499 /* LoginViewController.swift */; };
 		0F76A87C1CFA16C300BDD499 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */; };
 		0F76A87E1CFA1C9400BDD499 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A87D1CFA1C9400BDD499 /* ProfileViewController.swift */; };
@@ -112,6 +114,8 @@
 		0F0F69CB1D3C9D09009600F7 /* Conversation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Conversation.storyboard; sourceTree = "<group>"; };
 		0F0F69CD1D4D4F53009600F7 /* PostViewCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewCellDelegate.swift; sourceTree = "<group>"; };
 		0F317C631D280D7D00C110AE /* ApplicationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationContext.swift; sourceTree = "<group>"; };
+		0F3CEAAF1DC07046003CD432 /* TagAssociation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagAssociation.swift; sourceTree = "<group>"; };
+		0F3CEAB11DC07056003CD432 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		0F76A8791CFA165D00BDD499 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
 		0F76A87D1CFA1C9400BDD499 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -257,6 +261,8 @@
 				0FCC10761D28392300EA0B25 /* LatestPostsProtocols.swift */,
 				0FCC107C1D2ABC2000EA0B25 /* AutoCompleteItem.swift */,
 				0F0F69C71D3BE371009600F7 /* Forum.swift */,
+				0F3CEAAF1DC07046003CD432 /* TagAssociation.swift */,
+				0F3CEAB11DC07056003CD432 /* Tag.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -503,6 +509,7 @@
 				0FCC108C1D2B352500EA0B25 /* UITextView+Utilities.swift in Sources */,
 				0F0F69C81D3BE371009600F7 /* Forum.swift in Sources */,
 				0FCC107D1D2ABC2000EA0B25 /* AutoCompleteItem.swift in Sources */,
+				0F3CEAB21DC07056003CD432 /* Tag.swift in Sources */,
 				0F83CF411D734C1F001A7F8F /* SearchViewController.swift in Sources */,
 				0FF896691D73767A007813F7 /* AutoCompleteCollectionViewCell.swift in Sources */,
 				0FE527441CFD0E1E00407AAE /* Post.swift in Sources */,
@@ -514,6 +521,7 @@
 				0F9FB1E21DBD56EF00B901ED /* PostSeperator.swift in Sources */,
 				0F0F69C01D3ADB5D009600F7 /* TopicCreationViewController.swift in Sources */,
 				0FD0A32E1D0CB0050030D36F /* SearchResponse.swift in Sources */,
+				0F3CEAB01DC07046003CD432 /* TagAssociation.swift in Sources */,
 				0FB2F4A91D035E34008F386A /* UIImageView+WebLoad.swift in Sources */,
 				0FE5272D1CFB65EB00407AAE /* Decoder.swift in Sources */,
 				0F0F69B21D329B61009600F7 /* TransactionTrackable.swift in Sources */,

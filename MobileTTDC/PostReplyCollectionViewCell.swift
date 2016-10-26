@@ -18,6 +18,7 @@ class PostReplyCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
                 creatorImageView.downloadedFrom(link: url, contentMode: .ScaleAspectFit)
             }
             dateButton.setTitle(Utilities.singleton.simpleDateTimeFormat(post.date), forState: .Normal)
+            likesLabel.text = post.formatLikesString()
         }
     }
     
@@ -27,6 +28,7 @@ class PostReplyCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
     @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var replyButton: UIButton!
+    @IBOutlet weak var likesLabel: UILabel!
     
     @IBOutlet weak var entryTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var entryBottomConstraint: NSLayoutConstraint!
@@ -36,7 +38,7 @@ class PostReplyCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        entryTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0)
     }
     
     @IBAction func replyAction(sender: UIButton) {

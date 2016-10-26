@@ -22,6 +22,7 @@ public struct Post : Decodable{
     let threadPost: Bool //For conversations this is true.
     let parentPostCreator: String!
     let parentPostCreatorId: String!
+    let tagAssociations:[TagAssociation]?
     
     public init?(json: JSON) {
         postId = ("postId" <~~ json)!
@@ -38,7 +39,37 @@ public struct Post : Decodable{
         threadPost = ("threadPost" <~~ json)! //isThreadPost
         parentPostCreator = ("parentPostCreator" <~~ json)
         parentPostCreatorId = ("parentPostCreatorId" <~~ json)
+        tagAssociations = ("tagAssociations" <~~ json)
+    }
+    
+    func formatLikesString() -> String {
         
+        guard howManyLikes() > 0 else {
+            return ""
+        }
+        var likes = ""
+        for tagAss in tagAssociations! {
+            if(tagAss.tag.type == "LIKE"){
+                if (!likes.isEmpty){
+                    likes.appendContentsOf(", ")
+                }
+                likes.appendContentsOf(tagAss.creator.login)
+            }
+        }
+        return "Liked by: \(likes)"
+    }
+    
+    func howManyLikes() -> Int {
+        guard tagAssociations != nil else {
+            return 0
+        }
+        var count = 0
+        for tagAss in tagAssociations! {
+            if(tagAss.tag.type == "LIKE"){
+                count += 1
+            }
+        }
+        return count
     }
     
 }

@@ -30,11 +30,12 @@ class LoginViewController: UIViewController{
     
     @IBAction func loginButton(sender: UIButton) {
         getApplicationContext().authenticate(loginTextField.text!, password: passwordTextField.text!){ (success, message) -> () in
+            
             guard success else {
                 self.presentAlert("Sorry", message: message)
                 return
             }
-            self.tabBarController?.selectedIndex = 0
+//            self.tabBarController?.selectedIndex = 0
             
         };
     }

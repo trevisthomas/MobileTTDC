@@ -10,7 +10,21 @@ import Foundation
 import UIKit
 
 public class ApplicationContext : AuthenticatedUserDataProvider {
-    private var _currentUser : Person? = nil
+    public static let currentUserKey : String = "us.ttdc.CurrentUser"
+    private var _currentUser : Person? = nil {
+        didSet{
+//            NSNotificationCenter.defaultCenter().postNotificationName(ApplicationContext.currentUserKey, object: _currentUser?.login) //Sigh.  I hate struts.  Were they a bad idea?
+            
+            var objects = [Any?]()
+            objects.append(_currentUser?.login)
+            
+            if let login = _currentUser?.login {
+                NSNotificationCenter.defaultCenter().postNotificationName(ApplicationContext.currentUserKey, object: nil, userInfo: ["login" : login])
+            } else {
+                NSNotificationCenter.defaultCenter().postNotificationName(ApplicationContext.currentUserKey, object: nil, userInfo: [:])
+            }
+        }
+    }
     private(set) public var token: String? = nil //WTF both?
     
     //Trevis: Your thought for these stashes was just to have a temporary place to hang on to user entered text in dialogs so that if they accidentally leave and the VC closes, that coming back, the text would still be avail.

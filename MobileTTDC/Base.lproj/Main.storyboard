@@ -250,39 +250,6 @@
             </objects>
             <point key="canvasLocation" x="-1662" y="1316"/>
         </scene>
-        <!--Profile-->
-        <scene sceneID="cyZ-Uv-30R">
-            <objects>
-                <viewController id="Q4Z-Yo-uyx" customClass="ProfileViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="lg3-Ee-UqS"/>
-                        <viewControllerLayoutGuide type="bottom" id="mr0-mE-d9r"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Uh4-Lq-50o">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RC4-6u-rgY">
-                                <frame key="frameInset" minX="276" minY="290" width="49" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="RC4-6u-rgY" firstAttribute="centerX" secondItem="Uh4-Lq-50o" secondAttribute="centerX" id="262-BH-9ox"/>
-                            <constraint firstItem="RC4-6u-rgY" firstAttribute="centerY" secondItem="Uh4-Lq-50o" secondAttribute="centerY" id="waM-9I-L3q"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="first" id="EQW-xl-yjf"/>
-                    <toolbarItems/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="H2M-lM-k1g" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2623" y="1737"/>
-        </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>

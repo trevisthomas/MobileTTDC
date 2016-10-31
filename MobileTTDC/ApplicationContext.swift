@@ -11,6 +11,73 @@ import UIKit
 
 public class ApplicationContext : AuthenticatedUserDataProvider {
     public static let currentUserKey : String = "us.ttdc.CurrentUser"
+    public static let styleChangedNotificationKey : String = "us.ttdc.StyleChanged"
+    public static let styleDark : String = "darkStyle"
+    public static let styleLight : String = "lightStyle"
+
+    private static let defaultStyle : String = styleLight
+    
+    public enum Style {
+        case Dark
+        case Light
+    }
+    
+    public var imageCache : [String: UIImage] = [:]
+    
+//    public var currentStyleName : Style = .Light{
+//        didSet{
+//            switch currentStyleName {
+//            case .Light:
+//                currentStyle = AppStyleLight()
+//                
+//            case .Dark:
+//                currentStyle = AppStyleDark()
+//                
+//            }
+//        }
+//    }
+    
+    
+    func setStyleDark(){
+        currentStyleName = ApplicationContext.styleDark
+        saveState()
+    }
+    
+    func setStyleLight(){
+        currentStyleName = ApplicationContext.styleLight
+        saveState()
+    }
+    
+    func isStyleLight() -> Bool{
+        return currentStyleName == ApplicationContext.styleLight
+    }
+    
+    func isStyleDark() -> Bool{
+        return currentStyleName == ApplicationContext.styleDark
+    }
+    
+    func getCurrentStyle() -> AppStyle {
+        if currentStyleName == ApplicationContext.styleDark {
+            return AppStyleDark()
+        } else {
+            return AppStyleLight()
+        }
+        
+    }
+
+    private(set) var currentStyleName : String = ApplicationContext.defaultStyle {
+        didSet{
+            NSNotificationCenter.defaultCenter().postNotificationName(ApplicationContext.styleChangedNotificationKey, object: nil)
+        }
+    }
+
+    
+//    private(set) var currentStyle : AppStyle = AppStyleLight() {
+//        didSet{
+//            NSNotificationCenter.defaultCenter().postNotificationName(ApplicationContext.styleChangedNotificationKey, object: nil)
+//        }
+//    }
+    
     private var _currentUser : Person? = nil {
         didSet{
 //            NSNotificationCenter.defaultCenter().postNotificationName(ApplicationContext.currentUserKey, object: _currentUser?.login) //Sigh.  I hate struts.  Were they a bad idea?
@@ -43,12 +110,14 @@ public class ApplicationContext : AuthenticatedUserDataProvider {
     
     private struct PersistantKeys {
         static let token = "token"
+        static let style = "style"
     }
     
     public func saveState(){
         let defaults = NSUserDefaults.standardUserDefaults()
         
         defaults.setValue(token, forKey: PersistantKeys.token)
+        defaults.setValue(currentStyleName, forKeyPath: PersistantKeys.style)
         
         defaults.synchronize()
     }
@@ -81,6 +150,12 @@ public class ApplicationContext : AuthenticatedUserDataProvider {
             self.reloadAllData()
         }
         
+        
+        if let style = defaults.stringForKey(PersistantKeys.style) {
+            self.currentStyleName = style
+        } else {
+            self.currentStyleName = ApplicationContext.defaultStyle
+        }
     }
     
     private var _latestPosts : [Post] = [] {

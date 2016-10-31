@@ -20,3 +20,67 @@ extension UIView : UIWebViewDelegate {
         return true
     }
 }
+
+//Trevis, you also have this extension on ViewController.  Is that redundant?
+extension UIView {
+    func getApplicationContext() -> ApplicationContext {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        return appDelegate.applicationContext
+    }
+}
+
+protocol DynamicAppStyle {
+    func refreshStyle()
+}
+
+//extension DynamicAppStyle {
+//    func refreshStyle() {
+//                //Default impl does nothing
+//            }
+//}
+
+extension UIView : DynamicAppStyle {
+    
+    func registerForStyleUpdates() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(catchStyleNotification), name: ApplicationContext.styleChangedNotificationKey, object: nil)
+        
+        refreshStyle()
+    }
+    
+    func catchStyleNotification(notification: NSNotification) {
+        //Hm.  Not sure how to make this work.
+//        if(self.respondsToSelector(#selector(refreshStyle))){
+//            refreshStyle()
+//        }
+        refreshStyle()
+        
+        
+    }
+    func refreshStyle() {
+        //Default impl does nothing
+    }
+    
+}
+
+extension UIViewController : DynamicAppStyle {
+    
+    func registerForStyleUpdates() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(catchStyleNotification), name: ApplicationContext.styleChangedNotificationKey, object: nil)
+        
+        refreshStyle()
+    }
+    
+    func catchStyleNotification(notification: NSNotification) {
+        //Hm.  Not sure how to make this work.
+        //        if(self.respondsToSelector(#selector(refreshStyle))){
+        //            refreshStyle()
+        //        }
+        refreshStyle()
+        
+        
+    }
+    func refreshStyle() {
+        //Default impl does nothing
+    }
+    
+}

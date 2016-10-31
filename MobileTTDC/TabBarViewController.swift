@@ -15,6 +15,7 @@ class TabBarViewController: UITabBarController {
     var conversation : UIViewController!
     var login : UIViewController!
     var forum : UIViewController!
+    var profile : UIViewController!
     
     
     override func viewDidLoad() {
@@ -28,8 +29,14 @@ class TabBarViewController: UITabBarController {
         forum = storyboard.instantiateViewControllerWithIdentifier("ForumNav")
         login = storyboard.instantiateViewControllerWithIdentifier("LoginNav")
         
+        let profileStoryboard = UIStoryboard(name: "Profile", bundle: NSBundle.mainBundle())
+        
+        profile = profileStoryboard.instantiateViewControllerWithIdentifier("ProfileNav")
+        
         configureGuest()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TabBarViewController.catchNotification), name: ApplicationContext.currentUserKey, object: nil)
+        
+        registerForStyleUpdates()
     }
 
     func catchNotification(notification: NSNotification) {
@@ -45,7 +52,9 @@ class TabBarViewController: UITabBarController {
     }
     
     
-   
+    override func refreshStyle() {
+        self.tabBar.tintColor = getApplicationContext().getCurrentStyle().tintColor()
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -61,7 +70,7 @@ class TabBarViewController: UITabBarController {
 //    }
 //    
     func configureAuthenticated() {
-        self.tabBar.tintColor = UIColor.greenColor()
+        
         
 //        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         
@@ -83,7 +92,7 @@ class TabBarViewController: UITabBarController {
         controllerArray.append(latest)
         controllerArray.append(conversation)
         controllerArray.append(forum)
-        controllerArray.append(login)
+        controllerArray.append(profile)
         
         self.setViewControllers(controllerArray, animated: true)
         
@@ -91,7 +100,7 @@ class TabBarViewController: UITabBarController {
     }
     
     func configureGuest() {
-        self.tabBar.tintColor = UIColor.greenColor()
+        
         
 //        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 //        controllerArray.removeAll()

@@ -119,7 +119,7 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
             likesLabel.text = post.formatLikesString()
         }
     }
-    @IBOutlet weak var viewCommentsButton: UIButton!
+    @IBOutlet weak var viewCommentsButton: UIButton!  //Deprecated?
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var parentPostCreatorButton: UIButton!
@@ -140,9 +140,20 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
         
         
         entryTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        registerForStyleUpdates() //causes refreshStyle to be called
     }
     
-    
+
+    override func refreshStyle() {
+        let appStyle = getApplicationContext().getCurrentStyle()
+        commentButton.setTitleColor(appStyle.postFooterTextColor(), forState: .Normal)
+        likeButton.setTitleColor(appStyle.postFooterTextColor(), forState: .Normal)
+        dateButton.setTitleColor(appStyle.headerDetailTextColor(), forState: .Normal)
+        threadTitleButton.setTitleColor(appStyle.headerTextColor(), forState: .Normal)
+        likesLabel.textColor = appStyle.postFooterTextColor()
+        backgroundColor = appStyle.postBackgroundColor()
+     
+    }
     
     //
     func webViewDidFinishLoad(webView: UIWebView) {

@@ -28,6 +28,8 @@
 		0F3CEAB01DC07046003CD432 /* TagAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3CEAAF1DC07046003CD432 /* TagAssociation.swift */; };
 		0F3CEAB21DC07056003CD432 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3CEAB11DC07056003CD432 /* Tag.swift */; };
 		0F3CEAB41DC272AA003CD432 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3CEAB31DC272AA003CD432 /* TabBarViewController.swift */; };
+		0F3CEABA1DC4D64F003CD432 /* AppStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3CEAB91DC4D64F003CD432 /* AppStyle.swift */; };
+		0F3CEABD1DC6F9D5003CD432 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F3CEABC1DC6F9D5003CD432 /* Profile.storyboard */; };
 		0F76A87A1CFA165D00BDD499 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A8791CFA165D00BDD499 /* LoginViewController.swift */; };
 		0F76A87C1CFA16C300BDD499 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */; };
 		0F76A87E1CFA1C9400BDD499 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A87D1CFA1C9400BDD499 /* ProfileViewController.swift */; };
@@ -118,6 +120,8 @@
 		0F3CEAAF1DC07046003CD432 /* TagAssociation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagAssociation.swift; sourceTree = "<group>"; };
 		0F3CEAB11DC07056003CD432 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		0F3CEAB31DC272AA003CD432 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		0F3CEAB91DC4D64F003CD432 /* AppStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStyle.swift; sourceTree = "<group>"; };
+		0F3CEABC1DC6F9D5003CD432 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		0F76A8791CFA165D00BDD499 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
 		0F76A87D1CFA1C9400BDD499 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -200,6 +204,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F3CEABB1DC6F9B5003CD432 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				0F76A87D1CFA1C9400BDD499 /* ProfileViewController.swift */,
+				0F3CEABC1DC6F9D5003CD432 /* Profile.storyboard */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
 		0F83CF3F1D734C03001A7F8F /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +249,7 @@
 				0FB2F4A61D035B4A008F386A /* Utilities.swift */,
 				0FCBD8581DBD101000DE8F2A /* style.css */,
 				0F3CEAB31DC272AA003CD432 /* TabBarViewController.swift */,
+				0F3CEAB91DC4D64F003CD432 /* AppStyle.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -313,6 +327,7 @@
 				0F9E08F91D145DCF006676C1 /* Extensions */,
 				0F9E08FA1D145E43006676C1 /* Core */,
 				0FCF01891CFA10E200924868 /* Main.storyboard */,
+				0F3CEABB1DC6F9B5003CD432 /* Profile */,
 				0F83CF3F1D734C03001A7F8F /* Search */,
 				0F9E08FD1D14BB62006676C1 /* ConverstionSplitViewController.swift */,
 				0FD0A3211D0CA2530030D36F /* ConversationsViewController.swift */,
@@ -324,7 +339,6 @@
 				0FA3F2431DB982CD00268DC1 /* Post */,
 				0FCC10841D2AC52500EA0B25 /* Comment */,
 				0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */,
-				0F76A87D1CFA1C9400BDD499 /* ProfileViewController.swift */,
 				0F0F69CD1D4D4F53009600F7 /* PostViewCellDelegate.swift */,
 				0FD0A33B1D0DF4140030D36F /* ReuseIdentifiers.swift */,
 			);
@@ -464,6 +478,7 @@
 				0FA3F25F1DBBC7EA00268DC1 /* PostCollectionViewCell.xib in Resources */,
 				0FCBD8591DBD101000DE8F2A /* style.css in Resources */,
 				0FCF018B1CFA10E200924868 /* Main.storyboard in Resources */,
+				0F3CEABD1DC6F9D5003CD432 /* Profile.storyboard in Resources */,
 				0F83CF3E1D734AAF001A7F8F /* Search.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -539,6 +554,7 @@
 				0F888A6F1D1DDDA0005F960A /* LatestPostsViewController.swift in Sources */,
 				0FE5272E1CFB65EB00407AAE /* Encoder.swift in Sources */,
 				0FE5273E1CFD058700407AAE /* PostResponse.swift in Sources */,
+				0F3CEABA1DC4D64F003CD432 /* AppStyle.swift in Sources */,
 				0FE527221CFB654300407AAE /* LoginResponse.swift in Sources */,
 				0FA3F2691DBC73B400268DC1 /* PostBaseViewController.swift in Sources */,
 				0FE5272F1CFB65EB00407AAE /* ExtensionArray.swift in Sources */,

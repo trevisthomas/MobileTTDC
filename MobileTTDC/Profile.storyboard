@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LJf-kR-clj">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Profile-->
+        <scene sceneID="Y9Y-du-7L6">
+            <objects>
+                <navigationController storyboardIdentifier="ProfileNav" title="Profile" id="LJf-kR-clj" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sWh-D1-mu9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="zcD-Eq-rG1" kind="relationship" relationship="rootViewController" id="zBj-80-kAd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NyB-Mr-cdL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="92" y="-214"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="0de-u5-Uqf">
+            <objects>
+                <viewController title="Profile" id="zcD-Eq-rG1" customClass="ProfileViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="60K-eK-AFv"/>
+                        <viewControllerLayoutGuide type="bottom" id="5dJ-fs-5Yr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gtl-QO-dag">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gy5-ee-sE3">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="bce-jd-6eW"/>
+                                    <constraint firstAttribute="width" constant="100" id="fY2-wT-fm8"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxD-ms-BEd">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sxB-E0-ZaT">
+                                <segments>
+                                    <segment title="Light"/>
+                                    <segment title="Dark"/>
+                                </segments>
+                                <connections>
+                                    <action selector="lightDarkSegmentedControlAction:" destination="zcD-Eq-rG1" eventType="valueChanged" id="naH-ba-Psf"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JxD-ms-BEd" firstAttribute="top" secondItem="Gy5-ee-sE3" secondAttribute="top" id="JBt-QS-nNc"/>
+                            <constraint firstItem="sxB-E0-ZaT" firstAttribute="top" secondItem="Gy5-ee-sE3" secondAttribute="bottom" constant="8" symbolic="YES" id="RRz-sh-woD"/>
+                            <constraint firstItem="sxB-E0-ZaT" firstAttribute="trailing" secondItem="gtl-QO-dag" secondAttribute="trailingMargin" id="YBz-Qh-bLQ"/>
+                            <constraint firstItem="Gy5-ee-sE3" firstAttribute="top" secondItem="60K-eK-AFv" secondAttribute="bottom" constant="8" id="i6E-Km-emw"/>
+                            <constraint firstItem="sxB-E0-ZaT" firstAttribute="leading" secondItem="Gy5-ee-sE3" secondAttribute="leading" id="pX1-SP-QZB"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Gy5-ee-sE3" secondAttribute="leading" id="tnT-J3-DPl"/>
+                            <constraint firstItem="JxD-ms-BEd" firstAttribute="top" secondItem="60K-eK-AFv" secondAttribute="bottom" constant="8" id="uer-5F-iOO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JxD-ms-BEd" secondAttribute="trailing" constant="7" id="uzP-Im-gQc"/>
+                            <constraint firstItem="JxD-ms-BEd" firstAttribute="leading" secondItem="Gy5-ee-sE3" secondAttribute="trailing" constant="8" symbolic="YES" id="w2s-ET-YdU"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="E6N-gw-KQw">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="NUN-vL-Gw4">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Uzo-mh-ZwT">
+                                <rect key="frame" x="313" y="7" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logoff"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="lightDarkSegmentedControl" destination="sxB-E0-ZaT" id="5JE-q4-2cl"/>
+                        <outlet property="profilePicImageView" destination="Gy5-ee-sE3" id="57s-J7-7dl"/>
+                        <outlet property="titleLabel" destination="JxD-ms-BEd" id="pPJ-CM-fDo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fXP-wk-dil" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="933.60000000000002" y="-222.63868065967017"/>
+        </scene>
+    </scenes>
+</document>

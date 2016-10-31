@@ -17,6 +17,11 @@ extension UIViewController {
         
         self.presentViewController(alertController, animated: true, completion: nil)
     }
+    
+    func getApplicationContext() -> ApplicationContext {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        return appDelegate.applicationContext
+    }
 
     
 }

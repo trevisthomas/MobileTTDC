@@ -135,8 +135,7 @@ public class ApplicationContext : AuthenticatedUserDataProvider {
             Network.performValidate(cmd){
                 (response, message) -> Void in
                 guard (response != nil) else {
-                    self._currentUser = nil
-                    self.token = nil
+                    self.logoff()
                     return;
                 }
                 self.token = response?.token
@@ -145,8 +144,7 @@ public class ApplicationContext : AuthenticatedUserDataProvider {
                 self.reloadAllData()
             };
         } else {
-            self._currentUser = nil
-            self.token = nil
+            self.logoff()
             self.reloadAllData()
         }
         
@@ -238,6 +236,13 @@ extension ApplicationContext : LatestPostsDataProvider {
     }
     public func currentUser() -> Person? {
         return _currentUser
+    }
+    
+    public func logoff() {
+        _currentUser = nil
+        currentStyleName = ApplicationContext.defaultStyle
+        token = nil
+        self.saveState()
     }
 
     public func reloadLatestPosts() {

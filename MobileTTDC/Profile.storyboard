@@ -75,6 +75,9 @@
                                 <rect key="frame" x="313" y="7" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Logoff"/>
+                                <connections>
+                                    <action selector="logoutAction:" destination="zcD-Eq-rG1" eventType="touchUpInside" id="ZWz-y6-QHM"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>

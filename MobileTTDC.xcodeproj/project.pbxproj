@@ -76,6 +76,7 @@
 		0FD0A3401D0DFE980030D36F /* TopicResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD0A33F1D0DFE980030D36F /* TopicResponse.swift */; };
 		0FD597691D316CD500CAE7FF /* AutoCompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD597671D316CD500CAE7FF /* AutoCompleteTableViewCell.swift */; };
 		0FD5976A1D316CD500CAE7FF /* AutoCompleteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FD597681D316CD500CAE7FF /* AutoCompleteTableViewCell.xib */; };
+		0FDA6A231DC7C75A00279596 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDA6A221DC7C75A00279596 /* NavigationViewController.swift */; };
 		0FE527211CFB654300407AAE /* LoginCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE5271D1CFB654300407AAE /* LoginCommand.swift */; };
 		0FE527221CFB654300407AAE /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE5271E1CFB654300407AAE /* LoginResponse.swift */; };
 		0FE527231CFB654300407AAE /* NetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE5271F1CFB654300407AAE /* NetworkAdapter.swift */; };
@@ -170,6 +171,7 @@
 		0FD0A33F1D0DFE980030D36F /* TopicResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicResponse.swift; sourceTree = "<group>"; };
 		0FD597671D316CD500CAE7FF /* AutoCompleteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoCompleteTableViewCell.swift; sourceTree = "<group>"; };
 		0FD597681D316CD500CAE7FF /* AutoCompleteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutoCompleteTableViewCell.xib; sourceTree = "<group>"; };
+		0FDA6A221DC7C75A00279596 /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		0FE5271D1CFB654300407AAE /* LoginCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCommand.swift; sourceTree = "<group>"; };
 		0FE5271E1CFB654300407AAE /* LoginResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		0FE5271F1CFB654300407AAE /* NetworkAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkAdapter.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				0FCBD8581DBD101000DE8F2A /* style.css */,
 				0F3CEAB31DC272AA003CD432 /* TabBarViewController.swift */,
 				0F3CEAB91DC4D64F003CD432 /* AppStyle.swift */,
+				0FDA6A221DC7C75A00279596 /* NavigationViewController.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 				0FE527211CFB654300407AAE /* LoginCommand.swift in Sources */,
 				0FB2F4A71D035B4A008F386A /* Utilities.swift in Sources */,
 				0F0F69B81D383730009600F7 /* AccessoryCommentView.swift in Sources */,
+				0FDA6A231DC7C75A00279596 /* NavigationViewController.swift in Sources */,
 				0FE527421CFD096300407AAE /* UIViewController+Alerts.swift in Sources */,
 				0FE527231CFB654300407AAE /* NetworkAdapter.swift in Sources */,
 				0F3CEAB41DC272AA003CD432 /* TabBarViewController.swift in Sources */,

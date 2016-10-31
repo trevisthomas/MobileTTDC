@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -366,7 +366,7 @@
                         <outlet property="collectionView" destination="Sdd-xr-J9t" id="NRx-sG-irQ"/>
                         <outlet property="modeSegmentedControl" destination="XVd-yt-4Wc" id="Q6q-c9-gez"/>
                         <outlet property="modeSelectionHeightConstraint" destination="qGZ-qn-Dgk" id="by0-bz-VN3"/>
-                        <outlet property="modeSelectionView" destination="Efd-hk-DWs" id="6gF-u8-YOI"/>
+                        <outlet property="modeSelectionView" destination="Efd-hk-DWs" id="fSS-6n-iPS"/>
                         <segue destination="Rsi-aW-7qZ" kind="presentation" identifier="ConversationWithReplyView" modalPresentationStyle="formSheet" id="Tbg-Sh-HGH"/>
                         <segue destination="iT6-UF-28K" kind="show" identifier="ThreadView" id="gvA-9t-fNh"/>
                     </connections>
@@ -430,7 +430,7 @@
         <!--Latest-->
         <scene sceneID="DCJ-2t-PK3">
             <objects>
-                <navigationController storyboardIdentifier="LatestNav" automaticallyAdjustsScrollViewInsets="NO" id="a4H-aW-Zxr" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LatestNav" automaticallyAdjustsScrollViewInsets="NO" id="a4H-aW-Zxr" customClass="NavigationViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Latest" image="second" id="Ci5-iC-Xne"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PsT-sO-B4D">
@@ -491,6 +491,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="DvZ-ZA-J9J"/>
-        <segue reference="dl3-XF-a5V"/>
+        <segue reference="gvA-9t-fNh"/>
     </inferredMetricsTieBreakers>
 </document>

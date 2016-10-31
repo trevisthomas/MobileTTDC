@@ -21,6 +21,17 @@ class PostSeperator: UIView {
     @IBInspectable var fillColor: UIColor = UIColor.greenColor()
     @IBInspectable var thickness: CGFloat = 3.0
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        registerForStyleUpdates()
+    }
+    
+    override func refreshStyle() {
+        backgroundColor = UIColor.clearColor()
+        fillColor = getApplicationContext().getCurrentStyle().postFooterDetailColor()
+        self.setNeedsDisplay()
+    }
+    
     override func drawRect(rect: CGRect) {
         //create the path
         let plusPath = UIBezierPath()

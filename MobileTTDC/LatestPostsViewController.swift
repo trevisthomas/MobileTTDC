@@ -71,6 +71,26 @@ class LatestPostsViewController: PostBaseViewController {
         collectionView.delegate = self //For the layout delegate
         
         handleModeChange()
+        
+//        self.navigationController?.navigationBar.translucent = true
+//        self.navigationController?.navigationBar.alpha = 0.5
+//        self.navigationController?.navigationBar.tintColor = UIColor.greenColor()
+//        self.navigationController?.navigationBar.barTintColor = UIColor.yellowColor()
+        
+        registerForStyleUpdates()
+    }
+    
+    override func refreshStyle() {
+        modeSegmentedControl.tintColor = getApplicationContext().getCurrentStyle().tintColor()
+        
+        modeSelectionView.backgroundColor = getApplicationContext().getCurrentStyle().postBackgroundColor()
+        
+        collectionView.backgroundColor = getApplicationContext().getCurrentStyle().postBackgroundColor()
+        
+//        collectionView.
+        collectionView.indicatorStyle = getApplicationContext().getCurrentStyle().scrollBarStyle()
+        
+        
     }
     
     //This is here so that the layout will adjust when you "maximize"

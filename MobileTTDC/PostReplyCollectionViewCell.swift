@@ -19,6 +19,8 @@ class PostReplyCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
             }
             dateButton.setTitle(Utilities.singleton.simpleDateTimeFormat(post.date), forState: .Normal)
             likesLabel.text = post.formatLikesString()
+            
+            refreshStyle() //For some reason those attributed guys get unhappy if you dont do this
         }
     }
     
@@ -39,7 +41,26 @@ class PostReplyCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
     override func awakeFromNib() {
         super.awakeFromNib()
         entryTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        registerForStyleUpdates() //causes refreshStyle to be called
     }
+    
+    
+    override func refreshStyle() {
+        let appStyle = getApplicationContext().getCurrentStyle()
+        likeButton.setTitleColor(appStyle.postFooterTextColor(), forState: .Normal)
+        dateButton.setTitleColor(appStyle.headerDetailTextColor(), forState: .Normal)
+        likesLabel.textColor = appStyle.postFooterTextColor()
+        backgroundColor = appStyle.postBackgroundColor()
+        
+        
+        creatorNameButton.setTitleColor(appStyle.headerTextColor(), forState: .Normal)
+        entryTextView.textColor = appStyle.entryTextColor()
+//        entryTextView.backgroundColor = appStyle.postReplyBackgroundColor()
+        entryTextView.backgroundColor = UIColor.clearColor()
+        entryTextView.tintColor = appStyle.headerDetailTextColor()
+        
+    }
+
     
     @IBAction func replyAction(sender: UIButton) {
         delegate?.commentOnPost(post)

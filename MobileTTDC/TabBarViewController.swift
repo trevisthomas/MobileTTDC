@@ -38,6 +38,8 @@ class TabBarViewController: UITabBarController {
         
         registerForStyleUpdates()
     }
+    
+    
 
     func catchNotification(notification: NSNotification) {
         if let userInfo = notification.userInfo {
@@ -54,6 +56,7 @@ class TabBarViewController: UITabBarController {
     
     override func refreshStyle() {
         self.tabBar.tintColor = getApplicationContext().getCurrentStyle().tintColor()
+        self.tabBar.barTintColor = getApplicationContext().getCurrentStyle().navigationBackgroundColor()
     }
     
     override func didReceiveMemoryWarning() {

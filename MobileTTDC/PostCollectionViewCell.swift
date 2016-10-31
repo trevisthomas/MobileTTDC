@@ -117,6 +117,8 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
             //            print("Size of btn: \(dateButton.intrinsicContentSize())")
             
             likesLabel.text = post.formatLikesString()
+            
+            refreshStyle()
         }
     }
     @IBOutlet weak var viewCommentsButton: UIButton!  //Deprecated?
@@ -150,8 +152,13 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
         likeButton.setTitleColor(appStyle.postFooterTextColor(), forState: .Normal)
         dateButton.setTitleColor(appStyle.headerDetailTextColor(), forState: .Normal)
         threadTitleButton.setTitleColor(appStyle.headerTextColor(), forState: .Normal)
+        creatorButton.setTitleColor(appStyle.headerTextColor(), forState: .Normal)
         likesLabel.textColor = appStyle.postFooterTextColor()
         backgroundColor = appStyle.postBackgroundColor()
+        
+        entryTextView.textColor = appStyle.entryTextColor()
+        entryTextView.backgroundColor = appStyle.postBackgroundColor()
+        entryTextView.tintColor = appStyle.headerDetailTextColor()
      
     }
     

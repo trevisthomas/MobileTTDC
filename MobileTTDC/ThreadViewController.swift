@@ -44,7 +44,17 @@ class ThreadViewController: PostBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerForStyleUpdates()
     }
+    
+    override func refreshStyle() {
+        collectionView.backgroundColor = getApplicationContext().getCurrentStyle().postBackgroundColor()
+        
+        collectionView.indicatorStyle = getApplicationContext().getCurrentStyle().scrollBarStyle()
+        
+        
+    }
+
     
     @IBAction func doneButton(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)

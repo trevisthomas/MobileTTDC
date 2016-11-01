@@ -23,6 +23,9 @@ public struct Post : Decodable{
     let parentPostCreator: String!
     let parentPostCreatorId: String!
     let tagAssociations:[TagAssociation]?
+    let isMovie : Bool
+    let isReview : Bool
+    let image : Image?
     
     public init?(json: JSON) {
         postId = ("postId" <~~ json)!
@@ -40,6 +43,10 @@ public struct Post : Decodable{
         parentPostCreator = ("parentPostCreator" <~~ json)
         parentPostCreatorId = ("parentPostCreatorId" <~~ json)
         tagAssociations = ("tagAssociations" <~~ json)
+        isMovie = ("movie" <~~ json)!
+        isReview = ("review" <~~ json)!
+        image = ("image" <~~ json)
+        
     }
     
     func formatLikesString() -> String {

@@ -127,7 +127,7 @@ public class ApplicationContext : AuthenticatedUserDataProvider {
         
         if let t = defaults.stringForKey(PersistantKeys.token){
             
-            _currentUser = nil
+//            _currentUser = nil
             self.token = t
             
             let cmd = ValidateCommand()
@@ -138,10 +138,14 @@ public class ApplicationContext : AuthenticatedUserDataProvider {
                     self.logoff()
                     return;
                 }
-                self.token = response?.token
-                self._currentUser = response?.person
-                self.registerForPush()
-                self.reloadAllData()
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.token = response?.token
+                    self._currentUser = response?.person
+                    self.registerForPush()
+                    self.reloadAllData()
+                }
+                
             };
         } else {
             self.logoff()

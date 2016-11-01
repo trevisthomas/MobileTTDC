@@ -177,6 +177,7 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
     }
     
     @IBAction func likeAction(sender: UIButton) {
+        delegate?.likePost(post)
     }
     
     @IBAction func threadTitleButton(sender: UIButton) {

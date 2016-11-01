@@ -12,6 +12,7 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
     
     var replyPrototypeCell : PostReplyCollectionViewCell!
     var postPrototypeCell : PostCollectionViewCell!
+    var reviewPostPrototypeCell : ReviewPostCollectionViewCell!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +20,8 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
         postPrototypeCell = registerAndCreatePrototypeCellFromNib(ReuseIdentifiers.POST_CELL, forReuseIdentifier: ReuseIdentifiers.POST_CELL) as! PostCollectionViewCell
         
         replyPrototypeCell = registerAndCreatePrototypeCellFromNib(ReuseIdentifiers.POST_REPLY_CELL, forReuseIdentifier: ReuseIdentifiers.POST_REPLY_CELL) as! PostReplyCollectionViewCell
+        
+        reviewPostPrototypeCell = registerAndCreatePrototypeCellFromNib(ReuseIdentifiers.POST_REVIEW_CELL, forReuseIdentifier: ReuseIdentifiers.POST_REVIEW_CELL) as! ReviewPostCollectionViewCell
     }
 
     func likePost(post: Post){
@@ -66,13 +69,21 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
     }
 
     func dequeueCell(post : Post, indexPath : NSIndexPath, allowHierarchy : Bool = false) -> UICollectionViewCell {
+        
         if allowHierarchy && !post.threadPost {
             let cell =  self.getCollectionView()!.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.POST_REPLY_CELL, forIndexPath: indexPath) as! PostReplyCollectionViewCell
             
             cell.post = post
             cell.delegate = self
             return cell
-        } else {
+        } else if (post.isReview) {
+            let cell = self.getCollectionView()!.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.POST_REVIEW_CELL, forIndexPath: indexPath) as! ReviewPostCollectionViewCell
+            
+            cell.post = post
+            cell.delegate = self
+            return cell
+        }
+        else {
             let cell = self.getCollectionView()!.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.POST_CELL, forIndexPath: indexPath) as! PostCollectionViewCell
             
             cell.post = post
@@ -101,7 +112,10 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
         if (allowHierarchy && !p.threadPost) {
             replyPrototypeCell.post = p
             height = replyPrototypeCell.preferredHeight(frameSize.width)
-        } else {
+        } else if (p.isReview) {
+            reviewPostPrototypeCell.post = p
+            height = replyPrototypeCell.preferredHeight(frameSize.width)
+        }else {
             postPrototypeCell.post = p
             height = postPrototypeCell.preferredHeight(frameSize.width)
         }

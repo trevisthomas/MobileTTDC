@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable
+//@IBDesignable
 class PostSeperator: UIView {
 
 //    // Only override draw() if you perform custom drawing.
@@ -18,8 +18,11 @@ class PostSeperator: UIView {
 //        
 //    }
 //    
-    @IBInspectable var fillColor: UIColor = UIColor.greenColor()
-    @IBInspectable var thickness: CGFloat = 3.0
+//    @IBInspectable var fillColor: UIColor = UIColor.greenColor()
+//    @IBInspectable var thickness: CGFloat = 3.0
+    
+    var fillColor: UIColor = UIColor.greenColor()
+    var thickness: CGFloat = 3.0
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

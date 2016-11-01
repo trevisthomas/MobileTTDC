@@ -20,6 +20,7 @@ public protocol AppStyle {
     func navigationBackgroundColor() -> UIColor
     func navigationColor() -> UIColor
     func scrollBarStyle() -> UIScrollViewIndicatorStyle
+    func statusBarStyle() -> UIStatusBarStyle
 }
 
 public struct AppStyleLight : AppStyle {
@@ -68,6 +69,10 @@ public struct AppStyleLight : AppStyle {
         return UIScrollViewIndicatorStyle.Black
 
     }
+    
+    public func statusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.Default
+    }
 }
 
 public struct AppStyleDark : AppStyle {
@@ -115,6 +120,10 @@ public struct AppStyleDark : AppStyle {
     
     public func scrollBarStyle() -> UIScrollViewIndicatorStyle {
         return UIScrollViewIndicatorStyle.White
+    }
+    
+    public func statusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
 }
 

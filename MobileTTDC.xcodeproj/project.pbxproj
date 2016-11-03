@@ -97,6 +97,7 @@
 		0FE527401CFD05AE00407AAE /* PostCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE5273F1CFD05AE00407AAE /* PostCommand.swift */; };
 		0FE527421CFD096300407AAE /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE527411CFD096300407AAE /* UIViewController+Alerts.swift */; };
 		0FE527441CFD0E1E00407AAE /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE527431CFD0E1E00407AAE /* Post.swift */; };
+		0FF4ED871DCAF9B800BE4CF4 /* StarRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF4ED861DCAF9B800BE4CF4 /* StarRatingView.swift */; };
 		0FF896631D736F60007813F7 /* ThreadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF896621D736F60007813F7 /* ThreadViewController.swift */; };
 		0FF896661D737096007813F7 /* Thread.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FF896651D737096007813F7 /* Thread.storyboard */; };
 		0FF896691D73767A007813F7 /* AutoCompleteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF896671D73767A007813F7 /* AutoCompleteCollectionViewCell.swift */; };
@@ -197,6 +198,7 @@
 		0FE5273F1CFD05AE00407AAE /* PostCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCommand.swift; sourceTree = "<group>"; };
 		0FE527411CFD096300407AAE /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
 		0FE527431CFD0E1E00407AAE /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		0FF4ED861DCAF9B800BE4CF4 /* StarRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarRatingView.swift; sourceTree = "<group>"; };
 		0FF896621D736F60007813F7 /* ThreadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadViewController.swift; sourceTree = "<group>"; };
 		0FF896651D737096007813F7 /* Thread.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Thread.storyboard; sourceTree = "<group>"; };
 		0FF896671D73767A007813F7 /* AutoCompleteCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoCompleteCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				0F0997B41DC90EFB001991E2 /* MoviePostCollectionViewCell.xib */,
 				0FD00B7F1DC9372C001F555A /* ReviewPostCollectionViewCell.swift */,
 				0FD00B801DC9372C001F555A /* ReviewPostCollectionViewCell.xib */,
+				0FF4ED861DCAF9B800BE4CF4 /* StarRatingView.swift */,
 			);
 			name = Post;
 			sourceTree = "<group>";
@@ -509,6 +512,7 @@
 			files = (
 				0FE5273A1CFC9FB800407AAE /* Command.swift in Sources */,
 				0FA3F25E1DBBC7EA00268DC1 /* PostCollectionViewCell.swift in Sources */,
+				0FF4ED871DCAF9B800BE4CF4 /* StarRatingView.swift in Sources */,
 				0FB2F4981CFFA8FC008F386A /* Image.swift in Sources */,
 				0FCF01841CFA10E200924868 /* AppDelegate.swift in Sources */,
 				0F0F69CE1D4D4F53009600F7 /* PostViewCellDelegate.swift in Sources */,

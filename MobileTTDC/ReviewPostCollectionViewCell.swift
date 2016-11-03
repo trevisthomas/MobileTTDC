@@ -24,6 +24,7 @@ class ReviewPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
     @IBOutlet weak var entryConstraintLeft: NSLayoutConstraint!
     @IBOutlet weak var entryConstraintBottom: NSLayoutConstraint!
     @IBOutlet weak var entryConstraintRight: NSLayoutConstraint!
+    @IBOutlet weak var starRatingView: StarRatingView!
     
     var delegate : PostViewCellDelegate?
     
@@ -50,6 +51,13 @@ class ReviewPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
                 numCommentsButton.setTitle("\(post.mass) comments", forState: .Normal)
             }
 
+            
+            if let rating = post.reviewRating {
+                starRatingView.hidden = false
+                starRatingView.starsVisible = CGFloat(rating)
+            } else {
+                starRatingView.hidden = true
+            }
             
             refreshStyle() //For some reason those attributed guys get unhappy if you dont do this
         }

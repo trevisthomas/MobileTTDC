@@ -38,7 +38,7 @@ public struct AppStyleLight : AppStyle {
     }
     
     public func tintColor() -> UIColor {
-        return UIColor.cyanColor()
+        return UIColor.blueColor()
     }
     
     public func postFooterTextColor() -> UIColor {

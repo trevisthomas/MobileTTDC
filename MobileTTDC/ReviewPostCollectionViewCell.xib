@@ -135,6 +135,13 @@
                             <constraint firstAttribute="height" constant="16" id="QeH-69-xmN"/>
                         </constraints>
                     </stackView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sYB-Uw-3HB" customClass="StarRatingView" customModule="MobileTTDC" customModuleProvider="target">
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="EtK-Lf-ODc"/>
+                            <constraint firstAttribute="width" constant="150" id="dxQ-EI-e87"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <constraints>
@@ -150,18 +157,19 @@
                 <constraint firstItem="EMd-lo-n4X" firstAttribute="leading" secondItem="dji-ja-hhO" secondAttribute="trailing" constant="3" id="BhO-M2-t7S"/>
                 <constraint firstItem="LLv-E0-lyg" firstAttribute="top" secondItem="iRp-m8-w2E" secondAttribute="bottom" id="BnC-Tn-BEm"/>
                 <constraint firstItem="dji-ja-hhO" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="7" id="F50-3T-5SU"/>
+                <constraint firstItem="sYB-Uw-3HB" firstAttribute="top" secondItem="MBu-Qa-NoH" secondAttribute="bottom" constant="2" id="Fho-xY-RdC"/>
                 <constraint firstItem="iRp-m8-w2E" firstAttribute="top" secondItem="gN3-Gb-Y5d" secondAttribute="bottom" constant="4" id="JGZ-j5-3vk"/>
                 <constraint firstItem="MBu-Qa-NoH" firstAttribute="top" secondItem="EMd-lo-n4X" secondAttribute="bottom" constant="-10" id="JKI-Fx-D7r"/>
                 <constraint firstAttribute="trailing" secondItem="s1m-Bm-Kkt" secondAttribute="trailing" constant="8" id="LDM-UD-GS4"/>
                 <constraint firstAttribute="trailing" secondItem="iRp-m8-w2E" secondAttribute="trailing" constant="8" id="NPa-QP-2Va"/>
                 <constraint firstAttribute="bottom" secondItem="ufy-4w-J6I" secondAttribute="bottom" constant="60" id="Nbz-P0-R6P"/>
-                <constraint firstItem="gN3-Gb-Y5d" firstAttribute="top" secondItem="ufy-4w-J6I" secondAttribute="bottom" constant="24" id="Nla-nS-kjc"/>
                 <constraint firstItem="g3h-HM-RuF" firstAttribute="top" secondItem="ufy-4w-J6I" secondAttribute="bottom" constant="5" id="SRi-G6-Kmd"/>
                 <constraint firstAttribute="trailing" secondItem="ufy-4w-J6I" secondAttribute="trailing" constant="4" id="U9t-2r-EuZ"/>
                 <constraint firstItem="g3h-HM-RuF" firstAttribute="top" secondItem="idl-Y2-h4J" secondAttribute="top" id="V9o-Sx-9R5"/>
                 <constraint firstItem="gN3-Gb-Y5d" firstAttribute="top" secondItem="g3h-HM-RuF" secondAttribute="bottom" constant="5" id="cbj-YW-TMW"/>
                 <constraint firstItem="dji-ja-hhO" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="topMargin" id="fad-HT-Rze"/>
                 <constraint firstItem="gN3-Gb-Y5d" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="mpa-C6-p9g"/>
+                <constraint firstItem="sYB-Uw-3HB" firstAttribute="leading" secondItem="dji-ja-hhO" secondAttribute="trailing" constant="3" id="nGW-nY-b2j"/>
                 <constraint firstAttribute="trailing" secondItem="gN3-Gb-Y5d" secondAttribute="trailing" constant="8" id="ngg-cO-mES"/>
                 <constraint firstAttribute="bottom" secondItem="LLv-E0-lyg" secondAttribute="bottom" id="nzd-fb-Uam"/>
                 <constraint firstItem="g3h-HM-RuF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15.5" id="qrZ-tW-Yam"/>
@@ -182,6 +190,7 @@
                 <outlet property="movieTitleButton" destination="EMd-lo-n4X" id="NXJ-Y8-B36"/>
                 <outlet property="numCommentsButton" destination="idl-Y2-h4J" id="fV9-Ql-Tse"/>
                 <outlet property="reviewTextView" destination="ufy-4w-J6I" id="fuV-X1-3P3"/>
+                <outlet property="starRatingView" destination="sYB-Uw-3HB" id="S83-UR-oGX"/>
             </connections>
             <point key="canvasLocation" x="80" y="50"/>
         </collectionViewCell>

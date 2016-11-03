@@ -114,7 +114,7 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
             height = replyPrototypeCell.preferredHeight(frameSize.width)
         } else if (p.isReview) {
             reviewPostPrototypeCell.post = p
-            height = replyPrototypeCell.preferredHeight(frameSize.width)
+            height = reviewPostPrototypeCell.preferredHeight(frameSize.width)
         }else {
             postPrototypeCell.post = p
             height = postPrototypeCell.preferredHeight(frameSize.width)

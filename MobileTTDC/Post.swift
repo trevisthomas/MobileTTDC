@@ -26,6 +26,7 @@ public struct Post : Decodable{
     let isMovie : Bool
     let isReview : Bool
     let image : Image?
+    let reviewRating: Float?
     
     public init?(json: JSON) {
         postId = ("postId" <~~ json)!
@@ -46,6 +47,7 @@ public struct Post : Decodable{
         isMovie = ("movie" <~~ json)!
         isReview = ("review" <~~ json)!
         image = ("image" <~~ json)
+        reviewRating = ("reviewRating" <~~ json) //Trevis, you added this field to post for mobile!
         
     }
     

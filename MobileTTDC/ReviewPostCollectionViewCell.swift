@@ -106,7 +106,7 @@ class ReviewPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
         return UIEdgeInsets(top: entryConstraintTop.constant, left: entryConstraintLeft.constant, bottom: entryConstraintBottom.constant, right: entryConstraintRight.constant)
     }
     
-    func postEntryTextView() -> UITextView {
+    func postEntryTextView() -> UITextView? {
         return reviewTextView
     }
 

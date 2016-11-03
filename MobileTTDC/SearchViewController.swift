@@ -25,6 +25,7 @@ class SearchViewController : PostBaseViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
 //        let nib = UINib(nibName: "AutoCompleteCollectionViewCell", bundle: nil)
 //        self.collectionView!.registerNib(nib, forCellWithReuseIdentifier: ReuseIdentifiers.AUTO_COLLECTION_CELL)
        
@@ -226,7 +227,8 @@ extension SearchViewController : UICollectionViewDataSource {
 //        cell.delegate = self
 //        return cell
         
-        return dequeueCell(posts[indexPath.section].posts![indexPath.row], indexPath: indexPath)
+        return dequeueCell(posts[indexPath.row], indexPath: indexPath)
+        //return dequeueCell(posts[indexPath.section].posts![indexPath.row], indexPath: indexPath)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {

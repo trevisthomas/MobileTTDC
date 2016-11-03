@@ -13,6 +13,7 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
     var replyPrototypeCell : PostReplyCollectionViewCell!
     var postPrototypeCell : PostCollectionViewCell!
     var reviewPostPrototypeCell : ReviewPostCollectionViewCell!
+    var moviePostPrototypeCell : MoviePostCollectionViewCell!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,8 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
         replyPrototypeCell = registerAndCreatePrototypeCellFromNib(ReuseIdentifiers.POST_REPLY_CELL, forReuseIdentifier: ReuseIdentifiers.POST_REPLY_CELL) as! PostReplyCollectionViewCell
         
         reviewPostPrototypeCell = registerAndCreatePrototypeCellFromNib(ReuseIdentifiers.POST_REVIEW_CELL, forReuseIdentifier: ReuseIdentifiers.POST_REVIEW_CELL) as! ReviewPostCollectionViewCell
+        
+        moviePostPrototypeCell = registerAndCreatePrototypeCellFromNib(ReuseIdentifiers.MOVIE_POST_CELL, forReuseIdentifier: ReuseIdentifiers.MOVIE_POST_CELL) as! MoviePostCollectionViewCell
     }
 
     func likePost(post: Post){
@@ -69,8 +72,13 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
     }
 
     func dequeueCell(post : Post, indexPath : NSIndexPath, allowHierarchy : Bool = false) -> UICollectionViewCell {
-        
-        if allowHierarchy && !post.threadPost {
+        if post.isMovie {
+            let cell =  self.getCollectionView()!.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.MOVIE_POST_CELL, forIndexPath: indexPath) as! MoviePostCollectionViewCell
+            
+            cell.post = post
+            cell.delegate = self
+            return cell
+        } else if allowHierarchy && !post.threadPost {
             let cell =  self.getCollectionView()!.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.POST_REPLY_CELL, forIndexPath: indexPath) as! PostReplyCollectionViewCell
             
             cell.post = post
@@ -109,7 +117,10 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
         let height : CGFloat
         let frameSize = getCollectionView()!.frame.size
         
-        if (allowHierarchy && !p.threadPost) {
+        if p.isMovie{
+            moviePostPrototypeCell.post = p
+            height = moviePostPrototypeCell.preferredHeight(frameSize.width)
+        } else if (allowHierarchy && !p.threadPost) {
             replyPrototypeCell.post = p
             height = replyPrototypeCell.preferredHeight(frameSize.width)
         } else if (p.isReview) {

@@ -12,8 +12,15 @@ class ThreadViewController: PostBaseViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    private var rootPost : Post? {
+        didSet{
+            fetchPostTopic(rootPostId)
+        }
+    }
+    
     var posts : [Post] = [] {
         didSet{
+            posts.insert(rootPost!, atIndex: 0)
             collectionView.reloadData()
         }
     }
@@ -24,7 +31,7 @@ class ThreadViewController: PostBaseViewController {
         }
     }
     
-    func fetchPost(postId : String){
+    func fetchPostTopic(postId : String){
         
         let cmd = TopicCommand(type: .NESTED_THREAD_SUMMARY, postId: postId)
         
@@ -37,6 +44,24 @@ class ThreadViewController: PostBaseViewController {
             
             self.invokeLater{
                 self.posts = (response?.list)!.flattenPosts()
+            }
+            
+        };
+    }
+    
+    func fetchPost(postId : String) {
+        //Not sure if this actually works.
+        let cmd = PostCrudCommand(postId: postId, loadRootAncestor: false)
+        
+        Network.performPostCrudCommand(cmd){
+            (response, message) -> Void in
+            guard (response != nil) else {
+                self.presentAlert("Sorry", message: "Webservice request failed.")
+                return;
+            }
+            
+            self.invokeLater{
+                self.rootPost = response?.post
             }
             
         };

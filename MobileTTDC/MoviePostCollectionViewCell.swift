@@ -10,6 +10,7 @@ import UIKit
 
 class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
 
+    @IBOutlet weak var subRatingStackView: UIStackView!
     @IBOutlet weak var movieTitleButton: UIButton!
     @IBOutlet weak var movieCoverImageView: UIImageView!
     @IBOutlet weak var creatorButton: UIButton!
@@ -25,17 +26,24 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
     @IBOutlet weak var entryConstraintBottom: NSLayoutConstraint!
     @IBOutlet weak var entryConstraintRight: NSLayoutConstraint!
     
+    var delegate : PostViewCellDelegate?
     
     var post : Post! {
         didSet{
             
-            creatorButton.setTitle(post.creator.login, forState: UIControlState.Normal)
-            reviewTextView.setHtmlText(post.entry)
-            if let url = post.creator.image?.thumbnailName {
+            movieTitleButton.setTitle(post.title, forState: UIControlState.Normal)
+//            reviewTextView.setHtmlText(post.entry)
+            if let url = post.image?.name {
                 movieCoverImageView.downloadedFrom(link: url, contentMode: .ScaleAspectFit)
             }
-            dateCreatedButton.setTitle(Utilities.singleton.simpleDateTimeFormat(post.date), forState: .Normal)
-            likesLabel.text = post.formatLikesString()
+//            dateCreatedButton.setTitle(Utilities.singleton.simpleDateTimeFormat(post.date), forState: .Normal)
+//            likesLabel.text = post.formatLikesString()
+//            
+//            let review = NSBundle.mainBundle().loadNibNamed("MovieReviewSubView", owner: self, options: nil)![0] as! MovieReviewSubView
+            let review : MovieReviewSubView = MovieReviewSubView.fromNib()
+            
+            review.post = post.posts![0]
+            subRatingStackView.addSubview(review)
             
             refreshStyle() //For some reason those attributed guys get unhappy if you dont do this
         }
@@ -43,24 +51,24 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        reviewTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0)
+//        reviewTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0)
         registerForStyleUpdates() //causes refreshStyle to be called
     }
     
     
     override func refreshStyle() {
-        let appStyle = getApplicationContext().getCurrentStyle()
-        likeButton.setTitleColor(appStyle.postFooterTextColor(), forState: .Normal)
-        dateCreatedButton.setTitleColor(appStyle.headerDetailTextColor(), forState: .Normal)
-        likesLabel.textColor = appStyle.postFooterTextColor()
-        backgroundColor = appStyle.postBackgroundColor()
-        
-        
-        creatorButton.setTitleColor(appStyle.headerTextColor(), forState: .Normal)
-        reviewTextView.textColor = appStyle.entryTextColor()
-        //        entryTextView.backgroundColor = appStyle.postReplyBackgroundColor()
-        reviewTextView.backgroundColor = UIColor.clearColor()
-        reviewTextView.tintColor = appStyle.headerDetailTextColor()
+//        let appStyle = getApplicationContext().getCurrentStyle()
+//        likeButton.setTitleColor(appStyle.postFooterTextColor(), forState: .Normal)
+//        dateCreatedButton.setTitleColor(appStyle.headerDetailTextColor(), forState: .Normal)
+//        likesLabel.textColor = appStyle.postFooterTextColor()
+//        backgroundColor = appStyle.postBackgroundColor()
+//        
+//        
+//        creatorButton.setTitleColor(appStyle.headerTextColor(), forState: .Normal)
+//        reviewTextView.textColor = appStyle.entryTextColor()
+//        //        entryTextView.backgroundColor = appStyle.postReplyBackgroundColor()
+//        reviewTextView.backgroundColor = UIColor.clearColor()
+//        reviewTextView.tintColor = appStyle.headerDetailTextColor()
         
     }
 
@@ -75,10 +83,16 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
     }
     
     func postEntryInsets() -> UIEdgeInsets {
-        return UIEdgeInsets(top: entryConstraintTop.constant, left: entryConstraintLeft.constant, bottom: entryConstraintBottom.constant, right: entryConstraintRight.constant)
+//        return UIEdgeInsets(top: entryConstraintTop.constant, left: entryConstraintLeft.constant, bottom: entryConstraintBottom.constant, right: entryConstraintRight.constant)
+        return UIEdgeInsetsMake(0, 0, 0, 0)
     }
     
-    func postEntryTextView() -> UITextView {
-        return reviewTextView
+    func postEntryTextView() -> UITextView? {
+        return nil
+    }
+    
+    func preferredHeight(width: CGFloat) -> CGFloat {
+        print("Movie heights are fake")
+        return frame.height
     }
 }

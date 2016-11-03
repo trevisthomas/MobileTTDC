@@ -12,6 +12,7 @@ public struct ReuseIdentifiers {
     static let POST_CELL = "PostCollectionViewCell"
     static let POST_REPLY_CELL = "PostReplyCollectionViewCell"
     static let POST_REVIEW_CELL = "ReviewPostCollectionViewCell"
+    static let MOVIE_POST_CELL = "MoviePostCollectionViewCell"
     
     static let FULL_POST_CELL = "FullPostCollectionViewCell"
     static let CONVERSATION_POST_CELL = "ConversationPostCell"

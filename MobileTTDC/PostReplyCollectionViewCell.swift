@@ -74,7 +74,7 @@ class PostReplyCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
         return UIEdgeInsets(top: entryTopConstraint.constant, left: entryLeftConstraint.constant, bottom: entryBottomConstraint.constant, right: entryRightConstraint.constant)
     }
     
-    func postEntryTextView() -> UITextView {
+    func postEntryTextView() -> UITextView? {
         return entryTextView
     }
 }

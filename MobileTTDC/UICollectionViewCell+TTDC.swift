@@ -21,7 +21,7 @@ extension UICollectionViewCell : UITextViewDelegate {
 
 protocol PostEntryViewContract {
     func postEntryInsets() -> UIEdgeInsets
-    func postEntryTextView() -> UITextView
+    func postEntryTextView() -> UITextView?
 }
 
 
@@ -30,11 +30,15 @@ extension PostEntryViewContract {
         
         let entryInsets = postEntryInsets()
         
-        let sizeThatFits = postEntryTextView().sizeThatFits(CGSizeMake(width - entryInsets.left - entryInsets.right, CGFloat.max))
-        let insets: UIEdgeInsets = postEntryTextView().textContainerInset;
+        let sizeThatFits = postEntryTextView()!.sizeThatFits(CGSizeMake(width - entryInsets.left - entryInsets.right, CGFloat.max))
+        let insets: UIEdgeInsets = postEntryTextView()!.textContainerInset;
         let heightThatFits = sizeThatFits.height + insets.top + insets.bottom + entryInsets.top + entryInsets.bottom
         return heightThatFits
     }
+    
+//    func postEntryTextView() -> UITextView? {
+//        return nil
+//    }
 }
 
 extension PostEntryViewContract {

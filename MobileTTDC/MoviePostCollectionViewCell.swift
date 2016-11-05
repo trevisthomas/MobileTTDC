@@ -13,21 +13,8 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
     @IBOutlet weak var subRatingStackView: UIStackView!
     @IBOutlet weak var movieTitleButton: UIButton!
     @IBOutlet weak var movieCoverImageView: UIImageView!
-    @IBOutlet weak var creatorButton: UIButton!
-    @IBOutlet weak var dateCreatedButton: UIButton!
-    @IBOutlet weak var reviewTextView: UITextView!
-    @IBOutlet weak var likesLabel: UILabel!
-    @IBOutlet weak var numCommentsButton: UIButton!
-    @IBOutlet weak var likeButton: UIButton!
-    @IBOutlet weak var commentButton: UIButton!
-    
-    @IBOutlet weak var entryConstraintTop: NSLayoutConstraint!
-    @IBOutlet weak var entryConstraintLeft: NSLayoutConstraint!
-    @IBOutlet weak var entryConstraintBottom: NSLayoutConstraint!
-    @IBOutlet weak var entryConstraintRight: NSLayoutConstraint!
     
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     private let spacing : Int = 4
     private let starHeight : Int = 20
@@ -39,14 +26,9 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
         didSet{
             
             movieTitleButton.setTitle(post.title, forState: UIControlState.Normal)
-//            reviewTextView.setHtmlText(post.entry)
             if let url = post.image?.name {
                 movieCoverImageView.downloadedFrom(link: url, contentMode: .ScaleAspectFit)
             }
-//            dateCreatedButton.setTitle(Utilities.singleton.simpleDateTimeFormat(post.date), forState: .Normal)
-//            likesLabel.text = post.formatLikesString()
-//            
-//            let review = NSBundle.mainBundle().loadNibNamed("MovieReviewSubView", owner: self, options: nil)![0] as! MovieReviewSubView
             
             for subview in subRatingStackView.subviews {
                 subview.removeFromSuperview()
@@ -69,20 +51,12 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
             }
             
             
-            
-            
-            
-            
-//            review.post = post.posts![0]
-//            subRatingStackView.addSubview(review)
-            
             refreshStyle() //For some reason those attributed guys get unhappy if you dont do this
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-//        reviewTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0)
         registerForStyleUpdates() //causes refreshStyle to be called
     }
     
@@ -90,18 +64,6 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
     override func refreshStyle() {
         let appStyle = getApplicationContext().getCurrentStyle()
         movieTitleButton.setTitleColor(appStyle.headerTextColor(), forState: .Normal)
-//        likeButton.setTitleColor(appStyle.postFooterTextColor(), forState: .Normal)
-//        dateCreatedButton.setTitleColor(appStyle.headerDetailTextColor(), forState: .Normal)
-//        likesLabel.textColor = appStyle.postFooterTextColor()
-//        backgroundColor = appStyle.postBackgroundColor()
-//        
-//        
-//        creatorButton.setTitleColor(appStyle.headerTextColor(), forState: .Normal)
-//        reviewTextView.textColor = appStyle.entryTextColor()
-//        //        entryTextView.backgroundColor = appStyle.postReplyBackgroundColor()
-//        reviewTextView.backgroundColor = UIColor.clearColor()
-//        reviewTextView.tintColor = appStyle.headerDetailTextColor()
-        
     }
 
 
@@ -115,8 +77,7 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
     }
     
     func postEntryInsets() -> UIEdgeInsets {
-//        return UIEdgeInsets(top: entryConstraintTop.constant, left: entryConstraintLeft.constant, bottom: entryConstraintBottom.constant, right: entryConstraintRight.constant)
-        return UIEdgeInsetsMake(0, 0, 0, 0)
+        return UIEdgeInsetsMake(0, 0, 0, 0) //Not used for movie summary
     }
     
     func postEntryTextView() -> UITextView? {
@@ -125,7 +86,6 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
     
     func preferredHeight(width: CGFloat) -> CGFloat {
         
-//        return frame.height
         if let posts = post.posts {
             
             let totalStarHeight = CGFloat((starHeight + spacing) * posts.count)

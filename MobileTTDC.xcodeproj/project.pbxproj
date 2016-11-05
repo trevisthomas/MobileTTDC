@@ -26,6 +26,8 @@
 		0F0F69CA1D3C9863009600F7 /* ConversationWithReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69C91D3C9863009600F7 /* ConversationWithReplyViewController.swift */; };
 		0F0F69CC1D3C9D09009600F7 /* Conversation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F0F69CB1D3C9D09009600F7 /* Conversation.storyboard */; };
 		0F0F69CE1D4D4F53009600F7 /* PostViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69CD1D4D4F53009600F7 /* PostViewCellDelegate.swift */; };
+		0F2B8CB61DCE7F4800BD62C6 /* RootPostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B8CB41DCE7F4800BD62C6 /* RootPostCollectionViewCell.swift */; };
+		0F2B8CB71DCE7F4800BD62C6 /* RootPostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F2B8CB51DCE7F4800BD62C6 /* RootPostCollectionViewCell.xib */; };
 		0F317C641D280D7D00C110AE /* ApplicationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F317C631D280D7D00C110AE /* ApplicationContext.swift */; };
 		0F3CEAB01DC07046003CD432 /* TagAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3CEAAF1DC07046003CD432 /* TagAssociation.swift */; };
 		0F3CEAB21DC07056003CD432 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3CEAB11DC07056003CD432 /* Tag.swift */; };
@@ -128,6 +130,8 @@
 		0F0F69C91D3C9863009600F7 /* ConversationWithReplyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationWithReplyViewController.swift; sourceTree = "<group>"; };
 		0F0F69CB1D3C9D09009600F7 /* Conversation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Conversation.storyboard; sourceTree = "<group>"; };
 		0F0F69CD1D4D4F53009600F7 /* PostViewCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewCellDelegate.swift; sourceTree = "<group>"; };
+		0F2B8CB41DCE7F4800BD62C6 /* RootPostCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootPostCollectionViewCell.swift; sourceTree = "<group>"; };
+		0F2B8CB51DCE7F4800BD62C6 /* RootPostCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootPostCollectionViewCell.xib; sourceTree = "<group>"; };
 		0F317C631D280D7D00C110AE /* ApplicationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationContext.swift; sourceTree = "<group>"; };
 		0F3CEAAF1DC07046003CD432 /* TagAssociation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagAssociation.swift; sourceTree = "<group>"; };
 		0F3CEAB11DC07056003CD432 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
@@ -293,6 +297,8 @@
 				0FF4ED861DCAF9B800BE4CF4 /* StarRatingView.swift */,
 				0FF4ED881DCBD26400BE4CF4 /* MovieReviewSubView.swift */,
 				0FF4ED8A1DCBE1A900BE4CF4 /* MovieReviewSubView.xib */,
+				0F2B8CB41DCE7F4800BD62C6 /* RootPostCollectionViewCell.swift */,
+				0F2B8CB51DCE7F4800BD62C6 /* RootPostCollectionViewCell.xib */,
 			);
 			name = Post;
 			sourceTree = "<group>";
@@ -500,6 +506,7 @@
 				0F0997B61DC90EFC001991E2 /* MoviePostCollectionViewCell.xib in Resources */,
 				0FCF01901CFA10E200924868 /* LaunchScreen.storyboard in Resources */,
 				0FA3F2631DBBC7FE00268DC1 /* PostReplyCollectionViewCell.xib in Resources */,
+				0F2B8CB71DCE7F4800BD62C6 /* RootPostCollectionViewCell.xib in Resources */,
 				0FD5976A1D316CD500CAE7FF /* AutoCompleteTableViewCell.xib in Resources */,
 				0F0F69CC1D3C9D09009600F7 /* Conversation.storyboard in Resources */,
 				0FCC10811D2AC38800EA0B25 /* Comment.storyboard in Resources */,
@@ -592,6 +599,7 @@
 				0F888A6E1D1DDDA0005F960A /* ConversationDetailViewController.swift in Sources */,
 				0FE527321CFB65EB00407AAE /* Operators.swift in Sources */,
 				0F888A6F1D1DDDA0005F960A /* LatestPostsViewController.swift in Sources */,
+				0F2B8CB61DCE7F4800BD62C6 /* RootPostCollectionViewCell.swift in Sources */,
 				0FE5272E1CFB65EB00407AAE /* Encoder.swift in Sources */,
 				0FE5273E1CFD058700407AAE /* PostResponse.swift in Sources */,
 				0F3CEABA1DC4D64F003CD432 /* AppStyle.swift in Sources */,

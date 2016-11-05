@@ -14,6 +14,7 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
     var postPrototypeCell : PostCollectionViewCell!
     var reviewPostPrototypeCell : ReviewPostCollectionViewCell!
     var moviePostPrototypeCell : MoviePostCollectionViewCell!
+    var rootPostPrototypeCell : RootPostCollectionViewCell!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,8 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
         reviewPostPrototypeCell = registerAndCreatePrototypeCellFromNib(ReuseIdentifiers.POST_REVIEW_CELL, forReuseIdentifier: ReuseIdentifiers.POST_REVIEW_CELL) as! ReviewPostCollectionViewCell
         
         moviePostPrototypeCell = registerAndCreatePrototypeCellFromNib(ReuseIdentifiers.MOVIE_POST_CELL, forReuseIdentifier: ReuseIdentifiers.MOVIE_POST_CELL) as! MoviePostCollectionViewCell
+        
+        rootPostPrototypeCell = registerAndCreatePrototypeCellFromNib(ReuseIdentifiers.ROOT_POST_CELL, forReuseIdentifier: ReuseIdentifiers.ROOT_POST_CELL) as! RootPostCollectionViewCell
     }
 
     func likePost(post: Post){
@@ -74,6 +77,12 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
     func dequeueCell(post : Post, indexPath : NSIndexPath, allowHierarchy : Bool = false) -> UICollectionViewCell {
         if post.isMovie {
             let cell =  self.getCollectionView()!.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.MOVIE_POST_CELL, forIndexPath: indexPath) as! MoviePostCollectionViewCell
+            
+            cell.post = post
+            cell.delegate = self
+            return cell
+        } else if post.isRootPost {
+            let cell =  self.getCollectionView()!.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.ROOT_POST_CELL, forIndexPath: indexPath) as! RootPostCollectionViewCell
             
             cell.post = post
             cell.delegate = self

@@ -187,11 +187,11 @@
             </objects>
             <point key="canvasLocation" x="774" y="3163"/>
         </scene>
-        <!--Item-->
+        <!--Conversations-->
         <scene sceneID="d5E-JU-NW8">
             <objects>
-                <navigationController storyboardIdentifier="ConversationNav" id="wS3-mg-khx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="eAk-Nl-p8v"/>
+                <navigationController storyboardIdentifier="ConversationNav" id="wS3-mg-khx" customClass="NavigationViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Conversations" id="eAk-Nl-p8v"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="URz-9t-cjA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -262,7 +262,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="a4H-aW-Zxr" kind="relationship" relationship="viewControllers" id="zX1-ps-rnj"/>
-                        <segue destination="cHa-a9-SvU" kind="relationship" relationship="viewControllers" id="ZRD-Fu-q5z"/>
                         <segue destination="Evh-0M-sie" kind="relationship" relationship="viewControllers" id="pCa-DR-yxV"/>
                         <segue destination="NZ6-Dg-sdm" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="wS3-mg-khx" kind="relationship" relationship="viewControllers" id="rDQ-j4-zsa"/>
@@ -391,10 +390,10 @@
             </objects>
             <point key="canvasLocation" x="1677.5" y="1853"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation View Controller-->
         <scene sceneID="qCc-dH-B8t">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IiX-dq-8NH" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IiX-dq-8NH" customClass="NavigationViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cmJ-OL-PBY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -409,10 +408,10 @@
             </objects>
             <point key="canvasLocation" x="-482" y="2294"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation View Controller-->
         <scene sceneID="K8N-rU-9nR">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Kp8-BA-sQD" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Kp8-BA-sQD" customClass="NavigationViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6vr-Rh-Xcj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -449,7 +448,7 @@
         <!--Forum-->
         <scene sceneID="HRl-SV-gao">
             <objects>
-                <navigationController storyboardIdentifier="ForumNav" automaticallyAdjustsScrollViewInsets="NO" id="Evh-0M-sie" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ForumNav" automaticallyAdjustsScrollViewInsets="NO" id="Evh-0M-sie" customClass="NavigationViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Forum" image="first" id="Bgh-h0-f0V" userLabel="Forum"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="U47-BV-yGx">
@@ -468,7 +467,7 @@
         <!--Login-->
         <scene sceneID="5E3-3T-hyl">
             <objects>
-                <navigationController storyboardIdentifier="LoginNav" automaticallyAdjustsScrollViewInsets="NO" id="NZ6-Dg-sdm" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LoginNav" automaticallyAdjustsScrollViewInsets="NO" id="NZ6-Dg-sdm" customClass="NavigationViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Login" image="second" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="R3b-lL-ap7">

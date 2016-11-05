@@ -44,7 +44,7 @@ class TopicCreationViewController: UIViewController {
         
         closeButtonItem = rightBarButtonItem //Grabbing the ne created in IB.  I know that incosistancy is bad :-(
         
-        titleLabel.setHtmlText(topicTitle)
+        titleLabel.setHtmlText(topicTitle, fuckingColor:  "pink")
         topicDescriptionTextView.attributedText = getApplicationContext().topicStash
 
         let view = NSBundle.mainBundle().loadNibNamed("AccessoryCommentView", owner: topicDescriptionTextView, options: nil)!.first as! AccessoryCommentView

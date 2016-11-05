@@ -13,7 +13,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mXh-Ds-ucj" customClass="StarRatingView" customModule="MobileTTDC" customModuleProvider="target">
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="XVA-Uv-wf9"/>
                         <constraint firstAttribute="width" constant="100" id="oh0-ni-2V4"/>
@@ -29,7 +29,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="5jf-iz-gUG" secondAttribute="trailing" id="1Vr-pk-DqW"/>
                 <constraint firstItem="mXh-Ds-ucj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2Ci-Di-Gvu"/>

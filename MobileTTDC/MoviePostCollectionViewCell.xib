@@ -17,16 +17,15 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2RN-rf-deH">
-                        <constraints>
-                            <constraint firstAttribute="width" constant="483" id="2Ng-k8-LrP"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                         <inset key="titleEdgeInsets" minX="0.0" minY="-8" maxX="0.0" maxY="0.0"/>
                         <state key="normal" title="Thread Title">
                             <color key="titleColor" red="0.058823529409999999" green="0.058823529409999999" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="iuX-5M-Zur"/>
+                    <stackView opaque="NO" contentMode="top" axis="vertical" distribution="equalSpacing" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="iuX-5M-Zur">
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </stackView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VdL-TF-HhS">
                         <constraints>
                             <constraint firstAttribute="height" constant="150" id="JEa-bF-7aR"/>
@@ -36,7 +35,7 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="iuX-5M-Zur" secondAttribute="bottom" constant="42" id="2UV-Fh-R3l"/>
+                <constraint firstAttribute="bottom" secondItem="iuX-5M-Zur" secondAttribute="bottom" constant="8" id="2UV-Fh-R3l"/>
                 <constraint firstItem="iuX-5M-Zur" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="49" id="4uq-PU-cQE"/>
                 <constraint firstItem="VdL-TF-HhS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="9FN-h6-26a"/>
                 <constraint firstAttribute="trailing" secondItem="VdL-TF-HhS" secondAttribute="trailing" constant="8" id="L9i-i6-7fr"/>
@@ -44,12 +43,15 @@
                 <constraint firstItem="2RN-rf-deH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leadingMargin" id="Zvz-42-ZyV"/>
                 <constraint firstItem="VdL-TF-HhS" firstAttribute="leading" secondItem="iuX-5M-Zur" secondAttribute="trailing" constant="8" id="ng9-2d-VT2"/>
                 <constraint firstItem="2RN-rf-deH" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="topMargin" id="vaD-0Z-pnW"/>
+                <constraint firstItem="VdL-TF-HhS" firstAttribute="leading" secondItem="2RN-rf-deH" secondAttribute="trailing" constant="8" id="wny-Pz-e5o"/>
             </constraints>
             <size key="customSize" width="880" height="224"/>
             <connections>
+                <outlet property="bottomConstraint" destination="2UV-Fh-R3l" id="LDL-gj-e2O"/>
                 <outlet property="movieCoverImageView" destination="VdL-TF-HhS" id="NVd-fd-fNw"/>
                 <outlet property="movieTitleButton" destination="2RN-rf-deH" id="qft-q5-w0V"/>
                 <outlet property="subRatingStackView" destination="iuX-5M-Zur" id="lTb-vl-OBa"/>
+                <outlet property="topConstraint" destination="4uq-PU-cQE" id="Z9b-ls-s0g"/>
             </connections>
             <point key="canvasLocation" x="542" y="78"/>
         </collectionViewCell>

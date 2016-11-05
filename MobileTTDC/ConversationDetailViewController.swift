@@ -8,6 +8,7 @@
 
 import UIKit
 
+//Deprecated?
 class ConversationDetailViewController: PostBaseViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
@@ -27,6 +28,22 @@ class ConversationDetailViewController: PostBaseViewController {
     */
     
     override func viewDidLoad() {
+        
+        
+        /*
+         
+         
+         
+         
+         */
+        assert(false)
+        /*
+         
+         
+         
+         
+         */
+        
         super.viewDidLoad()
         
         collectionView.delegate = self //For the layout delegate

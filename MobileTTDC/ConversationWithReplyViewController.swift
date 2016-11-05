@@ -13,7 +13,6 @@ class ConversationWithReplyViewController: PostBaseViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var replyTextView: UITextView!
     
-    
     var postId: String! {
         didSet{
             print("ConversationWithReplyViewController is loading \(postId)")
@@ -27,13 +26,31 @@ class ConversationWithReplyViewController: PostBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.title = "Conversation"
         let view = NSBundle.mainBundle().loadNibNamed("AccessoryCommentView", owner: replyTextView, options: nil)!.first as! AccessoryCommentView
         view.delegate = self
         replyTextView.inputAccessoryView = view
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(ConversationWithReplyViewController.handleTapToResign(_:)))
         self.view.addGestureRecognizer(tap)
+        registerForStyleUpdates()
+        
     }
+    
+    override func refreshStyle() {
+        
+        let style = getApplicationContext().getCurrentStyle()
+        collectionView.backgroundColor = style.postBackgroundColor()
+        
+        collectionView.indicatorStyle = style.scrollBarStyle()
+        
+        replyTextView.backgroundColor = style.postBackgroundColor()
+        replyTextView.textColor = style.entryTextColor()
+        
+        view.backgroundColor = style.navigationBackgroundColor()
+        
+    }
+    
     @IBAction func closeAction(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }

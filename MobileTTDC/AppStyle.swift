@@ -21,6 +21,9 @@ public protocol AppStyle {
     func navigationColor() -> UIColor
     func scrollBarStyle() -> UIScrollViewIndicatorStyle
     func statusBarStyle() -> UIStatusBarStyle
+    func attributedTextLabelColor() -> String //Html colors becase for some fucking reason attributed text behaves differently depending on where it's used?
+    func selectionColor() -> UIColor
+    func searchBackgroundColor() -> UIColor
 }
 
 public struct AppStyleLight : AppStyle {
@@ -51,6 +54,7 @@ public struct AppStyleLight : AppStyle {
     
     public func postBackgroundColor() -> UIColor {
         return UIColor.whiteColor()
+//        return UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
     }
     
     public func postReplyBackgroundColor() -> UIColor {
@@ -72,6 +76,20 @@ public struct AppStyleLight : AppStyle {
     
     public func statusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.Default
+    }
+    
+    public func attributedTextLabelColor() -> String {
+        return "black"
+    }
+    
+    public func selectionColor() -> UIColor{
+//        return UIColor(red:0.90, green:0.90, blue:0.90, alpha:1.0)
+        return UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
+//        return UIColor.redColor()
+    }
+    
+    public func searchBackgroundColor() -> UIColor {
+        return UIColor(red:0.90, green:0.90, blue:0.90, alpha:1.0)
     }
 }
 
@@ -111,7 +129,7 @@ public struct AppStyleDark : AppStyle {
     }
     
     public func navigationBackgroundColor() -> UIColor {
-        return UIColor.blackColor()
+        return  UIColor(red:0.10, green:0.10, blue:0.10, alpha:1.0)
     }
     
     public func navigationColor() -> UIColor {
@@ -124,6 +142,18 @@ public struct AppStyleDark : AppStyle {
     
     public func statusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
+    }
+    
+    public func attributedTextLabelColor() -> String {
+        return "white"
+    }
+    
+    public func selectionColor() -> UIColor{
+        return UIColor(red:0.25, green:0.25, blue:0.25, alpha:1.0)
+    }
+    
+    public func searchBackgroundColor() -> UIColor {
+        return postBackgroundColor()
     }
 }
 

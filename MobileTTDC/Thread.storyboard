@@ -50,7 +50,7 @@
                             <constraint firstItem="7nL-zz-Hh8" firstAttribute="leading" secondItem="NeO-zY-l7R" secondAttribute="leading" id="Cjt-20-qe1"/>
                             <constraint firstAttribute="trailing" secondItem="7nL-zz-Hh8" secondAttribute="trailing" id="Qd9-cf-IjI"/>
                             <constraint firstItem="iCu-ke-dtl" firstAttribute="top" secondItem="7nL-zz-Hh8" secondAttribute="bottom" id="S4u-1J-vBB"/>
-                            <constraint firstItem="7nL-zz-Hh8" firstAttribute="top" secondItem="NEz-mA-ktR" secondAttribute="bottom" constant="-64" id="n8P-Wd-WCd"/>
+                            <constraint firstItem="7nL-zz-Hh8" firstAttribute="top" secondItem="NEz-mA-ktR" secondAttribute="bottom" id="n8P-Wd-WCd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="M6c-fB-cgM">

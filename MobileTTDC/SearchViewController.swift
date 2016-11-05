@@ -37,7 +37,37 @@ class SearchViewController : PostBaseViewController {
         searchBar.delegate = self
         
         searchBar.becomeFirstResponder()
+        
+        registerForStyleUpdates()
     }
+    
+    override func refreshStyle() {
+//        searchBar
+        
+        let style = getApplicationContext().getCurrentStyle()
+        collectionView.backgroundColor = style.postBackgroundColor()
+        
+        collectionView.indicatorStyle = style.scrollBarStyle()
+        
+        searchBar.backgroundColor = style.navigationBackgroundColor()
+//        searchBar.textColor = style.entryTextColor()
+        searchBar.tintColor = style.navigationColor()
+        
+        searchBar.barTintColor = style.navigationBackgroundColor()
+        
+//        searchBar.text
+//        searchBar.searchBarStyle
+        searchBar.setTextColor(style.navigationColor())
+        searchBar.setTextBackgroundColor(style.searchBackgroundColor())
+
+        
+        view.backgroundColor = style.navigationBackgroundColor()
+
+        tableView.backgroundColor = style.postBackgroundColor()
+        tableView.separatorColor = style.headerDetailTextColor()
+        tableView.tintColor = style.tintColor()
+    }
+    
 //    
 //    func registerAndCreatePrototypeCellFromNib(withName: String, forReuseIdentifier: String) -> UICollectionViewCell{
 //        let nib = UINib(nibName: withName, bundle: nil)

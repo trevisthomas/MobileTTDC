@@ -50,6 +50,7 @@
 		0FA3F2651DBBCAA100268DC1 /* UICollectionViewCell+TTDC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA3F2641DBBCAA100268DC1 /* UICollectionViewCell+TTDC.swift */; };
 		0FA3F2691DBC73B400268DC1 /* PostBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA3F2681DBC73B400268DC1 /* PostBaseViewController.swift */; };
 		0FA556AF1D2077AC001CEA6E /* UIViewController+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA556AE1D2077AC001CEA6E /* UIViewController+Utilities.swift */; };
+		0FAFE33C1DCD44F0000BE422 /* UISearchBar+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFE33B1DCD44F0000BE422 /* UISearchBar+Custom.swift */; };
 		0FB2F4941CFF9C77008F386A /* NSDate+Gloss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2F4931CFF9C77008F386A /* NSDate+Gloss.swift */; };
 		0FB2F4961CFFA0E5008F386A /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2F4951CFFA0E5008F386A /* Entry.swift */; };
 		0FB2F4981CFFA8FC008F386A /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2F4971CFFA8FC008F386A /* Image.swift */; };
@@ -151,6 +152,7 @@
 		0FA3F2641DBBCAA100268DC1 /* UICollectionViewCell+TTDC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+TTDC.swift"; sourceTree = "<group>"; };
 		0FA3F2681DBC73B400268DC1 /* PostBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostBaseViewController.swift; sourceTree = "<group>"; };
 		0FA556AE1D2077AC001CEA6E /* UIViewController+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utilities.swift"; sourceTree = "<group>"; };
+		0FAFE33B1DCD44F0000BE422 /* UISearchBar+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Custom.swift"; sourceTree = "<group>"; };
 		0FB2F4931CFF9C77008F386A /* NSDate+Gloss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Gloss.swift"; sourceTree = "<group>"; };
 		0FB2F4951CFFA0E5008F386A /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		0FB2F4971CFFA8FC008F386A /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				0F0F69A91D317137009600F7 /* UILabel+Utilities.swift */,
 				0FA3F2641DBBCAA100268DC1 /* UICollectionViewCell+TTDC.swift */,
 				0FF4ED8C1DCBE44400BE4CF4 /* UIView+Nib.swift */,
+				0FAFE33B1DCD44F0000BE422 /* UISearchBar+Custom.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -546,6 +549,7 @@
 				0FCC107B1D2ABB9800EA0B25 /* AutoCompleteResponse.swift in Sources */,
 				0F9E08FE1D14BB62006676C1 /* ConverstionSplitViewController.swift in Sources */,
 				0FA3F2651DBBCAA100268DC1 /* UICollectionViewCell+TTDC.swift in Sources */,
+				0FAFE33C1DCD44F0000BE422 /* UISearchBar+Custom.swift in Sources */,
 				0FCC10771D28392300EA0B25 /* LatestPostsProtocols.swift in Sources */,
 				0FD0A3221D0CA2530030D36F /* ConversationsViewController.swift in Sources */,
 				0F0F69AE1D32986B009600F7 /* PostCrudCommand.swift in Sources */,

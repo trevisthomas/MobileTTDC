@@ -26,6 +26,12 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
     @IBOutlet weak var entryConstraintBottom: NSLayoutConstraint!
     @IBOutlet weak var entryConstraintRight: NSLayoutConstraint!
     
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
+    private let spacing : Int = 4
+    private let starHeight : Int = 20
+    
     var delegate : PostViewCellDelegate?
     
     var post : Post! {
@@ -40,10 +46,28 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
 //            likesLabel.text = post.formatLikesString()
 //            
 //            let review = NSBundle.mainBundle().loadNibNamed("MovieReviewSubView", owner: self, options: nil)![0] as! MovieReviewSubView
-            let review : MovieReviewSubView = MovieReviewSubView.fromNib()
             
-            review.post = post.posts![0]
-            subRatingStackView.addSubview(review)
+            for subview in subRatingStackView.subviews {
+                subview.removeFromSuperview()
+            }
+            
+            if let posts = post.posts {
+                for p in posts{
+                    let review : MovieReviewSubView = MovieReviewSubView.fromNib()
+                    review.post = p
+                    review.heightAnchor.constraintEqualToConstant(CGFloat(starHeight)).active = true
+                    review.widthAnchor.constraintEqualToConstant(self.frame.width).active = true
+                    subRatingStackView.addArrangedSubview(review)
+                }
+                
+            }
+            subRatingStackView.spacing = CGFloat(spacing)
+            subRatingStackView.translatesAutoresizingMaskIntoConstraints = false;
+            
+            
+            
+//            review.post = post.posts![0]
+//            subRatingStackView.addSubview(review)
             
             refreshStyle() //For some reason those attributed guys get unhappy if you dont do this
         }
@@ -57,7 +81,8 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
     
     
     override func refreshStyle() {
-//        let appStyle = getApplicationContext().getCurrentStyle()
+        let appStyle = getApplicationContext().getCurrentStyle()
+        movieTitleButton.setTitleColor(appStyle.headerTextColor(), forState: .Normal)
 //        likeButton.setTitleColor(appStyle.postFooterTextColor(), forState: .Normal)
 //        dateCreatedButton.setTitleColor(appStyle.headerDetailTextColor(), forState: .Normal)
 //        likesLabel.textColor = appStyle.postFooterTextColor()
@@ -92,7 +117,18 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
     }
     
     func preferredHeight(width: CGFloat) -> CGFloat {
-        print("Movie heights are fake")
-        return frame.height
+        
+//        return frame.height
+        if let posts = post.posts {
+            
+            let totalStarHeight = CGFloat((starHeight + spacing) * posts.count)
+            let minStarHeight = (totalStarHeight + topConstraint.constant  + bottomConstraint.constant)
+            
+            return minStarHeight < frame.height ? frame.height : minStarHeight
+            
+        }
+        else {
+            return frame.height
+        }
     }
 }

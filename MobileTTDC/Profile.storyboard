@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LJf-kR-clj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LJf-kR-clj">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -10,7 +10,7 @@
         <!--Profile-->
         <scene sceneID="Y9Y-du-7L6">
             <objects>
-                <navigationController storyboardIdentifier="ProfileNav" title="Profile" id="LJf-kR-clj" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ProfileNav" title="Profile" id="LJf-kR-clj" customClass="NavigationViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sWh-D1-mu9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -69,7 +69,7 @@
                             <constraint firstItem="JxD-ms-BEd" firstAttribute="leading" secondItem="Gy5-ee-sE3" secondAttribute="trailing" constant="8" symbolic="YES" id="w2s-ET-YdU"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="E6N-gw-KQw">
+                    <navigationItem key="navigationItem" title="Profile" id="E6N-gw-KQw">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="NUN-vL-Gw4">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Uzo-mh-ZwT">
                                 <rect key="frame" x="313" y="7" width="46" height="30"/>

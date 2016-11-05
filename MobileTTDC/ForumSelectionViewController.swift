@@ -81,7 +81,7 @@ extension ForumSelectionViewController : UITableViewDelegate, UITableViewDataSou
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ForumTableCell")!
         
-        cell.textLabel?.setHtmlText(forums[indexPath.row].displayValue)
+        cell.textLabel?.setHtmlText(forums[indexPath.row].displayValue, fuckingColor: "brown")
         
         return cell
     }

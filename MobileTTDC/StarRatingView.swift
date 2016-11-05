@@ -42,7 +42,8 @@ class StarRatingView: UIView {
     override func drawRect(rect: CGRect) {
         assert(starsVisible <= CGFloat(starCount))
         
-        let starWidth = rect.width / CGFloat(starCount)
+//        let starWidth = rect.width / CGFloat(starCount)
+        let starWidth = rect.height
         
         let starFillPath = UIBezierPath()
         starFillPath.fill()

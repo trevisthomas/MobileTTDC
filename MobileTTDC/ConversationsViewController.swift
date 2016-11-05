@@ -13,7 +13,7 @@ class ConversationsViewController: PostBaseViewController {
     
    // private(set) var postForSegue : Post! = nil //OUTSTANDING!
     
-    @IBOutlet weak var collectionView: UICollectionView?
+    @IBOutlet weak var collectionView: UICollectionView!
 
     
     override func viewDidLoad() {
@@ -24,6 +24,16 @@ class ConversationsViewController: PostBaseViewController {
         self.title = "Conversations"
         
         getApplicationContext().latestConversationsObserver = self
+        
+        registerForStyleUpdates()
+        
+    }
+    
+    override func refreshStyle() {
+        
+        collectionView.backgroundColor = getApplicationContext().getCurrentStyle().postBackgroundColor()
+        
+        collectionView.indicatorStyle = getApplicationContext().getCurrentStyle().scrollBarStyle()
         
     }
     

@@ -11,21 +11,41 @@ import UIKit
 class AutoCompleteTableViewCell: UITableViewCell {
 
     @IBOutlet weak var contentLabel: UILabel!
+    let selectionView = UIView()
     
     var item : AutoCompleteItem! {
         didSet{
-            
+            let style = getApplicationContext().getCurrentStyle()
             if(item.postId == nil) {
-                 self.contentLabel.setHtmlText("Create: \(item.displayTitle)")
+                self.contentLabel.setHtmlText("Create: \(item.displayTitle)", fuckingColor: style.attributedTextLabelColor())
+//                self.textViewBecauseLabelsBehaveWeird.text = "Create: \(item.displayTitle)"
             } else {
-                self.contentLabel.setHtmlText(item.displayTitle)
+                self.contentLabel.setHtmlText(item.displayTitle, fuckingColor: style.attributedTextLabelColor())
+//                self.textViewBecauseLabelsBehaveWeird.text = item.displayTitle
             }
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        selectedBackgroundView = selectionView
+        registerForStyleUpdates()
+        
+        
+    }
+    
+    override func refreshStyle() {
+        let style = getApplicationContext().getCurrentStyle()
+        backgroundColor = style.postBackgroundColor()
+        tintColor = style.tintColor()
+//        contentLabel.highlightedTextColor = UIColor.orangeColor()
+        
+        selectionView.backgroundColor = style.selectionColor()
+        
+        
+        
+        contentLabel.backgroundColor = style.postBackgroundColor()
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

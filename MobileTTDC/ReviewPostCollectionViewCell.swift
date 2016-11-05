@@ -102,6 +102,7 @@ class ReviewPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
         delegate?.viewThread(post)
     }
     
+    
     func postEntryInsets() -> UIEdgeInsets {
         return UIEdgeInsets(top: entryConstraintTop.constant, left: entryConstraintLeft.constant, bottom: entryConstraintBottom.constant, right: entryConstraintRight.constant)
     }

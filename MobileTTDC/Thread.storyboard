@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Thread View Controller-->
+        <!--Thread-->
         <scene sceneID="cIs-hv-opR">
             <objects>
                 <viewController id="oeV-ST-Ego" customClass="ThreadViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
@@ -53,7 +53,7 @@
                             <constraint firstItem="7nL-zz-Hh8" firstAttribute="top" secondItem="NEz-mA-ktR" secondAttribute="bottom" id="n8P-Wd-WCd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="M6c-fB-cgM">
+                    <navigationItem key="navigationItem" title="Thread" id="M6c-fB-cgM">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="ORn-dq-WPU">
                             <connections>
                                 <action selector="doneButton:" destination="oeV-ST-Ego" id="MNW-iU-pCp"/>

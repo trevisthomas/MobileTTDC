@@ -23,8 +23,11 @@
                             <color key="titleColor" red="0.058823529409999999" green="0.058823529409999999" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
-                    <stackView opaque="NO" contentMode="top" axis="vertical" distribution="equalSpacing" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="iuX-5M-Zur">
+                    <stackView autoresizesSubviews="NO" opaque="NO" contentMode="top" axis="vertical" distribution="equalSpacing" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="iuX-5M-Zur">
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Eu3-he-ebn"/>
+                        </constraints>
                     </stackView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VdL-TF-HhS">
                         <constraints>
@@ -35,7 +38,6 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="iuX-5M-Zur" secondAttribute="bottom" constant="8" id="2UV-Fh-R3l"/>
                 <constraint firstItem="iuX-5M-Zur" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="49" id="4uq-PU-cQE"/>
                 <constraint firstItem="VdL-TF-HhS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="9FN-h6-26a"/>
                 <constraint firstAttribute="trailing" secondItem="VdL-TF-HhS" secondAttribute="trailing" constant="8" id="L9i-i6-7fr"/>
@@ -47,9 +49,9 @@
             </constraints>
             <size key="customSize" width="880" height="224"/>
             <connections>
-                <outlet property="bottomConstraint" destination="2UV-Fh-R3l" id="LDL-gj-e2O"/>
                 <outlet property="movieCoverImageView" destination="VdL-TF-HhS" id="NVd-fd-fNw"/>
                 <outlet property="movieTitleButton" destination="2RN-rf-deH" id="qft-q5-w0V"/>
+                <outlet property="starStackViewHeightConstraint" destination="Eu3-he-ebn" id="KHi-fT-G6z"/>
                 <outlet property="subRatingStackView" destination="iuX-5M-Zur" id="lTb-vl-OBa"/>
                 <outlet property="topConstraint" destination="4uq-PU-cQE" id="Z9b-ls-s0g"/>
             </connections>

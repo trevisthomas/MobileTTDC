@@ -53,7 +53,7 @@
                             <color key="titleColor" red="0.058823529409999999" green="0.058823529409999999" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <connections>
-                            <action selector="movieTitleActionWithSender:" destination="gTV-IL-0wX" eventType="touchUpInside" id="CqU-ok-0vA"/>
+                            <action selector="movieTitleAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="EfV-K4-6Q6"/>
                         </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gN3-Gb-Y5d" customClass="PostSeperator" customModule="MobileTTDC" customModuleProvider="target">

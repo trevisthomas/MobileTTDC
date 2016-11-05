@@ -60,7 +60,7 @@
                             <constraint firstItem="Rn9-dX-02U" firstAttribute="leading" secondItem="Zac-OS-XHQ" secondAttribute="leading" id="bhP-vJ-cch"/>
                             <constraint firstItem="s61-UN-Dnk" firstAttribute="top" secondItem="Rn9-dX-02U" secondAttribute="bottom" constant="8" id="fG8-Qp-pkF"/>
                             <constraint firstAttribute="trailing" secondItem="Rn9-dX-02U" secondAttribute="trailing" id="mxZ-Qi-7Te"/>
-                            <constraint firstItem="Rn9-dX-02U" firstAttribute="top" secondItem="3zK-C4-90f" secondAttribute="bottom" constant="-64" id="tzA-XF-5iv"/>
+                            <constraint firstItem="Rn9-dX-02U" firstAttribute="top" secondItem="3zK-C4-90f" secondAttribute="bottom" id="tzA-XF-5iv"/>
                         </constraints>
                     </view>
                     <toolbarItems>

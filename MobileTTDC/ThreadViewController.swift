@@ -51,7 +51,7 @@ class ThreadViewController: PostBaseViewController {
     
     func fetchPost(postId : String) {
         //Not sure if this actually works.
-        let cmd = PostCrudCommand(postId: postId, loadRootAncestor: false)
+        let cmd = PostCrudCommand(postId: postId, loadRootAncestor: true)
         
         Network.performPostCrudCommand(cmd){
             (response, message) -> Void in

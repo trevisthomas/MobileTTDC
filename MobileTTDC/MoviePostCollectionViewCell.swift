@@ -31,6 +31,7 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
     
     private let spacing : Int = 4
     private let starHeight : Int = 20
+    @IBOutlet weak var starStackViewHeightConstraint: NSLayoutConstraint!
     
     var delegate : PostViewCellDelegate?
     
@@ -59,10 +60,16 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
                     review.widthAnchor.constraintEqualToConstant(self.frame.width).active = true
                     subRatingStackView.addArrangedSubview(review)
                 }
+            
+                subRatingStackView.spacing = CGFloat(spacing)
+                subRatingStackView.translatesAutoresizingMaskIntoConstraints = false;
                 
+                let totalStarHeight = CGFloat((starHeight + spacing) * posts.count)
+                starStackViewHeightConstraint.constant = totalStarHeight
             }
-            subRatingStackView.spacing = CGFloat(spacing)
-            subRatingStackView.translatesAutoresizingMaskIntoConstraints = false;
+            
+            
+            
             
             
             
@@ -122,8 +129,9 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
         if let posts = post.posts {
             
             let totalStarHeight = CGFloat((starHeight + spacing) * posts.count)
-            let minStarHeight = (totalStarHeight + topConstraint.constant  + bottomConstraint.constant)
-            
+//            let minStarHeight = (totalStarHeight + topConstraint.constant  + bottomConstraint.constant)
+
+            let minStarHeight = (totalStarHeight + topConstraint.constant )
             return minStarHeight < frame.height ? frame.height : minStarHeight
             
         }

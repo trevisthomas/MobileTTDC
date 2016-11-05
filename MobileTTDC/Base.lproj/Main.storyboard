@@ -83,8 +83,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Yla-c6-SoW">
-                                <frame key="frameInset" minY="64" width="600" height="487"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Yla-c6-SoW">
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2uy-Ma-q0i">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -115,7 +114,15 @@
                             <constraint firstItem="Yla-c6-SoW" firstAttribute="top" secondItem="S0f-TX-xb2" secondAttribute="bottom" id="FVU-sk-pGb"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Conversations" id="bbp-Mn-KVt"/>
+                    <navigationItem key="navigationItem" title="Conversations" id="bbp-Mn-KVt">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="74M-1d-oEe">
+                            <connections>
+                                <segue destination="l4R-G9-EDl" kind="popoverPresentation" popoverAnchorBarButtonItem="74M-1d-oEe" id="Puv-hK-5Fo">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Yla-c6-SoW" id="5Z8-kB-3yf"/>
                         <segue destination="Kiz-7g-BiQ" kind="showDetail" identifier="ConversationWithReplyView" id="gHb-0D-wlU"/>
@@ -489,7 +496,8 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DvZ-ZA-J9J"/>
-        <segue reference="gvA-9t-fNh"/>
+        <segue reference="Mfq-eH-XQR"/>
+        <segue reference="dl3-XF-a5V"/>
+        <segue reference="Puv-hK-5Fo"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -28,7 +28,7 @@ class NavigationViewController: UINavigationController {
         navigationBar.tintColor = style.navigationColor()
         navigationBar.barTintColor = style.navigationBackgroundColor()
         navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: style.navigationColor()]
-        UIApplication.sharedApplication().statusBarStyle = style.statusBarStyle()
+        
         
     }
 

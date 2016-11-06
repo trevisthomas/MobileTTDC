@@ -27,9 +27,11 @@ class ProfileViewController: UIViewController {
             profilePicImageView.downloadedFrom(link: url, contentMode: .ScaleAspectFit)
         }
 
-        lightDarkSegmentedControl.selectedSegmentIndex = getApplicationContext().isStyleLight() ? 0 : 1
-        
     }
+    
+//    override func viewWillAppear(animated: Bool) {
+//        lightDarkSegmentedControl.selectedSegmentIndex = getApplicationContext().isStyleLight() ? 0 : 1
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -41,6 +43,8 @@ class ProfileViewController: UIViewController {
         titleLabel.textColor = style.headerDetailTextColor()
         lightDarkSegmentedControl.tintColor = style.tintColor()
         self.view.backgroundColor = style.postBackgroundColor()
+        
+        lightDarkSegmentedControl.selectedSegmentIndex = getApplicationContext().isStyleLight() ? 0 : 1
     }
     
     @IBAction func lightDarkSegmentedControlAction(sender: UISegmentedControl) {

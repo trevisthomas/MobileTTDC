@@ -67,6 +67,10 @@ public class ApplicationContext : AuthenticatedUserDataProvider {
 
     private(set) var currentStyleName : String = ApplicationContext.defaultStyle {
         didSet{
+            UIApplication.sharedApplication().statusBarStyle = getCurrentStyle().statusBarStyle()
+            
+            
+//            UITextField.appearance().keyboardAppearance = .Dark
             NSNotificationCenter.defaultCenter().postNotificationName(ApplicationContext.styleChangedNotificationKey, object: nil)
         }
     }
@@ -90,6 +94,7 @@ public class ApplicationContext : AuthenticatedUserDataProvider {
             } else {
                 NSNotificationCenter.defaultCenter().postNotificationName(ApplicationContext.currentUserKey, object: nil, userInfo: [:])
             }
+            
         }
     }
     private(set) public var token: String? = nil //WTF both?
@@ -166,7 +171,7 @@ public class ApplicationContext : AuthenticatedUserDataProvider {
         }
     }
     
-    private var _latestConversations : [Post] = [] {
+    /*private*/ var _latestConversations : [Post] = [] {
         didSet{
             latestConversationsObserver?.latestConversationsUpdated()
         }

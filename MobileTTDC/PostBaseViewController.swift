@@ -15,6 +15,7 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
     var reviewPostPrototypeCell : ReviewPostCollectionViewCell!
     var moviePostPrototypeCell : MoviePostCollectionViewCell!
     var rootPostPrototypeCell : RootPostCollectionViewCell!
+    var loadingMessageCell : LoadingCollectionViewCell!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,8 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
         moviePostPrototypeCell = registerAndCreatePrototypeCellFromNib(ReuseIdentifiers.MOVIE_POST_CELL, forReuseIdentifier: ReuseIdentifiers.MOVIE_POST_CELL) as! MoviePostCollectionViewCell
         
         rootPostPrototypeCell = registerAndCreatePrototypeCellFromNib(ReuseIdentifiers.ROOT_POST_CELL, forReuseIdentifier: ReuseIdentifiers.ROOT_POST_CELL) as! RootPostCollectionViewCell
+        
+        loadingMessageCell = registerAndCreatePrototypeCellFromNib(ReuseIdentifiers.LOADING_CELL, forReuseIdentifier: ReuseIdentifiers.LOADING_CELL) as! LoadingCollectionViewCell
     }
 
     func likePost(post: Post){
@@ -120,6 +123,12 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
 //            
 //        }
 //    }
+    
+    func prototypeLoadingCellSize() -> CGSize {
+//        let frameSize = getCollectionView()!.frame.size
+//        return CGSizeMake(self.collectionView.frame.width, self.loadingMessageCell.frame.height)
+        return loadingMessageCell.frame.size
+    }
     
     func prototypeCellSize(post p: Post, allowHierarchy : Bool = false) -> CGSize {
 

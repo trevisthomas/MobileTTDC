@@ -47,7 +47,7 @@
                                     <constraint firstAttribute="height" constant="30" id="Oz9-jf-ItJ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="hmo-Ke-Sk5" appends="YES" id="Rev-e1-j85"/>
                                 </connections>

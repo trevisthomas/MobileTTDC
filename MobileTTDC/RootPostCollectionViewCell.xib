@@ -87,7 +87,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tQM-ep-JyT" customClass="PostSeperator" customModule="MobileTTDC" customModuleProvider="target">
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="8" id="Evq-4X-F9z"/>
+                            <constraint firstAttribute="height" constant="4" id="Evq-4X-F9z"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
@@ -154,9 +154,7 @@
                             </button>
                         </subviews>
                     </stackView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="XX Conversations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="li2-RW-qhY">
-                        <frame key="frameInset" minX="8" minY="171" width="136" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XX Conversations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="li2-RW-qhY">
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -173,10 +171,12 @@
                 <constraint firstAttribute="trailing" secondItem="7SN-JX-CcG" secondAttribute="trailing" constant="4" id="E15-J8-jCa"/>
                 <constraint firstItem="ICF-gr-gDR" firstAttribute="top" secondItem="8PZ-du-MH2" secondAttribute="bottom" constant="3" id="EUh-Be-fNV"/>
                 <constraint firstItem="Ct5-pY-S1K" firstAttribute="top" secondItem="R0C-rj-Jo3" secondAttribute="bottom" constant="3" id="Fyd-hF-Uuh"/>
+                <constraint firstItem="li2-RW-qhY" firstAttribute="top" secondItem="ICF-gr-gDR" secondAttribute="top" id="IuC-OP-ECx"/>
                 <constraint firstAttribute="bottom" secondItem="tQM-ep-JyT" secondAttribute="bottom" id="JVk-uQ-rSX"/>
                 <constraint firstItem="tQM-ep-JyT" firstAttribute="leading" secondItem="3PO-FD-0iD" secondAttribute="leading" constant="8" id="LnQ-eb-bUH"/>
                 <constraint firstItem="iaN-Te-lYI" firstAttribute="leading" secondItem="3PO-FD-0iD" secondAttribute="leading" constant="8" id="Ram-75-i3f"/>
                 <constraint firstAttribute="trailing" secondItem="tQM-ep-JyT" secondAttribute="trailing" constant="8" id="Rmm-LK-oOx"/>
+                <constraint firstItem="li2-RW-qhY" firstAttribute="leading" secondItem="8PZ-du-MH2" secondAttribute="leading" id="Tsg-cm-UHt"/>
                 <constraint firstItem="ICF-gr-gDR" firstAttribute="trailing" secondItem="8PZ-du-MH2" secondAttribute="trailing" id="UI1-jP-ftz"/>
                 <constraint firstItem="8PZ-du-MH2" firstAttribute="leading" secondItem="3PO-FD-0iD" secondAttribute="leading" constant="8" id="Xym-5t-AiT"/>
                 <constraint firstItem="7SN-JX-CcG" firstAttribute="leading" secondItem="3PO-FD-0iD" secondAttribute="leading" constant="4" id="flc-y5-gNL"/>

@@ -33,6 +33,10 @@ protocol DynamicAppStyle {
     func refreshStyle()
 }
 
+protocol CurrentUserProtocol {
+    func onCurrentUserChanged()
+}
+
 //extension DynamicAppStyle {
 //    func refreshStyle() {
 //                //Default impl does nothing
@@ -83,4 +87,18 @@ extension UIViewController : DynamicAppStyle {
         //Default impl does nothing
     }
     
+}
+
+extension UIViewController : CurrentUserProtocol {
+    func registerForUserChangeUpdates() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(catchUserChangedNotification), name: ApplicationContext.currentUserKey, object: nil)
+    }
+    
+    func catchUserChangedNotification(notification: NSNotification) {
+        onCurrentUserChanged()
+    }
+    
+    func onCurrentUserChanged() {
+        //Default does nothing
+    }
 }

@@ -15,6 +15,11 @@ class ConversationsViewController: PostBaseViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
 
+//    let label : UILabel = UILabel(frame: CGRectMake(50, 700, 100, 100))
+    
+    var dataLoadingInProgress : Bool = false
+    var pageNumber : Int = 1
+    var posts : [Post] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +28,28 @@ class ConversationsViewController: PostBaseViewController {
         
         self.title = "Conversations"
         
-        getApplicationContext().latestConversationsObserver = self
+//        getApplicationContext().latestConversationsObserver = self
         
         registerForStyleUpdates()
         
+//        self.label.text = "Da fuq"
+        
+//        collectionView.refreshControl = label
+        
+//        collectionView.scro
+//        scrollView.addSubview(label)
+        
+        registerForUserChangeUpdates()
+        loadLatestConversations()
+        
+        
+        
+    }
+    
+    override func onCurrentUserChanged() {
+        posts = []
+        collectionView.reloadData()
+        loadLatestConversations()
     }
     
     override func refreshStyle() {
@@ -83,9 +106,24 @@ extension ConversationsViewController : UICollectionViewDelegateFlowLayout{
 //        let height = sizingCellPrototype.preferredHeight(collectionView.frame.width)
 //        return CGSize(width: collectionView.frame.width, height: height)
         
-        let post = getApplicationContext().latestConversations()[indexPath.row]
+//        if (indexPath.row >= posts.count) {
+//            
+//            return CGSizeMake(self.collectionView.frame.width , self.loadingMessageCell.frame.height)
+//        }
+//        
+//        let post = posts[indexPath.row]
+//        
+//        return prototypeCellSize(post: post, allowHierarchy: false)
         
-        return prototypeCellSize(post: post, allowHierarchy: false)
+        if (indexPath.row < posts.count) {
+            let post = posts[indexPath.row]
+            
+            return prototypeCellSize(post: post, allowHierarchy: false)
+        } else {
+            return prototypeLoadingCellSize()
+        }
+        
+        
     }
 }
 
@@ -100,12 +138,23 @@ extension ConversationsViewController : UICollectionViewDelegate, UICollectionVi
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return getApplicationContext().latestConversations().count
+//        if collectionView.isScrollingNeeded() {
+//            return getApplicationContext().latestConversations().count + 1
+//        } else {
+//            return getApplicationContext().latestConversations().count
+//        }
+        return posts.count + 1
     }
+    
+    
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let post = getApplicationContext().latestConversations()[indexPath.row]
+        if (indexPath.row >= posts.count) {
+            return collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.LOADING_CELL, forIndexPath: indexPath)
+        }
+        
+        let post = posts[indexPath.row]
         
         return dequeueCell(post, indexPath: indexPath, allowHierarchy: false)
         
@@ -146,6 +195,45 @@ extension ConversationsViewController : UICollectionViewDelegate, UICollectionVi
 //
 //    }
     
+    func loadLatestConversations(){
+        pageNumber = 1
+        let cmd = SearchCommand(postSearchType: SearchCommand.PostSearchType.CONVERSATIONS, pageNumber: pageNumber)
+        
+        self.dataLoadingInProgress = true
+        
+        Network.performSearchCommand(cmd){
+            (response, message) -> Void in
+            
+            self.dataLoadingInProgress = false
+            guard (response != nil) else {
+                //Error
+                self.presentAlert("Error", message: message!)
+                return;
+            }
+            self.posts = (response?.list)!
+            self.collectionView.reloadData()
+        };
+   
+    }
+    func loadNextPage(){
+        pageNumber += 1
+        let cmd = SearchCommand(postSearchType: SearchCommand.PostSearchType.CONVERSATIONS, pageNumber: pageNumber)
+        
+        Network.performSearchCommand(cmd){
+            (response, message) -> Void in
+            
+            self.dataLoadingInProgress = false
+            guard (response != nil) else {
+                self.presentAlert("Error", message: message!)
+                return;
+            }
+//            self.getApplicationContext()._latestConversations.appendContentsOf((response?.list)!)
+            self.posts.appendContentsOf((response?.list)!)
+            self.collectionView.reloadData()
+            
+        };
+    }
+    
 }
 //
 //extension ConversationsViewController{
@@ -166,6 +254,57 @@ extension ConversationsViewController : UICollectionViewDelegate, UICollectionVi
 //        };
 //    }
 //}
+
+extension ConversationsViewController : UIScrollViewDelegate {
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        let scrollViewHeight = scrollView.frame.size.height
+        let scrollContentSizeHeight = scrollView.contentSize.height
+        let scrollOffset = scrollView.contentOffset.y
+        
+        if (scrollOffset == 0)
+        {
+            // then we are at the top
+            print("Top!")
+        }
+        else if (scrollOffset + scrollViewHeight == scrollContentSizeHeight)
+        {
+            
+            if(!dataLoadingInProgress) {
+                dataLoadingInProgress = true
+                collectionView.reloadData()
+                loadNextPage()
+                
+            }
+            
+            
+            
+            print("Bottom")
+        }
+        
+        
+        
+
+        
+    }
+    
+//    func adjustHistoryViewBecauseScrollChangedAllTheWay(){
+//        let yOffset = collectionView.contentOffset.y
+//        
+//        if(yOffset <= 0){
+//            collectionView.frame.origin.y = originalTopOfCollectionView
+//            modeSelectionView.frame.origin.y = originalTopOfDisapearingView
+//            
+//        } else if yOffset < modeSelectionHeightConstraint.constant + originalTopOfDisapearingView - statusBarHeight{
+//            collectionView.frame.origin.y = originalTopOfCollectionView - collectionView.contentOffset.y
+//            modeSelectionView.frame.origin.y = originalTopOfDisapearingView - collectionView.contentOffset.y
+//        } else {
+//            collectionView.frame.origin.y = 0 + statusBarHeight
+//            modeSelectionView.frame.origin.y = -modeSelectionHeightConstraint.constant + statusBarHeight
+//        }
+//    }
+}
+
 
 extension ConversationsViewController : LatestConversationsObserver {
     func latestConversationsUpdated() {

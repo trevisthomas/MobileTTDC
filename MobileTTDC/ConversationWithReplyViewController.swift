@@ -49,6 +49,11 @@ class ConversationWithReplyViewController: PostBaseViewController {
         
         view.backgroundColor = style.navigationBackgroundColor()
         
+        
+
+//        UITextView.appearance().keyboardAppearence = .Dark
+//        replyTextView.keyboardAppearance = UIKeyboardAppearance.Dark
+        
     }
     
     @IBAction func closeAction(sender: AnyObject) {

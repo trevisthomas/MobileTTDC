@@ -35,24 +35,34 @@ class TabBarViewController: UITabBarController {
         profile = profileStoryboard.instantiateViewControllerWithIdentifier("ProfileNav")
         
         configureGuest()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TabBarViewController.catchNotification), name: ApplicationContext.currentUserKey, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TabBarViewController.catchNotification), name: ApplicationContext.currentUserKey, object: nil)
+//        
+        registerForUserChangeUpdates()
         
         registerForStyleUpdates()
+        
     }
     
-    
-
-    func catchNotification(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            let currentUser = userInfo["login"] as? String
-            
-            if currentUser != nil {
-                configureAuthenticated()
-            } else {
-                configureGuest()
-            }
+    override func onCurrentUserChanged() {
+        if getApplicationContext().currentUser() != nil {
+            configureAuthenticated()
+        } else {
+            configureGuest()
         }
     }
+    
+
+//    func catchNotification(notification: NSNotification) {
+//        if let userInfo = notification.userInfo {
+//            let currentUser = userInfo["login"] as? String
+//            
+//            if currentUser != nil {
+//                configureAuthenticated()
+//            } else {
+//                configureGuest()
+//            }
+//        }
+//    }
     
     
     override func refreshStyle() {

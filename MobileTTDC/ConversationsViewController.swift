@@ -14,6 +14,7 @@ class ConversationsViewController: PostBaseViewController {
    // private(set) var postForSegue : Post! = nil //OUTSTANDING!
     
     @IBOutlet weak var collectionView: UICollectionView!
+    private var refreshControl: UIRefreshControl = UIRefreshControl()
 
 //    let label : UILabel = UILabel(frame: CGRectMake(50, 700, 100, 100))
     
@@ -42,6 +43,7 @@ class ConversationsViewController: PostBaseViewController {
         registerForUserChangeUpdates()
         loadLatestConversations()
         
+        collectionView.refreshControl = refreshControl
         
         
     }

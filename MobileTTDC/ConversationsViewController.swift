@@ -21,6 +21,7 @@ class ConversationsViewController: PostBaseViewController {
     var dataLoadingInProgress : Bool = false
     var pageNumber : Int = 1
     var posts : [Post] = []
+    var sizeCache : [CGSize] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,8 +108,9 @@ extension ConversationsViewController : UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if (indexPath.row < posts.count) {
-            let post = posts[indexPath.row]
-            return prototypeCellSize(post: post, allowHierarchy: false)
+//            let post = posts[indexPath.row]
+            return sizeCache[indexPath.row]
+//            return prototypeCellSize(post: post, allowHierarchy: false)
 
 //            return CGSize(width: collectionView.frame.size.width, height: 200)
             
@@ -157,18 +159,17 @@ extension ConversationsViewController : UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        
-//        let post = posts[indexPath.row]
-//        var dict = [String: String]()
-//        dict["threadId"] = post.threadId
-//        performSegue(withIdentifier: "ConversationWithReplyView", sender: dict)
-//        
-
         let post = posts[indexPath.row]
-        
-        DispatchQueue.main.async {
-            let v = self.prototypeCellSize(post: post, allowHierarchy: false)
-            print(v)
-        }
+        var dict = [String: String]()
+        dict["threadId"] = post.threadId
+        performSegue(withIdentifier: "ConversationWithReplyView", sender: dict)
+//
+
+//        let post = posts[indexPath.row]
+//        DispatchQueue.main.async {
+//            let v = self.prototypeCellSize(post: post, allowHierarchy: false)
+//            print(v)
+//        }
         
     }
     
@@ -220,8 +221,11 @@ extension ConversationsViewController : UICollectionViewDelegate, UICollectionVi
             }
 //            self.posts = (response?.list)!
             self.posts = (response?.list)!
-            self.collectionView.reloadData()
-            completion()
+            
+            self.loadSizeCache(posts: self.posts){
+                self.collectionView.reloadData()
+                completion()
+            }
         };
    
     }
@@ -238,32 +242,70 @@ extension ConversationsViewController : UICollectionViewDelegate, UICollectionVi
                 return;
             }
 
-            self.posts.append(contentsOf: (response?.list)!)
-            self.collectionView.reloadData()
+//            self.posts.append(contentsOf: (response?.list)!)
+//            self.collectionView.reloadData()
             
             // Hours of time wasted on what is below. Turns out the failure is in the attrbuted text thing.  The attributed text size thing that i do in my prototype doesnt work
-//            var count = self.posts.count - 1
-//            let list = (response?.list)!
-//            
-//            var paths : [IndexPath] = []
-//            for _ in list {
-//                let path = IndexPath(row: count, section: 0)
-//                paths.append(path)
-//                count = count + 1
-//            }
-//            
-//            self.posts.append(contentsOf: (response?.list)!)
-//            self.collectionView.insertItems(at: paths)
+            var count = self.posts.count - 1
+            let list = (response?.list)!
             
-//            DispatchQueue.main.async {
-//                for p in list {
-//                    let v = self.prototypeCellSize(post: p, allowHierarchy: false)
-//                    print(v)
-//                }
-//            }
+            var paths : [IndexPath] = []
+            for _ in list {
+                let path = IndexPath(row: count, section: 0)
+                paths.append(path)
+                count = count + 1
+            }
+            
+            self.posts.append(contentsOf: (response?.list)!)
+            
+            self.loadSizeCache(posts: self.posts){
+                self.collectionView.insertItems(at: paths)
+            }
+            
+            
+            
             
         };
     }
+    func loadSizeCache(posts : [Post], completion: @escaping () -> Swift.Void){
+        sizeCache = []
+        DispatchQueue.main.async {
+            for p in self.posts {
+                let size = self.prototypeCellSize(post: p, allowHierarchy: false)
+                print(size)
+                self.sizeCache.append(size)
+            }
+            completion()
+        }
+    }
+    
+//    func appendSizeCache(posts : [Post], completion: @escaping () -> Swift.Void){
+//        DispatchQueue.main.async {
+//            for p in posts {
+//                let size = self.prototypeCellSize(post: p, allowHierarchy: false)
+//                print(size)
+//                self.sizeCache.append(size)
+//            }
+//            completion()
+//        }
+//    }
+
+//    func loadSizeCache(posts : [Post], completion: @escaping () -> Swift.Void){
+//        sizeCache = []
+//        
+//        appendSizeCache(posts: posts, completion: completion)
+//    }
+//    
+//    func appendSizeCache(posts : [Post], completion: @escaping () -> Swift.Void){
+//        DispatchQueue.main.async {
+//            for p in posts {
+//                let size = self.prototypeCellSize(post: p, allowHierarchy: false)
+//                print(size)
+//                self.sizeCache.append(size)
+//            }
+//            completion()
+//        }
+//    }
     
 }
 //

@@ -29,53 +29,53 @@ public protocol AppStyle {
 public struct AppStyleLight : AppStyle {
     
     public func headerTextColor() -> UIColor {
-        return UIColor.blackColor()
+        return UIColor.black
     }
     
     public func headerDetailTextColor() -> UIColor {
-        return UIColor.grayColor()
+        return UIColor.gray
     }
     
     public func entryTextColor() -> UIColor {
-        return UIColor.blackColor()
+        return UIColor.black
     }
     
     public func tintColor() -> UIColor {
-        return UIColor.blueColor()
+        return UIColor.blue
     }
     
     public func postFooterTextColor() -> UIColor {
-        return UIColor.lightGrayColor()
+        return UIColor.lightGray
     }
     
     public func postFooterDetailColor() -> UIColor {
-        return UIColor.lightGrayColor()
+        return UIColor.lightGray
     }
     
     public func postBackgroundColor() -> UIColor {
-        return UIColor.whiteColor()
+        return UIColor.white
 //        return UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
     }
     
     public func postReplyBackgroundColor() -> UIColor {
-        return UIColor.whiteColor()
+        return UIColor.white
     }
     
     public func navigationBackgroundColor() -> UIColor {
-        return UIColor.whiteColor()
+        return UIColor.white
     }
     
     public func navigationColor() -> UIColor {
-        return UIColor.blackColor()
+        return UIColor.black
     }
     
     public func scrollBarStyle() -> UIScrollViewIndicatorStyle {
-        return UIScrollViewIndicatorStyle.Black
+        return UIScrollViewIndicatorStyle.black
 
     }
     
     public func statusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.Default
+        return UIStatusBarStyle.default
     }
     
     public func attributedTextLabelColor() -> String {
@@ -96,27 +96,27 @@ public struct AppStyleLight : AppStyle {
 public struct AppStyleDark : AppStyle {
     
     public func headerTextColor() -> UIColor {
-        return UIColor.whiteColor()
+        return UIColor.white
     }
     
     public func headerDetailTextColor() -> UIColor {
-        return UIColor.grayColor()
+        return UIColor.gray
     }
     
     public func entryTextColor() -> UIColor {
-        return UIColor.whiteColor()
+        return UIColor.white
     }
     
     public func tintColor() -> UIColor {
-        return UIColor.orangeColor()
+        return UIColor.orange
     }
     
     public func postFooterTextColor() -> UIColor {
-        return UIColor.lightGrayColor()
+        return UIColor.lightGray
     }
     
     public func postFooterDetailColor() -> UIColor {
-        return UIColor.lightGrayColor()
+        return UIColor.lightGray
     }
     
     public func postBackgroundColor() -> UIColor {
@@ -125,7 +125,7 @@ public struct AppStyleDark : AppStyle {
     }
     
     public func postReplyBackgroundColor() -> UIColor {
-        return UIColor.blackColor()
+        return UIColor.black
     }
     
     public func navigationBackgroundColor() -> UIColor {
@@ -133,15 +133,15 @@ public struct AppStyleDark : AppStyle {
     }
     
     public func navigationColor() -> UIColor {
-        return UIColor.whiteColor()
+        return UIColor.white
     }
     
     public func scrollBarStyle() -> UIScrollViewIndicatorStyle {
-        return UIScrollViewIndicatorStyle.White
+        return UIScrollViewIndicatorStyle.white
     }
     
     public func statusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+        return UIStatusBarStyle.lightContent
     }
     
     public func attributedTextLabelColor() -> String {

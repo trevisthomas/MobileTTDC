@@ -13,7 +13,7 @@ class ConversationDetailViewController: PostBaseViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-  private var posts : [Post] = []
+  fileprivate var posts : [Post] = []
     var post : Post! {
         didSet{
             loadConversationPostDataFromWebservice(post.postId)
@@ -63,13 +63,13 @@ class ConversationDetailViewController: PostBaseViewController {
 //        self.splitViewController.preferredDisplayMode = 
         
         
-        if (UIDevice.currentDevice().userInterfaceIdiom == .Phone){
-            self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.Automatic
+        if (UIDevice.current.userInterfaceIdiom == .phone){
+            self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.automatic
         } else {
             //Forcing the master to be visible all the time on ipad
-            self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
+            self.splitViewController?.preferredDisplayMode = UISplitViewControllerDisplayMode.allVisible
             //Expanding icon functionality.  If this runs on the iphone you have no button to navigate to the master view
-            self.navigationItem.leftBarButtonItem = self.splitViewController!.displayModeButtonItem();
+            self.navigationItem.leftBarButtonItem = self.splitViewController!.displayModeButtonItem;
         }
  
         
@@ -86,13 +86,13 @@ class ConversationDetailViewController: PostBaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
         print("Orientation: PostDetailViewController")
         
-        coordinator.animateAlongsideTransition({ context in
+        coordinator.animate(alongsideTransition: { context in
             // do whatever with your context
-            context.viewControllerForKey(UITransitionContextFromViewControllerKey)
+            context.viewController(forKey: UITransitionContextViewControllerKey.from)
             }, completion: {context in
                 self.collectionView?.collectionViewLayout.invalidateLayout()
                 
@@ -101,17 +101,17 @@ class ConversationDetailViewController: PostBaseViewController {
         
     }
     
-    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+    @IBAction func prepareForUnwind(_ segue: UIStoryboardSegue) {
         print("prep for unwind")
     }
 
-    override func canPerformUnwindSegueAction(action: Selector, fromViewController: UIViewController, withSender sender: AnyObject) -> Bool {
+    override func canPerformUnwindSegueAction(_ action: Selector, from fromViewController: UIViewController, withSender sender: Any) -> Bool {
         return false
     }
 }
 
 extension ConversationDetailViewController : UICollectionViewDelegateFlowLayout{
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
 //        let height = replyPrototypeCell.preferredHeight(collectionView.frame.width)
 //        
@@ -135,18 +135,18 @@ extension ConversationDetailViewController : UICollectionViewDelegateFlowLayout{
 
 extension ConversationDetailViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return posts.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
 //        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.REPLY_POST_CELL, forIndexPath: indexPath) as! ReplyCollectionViewCell
 //        cell.post = posts[indexPath.row]
@@ -187,7 +187,7 @@ extension ConversationDetailViewController {
 //        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionReusableView
 //    }
     
-    private func loadConversationPostDataFromWebservice(postId : String){
+    fileprivate func loadConversationPostDataFromWebservice(_ postId : String){
         let cmd = TopicCommand(type: .CONVERSATION, postId: postId)
         
         Network.performPostCommand(cmd){

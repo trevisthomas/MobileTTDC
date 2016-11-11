@@ -13,7 +13,7 @@ import Foundation
 //    "pageNumber": 1
 //}
 
-public class PostCommand : Command {
+open class PostCommand : Command {
     
     public enum Action : String{
         case LATEST_GROUPED = "LATEST_GROUPED"
@@ -23,13 +23,13 @@ public class PostCommand : Command {
     
     let action: Action
     let pageNumber: Int
-    public var token: String?
+    open var token: String?
     
-    public func toJSON() -> JSON? {
+    open func toJSON() -> JSON? {
         return jsonify([
             "action" ~~> self.action,
             "pageNumber" ~~> self.pageNumber,
-            "token" ~~> self.token ?? nil
+            "token" ~~> (self.token ?? nil)
             ])
     }
     

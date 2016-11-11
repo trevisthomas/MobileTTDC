@@ -12,7 +12,7 @@ class ThreadViewController: PostBaseViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private var rootPost : Post? {
+    fileprivate var rootPost : Post? {
         didSet{
             fetchPostTopic(rootPostId)
         }
@@ -20,7 +20,7 @@ class ThreadViewController: PostBaseViewController {
     
     var posts : [Post] = [] {
         didSet{
-            posts.insert(rootPost!, atIndex: 0)
+            posts.insert(rootPost!, at: 0)
             collectionView.reloadData()
         }
     }
@@ -31,7 +31,7 @@ class ThreadViewController: PostBaseViewController {
         }
     }
     
-    func fetchPostTopic(postId : String){
+    func fetchPostTopic(_ postId : String){
         
         let cmd = TopicCommand(type: .NESTED_THREAD_SUMMARY, postId: postId)
         
@@ -49,7 +49,7 @@ class ThreadViewController: PostBaseViewController {
         };
     }
     
-    func fetchPost(postId : String) {
+    func fetchPost(_ postId : String) {
         //Not sure if this actually works.
         let cmd = PostCrudCommand(postId: postId, loadRootAncestor: true)
         
@@ -81,17 +81,17 @@ class ThreadViewController: PostBaseViewController {
     }
 
     
-    @IBAction func doneButton(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func doneButton(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func getCollectionView() -> UICollectionView? {
         return collectionView
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        guard let nav = segue.destinationViewController as? UINavigationController else {
+        guard let nav = segue.destination as? UINavigationController else {
             return
         }
         
@@ -107,7 +107,7 @@ class ThreadViewController: PostBaseViewController {
         
         let dict = sender as! [String: String]
         
-        print(dict["threadId"])
+        print(dict["threadId"]!)
         
         vc.postId = dict["threadId"]
         if let postId = dict["postId"] {
@@ -115,13 +115,13 @@ class ThreadViewController: PostBaseViewController {
         }
     }
 
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
         print("Orientation: PostDetailViewController")
         
-        coordinator.animateAlongsideTransition({ context in
+        coordinator.animate(alongsideTransition: { context in
             // do whatever with your context
-            context.viewControllerForKey(UITransitionContextFromViewControllerKey)
+            context.viewController(forKey: UITransitionContextViewControllerKey.from)
             }, completion: {context in
                 self.collectionView?.collectionViewLayout.invalidateLayout()
                 
@@ -132,22 +132,22 @@ class ThreadViewController: PostBaseViewController {
 
 extension ThreadViewController : UICollectionViewDataSource {
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return posts.count
         
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return dequeueCell(posts[indexPath.row], indexPath: indexPath, allowHierarchy: true)
     }
 }
 
 extension ThreadViewController : UICollectionViewDelegateFlowLayout {
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
 //        let height = prototypeCellSize(post: posts[indexPath.row], indexPath: indexPath, width: collectionView.frame.width)
 //        

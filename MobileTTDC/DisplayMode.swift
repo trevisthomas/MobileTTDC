@@ -9,6 +9,6 @@
 import Foundation
 
 public enum DisplayMode{
-    case LatestFlat
-    case LatestGrouped
+    case latestFlat
+    case latestGrouped
 }

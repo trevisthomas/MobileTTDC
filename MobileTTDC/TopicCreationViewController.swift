@@ -18,7 +18,7 @@ class TopicCreationViewController: UIViewController {
     var nextButtonItem : UIBarButtonItem!
     var closeButtonItem : UIBarButtonItem!
     
-    private var validForNext : Bool = false {
+    fileprivate var validForNext : Bool = false {
         didSet{
             if validForNext {
                 navigationItem.rightBarButtonItem = nextButtonItem
@@ -30,9 +30,9 @@ class TopicCreationViewController: UIViewController {
     }
     
     var topicTitle: String!
-    private var forum : Forum? {
+    fileprivate var forum : Forum? {
         didSet{
-            chooseForumButton.setTitle(forum?.displayValue, forState: UIControlState.Normal)
+            chooseForumButton.setTitle(forum?.displayValue, for: UIControlState())
             commentAccessoryBecomeFirstResponder()
         }
     }
@@ -40,14 +40,14 @@ class TopicCreationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nextButtonItem = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(TopicCreationViewController.nextBarButtonAction(_:)))
+        nextButtonItem = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.plain, target: self, action: #selector(TopicCreationViewController.nextBarButtonAction(_:)))
         
         closeButtonItem = rightBarButtonItem //Grabbing the ne created in IB.  I know that incosistancy is bad :-(
         
         titleLabel.setHtmlText(topicTitle, fuckingColor:  "pink")
         topicDescriptionTextView.attributedText = getApplicationContext().topicStash
 
-        let view = NSBundle.mainBundle().loadNibNamed("AccessoryCommentView", owner: topicDescriptionTextView, options: nil)!.first as! AccessoryCommentView
+        let view = Bundle.main.loadNibNamed("AccessoryCommentView", owner: topicDescriptionTextView, options: nil)!.first as! AccessoryCommentView
         view.delegate = self
         topicDescriptionTextView.inputAccessoryView = view
         
@@ -60,41 +60,41 @@ class TopicCreationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func chooseForumAction(sender: UIButton) {
+    @IBAction func chooseForumAction(_ sender: UIButton) {
     }
     
     
-    @IBAction func rightBarButtonAction(sender: UIBarButtonItem) {
+    @IBAction func rightBarButtonAction(_ sender: UIBarButtonItem) {
         //rightBarButtonItem
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
-    func nextBarButtonAction(sender: UIBarButtonItem){
-        performSegueWithIdentifier("CommentViewController", sender: self)
+    func nextBarButtonAction(_ sender: UIBarButtonItem){
+        performSegue(withIdentifier: "CommentViewController", sender: self)
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let vc = segue.destinationViewController as? ForumSelectionViewController{
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? ForumSelectionViewController{
             vc.delegate = self
-            vc.modalPresentationStyle = UIModalPresentationStyle.Popover
+            vc.modalPresentationStyle = UIModalPresentationStyle.popover
             let popover: UIPopoverPresentationController = vc.popoverPresentationController!
             popover.delegate = self
             let sourceView = sender as? UIButton
             popover.sourceRect = (sourceView?.bounds)! //No clue why source view didnt do this.
         }
         
-        if let vc = segue.destinationViewController as? CommentViewController {
+        if let vc = segue.destination as? CommentViewController {
             vc.forum = forum!
             vc.topicTitle = topicTitle
             vc.topicDescription = topicDescriptionTextView.text
         }
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         getApplicationContext().topicStash = topicDescriptionTextView.attributedText
     }
     
-    @IBAction func handleTapGesture(recognizer:UITapGestureRecognizer) {
+    @IBAction func handleTapGesture(_ recognizer:UITapGestureRecognizer) {
         commentAccessoryBecomeFirstResponder()
     }
     
@@ -108,9 +108,9 @@ class TopicCreationViewController: UIViewController {
         let accessory = topicDescriptionTextView.inputAccessoryView as! AccessoryCommentView
         
         accessory.defaultText = topicDescriptionTextView.attributedText
-        accessory.becomeFirstResponder() //This puts the accessory view in focus.
+        _ = accessory.becomeFirstResponder() //This puts the accessory view in focus.
         //NOTE:  The actual text view needs to have it's "editibale" flag set to false or else it will get focus after dismssing the keyboard+accessory.
-        topicDescriptionTextView.inputAccessoryView?.hidden = false
+        topicDescriptionTextView.inputAccessoryView?.isHidden = false
         
     }
     
@@ -131,24 +131,24 @@ class TopicCreationViewController: UIViewController {
 }
 
 extension TopicCreationViewController : UIPopoverPresentationControllerDelegate {
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         //Pretty sure this is only called on iphone.
-        return UIModalPresentationStyle.None
+        return UIModalPresentationStyle.none
     }
     
 }
 
 extension TopicCreationViewController: AccessoryCommentViewDelegate {
-    func accessoryCommentView(commentText commentText: String) {
+    func accessoryCommentView(commentText: String) {
         topicDescriptionTextView.text = commentText
-        topicDescriptionTextView.inputAccessoryView?.hidden = true
+        topicDescriptionTextView.inputAccessoryView?.isHidden = true
         
         validateForNextAction()
     }
 }
 
 extension TopicCreationViewController: ForumSelectionDelegate{
-    func selectedForum(forum: Forum) {
+    func selectedForum(_ forum: Forum) {
         self.forum = forum
         
         validateForNextAction()

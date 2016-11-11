@@ -13,9 +13,9 @@ extension UIImageView {
     
     
     //http://stackoverflow.com/questions/24231680/loading-downloading-image-from-url-on-swift
-    func downloadedFrom(link link:String, contentMode mode: UIViewContentMode) {
+    func downloadedFrom(link:String, contentMode mode: UIViewContentMode) {
         
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         if let img = appDelegate.applicationContext.imageCache[link] {
             self.image = img
             print("Image cache hit \(link)")
@@ -24,20 +24,20 @@ extension UIImageView {
         
         
         guard
-            let url = NSURL(string: link)
+            let url = URL(string: link)
             else {return}
         contentMode = mode
-        NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: { (data, response, error) -> Void in
+        URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) -> Void in
             guard
-                let httpURLResponse = response as? NSHTTPURLResponse where httpURLResponse.statusCode == 200,
-                let mimeType = response?.MIMEType where mimeType.hasPrefix("image"),
-                let data = data where error == nil,
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
                 let image = UIImage(data: data)
                 else { return }
             
             self.getApplicationContext().imageCache[link] = image
             
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            DispatchQueue.main.async { () -> Void in
                 self.image = image
             }
         }).resume()

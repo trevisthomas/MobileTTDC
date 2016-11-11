@@ -8,10 +8,10 @@
 
 import Foundation
 
-public class ValidateCommand : Command{
-    public var token: String?
+open class ValidateCommand : Command{
+    open var token: String?
     
-    public func toJSON() -> JSON? {
+    open func toJSON() -> JSON? {
         return jsonify([
             "token" ~~> self.token
             ])

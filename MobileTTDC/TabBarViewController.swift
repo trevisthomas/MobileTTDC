@@ -23,16 +23,16 @@ class TabBarViewController: UITabBarController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         
-        latest = storyboard.instantiateViewControllerWithIdentifier("LatestNav")
-        conversation = storyboard.instantiateViewControllerWithIdentifier("ConversationNav")
-        forum = storyboard.instantiateViewControllerWithIdentifier("ForumNav")
-        login = storyboard.instantiateViewControllerWithIdentifier("LoginNav")
+        latest = storyboard.instantiateViewController(withIdentifier: "LatestNav")
+        conversation = storyboard.instantiateViewController(withIdentifier: "ConversationNav")
+        forum = storyboard.instantiateViewController(withIdentifier: "ForumNav")
+        login = storyboard.instantiateViewController(withIdentifier: "LoginNav")
         
-        let profileStoryboard = UIStoryboard(name: "Profile", bundle: NSBundle.mainBundle())
+        let profileStoryboard = UIStoryboard(name: "Profile", bundle: Bundle.main)
         
-        profile = profileStoryboard.instantiateViewControllerWithIdentifier("ProfileNav")
+        profile = profileStoryboard.instantiateViewController(withIdentifier: "ProfileNav")
         
         configureGuest()
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TabBarViewController.catchNotification), name: ApplicationContext.currentUserKey, object: nil)

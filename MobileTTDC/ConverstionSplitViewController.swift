@@ -28,7 +28,7 @@ extension ConverstionSplitViewController: UISplitViewControllerDelegate{
 //    }
     
     //Amazingly, this seems to be the only way to make the master appear first.
-    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController, ontoPrimaryViewController primaryViewController: UIViewController) -> Bool {
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
         return true
     }
 }

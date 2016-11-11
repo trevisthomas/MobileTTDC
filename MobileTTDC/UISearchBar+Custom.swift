@@ -9,13 +9,13 @@
 import UIKit
 
 public extension UISearchBar {
-    public func setTextColor(color: UIColor) {
+    public func setTextColor(_ color: UIColor) {
         let svs = subviews.flatMap { $0.subviews }
         guard let tf = (svs.filter { $0 is UITextField }).first as? UITextField else { return }
         tf.textColor = color
     }
     
-    public func setTextBackgroundColor(color: UIColor) {
+    public func setTextBackgroundColor(_ color: UIColor) {
         let svs = subviews.flatMap { $0.subviews }
         guard let tf = (svs.filter { $0 is UITextField }).first as? UITextField else { return }
         tf.backgroundColor = color

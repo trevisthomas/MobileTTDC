@@ -8,33 +8,33 @@
 
 import Foundation
 
-public class TopicCommand : Command {
+open class TopicCommand : Command {
     
     //Grouped
     //Replies to a conversation
-    public enum Type : String{
+    public enum TopicType : String{
         case NESTED_THREAD_SUMMARY = "NESTED_THREAD_SUMMARY"
         case CONVERSATION = "CONVERSATION"
     }
     
     
-    let type: Type
+    let type: TopicType
     let pageNumber: Int  //Page -1 makes ttdc find the page containing your post!
     let postId: String
     let pageSize: Int
-    public var token: String?
+    open var token: String?
     
-    public func toJSON() -> JSON? {
+    open func toJSON() -> JSON? {
         return jsonify([
             "type" ~~> self.type,
             "pageNumber" ~~> self.pageNumber,
-            "token" ~~> self.token ?? nil,
+            "token" ~~> (self.token ?? nil),
             "postId" ~~> self.postId,
             "pageSize" ~~> self.pageSize
             ])
     }
     
-    public init( type: Type, postId: String, pageNumber: Int = 1, pageSize: Int = 10){
+    public init( type: TopicType, postId: String, pageNumber: Int = 1, pageSize: Int = 10){
         self.type = type
         self.pageNumber = pageNumber
         self.postId = postId

@@ -8,12 +8,12 @@
 
 import Foundation
 
-public class RegisterCommand : Command{
+open class RegisterCommand : Command{
     
     let deviceToken: String
-    public var token: String?
+    open var token: String?
     
-    public func toJSON() -> JSON? {
+    open func toJSON() -> JSON? {
         return jsonify([
             "token" ~~> self.token,
             "deviceToken" ~~> self.deviceToken

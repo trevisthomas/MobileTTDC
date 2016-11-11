@@ -24,7 +24,7 @@ class CommentViewController: UIViewController {
     var topicDescription: String!
     
     
-    private var validForPost: Bool = false {
+    fileprivate var validForPost: Bool = false {
         didSet{
             if validForPost {
                 navigationItem.rightBarButtonItem = postBarButtonItem
@@ -50,14 +50,14 @@ class CommentViewController: UIViewController {
         //TODO: Trevis, util for extention?
 //        let storyboard : UIStoryboard = UIStoryboard(name: "Comment", bundle: nil)
         
-        let view = NSBundle.mainBundle().loadNibNamed("AccessoryCommentView", owner: commentTextArea, options: nil)!.first as! AccessoryCommentView
+        let view = Bundle.main.loadNibNamed("AccessoryCommentView", owner: commentTextArea, options: nil)!.first as! AccessoryCommentView
         
         view.delegate = self
         view.defaultText = commentTextArea.attributedText
         commentTextArea.inputAccessoryView = view
         
         
-        postBarButtonItem = UIBarButtonItem(title: "Post", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CommentViewController.decidePostTypeAndPost))
+        postBarButtonItem = UIBarButtonItem(title: "Post", style: UIBarButtonItemStyle.plain, target: self, action: #selector(CommentViewController.decidePostTypeAndPost))
         
         
         
@@ -76,7 +76,7 @@ class CommentViewController: UIViewController {
         
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         if parentId != nil {
             fetchPost(parentId!)
         } else {
@@ -88,24 +88,24 @@ class CommentViewController: UIViewController {
         validateForPost()
     }
 
-    @IBAction func closeAction(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func closeAction(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func postComment(sender: AnyObject) {
+    @IBAction func postComment(_ sender: AnyObject) {
         print(commentTextArea.text)
         postComment(parentId!, body: commentTextArea.text)
     }
 
-    @IBAction func handleTap(recognizer:UITapGestureRecognizer) {
+    @IBAction func handleTap(_ recognizer:UITapGestureRecognizer) {
         commentAccessoryBecomeFirstResponder()
     }
 
     func commentAccessoryBecomeFirstResponder() {
         commentTextArea.becomeFirstResponder()
         let accessory = commentTextArea.inputAccessoryView as! AccessoryCommentView
-        accessory.becomeFirstResponder()
-        commentTextArea.inputAccessoryView?.hidden = false
+        _ = accessory.becomeFirstResponder()
+        commentTextArea.inputAccessoryView?.isHidden = false
     }
     
     func decidePostTypeAndPost(){
@@ -128,7 +128,7 @@ class CommentViewController: UIViewController {
         }
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         getApplicationContext().commentStash = commentTextArea.attributedText
     }
 }
@@ -157,14 +157,14 @@ class CommentViewController: UIViewController {
 //}
 
 extension CommentViewController {
-    func fetchPost(postId: String){
+    func fetchPost(_ postId: String){
         
         let cmd = PostCrudCommand(postId: postId)
         
         Network.performPostCrudCommand(cmd){
             (response, message) -> Void in
             guard (response != nil) else {
-                print(message)
+                print(message ?? "Failed but message was nil")
                 self.presentAlert("Error", message: "Failed to load post")
                 return;
             }
@@ -178,7 +178,7 @@ extension CommentViewController {
         };
     }
     
-    func postComment(parentId: String, body: String){
+    func postComment(_ parentId: String, body: String){
         
         let cmd = PostCrudCommand(parentId: parentId, body: body)
         
@@ -190,12 +190,12 @@ extension CommentViewController {
         };*/
     }
     
-    func postComment(forumTagId: String, topicTitle: String, topicDescription: String, body: String){
+    func postComment(_ forumTagId: String, topicTitle: String, topicDescription: String, body: String){
         let cmd = PostCrudCommand(title: topicTitle, body: body, forumId: forumTagId, topicDescription: topicDescription)
         Network.performPostCrudCommand(cmd, completion: handleResponse)
     }
     
-    func handleResponse(response: PostCrudResponse?, error: String?){
+    func handleResponse(_ response: PostCrudResponse?, error: String?){
         guard response != nil else {
             self.presentAlert("Error", message: "Failed to create post.  Server error.")
             return
@@ -204,14 +204,14 @@ extension CommentViewController {
         
         self.commentTextArea.attributedText = nil //So that it doesnt get stashed when you post!
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
 extension CommentViewController: AccessoryCommentViewDelegate {
-    func accessoryCommentView(commentText commentText: String) {
+    func accessoryCommentView(commentText: String) {
         commentTextArea.text = commentText
-        commentTextArea.inputAccessoryView?.hidden = true
+        commentTextArea.inputAccessoryView?.isHidden = true
         
         validateForPost()
     }

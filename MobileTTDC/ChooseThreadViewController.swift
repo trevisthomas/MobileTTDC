@@ -10,7 +10,7 @@ import UIKit
 
 class ChooseThreadViewController: UIViewController {
 
-    private var transactionId : Int = 0;
+    fileprivate var transactionId : Int = 0;
     @IBOutlet weak var topicSelectorTextField: UITextField!
     
     @IBOutlet weak var tableView: UITableView!
@@ -19,7 +19,7 @@ class ChooseThreadViewController: UIViewController {
     
     @IBOutlet weak var bottomSpacingConstraint: NSLayoutConstraint!
     
-    private var autoCompleteItems : [AutoCompleteItem] = []
+    fileprivate var autoCompleteItems : [AutoCompleteItem] = []
     
     
     override func viewDidLoad() {
@@ -30,7 +30,7 @@ class ChooseThreadViewController: UIViewController {
 //        layout.minimumLineSpacing = 0
         
         let nib = UINib(nibName: "AutoCompleteTableViewCell", bundle: nil)
-        self.tableView.registerNib(nib, forCellReuseIdentifier: ReuseIdentifiers.AUTO_TOPIC_CELL)
+        self.tableView.register(nib, forCellReuseIdentifier: ReuseIdentifiers.AUTO_TOPIC_CELL)
         
         //topicSelectorTextField.delegate = self
         
@@ -53,10 +53,10 @@ class ChooseThreadViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChooseThreadViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChooseThreadViewController.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChooseThreadViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChooseThreadViewController.keyboardDidHide(_:)), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
         
 //        topicSelectorTextField.text = ""
 //        autoCompleteItems = []
@@ -65,8 +65,8 @@ class ChooseThreadViewController: UIViewController {
         searchBar.becomeFirstResponder()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let indexPath = sender as! NSIndexPath
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let indexPath = sender as! IndexPath
         
       
 //        let nav = segue.destinationViewController as! UINavigationController
@@ -89,17 +89,17 @@ class ChooseThreadViewController: UIViewController {
 //            return
 //        }
         
-        if let vc = segue.destinationViewController as? CommentViewController {
+        if let vc = segue.destination as? CommentViewController {
             let item = autoCompleteItems[indexPath.row]
             vc.parentId = item.postId
-        } else if let vc = segue.destinationViewController as? TopicCreationViewController {
+        } else if let vc = segue.destination as? TopicCreationViewController {
             let item = autoCompleteItems[indexPath.row]
             vc.topicTitle = item.displayTitle
         }
         
     }
-    @IBAction func doneButtonTapped(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -110,7 +110,7 @@ extension ChooseThreadViewController {
 //        
 //    }
     
-    func keyboardWillShow(notification: NSNotification) {
+    func keyboardWillShow(_ notification: Notification) {
 //        if let keyboardFrame = notification.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue() {
 //            invokeLater {
 //                self.bottomConstraintTableView.constant = keyboardFrame.height - 50 //Hm, is this 50px becaues of tabbar?!
@@ -118,22 +118,22 @@ extension ChooseThreadViewController {
 //        }
     }
     
-    func keyboardDidHide(notification: NSNotification) {
+    func keyboardDidHide(_ notification: Notification) {
 //        invokeLater {
 //            self.bottomConstraintTableView.constant = 0.0
 //        }
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardDidHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardDidHide, object: nil)
     }
 }
 
 extension ChooseThreadViewController {
     
-    func performQuery(query: String){
+    func performQuery(_ query: String){
         
         if query.isEmpty {
             self.autoCompleteItems.removeAll()
@@ -158,7 +158,7 @@ extension ChooseThreadViewController {
             
             if (self.transactionId == response?.transactionId){
                 
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     self.autoCompleteItems = (response?.items)!
                     
                     let createNewTopicItem = AutoCompleteItem(displayTitle: query)
@@ -178,27 +178,27 @@ extension ChooseThreadViewController {
 }
 
 extension ChooseThreadViewController : UITableViewDelegate, UITableViewDataSource {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return autoCompleteItems.count
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.dismissKeyboard()
         let item = autoCompleteItems[indexPath.row]
         
         if(item.postId == nil) {
-            performSegueWithIdentifier("TopicCreationViewController", sender: indexPath)
+            performSegue(withIdentifier: "TopicCreationViewController", sender: indexPath)
         } else {
-            performSegueWithIdentifier("CommentViewController", sender: indexPath)
+            performSegue(withIdentifier: "CommentViewController", sender: indexPath)
         }
         
     }
     
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(ReuseIdentifiers.AUTO_TOPIC_CELL, forIndexPath: indexPath) as! AutoCompleteTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.AUTO_TOPIC_CELL, for: indexPath) as! AutoCompleteTableViewCell
         
         cell.item = autoCompleteItems[indexPath.row]
         
@@ -206,11 +206,11 @@ extension ChooseThreadViewController : UITableViewDelegate, UITableViewDataSourc
     }
 }
 extension ChooseThreadViewController : UISearchBarDelegate {
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
 //        performQuery(searchBar.text!)
     }
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         performQuery(searchText)
     }
     
@@ -218,7 +218,7 @@ extension ChooseThreadViewController : UISearchBarDelegate {
 }
 
 extension ChooseThreadViewController : UITextFieldDelegate {
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false
     }

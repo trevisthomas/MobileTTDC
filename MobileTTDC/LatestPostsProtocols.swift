@@ -15,13 +15,13 @@ public protocol AuthenticatedUserObserver {
 public protocol AuthenticatedUserDataProvider {
     var token : String? {get}
     func currentUser() -> Person?
-    func authenticate(login : String, password: String, completion: (success : Bool, details : String)->())
+    func authenticate(_ login : String, password: String, completion: @escaping (_ success : Bool, _ details : String)->())
 }
 
 public protocol LatestPostsObserver: AuthenticatedUserObserver {
     func latestPostsUpdated()
     func displayModeChanged()
-    func networkError(error: String)
+    func networkError(_ error: String)
 }
 
 public protocol LatestPostsDataProvider: AuthenticatedUserDataProvider{
@@ -33,7 +33,7 @@ public protocol LatestPostsDataProvider: AuthenticatedUserDataProvider{
 
 public protocol LatestConversationsObserver: AuthenticatedUserObserver  {
     func latestConversationsUpdated()
-    func networkError(error: String)
+    func networkError(_ error: String)
 }
 
 public protocol LatestConversationsDataProvider: AuthenticatedUserDataProvider {

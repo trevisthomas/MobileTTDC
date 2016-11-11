@@ -11,8 +11,8 @@ import Foundation
 
 public struct Network {
     
-    private static func getToken() -> String? {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    fileprivate static func getToken() -> String? {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.applicationContext.token
     }
     
@@ -23,47 +23,47 @@ public struct Network {
 //        return "http://192.168.1.106:8888"
     }
     
-    public static func performValidate(command : ValidateCommand, completion: (response : ValidateResponse?, error: String?) -> Void){
+    public static func performValidate(_ command : ValidateCommand, completion: @escaping (_ response : ValidateResponse?, _ error: String?) -> Void){
         command.token = getToken()
         NetworkAdapter.performCommand("\(getHost())/restful/validate", command: command, completion: completion)
     }
     
-    public static func performLogin(command : LoginCommand, completion: (response : LoginResponse?, error: String?) -> Void){
+    public static func performLogin(_ command : LoginCommand, completion: @escaping (_ response : LoginResponse?, _ error: String?) -> Void){
         NetworkAdapter.performCommand("\(getHost())/restful/login", command: command, completion: completion)
     }
     
-    public static func performPostCommand(command : PostCommand, completion: (response : PostResponse?, error: String?) -> Void){
+    public static func performPostCommand(_ command : PostCommand, completion: @escaping (_ response : PostResponse?, _ error: String?) -> Void){
         command.token = getToken()
         NetworkAdapter.performCommand("\(getHost())/restful/latestposts", command: command, completion: completion)
     }
     
-    public static func performSearchCommand(command : SearchCommand, completion: (response : SearchResponse?, error: String?) -> Void){
+    public static func performSearchCommand(_ command : SearchCommand, completion: @escaping (_ response : SearchResponse?, _ error: String?) -> Void){
 //        NetworkAdapter.performCommand("https://ttdc.us/restful/latestConversations", command: command, completion: completion)
         command.token = getToken()
         NetworkAdapter.performCommand("\(getHost())/restful/latestConversations", command: command, completion: completion)
     }
     
-    public static func performPostCommand(command : TopicCommand, completion: (response : TopicResponse?, error: String?) -> Void){
+    public static func performPostCommand(_ command : TopicCommand, completion: @escaping (_ response : TopicResponse?, _ error: String?) -> Void){
         command.token = getToken()
         NetworkAdapter.performCommand("\(getHost())/restful/topic", command: command, completion: completion)
     }
     
-    public static func performAutocompleteCommand(command : AutoCompleteCommand, completion: (response : AutoCompleteResponse?, error: String?) -> Void){
+    public static func performAutocompleteCommand(_ command : AutoCompleteCommand, completion: @escaping (_ response : AutoCompleteResponse?, _ error: String?) -> Void){
         command.token = getToken()
         NetworkAdapter.performCommand("\(getHost())/restful/autocomplete", command: command, completion: completion)
     }
     
-    public static func performPostCrudCommand(command: PostCrudCommand, completion: (response: PostCrudResponse?, error: String?)->Void){
+    public static func performPostCrudCommand(_ command: PostCrudCommand, completion: @escaping (_ response: PostCrudResponse?, _ error: String?)->Void){
         command.token = getToken()
         NetworkAdapter.performCommand("\(getHost())/restful/post", command: command, completion: completion)
     }
     
-    public static func performRegisterForPushCommand(command: RegisterCommand, completion: (response: RegisterResponse?, error: String?)->Void){
+    public static func performRegisterForPushCommand(_ command: RegisterCommand, completion: @escaping (_ response: RegisterResponse?, _ error: String?)->Void){
         command.token = getToken()
         NetworkAdapter.performCommand("\(getHost())/restful/register", command: command, completion: completion)
     }
     
-    public static func performForumCommand(command : ForumCommand, completion: (response : ForumResponse?, error: String?) -> Void){
+    public static func performForumCommand(_ command : ForumCommand, completion: @escaping (_ response : ForumResponse?, _ error: String?) -> Void){
         command.token = getToken()
         NetworkAdapter.performCommand("\(getHost())/restful/forum", command: command, completion: completion)
     }

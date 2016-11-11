@@ -24,7 +24,7 @@ class ProfileViewController: UIViewController {
         titleLabel.text = person.login
         
         if let url = person.image?.name {
-            profilePicImageView.downloadedFrom(link: url, contentMode: .ScaleAspectFit)
+            profilePicImageView.downloadedFrom(link: url, contentMode: .scaleAspectFit)
         }
 
     }
@@ -47,14 +47,14 @@ class ProfileViewController: UIViewController {
         lightDarkSegmentedControl.selectedSegmentIndex = getApplicationContext().isStyleLight() ? 0 : 1
     }
     
-    @IBAction func lightDarkSegmentedControlAction(sender: UISegmentedControl) {
+    @IBAction func lightDarkSegmentedControlAction(_ sender: UISegmentedControl) {
         if (sender.selectedSegmentIndex == 0){
             getApplicationContext().setStyleLight()
         } else {
             getApplicationContext().setStyleDark()
         }
     }
-    @IBAction func logoutAction(sender: AnyObject) {
+    @IBAction func logoutAction(_ sender: AnyObject) {
         getApplicationContext().logoff()
     }
 

@@ -38,7 +38,7 @@ public struct Decoder {
     
     - returns: Value decoded from JSON.
     */
-    public static func decode<T>(key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> JSON -> T? {
+    public static func decode<T>(_ key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> (JSON) -> T? {
         return {
             json in
             
@@ -59,12 +59,12 @@ public struct Decoder {
      
      - returns: Value decoded from JSON.
      */
-    public static func decodeDate(key: String, dateFormatter: NSDateFormatter, keyPathDelimiter: String = GlossKeyPathDelimiter) -> JSON -> NSDate? {
+    public static func decodeDate(_ key: String, dateFormatter: DateFormatter, keyPathDelimiter: String = GlossKeyPathDelimiter) -> (JSON) -> Date? {
         return {
             json in
             
             if let dateString = json.valueForKeyPath(key, withDelimiter: keyPathDelimiter) as? String {
-                return dateFormatter.dateFromString(dateString)
+                return dateFormatter.date(from: dateString)
             }
             
             return nil
@@ -80,15 +80,15 @@ public struct Decoder {
      
      - returns: Value decoded from JSON.
      */
-    public static func decodeDateArray(key: String, dateFormatter: NSDateFormatter, keyPathDelimiter: String = GlossKeyPathDelimiter) -> JSON -> [NSDate]? {
+    public static func decodeDateArray(_ key: String, dateFormatter: DateFormatter, keyPathDelimiter: String = GlossKeyPathDelimiter) -> (JSON) -> [Date]? {
         return {
             json in
             
             if let dateStrings = json.valueForKeyPath(key, withDelimiter: keyPathDelimiter) as? [String] {
-                var dates: [NSDate] = []
+                var dates: [Date] = []
                 
                 for dateString in dateStrings {
-                    if let date = dateFormatter.dateFromString(dateString) {
+                    if let date = dateFormatter.date(from: dateString) {
                         dates.append(date)
                     }
                 }
@@ -108,7 +108,7 @@ public struct Decoder {
      
      - returns: Value decoded from JSON.
      */
-    public static func decodeDateISO8601(key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> JSON -> NSDate? {
+    public static func decodeDateISO8601(_ key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> (JSON) -> Date? {
         return Decoder.decodeDate(key, dateFormatter: GlossDateFormatterISO8601, keyPathDelimiter: keyPathDelimiter)
     }
     
@@ -120,7 +120,7 @@ public struct Decoder {
      
      - returns: Value decoded from JSON.
      */
-    public static func decodeDateISO8601Array(key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> JSON -> [NSDate]? {
+    public static func decodeDateISO8601Array(_ key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> (JSON) -> [Date]? {
         return Decoder.decodeDateArray(key, dateFormatter: GlossDateFormatterISO8601, keyPathDelimiter: keyPathDelimiter)
     }
     
@@ -132,7 +132,7 @@ public struct Decoder {
      
      - returns: Value decoded from JSON.
      */
-    public static func decodeDecodable<T: Decodable>(key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> JSON -> T? {
+    public static func decodeDecodable<T: Decodable>(_ key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> (JSON) -> T? {
         return {
             json in
             
@@ -153,7 +153,7 @@ public struct Decoder {
      
      - returns: Value decoded from JSON.
      */
-    public static func decodeDecodableArray<T: Decodable>(key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> JSON -> [T]? {
+    public static func decodeDecodableArray<T: Decodable>(_ key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> (JSON) -> [T]? {
         return {
             json in
             
@@ -181,7 +181,7 @@ public struct Decoder {
      
      - returns: Value decoded from JSON.
      */
-    public static func decodeDecodableDictionary<T:Decodable>(key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> JSON -> [String : T]? {
+    public static func decodeDecodableDictionary<T:Decodable>(_ key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> (JSON) -> [String : T]? {
         return {
             json in
             
@@ -209,7 +209,7 @@ public struct Decoder {
      
      - returns: Value decoded from JSON.
      */
-    public static func decodeDecodableDictionary<T:Decodable>(key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> JSON -> [String : [T]]? {
+    public static func decodeDecodableDictionary<T:Decodable>(_ key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> (JSON) -> [String : [T]]? {
         return {
             json in
             
@@ -235,7 +235,7 @@ public struct Decoder {
      
      - returns: Value decoded from JSON.
      */
-    public static func decodeEnum<T: RawRepresentable>(key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> JSON -> T? {
+    public static func decodeEnum<T: RawRepresentable>(_ key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> (JSON) -> T? {
         return {
             json in
             
@@ -255,7 +255,7 @@ public struct Decoder {
      
      - returns: Value decoded from JSON.
      */
-    public static func decodeEnumArray<T: RawRepresentable>(key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> JSON -> [T]? {
+    public static func decodeEnumArray<T: RawRepresentable>(_ key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> (JSON) -> [T]? {
         return {
             json in
             
@@ -283,12 +283,12 @@ public struct Decoder {
      
      - returns: Value decoded from JSON.
      */
-    public static func decodeInt32(key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> JSON -> Int32? {
+    public static func decodeInt32(_ key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> (JSON) -> Int32? {
         return {
             json in
             
             if let number = json[key] as? NSNumber {
-                return number.intValue
+                return number.int32Value
             }
             
             return nil
@@ -303,12 +303,12 @@ public struct Decoder {
      
      - returns: Value decoded from JSON.
      */
-    public static func decodeInt64(key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> JSON -> Int64? {
+    public static func decodeInt64(_ key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> (JSON) -> Int64? {
         return {
             json in
             
             if let number = json[key] as? NSNumber {
-                return number.longLongValue
+                return number.int64Value
             }
             
             return nil
@@ -323,13 +323,13 @@ public struct Decoder {
      
      - returns: Value decoded from JSON.
      */
-    public static func decodeURL(key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> JSON -> NSURL? {
+    public static func decodeURL(_ key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> (JSON) -> URL? {
         return {
             json in
             
             if let urlString = json.valueForKeyPath(key, withDelimiter: keyPathDelimiter) as? String,
-                encodedString = urlString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) {
-                return NSURL(string: encodedString)
+                let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
+                return URL(string: encodedString)
             }
             
             return nil
@@ -344,15 +344,15 @@ public struct Decoder {
      
      - returns: Value decoded from JSON.
      */
-    public static func decodeURLArray(key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> JSON -> [NSURL]? {
+    public static func decodeURLArray(_ key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> (JSON) -> [URL]? {
         return {
             json in
             
             if let urlStrings = json.valueForKeyPath(key, withDelimiter: keyPathDelimiter) as? [String] {
-                var urls: [NSURL] = []
+                var urls: [URL] = []
                 
                 for urlString in urlStrings {
-                    if let url = NSURL(string: urlString) {
+                    if let url = URL(string: urlString) {
                         urls.append(url)
                     }
                 }

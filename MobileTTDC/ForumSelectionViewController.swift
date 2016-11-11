@@ -9,12 +9,12 @@
 import UIKit
 
 protocol ForumSelectionDelegate{
-    func selectedForum(forum: Forum);
+    func selectedForum(_ forum: Forum);
 }
 
 class ForumSelectionViewController: UIViewController {
     
-    private var forums : [Forum] = []
+    fileprivate var forums : [Forum] = []
     @IBOutlet weak var tableView: UITableView!
     
     var delegate: ForumSelectionDelegate!
@@ -51,7 +51,7 @@ extension ForumSelectionViewController{
         Network.performForumCommand(cmd){
             (response, message) -> Void in
             guard let list = response?.list else {
-                print(message)
+                print(message ?? "Failed but message was nil")
                 self.presentAlert("Error", message: "Failed to load forum list.")
                 return;
             }
@@ -66,20 +66,20 @@ extension ForumSelectionViewController{
 }
 
 extension ForumSelectionViewController : UITableViewDelegate, UITableViewDataSource {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return forums.count
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(forums[indexPath.row])
         
-        self.dismissViewControllerAnimated(true){
+        self.dismiss(animated: true){
             self.delegate.selectedForum(self.forums[indexPath.row])
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ForumTableCell")!
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ForumTableCell")!
         
         cell.textLabel?.setHtmlText(forums[indexPath.row].displayValue, fuckingColor: "brown")
         

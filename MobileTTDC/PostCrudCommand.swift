@@ -27,7 +27,7 @@ import Foundation
  
  */
 
-public class PostCrudCommand : Command {
+open class PostCrudCommand : Command {
     
     public enum Action : String{
         case CREATE = "CREATE"
@@ -44,20 +44,20 @@ public class PostCrudCommand : Command {
     let topicDescription: String?
     let loadRootAncestor: Bool?
     
-    public var token: String?
+    open var token: String?
     
-    public func toJSON() -> JSON? {
+    open func toJSON() -> JSON? {
         return jsonify([
-            "token" ~~> self.token ?? nil,
+            "token" ~~> (self.token ?? nil),
             "action" ~~> self.action,
-            "postId" ~~> self.postId ?? nil,
+            "postId" ~~> (self.postId ?? nil),
             
-            "title" ~~> self.title ?? nil,
-            "parentId" ~~> self.parentId ?? nil,
-            "body" ~~> self.body ?? nil,
-            "forumId" ~~> self.forumId ?? nil,
-            "topicDescription" ~~> self.topicDescription ?? nil,
-            "loadRootAncestor" ~~> self.loadRootAncestor ?? nil
+            "title" ~~> (self.title ?? nil),
+            "parentId" ~~> (self.parentId ?? nil),
+            "body" ~~> (self.body ?? nil),
+            "forumId" ~~> (self.forumId ?? nil),
+            "topicDescription" ~~> (self.topicDescription ?? nil),
+            "loadRootAncestor" ~~> (self.loadRootAncestor ?? nil)
             ])
     }
     

@@ -10,7 +10,7 @@ import Foundation
 
 public struct TagAssociation : Decodable{
     let guid : String
-    let date : NSDate
+    let date : Date
     let creator: Person
     let tag: Tag
     

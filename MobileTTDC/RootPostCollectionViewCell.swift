@@ -18,7 +18,7 @@ class RootPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
     @IBOutlet weak var entryLeftConstraint: NSLayoutConstraint!
     var post : Post!{
         didSet{
-            dateButton.setTitle(Utilities.singleton.simpleDateFormat(post.date), forState: .Normal)
+            dateButton.setTitle(Utilities.singleton.simpleDateFormat(post.date), for: UIControlState())
             entryTextView.setHtmlText(post.entry)
             
             
@@ -27,10 +27,10 @@ class RootPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
             //            contentWebView.frame = CGRectMake(0, 0,  CGFloat.max, 1);
             //            contentWebView.sizeToFit()
             
-            threadTitleButton.setTitle(post.title, forState: UIControlState.Normal)
+            threadTitleButton.setTitle(post.title, for: UIControlState())
             
             if let url = post.creator.image?.name {
-                creatorImageView.downloadedFrom(link: url, contentMode: .ScaleAspectFit)
+                creatorImageView.downloadedFrom(link: url, contentMode: .scaleAspectFit)
             }
             
             //            if post.mass == 1 {
@@ -42,7 +42,7 @@ class RootPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
             
             rootDetailLabel.text = "\(post.mass) Conversations"
             
-            creatorButton.setTitle("\(post.creator.login)", forState: .Normal)
+            creatorButton.setTitle("\(post.creator.login)", for: UIControlState())
             
             //            viewCommentsButton.hidden = false
             //            inReplyStackView.hidden = false
@@ -67,24 +67,24 @@ class RootPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
             //            }
             
             
-            parentPostCreatorButton.hidden = false
+            parentPostCreatorButton.isHidden = false
             if post.threadPost {
                 if post.mass == 0 {
-                    parentPostCreatorButton.hidden = true
+                    parentPostCreatorButton.isHidden = true
                 }
                 else if post.mass == 1 {
                     //                    inReplyPrefixLabel.text = "view"
-                    parentPostCreatorButton.setTitle("one comment", forState: .Normal)
+                    parentPostCreatorButton.setTitle("one comment", for: UIControlState())
                 } else {
                     //                    inReplyPrefixLabel.text = "view"
-                    parentPostCreatorButton.setTitle("\(post.mass) comments", forState: .Normal)
+                    parentPostCreatorButton.setTitle("\(post.mass) comments", for: UIControlState())
                 }
                 
             } else {
                 //                toParentCreatorStackView.hidden = false
                 //                parentPostCreatorButton.setTitle("\(post.parentPostCreator)", forState: .Normal)
                 //                inReplyPrefixLabel.text = "in"
-                parentPostCreatorButton.setTitle("in response to \(post.parentPostCreator)", forState: .Normal)
+                parentPostCreatorButton.setTitle("in response to \(post.parentPostCreator)", for: UIControlState())
             }
             
             //
@@ -150,11 +150,11 @@ class RootPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
     
     override func refreshStyle() {
         let appStyle = getApplicationContext().getCurrentStyle()
-        commentButton.setTitleColor(appStyle.postFooterTextColor(), forState: .Normal)
-        likeButton.setTitleColor(appStyle.postFooterTextColor(), forState: .Normal)
-        dateButton.setTitleColor(appStyle.headerDetailTextColor(), forState: .Normal)
-        threadTitleButton.setTitleColor(appStyle.headerTextColor(), forState: .Normal)
-        creatorButton.setTitleColor(appStyle.headerTextColor(), forState: .Normal)
+        commentButton.setTitleColor(appStyle.postFooterTextColor(), for: UIControlState())
+        likeButton.setTitleColor(appStyle.postFooterTextColor(), for: UIControlState())
+        dateButton.setTitleColor(appStyle.headerDetailTextColor(), for: UIControlState())
+        threadTitleButton.setTitleColor(appStyle.headerTextColor(), for: UIControlState())
+        creatorButton.setTitleColor(appStyle.headerTextColor(), for: UIControlState())
         likesLabel.textColor = appStyle.postFooterTextColor()
         backgroundColor = appStyle.postBackgroundColor()
         
@@ -168,24 +168,24 @@ class RootPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
     }
     
     //
-    func webViewDidFinishLoad(webView: UIWebView) {
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         //   print("did finish ScrollHeight: \(contentWebView.scrollView.contentSize.height)")
     }
     
-    @IBAction func viewCommentsAction(sender: UIButton) {
+    @IBAction func viewCommentsAction(_ sender: UIButton) {
         //        performSegueWithIdentifier("ConversationWithReplyView", sender: indexPath)
         delegate?.viewComments(post)
     }
     
-    @IBAction func commentAction(sender: UIButton) {
+    @IBAction func commentAction(_ sender: UIButton) {
         delegate?.commentOnPost(post)
     }
     
-    @IBAction func likeAction(sender: UIButton) {
+    @IBAction func likeAction(_ sender: UIButton) {
         delegate?.likePost(post)
     }
     
-    @IBAction func threadTitleButton(sender: UIButton) {
+    @IBAction func threadTitleButton(_ sender: UIButton) {
         delegate?.viewThread(post)
     }
     

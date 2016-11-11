@@ -18,7 +18,7 @@ import Foundation
  }
  
  */
-public class SearchCommand : Command {
+open class SearchCommand : Command {
     public enum PostSearchType : String{
         case CONVERSATIONS = "CONVERSATIONS"
         case ALL = "ALL"
@@ -41,16 +41,16 @@ public class SearchCommand : Command {
     let sortDirection: SortDirection?
     let phrase: String?
     
-    public var token: String?
+    open var token: String?
     
-    public func toJSON() -> JSON? {
+    open func toJSON() -> JSON? {
         return jsonify([
             "postSearchType" ~~> self.postSearchType,
             "pageNumber" ~~> self.pageNumber,
-            "sortOrder" ~~> self.sortOrder ?? nil,
-            "sortDirection" ~~> self.sortDirection ?? nil,
-            "token" ~~> self.token ?? nil,
-            "phrase" ~~> self.phrase ?? nil
+            "sortOrder" ~~> (self.sortOrder ?? nil),
+            "sortDirection" ~~> (self.sortDirection ?? nil),
+            "token" ~~> (self.token ?? nil),
+            "phrase" ~~> (self.phrase ?? nil)
             ])
     }
     

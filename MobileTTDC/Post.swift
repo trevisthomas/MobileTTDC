@@ -10,7 +10,7 @@ import Foundation
 
 public struct Post : Decodable{
     let postId : String
-    let date : NSDate
+    let date : Date
     let title : String
     let creator: Person
     let latestEntry: Entry
@@ -69,9 +69,9 @@ public struct Post : Decodable{
         for tagAss in tagAssociations! {
             if(tagAss.tag.type == "LIKE"){
                 if (!likes.isEmpty){
-                    likes.appendContentsOf(", ")
+                    likes.append(", ")
                 }
-                likes.appendContentsOf(tagAss.creator.login)
+                likes.append(tagAss.creator.login)
             }
         }
         return "Liked by: \(likes)"
@@ -93,7 +93,7 @@ public struct Post : Decodable{
 }
 
 //Entending array so that it can flatten groupped posts
-extension SequenceType where Generator.Element == Post {
+extension Sequence where Iterator.Element == Post {
     func flattenPosts() -> [Post]{
         var flatPosts : [Post] = []
         for post in self {

@@ -11,7 +11,7 @@ import UIKit
 
 extension UICollectionViewCell : UITextViewDelegate {
     //http://stackoverflow.com/questions/20541676/ios-uitextview-or-uilabel-with-clickable-links-to-actions
-    public func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
+    public func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
         print("\(URL.absoluteString)")
         return true;
     }
@@ -26,11 +26,11 @@ protocol PostEntryViewContract {
 
 
 extension PostEntryViewContract {
-    func preferredHeight(width : CGFloat) -> CGFloat {
+    func preferredHeight(_ width : CGFloat) -> CGFloat {
         
         let entryInsets = postEntryInsets()
         
-        let sizeThatFits = postEntryTextView()!.sizeThatFits(CGSizeMake(width - entryInsets.left - entryInsets.right, CGFloat.max))
+        let sizeThatFits = postEntryTextView()!.sizeThatFits(CGSize(width: width - entryInsets.left - entryInsets.right, height: CGFloat.greatestFiniteMagnitude))
         let insets: UIEdgeInsets = postEntryTextView()!.textContainerInset;
         let heightThatFits = sizeThatFits.height + insets.top + insets.bottom + entryInsets.top + entryInsets.bottom
         return heightThatFits

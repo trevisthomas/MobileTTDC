@@ -10,26 +10,26 @@ import UIKit
 
 extension UIViewController {
     func getToken() -> String? {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.applicationContext.token
     }
     
-    func invokeLater(completion : () -> ()) {
-        dispatch_async(dispatch_get_main_queue()) {
+    func invokeLater(_ completion : @escaping () -> ()) {
+        DispatchQueue.main.async {
             completion()
         }
     }
     
-    func registerAndCreatePrototypeCellFromNib(withName: String, forReuseIdentifier: String) -> UICollectionViewCell{
+    func registerAndCreatePrototypeCellFromNib(_ withName: String, forReuseIdentifier: String) -> UICollectionViewCell{
         let nib = UINib(nibName: withName, bundle: nil)
-        self.getCollectionView()!.registerNib(nib, forCellWithReuseIdentifier: forReuseIdentifier)
-        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionViewCell
+        self.getCollectionView()!.register(nib, forCellWithReuseIdentifier: forReuseIdentifier)
+        return nib.instantiate(withOwner: nil, options: nil)[0] as! UICollectionViewCell
     }
     
-    func registerAndCreatePrototypeHeaderViewFromNib(withName: String, forReuseIdentifier: String) -> UICollectionReusableView{
+    func registerAndCreatePrototypeHeaderViewFromNib(_ withName: String, forReuseIdentifier: String) -> UICollectionReusableView{
         let nib = UINib(nibName: withName, bundle: nil)
-        self.getCollectionView()!.registerNib(nib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: forReuseIdentifier)
-        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionReusableView
+        self.getCollectionView()!.register(nib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: forReuseIdentifier)
+        return nib.instantiate(withOwner: nil, options: nil)[0] as! UICollectionReusableView
     }
     
     func getCollectionView() -> UICollectionView? {

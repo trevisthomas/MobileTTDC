@@ -20,6 +20,10 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        registerPrototypeCells()
+    }
+    
+    func registerPrototypeCells() {
         postPrototypeCell = registerAndCreatePrototypeCellFromNib(ReuseIdentifiers.POST_CELL, forReuseIdentifier: ReuseIdentifiers.POST_CELL) as! PostCollectionViewCell
         
         replyPrototypeCell = registerAndCreatePrototypeCellFromNib(ReuseIdentifiers.POST_REPLY_CELL, forReuseIdentifier: ReuseIdentifiers.POST_REPLY_CELL) as! PostReplyCollectionViewCell
@@ -32,28 +36,29 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
         
         loadingMessageCell = registerAndCreatePrototypeCellFromNib(ReuseIdentifiers.LOADING_CELL, forReuseIdentifier: ReuseIdentifiers.LOADING_CELL) as! LoadingCollectionViewCell
     }
+    
 
-    func likePost(post: Post){
+    func likePost(_ post: Post){
         
     }
-    func viewComments(post: Post){
+    func viewComments(_ post: Post){
         var dict = [String: String]()
         dict["threadId"] = post.threadId
-        performSegueWithIdentifier("ConversationWithReplyView", sender: dict)
+        performSegue(withIdentifier: "ConversationWithReplyView", sender: dict)
     }
-    func commentOnPost(post: Post){
+    func commentOnPost(_ post: Post){
         var dict = [String: String]()
         dict["threadId"] = post.threadId
         dict["postId"] = post.postId
-        performSegueWithIdentifier("ConversationWithReplyView", sender: dict)
+        performSegue(withIdentifier: "ConversationWithReplyView", sender: dict)
     }
-    func viewThread(post: Post) {
-        performSegueWithIdentifier("ThreadView", sender: post.postId)
+    func viewThread(_ post: Post) {
+        performSegue(withIdentifier: "ThreadView", sender: post.postId)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        guard let nav = segue.destinationViewController as? UINavigationController else {
+        guard let nav = segue.destination as? UINavigationController else {
             return
         }
         
@@ -69,7 +74,7 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
         
         let dict = sender as! [String: String]
         
-        print(dict["threadId"])
+        print(dict["threadId"]!)
         
         vc.postId = dict["threadId"]
         if let postId = dict["postId"] {
@@ -77,34 +82,34 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
         }
     }
 
-    func dequeueCell(post : Post, indexPath : NSIndexPath, allowHierarchy : Bool = false) -> UICollectionViewCell {
+    func dequeueCell(_ post : Post, indexPath : IndexPath, allowHierarchy : Bool = false) -> UICollectionViewCell {
         if post.isMovie {
-            let cell =  self.getCollectionView()!.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.MOVIE_POST_CELL, forIndexPath: indexPath) as! MoviePostCollectionViewCell
+            let cell =  self.getCollectionView()!.dequeueReusableCell(withReuseIdentifier: ReuseIdentifiers.MOVIE_POST_CELL, for: indexPath) as! MoviePostCollectionViewCell
             
             cell.post = post
             cell.delegate = self
             return cell
         } else if post.isRootPost {
-            let cell =  self.getCollectionView()!.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.ROOT_POST_CELL, forIndexPath: indexPath) as! RootPostCollectionViewCell
+            let cell =  self.getCollectionView()!.dequeueReusableCell(withReuseIdentifier: ReuseIdentifiers.ROOT_POST_CELL, for: indexPath) as! RootPostCollectionViewCell
             
             cell.post = post
             cell.delegate = self
             return cell
         } else if allowHierarchy && !post.threadPost {
-            let cell =  self.getCollectionView()!.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.POST_REPLY_CELL, forIndexPath: indexPath) as! PostReplyCollectionViewCell
+            let cell =  self.getCollectionView()!.dequeueReusableCell(withReuseIdentifier: ReuseIdentifiers.POST_REPLY_CELL, for: indexPath) as! PostReplyCollectionViewCell
             
             cell.post = post
             cell.delegate = self
             return cell
         } else if (post.isReview) {
-            let cell = self.getCollectionView()!.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.POST_REVIEW_CELL, forIndexPath: indexPath) as! ReviewPostCollectionViewCell
+            let cell = self.getCollectionView()!.dequeueReusableCell(withReuseIdentifier: ReuseIdentifiers.POST_REVIEW_CELL, for: indexPath) as! ReviewPostCollectionViewCell
             
             cell.post = post
             cell.delegate = self
             return cell
         }
         else {
-            let cell = self.getCollectionView()!.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.POST_CELL, forIndexPath: indexPath) as! PostCollectionViewCell
+            let cell = self.getCollectionView()!.dequeueReusableCell(withReuseIdentifier: ReuseIdentifiers.POST_CELL, for: indexPath) as! PostCollectionViewCell
             
             cell.post = post
             cell.delegate = self

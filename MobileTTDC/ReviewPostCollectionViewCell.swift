@@ -31,32 +31,32 @@ class ReviewPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
     var post : Post! {
         didSet{
             
-            movieTitleButton.setTitle(post.title, forState: UIControlState.Normal)
-            creatorButton.setTitle(post.creator.login, forState: UIControlState.Normal)
+            movieTitleButton.setTitle(post.title, for: UIControlState())
+            creatorButton.setTitle(post.creator.login, for: UIControlState())
             reviewTextView.setHtmlText(post.entry)
             if let url = post.image?.name {
-                movieCoverImageView.downloadedFrom(link: url, contentMode: .ScaleAspectFit)
+                movieCoverImageView.downloadedFrom(link: url, contentMode: .scaleAspectFit)
             }
-            dateCreatedButton.setTitle(Utilities.singleton.simpleDateTimeFormat(post.date), forState: .Normal)
+            dateCreatedButton.setTitle(Utilities.singleton.simpleDateTimeFormat(post.date), for: UIControlState())
             likesLabel.text = post.formatLikesString()
             
             if post.mass == 0 {
-                numCommentsButton.hidden = true
+                numCommentsButton.isHidden = true
             }
             else if post.mass == 1 {
                 //                    inReplyPrefixLabel.text = "view"
-                numCommentsButton.setTitle("one comment", forState: .Normal)
+                numCommentsButton.setTitle("one comment", for: UIControlState())
             } else {
                 //                    inReplyPrefixLabel.text = "view"
-                numCommentsButton.setTitle("\(post.mass) comments", forState: .Normal)
+                numCommentsButton.setTitle("\(post.mass) comments", for: UIControlState())
             }
 
             
             if let rating = post.reviewRating {
-                starRatingView.hidden = false
+                starRatingView.isHidden = false
                 starRatingView.starsVisible = CGFloat(rating)
             } else {
-                starRatingView.hidden = true
+                starRatingView.isHidden = true
             }
             
             refreshStyle() //For some reason those attributed guys get unhappy if you dont do this
@@ -72,33 +72,33 @@ class ReviewPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
     
     override func refreshStyle() {
         let appStyle = getApplicationContext().getCurrentStyle()
-        likeButton.setTitleColor(appStyle.postFooterTextColor(), forState: .Normal)
-        dateCreatedButton.setTitleColor(appStyle.headerDetailTextColor(), forState: .Normal)
+        likeButton.setTitleColor(appStyle.postFooterTextColor(), for: UIControlState())
+        dateCreatedButton.setTitleColor(appStyle.headerDetailTextColor(), for: UIControlState())
         likesLabel.textColor = appStyle.postFooterTextColor()
         backgroundColor = appStyle.postBackgroundColor()
         
         
         
-        creatorButton.setTitleColor(appStyle.headerTextColor(), forState: .Normal)
+        creatorButton.setTitleColor(appStyle.headerTextColor(), for: UIControlState())
         reviewTextView.textColor = appStyle.entryTextColor()
         //        entryTextView.backgroundColor = appStyle.postReplyBackgroundColor()
-        reviewTextView.backgroundColor = UIColor.clearColor()
+        reviewTextView.backgroundColor = UIColor.clear
         reviewTextView.tintColor = appStyle.headerDetailTextColor()
         
-        movieTitleButton.setTitleColor(appStyle.headerTextColor(), forState: .Normal)
+        movieTitleButton.setTitleColor(appStyle.headerTextColor(), for: UIControlState())
         
     }
     
     
-    @IBAction func likeAction(sender: UIButton) {
+    @IBAction func likeAction(_ sender: UIButton) {
         delegate?.likePost(post)
     }
     
-    @IBAction func commentAction(sender: UIButton) {
+    @IBAction func commentAction(_ sender: UIButton) {
         delegate?.commentOnPost(post)
     }
     
-    @IBAction func movieTitleAction(sender: UIButton) {
+    @IBAction func movieTitleAction(_ sender: UIButton) {
         delegate?.viewThread(post)
     }
     

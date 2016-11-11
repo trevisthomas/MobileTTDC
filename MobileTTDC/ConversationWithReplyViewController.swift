@@ -27,7 +27,7 @@ class ConversationWithReplyViewController: PostBaseViewController {
         super.viewDidLoad()
 
         navigationItem.title = "Conversation"
-        let view = NSBundle.mainBundle().loadNibNamed("AccessoryCommentView", owner: replyTextView, options: nil)!.first as! AccessoryCommentView
+        let view = Bundle.main.loadNibNamed("AccessoryCommentView", owner: replyTextView, options: nil)!.first as! AccessoryCommentView
         view.delegate = self
         replyTextView.inputAccessoryView = view
         
@@ -56,11 +56,11 @@ class ConversationWithReplyViewController: PostBaseViewController {
         
     }
     
-    @IBAction func closeAction(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func closeAction(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func handleTap(recognizer:UITapGestureRecognizer) {
+    @IBAction func handleTap(_ recognizer:UITapGestureRecognizer) {
 //        replyToPostId = post.postId //When they just tap the text, reply to the conversation.
         
         guard posts.count > 0 else {
@@ -70,24 +70,24 @@ class ConversationWithReplyViewController: PostBaseViewController {
         commentAccessoryBecomeFirstResponder(posts[0].postId)
     }
     
-    func handleTapToResign(recognizer:UITapGestureRecognizer) {
+    func handleTapToResign(_ recognizer:UITapGestureRecognizer) {
         let accessory = replyTextView.inputAccessoryView as! AccessoryCommentView
-        accessory.resignFirstResponder()
+        _ = accessory.resignFirstResponder()
         replyTextView.resignFirstResponder()
         
         scrollToBottom()
     }
   
-    func commentAccessoryBecomeFirstResponder(postId: String) {
+    func commentAccessoryBecomeFirstResponder(_ postId: String) {
         replyTextView.becomeFirstResponder() //This causes the keyboard to open.
         let accessory = replyTextView.inputAccessoryView as! AccessoryCommentView
         accessory.postId = postId
         
 //        accessory.defaultText = replyTextView.attributedText
         
-        accessory.becomeFirstResponder() //This puts the accessory view in focus.
+        _ = accessory.becomeFirstResponder() //This puts the accessory view in focus.
         //NOTE:  The actual text view needs to have it's "editibale" flag set to false or else it will get focus after dismssing the keyboard+accessory.
-        replyTextView.inputAccessoryView?.hidden = false
+        replyTextView.inputAccessoryView?.isHidden = false
         
     }
     
@@ -95,7 +95,7 @@ class ConversationWithReplyViewController: PostBaseViewController {
         return collectionView
     }
 
-    override func commentOnPost(post: Post){
+    override func commentOnPost(_ post: Post){
         print("comment on : " + post.postId)
     }
    
@@ -103,12 +103,12 @@ class ConversationWithReplyViewController: PostBaseViewController {
 
 extension ConversationWithReplyViewController {
     
-    private func loadPost(postId: String){
+    fileprivate func loadPost(_ postId: String){
         let cmd = TopicCommand(type: .NESTED_THREAD_SUMMARY, postId: postId, pageNumber: -1, pageSize: 1)
         Network.performPostCommand(cmd){
             (response, message) -> Void in
             guard (response != nil) else {
-                print(message)
+                print(message!)
                 self.presentAlert("Error", message: "Failed to load post")
                 return;
             }
@@ -123,8 +123,10 @@ extension ConversationWithReplyViewController {
                 self.collectionView.reloadData()
                 
                 
-                let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 1 * Int64(NSEC_PER_SEC))
-                dispatch_after(time, dispatch_get_main_queue()) {
+//                let time = DispatchTime(uptimeNanoseconds: DispatchTime.now()) + Double(1 * Int64(NSEC_PER_SEC)) / Double(NSEC_PER_SEC)
+//                DispatchQueue.main.asyncAfter(deadline: time) {
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     //put your code which should be executed with a delay here
                     self.scrollToBottom()
                     
@@ -148,23 +150,23 @@ extension ConversationWithReplyViewController {
     
 
     
-    private func scrollToBottom() {
+    fileprivate func scrollToBottom() {
         
         guard posts.count > 0 else {
             return
         }
         
-        let indexPath = NSIndexPath(forRow: posts.count - 1, inSection: 0)
+        let indexPath = IndexPath(row: posts.count - 1, section: 0)
         
         
-        collectionView!.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.Bottom, animated: true)
+        collectionView!.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.bottom, animated: true)
     }
 
 }
 
 
 extension ConversationWithReplyViewController : UICollectionViewDelegateFlowLayout {
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return prototypeCellSize(post: posts[indexPath.row], allowHierarchy: true)
     }
@@ -172,15 +174,15 @@ extension ConversationWithReplyViewController : UICollectionViewDelegateFlowLayo
 
 extension ConversationWithReplyViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return posts.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         return dequeueCell(posts[indexPath.row], indexPath: indexPath, allowHierarchy: true)
     }
@@ -189,7 +191,7 @@ extension ConversationWithReplyViewController : UICollectionViewDelegate, UIColl
 
 
 extension ConversationWithReplyViewController {
-    func handleResponse(response: PostCrudResponse?, error: String?){
+    func handleResponse(_ response: PostCrudResponse?, error: String?){
         guard response != nil else {
             self.presentAlert("Error", message: "Failed to create post.  Server error.")
             return
@@ -211,7 +213,7 @@ extension ConversationWithReplyViewController {
 }
 
 extension ConversationWithReplyViewController: AccessoryCommentViewDelegate {
-    func accessoryCommentView(commentText commentText: String){
+    func accessoryCommentView(commentText: String){
 //        replyTextView.text = commentText
 //        replyTextView.inputAccessoryView?.hidden = true
         

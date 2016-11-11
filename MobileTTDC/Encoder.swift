@@ -37,7 +37,7 @@ public struct Encoder {
      
      - returns: JSON encoded from value.
      */
-    public static func encode<T>(key: String) -> T? -> JSON? {
+    public static func encode<T>(_ key: String) -> (T?) -> JSON? {
         return {
             property in
             
@@ -56,7 +56,7 @@ public struct Encoder {
      
      - returns: JSON encoded from value.
      */
-    public static func encodeArray<T>(key: String) -> [T]? -> JSON? {
+    public static func encodeArray<T>(_ key: String) -> ([T]?) -> JSON? {
         return {
             array in
             
@@ -76,12 +76,12 @@ public struct Encoder {
      
      - returns: JSON encoded from value.
      */
-    public static func encodeDate(key: String, dateFormatter: NSDateFormatter) -> NSDate? -> JSON? {
+    public static func encodeDate(_ key: String, dateFormatter: DateFormatter) -> (Date?) -> JSON? {
         return {
             date in
             
             if let date = date {
-                return [key : dateFormatter.stringFromDate(date)]
+                return [key : dateFormatter.string(from: date) as AnyObject]
             }
             
             return nil
@@ -96,7 +96,7 @@ public struct Encoder {
      
      - returns: JSON encoded from value.
      */
-    public static func encodeDateArray(key: String, dateFormatter: NSDateFormatter) -> [NSDate]? -> JSON? {
+    public static func encodeDateArray(_ key: String, dateFormatter: DateFormatter) -> ([Date]?) -> JSON? {
         return {
             dates in
             
@@ -104,12 +104,12 @@ public struct Encoder {
                 var dateStrings: [String] = []
                 
                 for date in dates {
-                    let dateString = dateFormatter.stringFromDate(date)
+                    let dateString = dateFormatter.string(from: date)
                     
                     dateStrings.append(dateString)
                 }
                 
-                return [key : dateStrings]
+                return [key : dateStrings as AnyObject]
             }
             
             return nil
@@ -123,7 +123,7 @@ public struct Encoder {
      
      - returns: JSON encoded from value.
      */
-    public static func encodeDateISO8601(key: String) -> NSDate? -> JSON? {
+    public static func encodeDateISO8601(_ key: String) -> (Date?) -> JSON? {
         return Encoder.encodeDate(key, dateFormatter: GlossDateFormatterISO8601)
     }
     
@@ -134,7 +134,7 @@ public struct Encoder {
      
      - returns: JSON encoded from value.
      */
-    public static func encodeDateISO8601Array(key: String) -> [NSDate]? -> JSON? {
+    public static func encodeDateISO8601Array(_ key: String) -> ([Date]?) -> JSON? {
         return Encoder.encodeDateArray(key, dateFormatter: GlossDateFormatterISO8601)
     }
     
@@ -145,12 +145,12 @@ public struct Encoder {
      
      - returns: JSON encoded from value.
      */
-    public static func encodeEncodable<T: Encodable>(key: String) -> T? -> JSON? {
+    public static func encodeEncodable<T: Encodable>(_ key: String) -> (T?) -> JSON? {
         return {
             model in
             
-            if let model = model, json = model.toJSON() {
-                return [key : json]
+            if let model = model, let json = model.toJSON() {
+                return [key : json as AnyObject]
             }
             
             return nil
@@ -164,7 +164,7 @@ public struct Encoder {
      
      - returns: JSON encoded from value.
      */
-    public static func encodeEncodableArray<T: Encodable>(key: String) -> [T]? -> JSON? {
+    public static func encodeEncodableArray<T: Encodable>(_ key: String) -> ([T]?) -> JSON? {
         return {
             array in
             
@@ -177,7 +177,7 @@ public struct Encoder {
                     }
                 }
                 
-                return [key : encodedArray]
+                return [key : encodedArray as AnyObject]
             }
             
             return nil
@@ -191,7 +191,7 @@ public struct Encoder {
      
      - returns: JSON encoded from value.
      */
-    public static func encodeEncodableDictionary<T: Encodable>(key: String) -> [String : T]? -> JSON? {
+    public static func encodeEncodableDictionary<T: Encodable>(_ key: String) -> ([String : T]?) -> JSON? {
         return {
             dictionary in
             
@@ -207,7 +207,7 @@ public struct Encoder {
                 return (key, json)
             }
             
-            return [key : encoded]
+            return [key : encoded as AnyObject]
         }
     }
     
@@ -218,7 +218,7 @@ public struct Encoder {
      
      - returns: JSON encoded from value.
      */
-    public static func encodeEncodableDictionary<T: Encodable>(key: String) -> [String : [T]]? -> JSON? {
+    public static func encodeEncodableDictionary<T: Encodable>(_ key: String) -> ([String : [T]]?) -> JSON? {
         return {
             dictionary in
             
@@ -236,7 +236,7 @@ public struct Encoder {
                 return (key, jsonArray)
             }
             
-            return [key : encoded]
+            return [key : encoded as AnyObject]
         }
     }
     
@@ -247,12 +247,12 @@ public struct Encoder {
      
      - returns: JSON encoded from value.
      */
-    public static func encodeEnum<T: RawRepresentable>(key: String) -> T? -> JSON? {
+    public static func encodeEnum<T: RawRepresentable>(_ key: String) -> (T?) -> JSON? {
         return {
             enumValue in
             
             if let enumValue = enumValue {
-                return [key : enumValue.rawValue as! AnyObject]
+                return [key : enumValue.rawValue as AnyObject]
             }
             
             return nil
@@ -266,7 +266,7 @@ public struct Encoder {
      
      - returns: JSON encoded from value.
      */
-    public static func encodeEnumArray<T: RawRepresentable>(key: String) -> [T]? -> JSON? {
+    public static func encodeEnumArray<T: RawRepresentable>(_ key: String) -> ([T]?) -> JSON? {
         return {
             enumValues in
             
@@ -277,7 +277,7 @@ public struct Encoder {
                     rawValues.append(enumValue.rawValue)
                 }
                 
-                return [key : rawValues as! AnyObject]
+                return [key : rawValues as AnyObject]
             }
             
             return nil
@@ -291,12 +291,12 @@ public struct Encoder {
      
      - returns: JSON encoded from value.
      */
-    public static func encodeInt32(key: String) -> Int32? -> JSON? {
+    public static func encodeInt32(_ key: String) -> (Int32?) -> JSON? {
         return {
             int32 in
             
             if let int32 = int32 {
-                return [key : NSNumber(int: int32)]
+                return [key : NSNumber(value: int32 as Int32)]
             }
             
             return nil
@@ -310,12 +310,12 @@ public struct Encoder {
      
      - returns: JSON encoded from value.
      */
-    public static func encodeInt64(key: String) -> Int64? -> JSON? {
+    public static func encodeInt64(_ key: String) -> (Int64?) -> JSON? {
         return {
             int64 in
             
             if let int64 = int64 {
-                return [key : NSNumber(longLong: int64)]
+                return [key : NSNumber(value: int64 as Int64)]
             }
             
             return nil
@@ -329,12 +329,12 @@ public struct Encoder {
      
      - returns: JSON encoded from value.
      */
-    public static func encodeURL(key: String) -> NSURL? -> JSON? {
+    public static func encodeURL(_ key: String) -> (URL?) -> JSON? {
         return {
             url in
             
             if let url = url {
-                return [key : url.absoluteString!]
+                return [key : url.absoluteString as AnyObject]
             }
             
             return nil

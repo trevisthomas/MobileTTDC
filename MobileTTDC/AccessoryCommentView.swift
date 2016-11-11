@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AccessoryCommentViewDelegate {
-    func accessoryCommentView(commentText commentText: String)
+    func accessoryCommentView(commentText: String)
 }
 
 class AccessoryCommentView: UIView {
@@ -23,10 +23,10 @@ class AccessoryCommentView: UIView {
     }
     
     @IBOutlet weak var postTextView: UITextView!
-    @IBAction func photoButtonAction(sender: AnyObject) {
+    @IBAction func photoButtonAction(_ sender: AnyObject) {
     }
    
-    @IBAction func postButtonAction(sender: UIButton) {
+    @IBAction func postButtonAction(_ sender: UIButton) {
         postTextView.resignFirstResponder()
         delegate.accessoryCommentView(commentText: postTextView.text)
         

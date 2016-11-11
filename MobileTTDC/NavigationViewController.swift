@@ -24,7 +24,7 @@ class NavigationViewController: UINavigationController {
     override func refreshStyle() {
         let style = getApplicationContext().getCurrentStyle()
 
-        navigationBar.translucent = false
+        navigationBar.isTranslucent = false
         navigationBar.tintColor = style.navigationColor()
         navigationBar.barTintColor = style.navigationBackgroundColor()
         navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: style.navigationColor()]

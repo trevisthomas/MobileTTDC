@@ -21,7 +21,7 @@ class PostSeperator: UIView {
 //    @IBInspectable var fillColor: UIColor = UIColor.greenColor()
 //    @IBInspectable var thickness: CGFloat = 3.0
     
-    var fillColor: UIColor = UIColor.greenColor()
+    var fillColor: UIColor = UIColor.green
     var thickness: CGFloat = 3.0
     
     required init?(coder aDecoder: NSCoder) {
@@ -30,12 +30,12 @@ class PostSeperator: UIView {
     }
     
     override func refreshStyle() {
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear
         fillColor = getApplicationContext().getCurrentStyle().postFooterDetailColor()
         self.setNeedsDisplay()
     }
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         //create the path
         let plusPath = UIBezierPath()
 //        fillColor.setFill()
@@ -47,12 +47,12 @@ class PostSeperator: UIView {
         
         //move the initial point of the path
         //to the start of the horizontal stroke
-        plusPath.moveToPoint(CGPoint(
+        plusPath.move(to: CGPoint(
             x: 0,
             y: rect.height))
         
         //add a point to the path at the end of the stroke
-        plusPath.addLineToPoint(CGPoint(
+        plusPath.addLine(to: CGPoint(
             x:rect.width,
             y:rect.height))
         

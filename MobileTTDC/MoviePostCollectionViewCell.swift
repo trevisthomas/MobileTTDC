@@ -16,8 +16,8 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
     
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     
-    private let spacing : Int = 4
-    private let starHeight : Int = 20
+    fileprivate let spacing : Int = 4
+    fileprivate let starHeight : Int = 20
     @IBOutlet weak var starStackViewHeightConstraint: NSLayoutConstraint!
     
     var delegate : PostViewCellDelegate?
@@ -25,9 +25,9 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
     var post : Post! {
         didSet{
             
-            movieTitleButton.setTitle(post.title, forState: UIControlState.Normal)
+            movieTitleButton.setTitle(post.title, for: UIControlState())
             if let url = post.image?.name {
-                movieCoverImageView.downloadedFrom(link: url, contentMode: .ScaleAspectFit)
+                movieCoverImageView.downloadedFrom(link: url, contentMode: .scaleAspectFit)
             }
             
             for subview in subRatingStackView.subviews {
@@ -38,8 +38,8 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
                 for p in posts{
                     let review : MovieReviewSubView = MovieReviewSubView.fromNib()
                     review.post = p
-                    review.heightAnchor.constraintEqualToConstant(CGFloat(starHeight)).active = true
-                    review.widthAnchor.constraintEqualToConstant(self.frame.width).active = true
+                    review.heightAnchor.constraint(equalToConstant: CGFloat(starHeight)).isActive = true
+                    review.widthAnchor.constraint(equalToConstant: self.frame.width).isActive = true
                     subRatingStackView.addArrangedSubview(review)
                 }
             
@@ -63,17 +63,17 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
     
     override func refreshStyle() {
         let appStyle = getApplicationContext().getCurrentStyle()
-        movieTitleButton.setTitleColor(appStyle.headerTextColor(), forState: .Normal)
+        movieTitleButton.setTitleColor(appStyle.headerTextColor(), for: UIControlState())
     }
 
 
-    @IBAction func likeAction(sender: UIButton) {
+    @IBAction func likeAction(_ sender: UIButton) {
     }
     
-    @IBAction func commentAction(sender: UIButton) {
+    @IBAction func commentAction(_ sender: UIButton) {
     }
     
-    @IBAction func movieTitleAction(sender: UIButton) {
+    @IBAction func movieTitleAction(_ sender: UIButton) {
     }
     
     func postEntryInsets() -> UIEdgeInsets {
@@ -84,7 +84,7 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
         return nil
     }
     
-    func preferredHeight(width: CGFloat) -> CGFloat {
+    func preferredHeight(_ width: CGFloat) -> CGFloat {
         
         if let posts = post.posts {
             

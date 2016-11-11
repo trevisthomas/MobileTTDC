@@ -31,12 +31,12 @@ extension UILabel {
 //    }
     
     
-    func setHtmlText(html : String, fuckingColor: String, font sysfont : UIFont = UIFont(name:"Helvetica", size: UIFont.systemFontSize())!){
+    func setHtmlText(_ html : String, fuckingColor: String, font sysfont : UIFont = UIFont(name:"Helvetica", size: UIFont.systemFontSize)!){
         //UIFont = UIFont.systemFontOfSize(UIFont.systemFontSize())
         //        let sysfont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
         //UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
         
-        let fileLocation = NSBundle.mainBundle().pathForResource("style", ofType: "css")!
+        let fileLocation = Bundle.main.path(forResource: "style", ofType: "css")!
         let css : String
         do
         {
@@ -58,7 +58,7 @@ extension UILabel {
         //        let modifiedFont = NSString(format:"<span style=\"font-family: '\(sysfont.fontName)'; font-size: \(sysfont.pointSize)\">%@  </span>", html) as String
         //
         
-        if let htmlData = htmlCss.dataUsingEncoding(NSUnicodeStringEncoding) {
+        if let htmlData = htmlCss.data(using: String.Encoding.unicode) {
             //                NSAttributedString(
             
             do {

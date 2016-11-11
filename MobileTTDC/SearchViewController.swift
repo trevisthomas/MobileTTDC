@@ -13,15 +13,15 @@ class SearchViewController : PostBaseViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
-    private var transactionId : Int = 0;
+    fileprivate var transactionId : Int = 0;
     
-    private var autoCompleteItems : [AutoCompleteItem] = []
-    private var posts : [Post] = []
+    fileprivate var autoCompleteItems : [AutoCompleteItem] = []
+    fileprivate var posts : [Post] = []
     
 //    private var flatPrototypeCell : FlatCollectionViewCell!
     
-    @IBAction func doneButtonAction(sender: UIBarButtonItem) {
-        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func doneButtonAction(_ sender: UIBarButtonItem) {
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -32,7 +32,7 @@ class SearchViewController : PostBaseViewController {
 //        flatPrototypeCell = registerAndCreatePrototypeCellFromNib("FlatCollectionViewCell", forReuseIdentifier: ReuseIdentifiers.FLAT_POST_CELL) as! FlatCollectionViewCell
 
         let nib = UINib(nibName: "AutoCompleteTableViewCell", bundle: nil)
-        self.tableView.registerNib(nib, forCellReuseIdentifier: ReuseIdentifiers.AUTO_TOPIC_CELL)
+        self.tableView.register(nib, forCellReuseIdentifier: ReuseIdentifiers.AUTO_TOPIC_CELL)
         
         searchBar.delegate = self
         
@@ -79,8 +79,8 @@ class SearchViewController : PostBaseViewController {
         autoCompleteItems.removeAll()
         posts.removeAll()
         
-        tableView.hidden = false
-        collectionView.hidden = true
+        tableView.isHidden = false
+        collectionView.isHidden = true
         
         tableView.reloadData()
     }
@@ -89,8 +89,8 @@ class SearchViewController : PostBaseViewController {
         autoCompleteItems.removeAll()
         posts.removeAll()
         
-        tableView.hidden = true
-        collectionView.hidden = false
+        tableView.isHidden = true
+        collectionView.isHidden = false
     }
     
     override func getCollectionView() -> UICollectionView? {
@@ -99,11 +99,11 @@ class SearchViewController : PostBaseViewController {
 }
 
 extension SearchViewController : UISearchBarDelegate {
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         performQuery(searchText)
     }
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         performSearch(searchBar.text!)
     }
     
@@ -111,7 +111,7 @@ extension SearchViewController : UISearchBarDelegate {
 
 extension SearchViewController {
     //This concept is a copy from ChooseThreadViewController.  Sad copy reuse.
-    func performQuery(query: String){
+    func performQuery(_ query: String){
         
         if query.isEmpty {
             self.switchToTable()
@@ -134,7 +134,7 @@ extension SearchViewController {
             
             if (self.transactionId == response?.transactionId){
                 
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     self.switchToTable()
                     
                     self.autoCompleteItems = (response?.items)!
@@ -156,7 +156,7 @@ extension SearchViewController {
     
     
     
-    func performSearch(phrase: String){
+    func performSearch(_ phrase: String){
         let cmd = SearchCommand(phrase: phrase, postSearchType: SearchCommand.PostSearchType.ALL, pageNumber: 1, sortOrder: SearchCommand.SortOrder.BY_DATE, sortDirection: SearchCommand.SortDirection.DESC)
         
         Network.performSearchCommand(cmd){
@@ -171,7 +171,7 @@ extension SearchViewController {
             
             
                 
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 self.switchToCollectionView()
                         
                 self.posts = (response?.list)! //Hm, what if this is zero?
@@ -181,14 +181,14 @@ extension SearchViewController {
         };
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard sender != nil else {
             return
         }
         
         let threadId = sender as! String
         
-        let vc = segue.destinationViewController.childViewControllers.first as! ThreadViewController
+        let vc = segue.destination.childViewControllers.first as! ThreadViewController
         
         vc.rootPostId = threadId
         
@@ -203,11 +203,11 @@ extension SearchViewController : UICollectionViewDelegate {
 }
 
 extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return autoCompleteItems.count
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        self.dismissKeyboard()
         let item = autoCompleteItems[indexPath.row]
         
@@ -219,15 +219,15 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
         
         print(item.displayTitle)
         
-        performSegueWithIdentifier("ThreadView", sender: item.postId)
+        performSegue(withIdentifier: "ThreadView", sender: item.postId)
         
     }
     
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(ReuseIdentifiers.AUTO_TOPIC_CELL, forIndexPath: indexPath) as! AutoCompleteTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.AUTO_TOPIC_CELL, for: indexPath) as! AutoCompleteTableViewCell
         //Caught an out of range exception below.  How was that possible? (10/8)
         cell.item = autoCompleteItems[indexPath.row]
         
@@ -237,15 +237,15 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
 
 extension SearchViewController : UICollectionViewDataSource {
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return posts.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 //        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.AUTO_COLLECTION_CELL, forIndexPath: indexPath) as! AutoCompleteCollectionViewCell
 //        cell.threadTitleLabel.text = autoCompleteItems[indexPath.row].displayTitle
 //        return cell
@@ -261,7 +261,7 @@ extension SearchViewController : UICollectionViewDataSource {
         //return dequeueCell(posts[indexPath.section].posts![indexPath.row], indexPath: indexPath)
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         
 //        var height : CGFloat
 //        flatPrototypeCell.post = posts[indexPath.row]

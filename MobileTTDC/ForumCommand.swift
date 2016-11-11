@@ -8,11 +8,11 @@
 
 import Foundation
 
-public class ForumCommand : Command{
-    public var token: String?
-    public var action: String
+open class ForumCommand : Command{
+    open var token: String?
+    open var action: String
     
-    public func toJSON() -> JSON? {
+    open func toJSON() -> JSON? {
         return jsonify([
             "token" ~~> self.token,
             "action" ~~> self.action

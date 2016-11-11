@@ -9,20 +9,20 @@
 import Foundation
 import UIKit
 
-public class ApplicationContext : AuthenticatedUserDataProvider {
-    public static let currentUserKey : String = "us.ttdc.CurrentUser"
-    public static let styleChangedNotificationKey : String = "us.ttdc.StyleChanged"
-    public static let styleDark : String = "darkStyle"
-    public static let styleLight : String = "lightStyle"
+open class ApplicationContext : AuthenticatedUserDataProvider {
+    open static let currentUserKey : String = "us.ttdc.CurrentUser"
+    open static let styleChangedNotificationKey : String = "us.ttdc.StyleChanged"
+    open static let styleDark : String = "darkStyle"
+    open static let styleLight : String = "lightStyle"
 
-    private static let defaultStyle : String = styleLight
+    fileprivate static let defaultStyle : String = styleLight
     
     public enum Style {
-        case Dark
-        case Light
+        case dark
+        case light
     }
     
-    public var imageCache : [String: UIImage] = [:]
+    open var imageCache : [String: UIImage] = [:]
     
 //    public var currentStyleName : Style = .Light{
 //        didSet{
@@ -65,13 +65,13 @@ public class ApplicationContext : AuthenticatedUserDataProvider {
         
     }
 
-    private(set) var currentStyleName : String = ApplicationContext.defaultStyle {
+    fileprivate(set) var currentStyleName : String = ApplicationContext.defaultStyle {
         didSet{
-            UIApplication.sharedApplication().statusBarStyle = getCurrentStyle().statusBarStyle()
+            UIApplication.shared.statusBarStyle = getCurrentStyle().statusBarStyle()
             
             
 //            UITextField.appearance().keyboardAppearance = .Dark
-            NSNotificationCenter.defaultCenter().postNotificationName(ApplicationContext.styleChangedNotificationKey, object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: ApplicationContext.styleChangedNotificationKey), object: nil)
         }
     }
 
@@ -82,7 +82,7 @@ public class ApplicationContext : AuthenticatedUserDataProvider {
 //        }
 //    }
     
-    private var _currentUser : Person? = nil {
+    fileprivate var _currentUser : Person? = nil {
         didSet{
 //            NSNotificationCenter.defaultCenter().postNotificationName(ApplicationContext.currentUserKey, object: _currentUser?.login) //Sigh.  I hate struts.  Were they a bad idea?
             
@@ -90,20 +90,20 @@ public class ApplicationContext : AuthenticatedUserDataProvider {
             objects.append(_currentUser?.login)
             
             if let login = _currentUser?.login {
-                NSNotificationCenter.defaultCenter().postNotificationName(ApplicationContext.currentUserKey, object: nil, userInfo: ["login" : login])
+                NotificationCenter.default.post(name: Notification.Name(rawValue: ApplicationContext.currentUserKey), object: nil, userInfo: ["login" : login])
             } else {
-                NSNotificationCenter.defaultCenter().postNotificationName(ApplicationContext.currentUserKey, object: nil, userInfo: [:])
+                NotificationCenter.default.post(name: Notification.Name(rawValue: ApplicationContext.currentUserKey), object: nil, userInfo: [:])
             }
             
         }
     }
-    private(set) public var token: String? = nil //WTF both?
+    fileprivate(set) open var token: String? = nil //WTF both?
     
     //Trevis: Your thought for these stashes was just to have a temporary place to hang on to user entered text in dialogs so that if they accidentally leave and the VC closes, that coming back, the text would still be avail.
-    public var commentStash : NSAttributedString? = nil
-    public var topicStash: NSAttributedString? = nil
+    open var commentStash : NSAttributedString? = nil
+    open var topicStash: NSAttributedString? = nil
     
-    public var deviceToken: String? = nil {
+    open var deviceToken: String? = nil {
         didSet{
             registerForPush()
         }
@@ -113,13 +113,13 @@ public class ApplicationContext : AuthenticatedUserDataProvider {
         
     }
     
-    private struct PersistantKeys {
+    fileprivate struct PersistantKeys {
         static let token = "token"
         static let style = "style"
     }
     
-    public func saveState(){
-        let defaults = NSUserDefaults.standardUserDefaults()
+    open func saveState(){
+        let defaults = UserDefaults.standard
         
         defaults.setValue(token, forKey: PersistantKeys.token)
         defaults.setValue(currentStyleName, forKeyPath: PersistantKeys.style)
@@ -127,10 +127,10 @@ public class ApplicationContext : AuthenticatedUserDataProvider {
         defaults.synchronize()
     }
     
-    public func loadState(){
-        let defaults = NSUserDefaults.standardUserDefaults()
+    open func loadState(){
+        let defaults = UserDefaults.standard
         
-        if let t = defaults.stringForKey(PersistantKeys.token){
+        if let t = defaults.string(forKey: PersistantKeys.token){
             
 //            _currentUser = nil
             self.token = t
@@ -144,7 +144,7 @@ public class ApplicationContext : AuthenticatedUserDataProvider {
                     return;
                 }
                 
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     self.token = response?.token
                     self._currentUser = response?.person
                     self.registerForPush()
@@ -158,14 +158,14 @@ public class ApplicationContext : AuthenticatedUserDataProvider {
         }
         
         
-        if let style = defaults.stringForKey(PersistantKeys.style) {
+        if let style = defaults.string(forKey: PersistantKeys.style) {
             self.currentStyleName = style
         } else {
             self.currentStyleName = ApplicationContext.defaultStyle
         }
     }
     
-    private var _latestPosts : [Post] = [] {
+    fileprivate var _latestPosts : [Post] = [] {
         didSet{
             latestPostsObserver?.latestPostsUpdated()
         }
@@ -177,18 +177,18 @@ public class ApplicationContext : AuthenticatedUserDataProvider {
         }
     }
     
-    public var displayMode : DisplayMode = DisplayMode.LatestGrouped {
+    open var displayMode : DisplayMode = DisplayMode.latestGrouped {
         didSet{
             reloadLatestPosts()
             latestPostsObserver?.displayModeChanged()
             
         }
     }
-    public var latestPostsObserver : LatestPostsObserver? = nil
+    open var latestPostsObserver : LatestPostsObserver? = nil
     
-    public var latestConversationsObserver : LatestConversationsObserver? = nil
+    open var latestConversationsObserver : LatestConversationsObserver? = nil
     
-    public func reloadAllData(){
+    open func reloadAllData(){
         reloadLatestPosts()
         reloadLatestConversations()
         
@@ -197,7 +197,7 @@ public class ApplicationContext : AuthenticatedUserDataProvider {
 
     }
     
-    public func authenticate(login: String, password: String, completion: (success: Bool, details: String) -> ()) {
+    open func authenticate(_ login: String, password: String, completion: @escaping (_ success: Bool, _ details: String) -> ()) {
         let cmd = LoginCommand(login: login, password: password)
         
         _currentUser = nil
@@ -207,19 +207,19 @@ public class ApplicationContext : AuthenticatedUserDataProvider {
             guard (response != nil) else {
                 self._currentUser = nil
                 self.token = nil
-                completion(success: false, details: "Invalid login or password")
+                completion(false, "Invalid login or password")
                 return;
             }
             self.token = response?.token
             self._currentUser = response?.person
             self.saveState()
             self.registerForPush()
-            completion(success: true, details: "Welcome back, \((response?.person?.name)!)")
+            completion(true, "Welcome back, \((response?.person?.name)!)")
             self.reloadAllData()
         };
     }
     
-    private func registerForPush(){
+    fileprivate func registerForPush(){
         guard let _ = token, let deviceToken = deviceToken else {
             print("Conditions not ready to register for push.  Missing either token or device token.")
             return
@@ -257,14 +257,14 @@ extension ApplicationContext : LatestPostsDataProvider {
     public func reloadLatestPosts() {
         _latestPosts = []
         switch displayMode{
-        case .LatestGrouped:
+        case .latestGrouped:
             loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED)
-        case .LatestFlat:
+        case .latestFlat:
             loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT)
         }
     }
     
-    private func loadlatestPostDataFromWebservice(action: PostCommand.Action){
+    fileprivate func loadlatestPostDataFromWebservice(_ action: PostCommand.Action){
         let cmd = PostCommand(action: action, pageNumber: 1)
         
         Network.performPostCommand(cmd){
@@ -276,7 +276,7 @@ extension ApplicationContext : LatestPostsDataProvider {
             
             self._latestPosts = (response?.list)!
             
-            if self.displayMode == .LatestGrouped {
+            if self.displayMode == .latestGrouped {
                 self._latestPosts = self._latestPosts.flattenPosts()
             }
         };
@@ -295,7 +295,7 @@ extension ApplicationContext : LatestConversationsDataProvider {
         loadConversationsFromWebservice()
     }
     
-    private func loadConversationsFromWebservice(){
+    fileprivate func loadConversationsFromWebservice(){
         let cmd = SearchCommand(postSearchType: SearchCommand.PostSearchType.CONVERSATIONS)
         
         Network.performSearchCommand(cmd){

@@ -1,12 +1,12 @@
 import Foundation
 
-public class LoginCommand : Command{
+open class LoginCommand : Command{
     
     let login: String
     let password: String
-    public var token: String?
+    open var token: String?
     
-    public func toJSON() -> JSON? {
+    open func toJSON() -> JSON? {
         return jsonify([
             "username" ~~> self.login,
             "password" ~~> self.password

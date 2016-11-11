@@ -8,12 +8,12 @@
 
 import Foundation
 
-public class AutoCompleteCommand : Command{
+open class AutoCompleteCommand : Command{
     let query : String
-    public var token: String?
-    public var transactionId: Int?
+    open var token: String?
+    open var transactionId: Int?
     
-    public func toJSON() -> JSON? {
+    open func toJSON() -> JSON? {
         return jsonify([
             "query" ~~> self.query,
             ])

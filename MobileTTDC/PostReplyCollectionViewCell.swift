@@ -12,12 +12,12 @@ class PostReplyCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
     
     var post : Post! {
         didSet{
-            creatorNameButton.setTitle(post.creator.login, forState: UIControlState.Normal)
+            creatorNameButton.setTitle(post.creator.login, for: UIControlState())
             entryTextView.setHtmlText(post.entry)
             if let url = post.creator.image?.thumbnailName {
-                creatorImageView.downloadedFrom(link: url, contentMode: .ScaleAspectFit)
+                creatorImageView.downloadedFrom(link: url, contentMode: .scaleAspectFit)
             }
-            dateButton.setTitle(Utilities.singleton.simpleDateTimeFormat(post.date), forState: .Normal)
+            dateButton.setTitle(Utilities.singleton.simpleDateTimeFormat(post.date), for: UIControlState())
             likesLabel.text = post.formatLikesString()
             
             refreshStyle() //For some reason those attributed guys get unhappy if you dont do this
@@ -47,26 +47,26 @@ class PostReplyCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
     
     override func refreshStyle() {
         let appStyle = getApplicationContext().getCurrentStyle()
-        likeButton.setTitleColor(appStyle.postFooterTextColor(), forState: .Normal)
-        dateButton.setTitleColor(appStyle.headerDetailTextColor(), forState: .Normal)
+        likeButton.setTitleColor(appStyle.postFooterTextColor(), for: UIControlState())
+        dateButton.setTitleColor(appStyle.headerDetailTextColor(), for: UIControlState())
         likesLabel.textColor = appStyle.postFooterTextColor()
         backgroundColor = appStyle.postBackgroundColor()
         
         
-        creatorNameButton.setTitleColor(appStyle.headerTextColor(), forState: .Normal)
+        creatorNameButton.setTitleColor(appStyle.headerTextColor(), for: UIControlState())
         entryTextView.textColor = appStyle.entryTextColor()
 //        entryTextView.backgroundColor = appStyle.postReplyBackgroundColor()
-        entryTextView.backgroundColor = UIColor.clearColor()
+        entryTextView.backgroundColor = UIColor.clear
         entryTextView.tintColor = appStyle.headerDetailTextColor()
         
     }
 
     
-    @IBAction func replyAction(sender: UIButton) {
+    @IBAction func replyAction(_ sender: UIButton) {
         delegate?.commentOnPost(post)
     }
     
-    @IBAction func likeAction(sender: UIButton) {
+    @IBAction func likeAction(_ sender: UIButton) {
         delegate?.likePost(post)
     }
     

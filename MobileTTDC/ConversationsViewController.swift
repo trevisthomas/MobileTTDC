@@ -14,7 +14,7 @@ class ConversationsViewController: PostBaseViewController {
    // private(set) var postForSegue : Post! = nil //OUTSTANDING!
     
     @IBOutlet weak var collectionView: UICollectionView!
-    private var refreshControl: UIRefreshControl = UIRefreshControl()
+    fileprivate var refreshControl: UIRefreshControl = UIRefreshControl()
 
 //    let label : UILabel = UILabel(frame: CGRectMake(50, 700, 100, 100))
     
@@ -41,7 +41,9 @@ class ConversationsViewController: PostBaseViewController {
 //        scrollView.addSubview(label)
         
         registerForUserChangeUpdates()
-        loadLatestConversations()
+        loadLatestConversations(){ () in return } //Hm, how do you make the completion handler optional?
+        
+        refreshControl.addTarget(self, action: #selector(ConversationsViewController.refreshData(_:)), for: .valueChanged)
         
         collectionView.refreshControl = refreshControl
         
@@ -51,7 +53,7 @@ class ConversationsViewController: PostBaseViewController {
     override func onCurrentUserChanged() {
         posts = []
         collectionView.reloadData()
-        loadLatestConversations()
+        loadLatestConversations() { () in return }
     }
     
     override func refreshStyle() {
@@ -62,11 +64,11 @@ class ConversationsViewController: PostBaseViewController {
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         collectionView?.collectionViewLayout.invalidateLayout() //Just incase the orientation changed when you werent visible
     }
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
         print("Orientation: ConversationsViewController")
         collectionView?.collectionViewLayout.invalidateLayout()
@@ -102,25 +104,14 @@ class ConversationsViewController: PostBaseViewController {
 
 
 extension ConversationsViewController : UICollectionViewDelegateFlowLayout{
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        
-//        sizingCellPrototype.post = getApplicationContext().latestConversations()[indexPath.row]
-//        let height = sizingCellPrototype.preferredHeight(collectionView.frame.width)
-//        return CGSize(width: collectionView.frame.width, height: height)
-        
-//        if (indexPath.row >= posts.count) {
-//            
-//            return CGSizeMake(self.collectionView.frame.width , self.loadingMessageCell.frame.height)
-//        }
-//        
-//        let post = posts[indexPath.row]
-//        
-//        return prototypeCellSize(post: post, allowHierarchy: false)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if (indexPath.row < posts.count) {
             let post = posts[indexPath.row]
-            
             return prototypeCellSize(post: post, allowHierarchy: false)
+
+//            return CGSize(width: collectionView.frame.size.width, height: 200)
+            
         } else {
             return prototypeLoadingCellSize()
         }
@@ -132,13 +123,13 @@ extension ConversationsViewController : UICollectionViewDelegateFlowLayout{
 
 extension ConversationsViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
 //        if collectionView.isScrollingNeeded() {
 //            return getApplicationContext().latestConversations().count + 1
@@ -146,14 +137,16 @@ extension ConversationsViewController : UICollectionViewDelegate, UICollectionVi
 //            return getApplicationContext().latestConversations().count
 //        }
         return posts.count + 1
+        
+//        return posts.count
     }
     
     
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if (indexPath.row >= posts.count) {
-            return collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.LOADING_CELL, forIndexPath: indexPath)
+            return collectionView.dequeueReusableCell(withReuseIdentifier: ReuseIdentifiers.LOADING_CELL, for: indexPath)
         }
         
         let post = posts[indexPath.row]
@@ -162,15 +155,20 @@ extension ConversationsViewController : UICollectionViewDelegate, UICollectionVi
         
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let post = getApplicationContext().latestConversations()[indexPath.row]
-//        performSegueWithIdentifier("ConversationDetailSegue", sender: self)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+       
+//        let post = posts[indexPath.row]
+//        var dict = [String: String]()
+//        dict["threadId"] = post.threadId
+//        performSegue(withIdentifier: "ConversationWithReplyView", sender: dict)
+//        
+
+        let post = posts[indexPath.row]
         
-        var dict = [String: String]()
-        dict["threadId"] = post.threadId
-//        dict["postId"] = post.postId
-        performSegueWithIdentifier("ConversationWithReplyView", sender: dict)
-        
+        DispatchQueue.main.async {
+            let v = self.prototypeCellSize(post: post, allowHierarchy: false)
+            print(v)
+        }
         
     }
     
@@ -197,7 +195,14 @@ extension ConversationsViewController : UICollectionViewDelegate, UICollectionVi
 //
 //    }
     
-    func loadLatestConversations(){
+    func refreshData(_ refreshControl: UIRefreshControl) {
+        loadLatestConversations() {
+            refreshControl.endRefreshing()
+        }
+    }
+    
+    //reloadDelegate : ReloadDelegate? = nil
+    func loadLatestConversations(_ completion: @escaping () -> Void){
         pageNumber = 1
         let cmd = SearchCommand(postSearchType: SearchCommand.PostSearchType.CONVERSATIONS, pageNumber: pageNumber)
         
@@ -210,10 +215,13 @@ extension ConversationsViewController : UICollectionViewDelegate, UICollectionVi
             guard (response != nil) else {
                 //Error
                 self.presentAlert("Error", message: message!)
+                completion()
                 return;
             }
+//            self.posts = (response?.list)!
             self.posts = (response?.list)!
             self.collectionView.reloadData()
+            completion()
         };
    
     }
@@ -229,9 +237,30 @@ extension ConversationsViewController : UICollectionViewDelegate, UICollectionVi
                 self.presentAlert("Error", message: message!)
                 return;
             }
-//            self.getApplicationContext()._latestConversations.appendContentsOf((response?.list)!)
-            self.posts.appendContentsOf((response?.list)!)
+
+            self.posts.append(contentsOf: (response?.list)!)
             self.collectionView.reloadData()
+            
+            // Hours of time wasted on what is below. Turns out the failure is in the attrbuted text thing.  The attributed text size thing that i do in my prototype doesnt work
+//            var count = self.posts.count - 1
+//            let list = (response?.list)!
+//            
+//            var paths : [IndexPath] = []
+//            for _ in list {
+//                let path = IndexPath(row: count, section: 0)
+//                paths.append(path)
+//                count = count + 1
+//            }
+//            
+//            self.posts.append(contentsOf: (response?.list)!)
+//            self.collectionView.insertItems(at: paths)
+            
+//            DispatchQueue.main.async {
+//                for p in list {
+//                    let v = self.prototypeCellSize(post: p, allowHierarchy: false)
+//                    print(v)
+//                }
+//            }
             
         };
     }
@@ -258,7 +287,7 @@ extension ConversationsViewController : UICollectionViewDelegate, UICollectionVi
 //}
 
 extension ConversationsViewController : UIScrollViewDelegate {
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         let scrollViewHeight = scrollView.frame.size.height
         let scrollContentSizeHeight = scrollView.contentSize.height
@@ -274,7 +303,7 @@ extension ConversationsViewController : UIScrollViewDelegate {
             
             if(!dataLoadingInProgress) {
                 dataLoadingInProgress = true
-                collectionView.reloadData()
+//                collectionView.reloadData()
                 loadNextPage()
                 
             }
@@ -308,14 +337,14 @@ extension ConversationsViewController : UIScrollViewDelegate {
 }
 
 
-extension ConversationsViewController : LatestConversationsObserver {
-    func latestConversationsUpdated() {
-        self.collectionView?.reloadData()
-    }
-    func networkError(error: String) {
-        self.presentAlert("Sorry", message: error)
-    }
-    func authenticatedUserChanged() {
-        print("Conversations VC sees that the user changed.")
-    }
-}
+//extension ConversationsViewController : LatestConversationsObserver {
+//    func latestConversationsUpdated() {
+//        self.collectionView?.reloadData()
+//    }
+//    func networkError(_ error: String) {
+//        self.presentAlert("Sorry", message: error)
+//    }
+//    func authenticatedUserChanged() {
+//        print("Conversations VC sees that the user changed.")
+//    }
+//}

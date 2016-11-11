@@ -11,9 +11,9 @@ import UIKit
 @IBDesignable
 class StarRatingView: UIView {
 
-    @IBInspectable var fillColor : UIColor = UIColor.greenColor()
-    @IBInspectable var strokeColor : UIColor = UIColor.blueColor()
-    @IBInspectable var bgColor : UIColor = UIColor.whiteColor()
+    @IBInspectable var fillColor : UIColor = UIColor.green
+    @IBInspectable var strokeColor : UIColor = UIColor.blue
+    @IBInspectable var bgColor : UIColor = UIColor.white
     @IBInspectable var strokeWidth : CGFloat = 0.8
     
     @IBInspectable var starCount: Int = 5
@@ -39,7 +39,7 @@ class StarRatingView: UIView {
         bgColor = style.postBackgroundColor()
     }
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         assert(starsVisible <= CGFloat(starCount))
         
 //        let starWidth = rect.width / CGFloat(starCount)
@@ -53,15 +53,15 @@ class StarRatingView: UIView {
         var shiftBy : CGFloat = 0.0
         
         for _ in 0..<starCount {
-            starFillPath.moveToPoint(scalePoint(starPoints[0], scale: starWidth, shiftBy: shiftBy))
+            starFillPath.move(to: scalePoint(starPoints[0], scale: starWidth, shiftBy: shiftBy))
             for i in 1..<starPoints.count {
                 let pt = starPoints[i]
-                starFillPath.addLineToPoint(scalePoint(pt, scale: starWidth, shiftBy: shiftBy))
+                starFillPath.addLine(to: scalePoint(pt, scale: starWidth, shiftBy: shiftBy))
                 
             }
             
             shiftBy += starWidth
-            starFillPath.closePath()
+            starFillPath.close()
         }
         
         starFillPath.fill()
@@ -79,7 +79,7 @@ class StarRatingView: UIView {
         
     }
     
-    func scalePoint(point : CGPoint, scale : CGFloat, shiftBy shift : CGFloat) -> CGPoint{
+    func scalePoint(_ point : CGPoint, scale : CGFloat, shiftBy shift : CGFloat) -> CGPoint{
         return CGPoint(x: (point.x / 14 * scale) + shift, y: point.y / 14 * scale)
     }
     

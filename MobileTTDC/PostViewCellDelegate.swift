@@ -9,8 +9,8 @@
 import Foundation
 
 protocol PostViewCellDelegate {
-    func likePost(post: Post)
-    func viewComments(post: Post)
-    func commentOnPost(post: Post)
-    func viewThread(post: Post)
+    func likePost(_ post: Post)
+    func viewComments(_ post: Post)
+    func commentOnPost(_ post: Post)
+    func viewThread(_ post: Post)
 }

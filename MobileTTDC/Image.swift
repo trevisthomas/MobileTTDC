@@ -22,7 +22,7 @@ public struct Image: Decodable{
         height = ("height" <~~ json)!
     }
     
-    private static func prependPath(imageFileName : String) -> String{
+    fileprivate static func prependPath(_ imageFileName : String) -> String{
         return "\(Network.getHost())/images/\(imageFileName)"
     }
 }

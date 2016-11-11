@@ -12,10 +12,10 @@ class LatestPostsViewController: PostBaseViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private var originalHeight : CGFloat!
-    private var originalTopOfDisapearingView : CGFloat!
-    private var statusBarHeight : CGFloat!
-    private var originalTopOfCollectionView : CGFloat!
+    fileprivate var originalHeight : CGFloat!
+    fileprivate var originalTopOfDisapearingView : CGFloat!
+    fileprivate var statusBarHeight : CGFloat!
+    fileprivate var originalTopOfCollectionView : CGFloat!
     
     @IBOutlet weak var modeSegmentedControl: UISegmentedControl!
     
@@ -23,24 +23,24 @@ class LatestPostsViewController: PostBaseViewController {
     
     @IBOutlet weak var modeSelectionHeightConstraint: NSLayoutConstraint!
     
-    @IBAction func modeSelectSegmentedControll(sender: UISegmentedControl) {
+    @IBAction func modeSelectSegmentedControll(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
             print("Selected flat")
-            getApplicationContext().displayMode = .LatestFlat
+            getApplicationContext().displayMode = .latestFlat
         default:
             print("Selected grouped")
-            getApplicationContext().displayMode = .LatestGrouped
+            getApplicationContext().displayMode = .latestGrouped
         }
         
     }
     
-    @IBAction func presentCommentCreationView(sender: UIBarButtonItem) {
+    @IBAction func presentCommentCreationView(_ sender: UIBarButtonItem) {
         
         //http://www.appcoda.com/presentation-controllers-tutorial/
         
         let storyboard : UIStoryboard = UIStoryboard(name: "Comment", bundle: nil)
-        let vc = storyboard.instantiateViewControllerWithIdentifier("CommentCreator") as! UINavigationController
+        let vc = storyboard.instantiateViewController(withIdentifier: "CommentCreator") as! UINavigationController
 //        vc.modalPresentationStyle = UIModalPresentationStyle.Popover
 //        let popover: UIPopoverPresentationController = vc.popoverPresentationController!
 //        popover.delegate = self
@@ -55,8 +55,8 @@ class LatestPostsViewController: PostBaseViewController {
 //        
 //        presentViewController(vc, animated: true, completion:nil)
         
-        vc.modalPresentationStyle = UIModalPresentationStyle.FormSheet
-        presentViewController(vc, animated: true, completion:nil)
+        vc.modalPresentationStyle = UIModalPresentationStyle.formSheet
+        present(vc, animated: true, completion:nil)
 
 //        vc.modalPresentationStyle = UIModalPresentationStyle.PageSheet
 //        presentViewController(vc, animated: true, completion:nil)
@@ -110,13 +110,13 @@ class LatestPostsViewController: PostBaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
         print("Orientation: PostDetailViewController")
         
-        coordinator.animateAlongsideTransition({ context in
+        coordinator.animate(alongsideTransition: { context in
             // do whatever with your context
-            context.viewControllerForKey(UITransitionContextFromViewControllerKey)
+            context.viewController(forKey: UITransitionContextViewControllerKey.from)
             }, completion: {context in
                 self.collectionView?.collectionViewLayout.invalidateLayout()
                 
@@ -124,7 +124,7 @@ class LatestPostsViewController: PostBaseViewController {
         )
     }
     
-    override func canPerformUnwindSegueAction(action: Selector, fromViewController: UIViewController, withSender sender: AnyObject) -> Bool {
+    override func canPerformUnwindSegueAction(_ action: Selector, from fromViewController: UIViewController, withSender sender: Any) -> Bool {
         return true;
     }
     
@@ -159,17 +159,17 @@ class LatestPostsViewController: PostBaseViewController {
 
 
 extension LatestPostsViewController : UICollectionViewDelegateFlowLayout {
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let post = getApplicationContext().latestPosts()[indexPath.row]
         
-        return prototypeCellSize(post: post, allowHierarchy: (getApplicationContext().displayMode == .LatestGrouped))
+        return prototypeCellSize(post: post, allowHierarchy: (getApplicationContext().displayMode == .latestGrouped))
     }
     
 }
 
 extension LatestPostsViewController : UIScrollViewDelegate {
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         adjustHistoryViewBecauseScrollChangedAllTheWay()
     }
     
@@ -192,19 +192,19 @@ extension LatestPostsViewController : UIScrollViewDelegate {
 
 extension LatestPostsViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return getApplicationContext().latestPosts().count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let post = getApplicationContext().latestPosts()[indexPath.row]
         
-        return dequeueCell(post, indexPath: indexPath, allowHierarchy : (getApplicationContext().displayMode == .LatestGrouped))
+        return dequeueCell(post, indexPath: indexPath, allowHierarchy : (getApplicationContext().displayMode == .latestGrouped))
     }
     
     
@@ -216,10 +216,10 @@ extension LatestPostsViewController {
     
     func handleModeChange(){
         switch getApplicationContext().displayMode{
-        case .LatestGrouped:
+        case .latestGrouped:
             self.navigationController?.navigationBar.topItem?.title = "Latest - Grouped"
             modeSegmentedControl.selectedSegmentIndex = 1
-        case .LatestFlat:
+        case .latestFlat:
             self.navigationController?.navigationBar.topItem?.title = "Latest - Flat"
             modeSegmentedControl.selectedSegmentIndex = 0
         }
@@ -241,14 +241,14 @@ extension LatestPostsViewController : LatestPostsObserver {
     func authenticatedUserChanged(){
         
     }
-    func networkError(error : String){
+    func networkError(_ error : String){
         self.presentAlert("Sorry", message: error)
     }
 }
 
 extension LatestPostsViewController : UIPopoverPresentationControllerDelegate {
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         print("Am i only caled on the iphone?")
-        return UIModalPresentationStyle.FullScreen
+        return UIModalPresentationStyle.fullScreen
     }
 }

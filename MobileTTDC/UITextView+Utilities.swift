@@ -10,22 +10,22 @@ import Foundation
 import UIKit
 
 extension UITextView {
-    func customSizeThatFits(width: CGFloat) -> CGSize {
+    func customSizeThatFits(_ width: CGFloat) -> CGSize {
         
-        let templateSize = CGSizeMake(width, CGFloat.max)
-        let textRect = self.attributedText.boundingRectWithSize(templateSize, options: [NSStringDrawingOptions.UsesFontLeading,.UsesLineFragmentOrigin], context: nil)
+        let templateSize = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        let textRect = self.attributedText.boundingRect(with: templateSize, options: [NSStringDrawingOptions.usesFontLeading,.usesLineFragmentOrigin], context: nil)
         
         return textRect.size
         
     }
     
     
-    func setHtmlText(html : String, font sysfont : UIFont = UIFont(name:"Helvetica", size: UIFont.systemFontSize())!){
+    func setHtmlText(_ html : String, font sysfont : UIFont = UIFont(name:"Helvetica", size: UIFont.systemFontSize)!){
         //UIFont = UIFont.systemFontOfSize(UIFont.systemFontSize())
         //        let sysfont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
         //UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
         
-        let fileLocation = NSBundle.mainBundle().pathForResource("style", ofType: "css")!
+        let fileLocation = Bundle.main.path(forResource: "style", ofType: "css")!
         let css : String
         do
         {
@@ -47,14 +47,17 @@ extension UITextView {
 //        let modifiedFont = NSString(format:"<span style=\"font-family: '\(sysfont.fontName)'; font-size: \(sysfont.pointSize)\">%@  </span>", html) as String
 //        
         
-        if let htmlData = htmlCss.dataUsingEncoding(NSUnicodeStringEncoding) {
+        if let htmlData = htmlCss.data(using: String.Encoding.utf8) {
             //                NSAttributedString(
             
             do {
-                
                 self.attributedText = try NSMutableAttributedString(data: htmlData,
-                                                                    options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSFontAttributeName: sysfont],
+                                                                    options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
                                                                     documentAttributes: nil)
+               
+//                self.attributedText = try NSMutableAttributedString(data: htmlData,
+//                                                                    options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSFontAttributeName: sysfont],
+//                                                                    documentAttributes: nil)
             } catch let e as NSError {
                 print("Couldn't translate \(html): \(e.localizedDescription) ")
             } catch let e2 as NSException {

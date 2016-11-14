@@ -36,7 +36,12 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
             
             if let posts = post.posts {
                 for p in posts{
-                    let review : MovieReviewSubView = MovieReviewSubView.fromNib()
+                    //Trevis, after Swift 3 / iOS 10 conversion this stopped working.
+//                    let review : MovieReviewSubView = MovieReviewSubView.fromNib()
+                    
+                    let nib = UINib(nibName: "MovieReviewSubView", bundle: nil)
+                    let review = nib.instantiate(withOwner: nil, options: nil)[0] as! MovieReviewSubView
+                    
                     review.post = p
                     review.heightAnchor.constraint(equalToConstant: CGFloat(starHeight)).isActive = true
                     review.widthAnchor.constraint(equalToConstant: self.frame.width).isActive = true

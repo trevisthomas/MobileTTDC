@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostBaseViewController: UIViewController, PostViewCellDelegate{
+class PostBaseViewController: UIViewController, PostViewCellDelegate {
     
     var replyPrototypeCell : PostReplyCollectionViewCell!
     var postPrototypeCell : PostCollectionViewCell!
@@ -16,11 +16,16 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
     var moviePostPrototypeCell : MoviePostCollectionViewCell!
     var rootPostPrototypeCell : RootPostCollectionViewCell!
     var loadingMessageCell : LoadingCollectionViewCell!
+    var refreshControl: UIRefreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         registerPrototypeCells()
+        
+        refreshControl.addTarget(self, action: #selector(PostBaseViewController.performDataRefresh(_:)), for: .valueChanged)
+        
+        getCollectionView()?.refreshControl = refreshControl
     }
     
     func registerPrototypeCells() {
@@ -36,11 +41,22 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
         
         loadingMessageCell = registerAndCreatePrototypeCellFromNib(ReuseIdentifiers.LOADING_CELL, forReuseIdentifier: ReuseIdentifiers.LOADING_CELL) as! LoadingCollectionViewCell
     }
+
+//    func refreshData(completion: @escaping () -> Void) {
+////        abort()
+//    }
     
+    func performDataRefresh(_ refreshControl: UIRefreshControl) {
+        refreshData() {
+            refreshControl.endRefreshing()
+        }
+    }
+
 
     func likePost(_ post: Post){
         
     }
+    
     func viewComments(_ post: Post){
         var dict = [String: String]()
         dict["threadId"] = post.threadId
@@ -117,18 +133,6 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
         }
     }
     
-//    func prototypeCellSize(post p: Post, indexPath : NSIndexPath, width : CGFloat) -> CGFloat {
-//        
-//        if (!p.threadPost) {
-//            replyPrototypeCell.post = p
-//            return replyPrototypeCell.preferredHeight(width)
-//        } else {
-//            postPrototypeCell.post = p
-//            return postPrototypeCell.preferredHeight(width)
-//            
-//        }
-//    }
-    
     func prototypeLoadingCellSize() -> CGSize {
 //        let frameSize = getCollectionView()!.frame.size
 //        return CGSizeMake(self.collectionView.frame.width, self.loadingMessageCell.frame.height)
@@ -158,3 +162,18 @@ class PostBaseViewController: UIViewController, PostViewCellDelegate{
     }
 
 }
+
+protocol DynamicData {
+    func refreshData(completion: @escaping () -> Void)
+}
+
+//http://stackoverflow.com/questions/32105957/swift-calling-subclasss-overridden-method-from-superclass/40558606#40558606
+//Trevis, WTF.  Adding this method to the PostBase* class directly and then calling it from that classes implementation doesnt call the overriden verison from the sub!  WTF!
+extension PostBaseViewController : DynamicData {
+    internal func refreshData(completion: @escaping () -> Void) {
+        abort()
+    }
+}
+
+
+

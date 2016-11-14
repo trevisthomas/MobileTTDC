@@ -37,6 +37,7 @@
 		0F3CEAB41DC272AA003CD432 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3CEAB31DC272AA003CD432 /* TabBarViewController.swift */; };
 		0F3CEABA1DC4D64F003CD432 /* AppStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3CEAB91DC4D64F003CD432 /* AppStyle.swift */; };
 		0F3CEABD1DC6F9D5003CD432 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F3CEABC1DC6F9D5003CD432 /* Profile.storyboard */; };
+		0F6E12B51DD8F9AD00927810 /* CommonBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6E12B41DD8F9AD00927810 /* CommonBaseViewController.swift */; };
 		0F76A87A1CFA165D00BDD499 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A8791CFA165D00BDD499 /* LoginViewController.swift */; };
 		0F76A87C1CFA16C300BDD499 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */; };
 		0F76A87E1CFA1C9400BDD499 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A87D1CFA1C9400BDD499 /* ProfileViewController.swift */; };
@@ -144,6 +145,7 @@
 		0F3CEAB31DC272AA003CD432 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		0F3CEAB91DC4D64F003CD432 /* AppStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStyle.swift; sourceTree = "<group>"; };
 		0F3CEABC1DC6F9D5003CD432 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		0F6E12B41DD8F9AD00927810 /* CommonBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonBaseViewController.swift; sourceTree = "<group>"; };
 		0F76A8791CFA165D00BDD499 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
 		0F76A87D1CFA1C9400BDD499 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -295,7 +297,6 @@
 				0FA3F25D1DBBC7EA00268DC1 /* PostCollectionViewCell.xib */,
 				0FA3F2601DBBC7FE00268DC1 /* PostReplyCollectionViewCell.swift */,
 				0FA3F2611DBBC7FE00268DC1 /* PostReplyCollectionViewCell.xib */,
-				0FA3F2681DBC73B400268DC1 /* PostBaseViewController.swift */,
 				0F9FB1E11DBD56EF00B901ED /* PostSeperator.swift */,
 				0F0997B31DC90EFB001991E2 /* MoviePostCollectionViewCell.swift */,
 				0F0997B41DC90EFB001991E2 /* MoviePostCollectionViewCell.xib */,
@@ -308,6 +309,8 @@
 				0F2B8CB51DCE7F4800BD62C6 /* RootPostCollectionViewCell.xib */,
 				0F2B8CB81DCF1FE800BD62C6 /* LoadingCollectionViewCell.swift */,
 				0F2B8CB91DCF1FE800BD62C6 /* LoadingCollectionViewCell.xib */,
+				0FA3F2681DBC73B400268DC1 /* PostBaseViewController.swift */,
+				0F6E12B41DD8F9AD00927810 /* CommonBaseViewController.swift */,
 			);
 			name = Post;
 			sourceTree = "<group>";
@@ -618,6 +621,7 @@
 				0FE527221CFB654300407AAE /* LoginResponse.swift in Sources */,
 				0FA3F2691DBC73B400268DC1 /* PostBaseViewController.swift in Sources */,
 				0FE5272F1CFB65EB00407AAE /* ExtensionArray.swift in Sources */,
+				0F6E12B51DD8F9AD00927810 /* CommonBaseViewController.swift in Sources */,
 				0F0F69CA1D3C9863009600F7 /* ConversationWithReplyViewController.swift in Sources */,
 				0F317C641D280D7D00C110AE /* ApplicationContext.swift in Sources */,
 				0FD0A33C1D0DF4140030D36F /* ReuseIdentifiers.swift in Sources */,

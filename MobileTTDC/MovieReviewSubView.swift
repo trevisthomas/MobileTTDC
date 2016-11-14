@@ -17,6 +17,10 @@ class MovieReviewSubView: UIView {
         super.init(coder: aDecoder)!
     }
     
+//    required override init(frame: CGRect) {
+//        super.init(frame: frame)
+//    }
+    
     var post : Post? {
         didSet{
             registerForStyleUpdates()

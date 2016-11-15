@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CommonBaseViewController: UIViewController, PostViewCellDelegate{
+class CommonBaseViewController: UIViewController, PostViewCellDelegate {
     
     var replyPrototypeCell : PostReplyCollectionViewCell!
     var postPrototypeCell : PostCollectionViewCell!
@@ -36,6 +36,29 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate{
         registerForUserChangeUpdates()
         
     }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        print("Orientation: PostDetailViewController")
+        
+        coordinator.animate(alongsideTransition: { context in
+            // do whatever with your context
+            context.viewController(forKey: UITransitionContextViewControllerKey.from)
+        }, completion: {context in
+            self.sizeCache = []
+            self.loadSizeCache(posts: self.posts) {
+                   self.getCollectionView()?.collectionViewLayout.invalidateLayout()
+            }
+        }
+        )
+    }
+    
+//    override func viewWillLayoutSubviews() {
+//        super.viewWillLayoutSubviews()
+//        self.getCollectionView()?.collectionViewLayout.invalidateLayout()
+//        
+//    }
+// 
     
     func registerPrototypeCells() {
         postPrototypeCell = registerAndCreatePrototypeCellFromNib(ReuseIdentifiers.POST_CELL, forReuseIdentifier: ReuseIdentifiers.POST_CELL) as! PostCollectionViewCell
@@ -199,7 +222,7 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate{
         }
         
     }
-    func loadSizeCache(posts : [Post], completion: @escaping () -> Swift.Void){
+    func loadSizeCache(posts : [Post], completion: (@escaping () -> Swift.Void) = {}){
         sizeCache = []
         DispatchQueue.main.async {
             for p in self.posts {

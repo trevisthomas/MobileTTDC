@@ -58,7 +58,33 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate {
 //        self.getCollectionView()?.collectionViewLayout.invalidateLayout()
 //        
 //    }
-// 
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard let nav = segue.destination as? UINavigationController else {
+            return
+        }
+        
+        if let destVC = nav.topViewController as? ThreadViewController {
+            let postId = sender as! String
+            destVC.rootPostId = postId
+            return
+        }
+        
+        guard let vc = nav.topViewController as? ConversationWithReplyViewController else {
+            return
+        }
+        
+        let dict = sender as! [String: String]
+        
+        print(dict["threadId"]!)
+        
+        vc.postId = dict["threadId"]
+        if let postId = dict["postId"] {
+            vc.replyToPostId = postId
+        }
+    }
+
     
     func registerPrototypeCells() {
         postPrototypeCell = registerAndCreatePrototypeCellFromNib(ReuseIdentifiers.POST_CELL, forReuseIdentifier: ReuseIdentifiers.POST_CELL) as! PostCollectionViewCell

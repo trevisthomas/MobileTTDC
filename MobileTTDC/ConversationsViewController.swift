@@ -66,35 +66,11 @@ class ConversationsViewController: CommonBaseViewController {
         };
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        guard let nav = segue.destination as? UINavigationController else {
-            return
-        }
-        
-        if let destVC = nav.topViewController as? ThreadViewController {
-            let postId = sender as! String
-            destVC.rootPostId = postId
-            return
-        }
-        
-        guard let vc = nav.topViewController as? ConversationWithReplyViewController else {
-            return
-        }
-        
-        let dict = sender as! [String: String]
-        
-        print(dict["threadId"]!)
-        
-        vc.postId = dict["threadId"]
-        if let postId = dict["postId"] {
-            vc.replyToPostId = postId
-        }
-    }
+    
 }
 
 //TODO! Figure out why this is a redundant declaration!
-extension CommonBaseViewController /*: UICollectionViewDelegate*/ {
+extension CommonBaseViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let post = self.posts[indexPath.row]

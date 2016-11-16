@@ -127,7 +127,7 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate {
         performSegue(withIdentifier: "ThreadView", sender: post.postId)
     }
     
-    func dequeueCell(_ post : Post, indexPath : IndexPath, allowHierarchy : Bool = false) -> UICollectionViewCell {
+    func dequeueCell(_ post : Post, indexPath : IndexPath) -> UICollectionViewCell {
         if post.isMovie {
             let cell =  self.getCollectionView()!.dequeueReusableCell(withReuseIdentifier: ReuseIdentifiers.MOVIE_POST_CELL, for: indexPath) as! MoviePostCollectionViewCell
             
@@ -140,7 +140,7 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate {
             cell.post = post
             cell.delegate = self
             return cell
-        } else if allowHierarchy && !post.threadPost {
+        } else if allowHierarchy() && !post.threadPost {
             let cell =  self.getCollectionView()!.dequeueReusableCell(withReuseIdentifier: ReuseIdentifiers.POST_REPLY_CELL, for: indexPath) as! PostReplyCollectionViewCell
             
             cell.post = post
@@ -166,7 +166,7 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate {
         return loadingMessageCell.frame.size
     }
     
-    func prototypeCellSize(post p: Post, allowHierarchy : Bool = false) -> CGSize {
+    func prototypeCellSize(post p: Post) -> CGSize {
         
         let height : CGFloat
         let frameSize = getCollectionView()!.frame.size
@@ -174,7 +174,7 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate {
         if p.isMovie{
             moviePostPrototypeCell.post = p
             height = moviePostPrototypeCell.preferredHeight(frameSize.width)
-        } else if (allowHierarchy && !p.threadPost) {
+        } else if (allowHierarchy() && !p.threadPost) {
             replyPrototypeCell.post = p
             height = replyPrototypeCell.preferredHeight(frameSize.width)
         } else if (p.isReview) {
@@ -249,10 +249,11 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate {
         
     }
     func loadSizeCache(posts : [Post], completion: (@escaping () -> Swift.Void) = {}){
-        sizeCache = []
+        
         DispatchQueue.main.async {
+            self.sizeCache = []
             for p in self.posts {
-                let size = self.prototypeCellSize(post: p, allowHierarchy: false)
+                let size = self.prototypeCellSize(post: p)
                 print(size)
                 self.sizeCache.append(size)
             }
@@ -260,6 +261,14 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate {
         }
     }
     
+    func allowHierarchy() -> Bool {
+        return false
+    }
+    
+    func removeAllPosts(){
+        posts = []
+        getCollectionView()?.reloadData()
+    }
 }
 
 extension CommonBaseViewController : UICollectionViewDelegateFlowLayout {
@@ -316,7 +325,7 @@ extension CommonBaseViewController : UICollectionViewDataSource {
         
         let post = posts[indexPath.row]
         
-        return dequeueCell(post, indexPath: indexPath, allowHierarchy: false)
+        return dequeueCell(post, indexPath: indexPath)
         
     }
     

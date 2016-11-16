@@ -43,8 +43,8 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
                     parentPostCreatorButton.setTitle("\(post.mass) comments", for: UIControlState())
                 }
                 
-            } else {
-                parentPostCreatorButton.setTitle("in response to \(post.parentPostCreator)", for: UIControlState())
+            } else if let inResponseTo = post.parentPostCreator{
+                parentPostCreatorButton.setTitle("in response to \(inResponseTo)", for: UIControlState())
             }
             
  

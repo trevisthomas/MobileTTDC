@@ -25,19 +25,19 @@ public protocol LatestPostsObserver: AuthenticatedUserObserver {
 }
 
 public protocol LatestPostsDataProvider: AuthenticatedUserDataProvider{
-    func latestPosts() -> [Post]
+//    func latestPosts() -> [Post]
     var displayMode : DisplayMode {get set}
-    var latestPostsObserver : LatestPostsObserver?  {get set}
-    func reloadLatestPosts()
+//    var latestPostsObserver : LatestPostsObserver?  {get set}
+//    func reloadLatestPosts()
 }
 
-public protocol LatestConversationsObserver: AuthenticatedUserObserver  {
-    func latestConversationsUpdated()
-    func networkError(_ error: String)
-}
-
-public protocol LatestConversationsDataProvider: AuthenticatedUserDataProvider {
-    func latestConversations() -> [Post]
-    var latestConversationsObserver : LatestConversationsObserver?  {get set}
-    func reloadLatestConversations()
-}
+//public protocol LatestConversationsObserver: AuthenticatedUserObserver  {
+//    func latestConversationsUpdated()
+//    func networkError(_ error: String)
+//}
+//
+//public protocol LatestConversationsDataProvider: AuthenticatedUserDataProvider {
+//    func latestConversations() -> [Post]
+//    var latestConversationsObserver : LatestConversationsObserver?  {get set}
+//    func reloadLatestConversations()
+//}

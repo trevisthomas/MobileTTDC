@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LatestPostsViewController: PostBaseViewController {
+class LatestPostsViewController: CommonBaseViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -32,72 +32,32 @@ class LatestPostsViewController: PostBaseViewController {
             print("Selected grouped")
             getApplicationContext().displayMode = .latestGrouped
         }
+//        handleModeChange()
         
+//        removeAllPosts()
+        
+        loadFirstPage()
     }
-    
-    @IBAction func presentCommentCreationView(_ sender: UIBarButtonItem) {
-        
-        //http://www.appcoda.com/presentation-controllers-tutorial/
-        
-        let storyboard : UIStoryboard = UIStoryboard(name: "Comment", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "CommentCreator") as! UINavigationController
-//        vc.modalPresentationStyle = UIModalPresentationStyle.Popover
-//        let popover: UIPopoverPresentationController = vc.popoverPresentationController!
-//        popover.delegate = self
-//        popover.barButtonItem = sender
-        
-//        popover.sourceView = modeSegmentedControl
-//        popover.sourceView = self.view
-//        let center = CGPoint(x: CGRectGetMidX(view.bounds), y: CGRectGetMidY(view.bounds))
-//        popover.sourceRect = CGRect(origin: center, size: CGSize(width: 10, height: 10))
-        
-//        popover.sourceRect = CGRect(x: view.bounds.width / 2 - 200, y: view.bounds.height / 2, width: 1, height: 1)
-//        
-//        presentViewController(vc, animated: true, completion:nil)
-        
-        vc.modalPresentationStyle = UIModalPresentationStyle.formSheet
-        present(vc, animated: true, completion:nil)
-
-//        vc.modalPresentationStyle = UIModalPresentationStyle.PageSheet
-//        presentViewController(vc, animated: true, completion:nil)
-
-    }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getApplicationContext().latestPostsObserver = self
-        collectionView.delegate = self //For the layout delegate
         
         handleModeChange()
         
-//        self.navigationController?.navigationBar.translucent = true
-//        self.navigationController?.navigationBar.alpha = 0.5
-//        self.navigationController?.navigationBar.tintColor = UIColor.greenColor()
-//        self.navigationController?.navigationBar.barTintColor = UIColor.yellowColor()
-        
-        registerForStyleUpdates()
+//        loadFirstPage()
     }
     
     override func refreshStyle() {
         modeSegmentedControl.tintColor = getApplicationContext().getCurrentStyle().tintColor()
-        
         modeSelectionView.backgroundColor = getApplicationContext().getCurrentStyle().postBackgroundColor()
-        
         collectionView.backgroundColor = getApplicationContext().getCurrentStyle().postBackgroundColor()
-        
-//        collectionView.
         collectionView.indicatorStyle = getApplicationContext().getCurrentStyle().scrollBarStyle()
-        
-        
     }
     
     //This is here so that the layout will adjust when you "maximize"
-    override func viewWillLayoutSubviews() {
-        collectionView?.collectionViewLayout.invalidateLayout()
-        
-    }
+//    override func viewWillLayoutSubviews() {
+//        collectionView?.collectionViewLayout.invalidateLayout()
+//    }
     
     override func viewDidLayoutSubviews() {
         originalTopOfCollectionView = collectionView.frame.origin.y
@@ -105,71 +65,59 @@ class LatestPostsViewController: PostBaseViewController {
         statusBarHeight = originalTopOfDisapearingView
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func loadPosts(completion: @escaping ([Post]?) -> Void) {
+        
+        switch getApplicationContext().displayMode {
+        case .latestGrouped:
+            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED, completion: completion)
+        case .latestFlat:
+            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT, completion: completion)
+        }
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    override func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void) {
+        switch getApplicationContext().displayMode {
+        case .latestGrouped:
+            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED, pageNumber: pageNumber, completion: completion)
+        case .latestFlat:
+            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT, pageNumber: pageNumber, completion: completion)
+        }
+    }
+    
+    
+    fileprivate func loadlatestPostDataFromWebservice(_ action: PostCommand.Action, pageNumber: Int = 1, completion: @escaping ([Post]?) -> Void){
+        let cmd = PostCommand(action: action, pageNumber: pageNumber)
         
-        print("Orientation: PostDetailViewController")
-        
-        coordinator.animate(alongsideTransition: { context in
-            // do whatever with your context
-            context.viewController(forKey: UITransitionContextViewControllerKey.from)
-            }, completion: {context in
-                self.collectionView?.collectionViewLayout.invalidateLayout()
-                
+        Network.performPostCommand(cmd){
+            (response, message) -> Void in
+            guard (response != nil) else {
+                self.presentAlert("Sorry", message: message!)
+                return;
             }
-        )
+            
+            let posts = (response?.list)!
+            
+            if self.getApplicationContext().displayMode == .latestGrouped {
+                completion(posts.flattenPosts())
+            } else {
+                completion(posts)
+            }
+        };
     }
     
-    override func canPerformUnwindSegueAction(_ action: Selector, from fromViewController: UIViewController, withSender sender: Any) -> Bool {
-        return true;
+    override func allowHierarchy() -> Bool {
+        return getApplicationContext().displayMode == .latestGrouped
     }
     
-    /*
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-      
-        guard let nav = segue.destinationViewController as? UINavigationController else {
-            return
-        }
-        
-        if let destVC = nav.topViewController as? ThreadViewController {
-            let postId = sender as! String
-            destVC.rootPostId = postId
-            return
-        }
-        
-        guard let vc = nav.topViewController as? ConversationWithReplyViewController else {
-            return
-        }
-
-        let dict = sender as! [String: String]
-        
-        print(dict["threadId"])
-    
-        vc.postId = dict["threadId"]
-        if let postId = dict["postId"] {
-            vc.replyToPostId = postId
-        }
+    override func onCurrentUserChanged() {
+        removeAllPosts()
+        loadFirstPage()
     }
- */
 }
 
-
-extension LatestPostsViewController : UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let post = getApplicationContext().latestPosts()[indexPath.row]
-        
-        return prototypeCellSize(post: post, allowHierarchy: (getApplicationContext().displayMode == .latestGrouped))
-    }
-    
-}
-
-extension LatestPostsViewController : UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+extension LatestPostsViewController /*: UIScrollViewDelegate*/ {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        super.scrollViewDidScroll(scrollView)
         adjustHistoryViewBecauseScrollChangedAllTheWay()
     }
     
@@ -190,26 +138,6 @@ extension LatestPostsViewController : UIScrollViewDelegate {
     }
 }
 
-extension LatestPostsViewController : UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return getApplicationContext().latestPosts().count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        let post = getApplicationContext().latestPosts()[indexPath.row]
-        
-        return dequeueCell(post, indexPath: indexPath, allowHierarchy : (getApplicationContext().displayMode == .latestGrouped))
-    }
-    
-    
-   
-}
 
 //Custom methods and logic.
 extension LatestPostsViewController {
@@ -231,24 +159,24 @@ extension LatestPostsViewController {
     }
 }
 
-extension LatestPostsViewController : LatestPostsObserver {
-    func latestPostsUpdated(){
-        self.collectionView.reloadData()
-    }
-    func displayModeChanged(){
-        handleModeChange()
-    }
-    func authenticatedUserChanged(){
-        
-    }
-    func networkError(_ error : String){
-        self.presentAlert("Sorry", message: error)
-    }
-}
+//extension LatestPostsViewController : LatestPostsObserver {
+//    func latestPostsUpdated(){
+//        self.collectionView.reloadData()
+//    }
+//    func displayModeChanged(){
+//        handleModeChange()
+//    }
+//    func authenticatedUserChanged(){
+//        
+//    }
+//    func networkError(_ error : String){
+//        self.presentAlert("Sorry", message: error)
+//    }
+//}
 
-extension LatestPostsViewController : UIPopoverPresentationControllerDelegate {
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        print("Am i only caled on the iphone?")
-        return UIModalPresentationStyle.fullScreen
-    }
-}
+//extension LatestPostsViewController : UIPopoverPresentationControllerDelegate {
+//    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+//        print("Am i only caled on the iphone?")
+//        return UIModalPresentationStyle.fullScreen
+//    }
+//}

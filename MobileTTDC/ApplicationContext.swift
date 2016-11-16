@@ -24,20 +24,6 @@ open class ApplicationContext : AuthenticatedUserDataProvider {
     
     open var imageCache : [String: UIImage] = [:]
     
-//    public var currentStyleName : Style = .Light{
-//        didSet{
-//            switch currentStyleName {
-//            case .Light:
-//                currentStyle = AppStyleLight()
-//                
-//            case .Dark:
-//                currentStyle = AppStyleDark()
-//                
-//            }
-//        }
-//    }
-    
-    
     func setStyleDark(){
         currentStyleName = ApplicationContext.styleDark
         saveState()
@@ -165,32 +151,34 @@ open class ApplicationContext : AuthenticatedUserDataProvider {
         }
     }
     
-    fileprivate var _latestPosts : [Post] = [] {
-        didSet{
-            latestPostsObserver?.latestPostsUpdated()
-        }
-    }
-    
-    /*private*/ var _latestConversations : [Post] = [] {
-        didSet{
-            latestConversationsObserver?.latestConversationsUpdated()
-        }
-    }
+//    fileprivate var _latestPosts : [Post] = [] {
+//        didSet{
+//            latestPostsObserver?.latestPostsUpdated()
+//        }
+//    }
+//    
+//    /*private*/ var _latestConversations : [Post] = [] {
+//        didSet{
+//            latestConversationsObserver?.latestConversationsUpdated()
+//        }
+//    }
     
     open var displayMode : DisplayMode = DisplayMode.latestGrouped {
         didSet{
-            reloadLatestPosts()
-            latestPostsObserver?.displayModeChanged()
+            
+            //Trevis, do you need to change the displaymode external to the Latest posts?
+//            reloadLatestPosts()
+//            latestPostsObserver?.displayModeChanged()
             
         }
     }
-    open var latestPostsObserver : LatestPostsObserver? = nil
-    
-    open var latestConversationsObserver : LatestConversationsObserver? = nil
+//    open var latestPostsObserver : LatestPostsObserver? = nil
+//    
+//    open var latestConversationsObserver : LatestConversationsObserver? = nil
     
     open func reloadAllData(){
-        reloadLatestPosts()
-        reloadLatestConversations()
+//        reloadLatestPosts()
+//        reloadLatestConversations()
         
         commentStash = nil
         topicStash = nil
@@ -200,8 +188,9 @@ open class ApplicationContext : AuthenticatedUserDataProvider {
     open func authenticate(_ login: String, password: String, completion: @escaping (_ success: Bool, _ details: String) -> ()) {
         let cmd = LoginCommand(login: login, password: password)
         
-        _currentUser = nil
-        token = nil
+//        _currentUser = nil
+//        token = nil
+        
         Network.performLogin(cmd){
             (response, message) -> Void in
             guard (response != nil) else {
@@ -210,6 +199,16 @@ open class ApplicationContext : AuthenticatedUserDataProvider {
                 completion(false, "Invalid login or password")
                 return;
             }
+            
+//            if let c = self._currentUser {
+//                if let newPerson = response?.person {
+//                    if (c.login == newPerson.login) {
+//                        return; //Didnt change
+//                    }
+//                }
+//            }
+//            
+            
             self.token = response?.token
             self._currentUser = response?.person
             self.saveState()
@@ -240,9 +239,9 @@ open class ApplicationContext : AuthenticatedUserDataProvider {
 }
 
 extension ApplicationContext : LatestPostsDataProvider {
-    public func latestPosts() -> [Post] {
-        return _latestPosts
-    }
+//    public func latestPosts() -> [Post] {
+//        return _latestPosts
+//    }
     public func currentUser() -> Person? {
         return _currentUser
     }
@@ -254,59 +253,59 @@ extension ApplicationContext : LatestPostsDataProvider {
         self.saveState()
     }
 
-    public func reloadLatestPosts() {
-        _latestPosts = []
-        switch displayMode{
-        case .latestGrouped:
-            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED)
-        case .latestFlat:
-            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT)
-        }
-    }
-    
-    fileprivate func loadlatestPostDataFromWebservice(_ action: PostCommand.Action){
-        let cmd = PostCommand(action: action, pageNumber: 1)
-        
-        Network.performPostCommand(cmd){
-            (response, message) -> Void in
-            guard (response != nil) else {
-                self.latestPostsObserver?.networkError("Webservice request failed.")
-                return;
-            }
-            
-            self._latestPosts = (response?.list)!
-            
-            if self.displayMode == .latestGrouped {
-                self._latestPosts = self._latestPosts.flattenPosts()
-            }
-        };
-    }
+//    public func reloadLatestPosts() {
+//        _latestPosts = []
+//        switch displayMode{
+//        case .latestGrouped:
+//            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED)
+//        case .latestFlat:
+//            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT)
+//        }
+//    }
+//    
+//    fileprivate func loadlatestPostDataFromWebservice(_ action: PostCommand.Action){
+//        let cmd = PostCommand(action: action, pageNumber: 1)
+//        
+//        Network.performPostCommand(cmd){
+//            (response, message) -> Void in
+//            guard (response != nil) else {
+//                self.latestPostsObserver?.networkError("Webservice request failed.")
+//                return;
+//            }
+//            
+//            self._latestPosts = (response?.list)!
+//            
+//            if self.displayMode == .latestGrouped {
+//                self._latestPosts = self._latestPosts.flattenPosts()
+//            }
+//        };
+//    }
     
     
 }
 
-extension ApplicationContext : LatestConversationsDataProvider {
-    public func latestConversations() -> [Post] {
-        return _latestConversations
-    }
-    
-    public func reloadLatestConversations() {
-        self._latestConversations = []
-        loadConversationsFromWebservice()
-    }
-    
-    fileprivate func loadConversationsFromWebservice(){
-        let cmd = SearchCommand(postSearchType: SearchCommand.PostSearchType.CONVERSATIONS)
-        
-        Network.performSearchCommand(cmd){
-            (response, message) -> Void in
-            guard (response != nil) else {
-                self.latestConversationsObserver?.networkError("Webservice request failed.")
-                return;
-            }
-            
-            self._latestConversations = (response?.list)!
-        };
-    }
-    
-}
+//extension ApplicationContext : LatestConversationsDataProvider {
+//    public func latestConversations() -> [Post] {
+//        return _latestConversations
+//    }
+//    
+//    public func reloadLatestConversations() {
+//        self._latestConversations = []
+//        loadConversationsFromWebservice()
+//    }
+//    
+//    fileprivate func loadConversationsFromWebservice(){
+//        let cmd = SearchCommand(postSearchType: SearchCommand.PostSearchType.CONVERSATIONS)
+//        
+//        Network.performSearchCommand(cmd){
+//            (response, message) -> Void in
+//            guard (response != nil) else {
+//                self.latestConversationsObserver?.networkError("Webservice request failed.")
+//                return;
+//            }
+//            
+//            self._latestConversations = (response?.list)!
+//        };
+//    }
+//    
+//}

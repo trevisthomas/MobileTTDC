@@ -254,7 +254,7 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate {
             self.sizeCache = []
             for p in self.posts {
                 let size = self.prototypeCellSize(post: p)
-                print(size)
+//                print(size)
                 self.sizeCache.append(size)
             }
             completion()

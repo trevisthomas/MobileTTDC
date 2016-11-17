@@ -68,12 +68,22 @@ open class ApplicationContext : AuthenticatedUserDataProvider {
 //        }
 //    }
     
+    fileprivate var previousUser: Person? = nil
     fileprivate var _currentUser : Person? = nil {
+        willSet{
+            previousUser = _currentUser
+        }
+        
         didSet{
 //            NSNotificationCenter.defaultCenter().postNotificationName(ApplicationContext.currentUserKey, object: _currentUser?.login) //Sigh.  I hate struts.  Were they a bad idea?
             
+            guard previousUser?.login != _currentUser?.login else {
+                return
+            }
+            
             var objects = [Any?]()
             objects.append(_currentUser?.login)
+            
             
             if let login = _currentUser?.login {
                 NotificationCenter.default.post(name: Notification.Name(rawValue: ApplicationContext.currentUserKey), object: nil, userInfo: ["login" : login])
@@ -203,11 +213,12 @@ open class ApplicationContext : AuthenticatedUserDataProvider {
 //            if let c = self._currentUser {
 //                if let newPerson = response?.person {
 //                    if (c.login == newPerson.login) {
+//                        print("User didnt change")
 //                        return; //Didnt change
 //                    }
 //                }
 //            }
-//            
+            
             
             self.token = response?.token
             self._currentUser = response?.person
@@ -309,3 +320,17 @@ extension ApplicationContext : LatestPostsDataProvider {
 //    }
 //    
 //}
+
+extension UIViewController : CurrentUserProtocol {
+    func registerForUserChangeUpdates() {
+        NotificationCenter.default.addObserver(self, selector: #selector(catchUserChangedNotification), name: NSNotification.Name(rawValue: ApplicationContext.currentUserKey), object: nil)
+    }
+    
+    func catchUserChangedNotification(_ notification: Notification) {
+        onCurrentUserChanged()
+    }
+    
+    func onCurrentUserChanged() {
+        //Default does nothing
+    }
+}

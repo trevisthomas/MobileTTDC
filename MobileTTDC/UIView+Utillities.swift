@@ -100,16 +100,4 @@ extension UIViewController : DynamicAppStyle {
     
 }
 
-extension UIViewController : CurrentUserProtocol {
-    func registerForUserChangeUpdates() {
-        NotificationCenter.default.addObserver(self, selector: #selector(catchUserChangedNotification), name: NSNotification.Name(rawValue: ApplicationContext.currentUserKey), object: nil)
-    }
-    
-    func catchUserChangedNotification(_ notification: Notification) {
-        onCurrentUserChanged()
-    }
-    
-    func onCurrentUserChanged() {
-        //Default does nothing
-    }
-}
+

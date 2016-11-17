@@ -18,7 +18,7 @@ extension UIImageView {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         if let img = appDelegate.applicationContext.imageCache[link] {
             self.image = img
-            print("Image cache hit \(link)")
+//            print("Image cache hit \(link)")
             return
         }
         

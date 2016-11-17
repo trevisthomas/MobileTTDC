@@ -47,6 +47,7 @@ class LatestPostsViewController: CommonBaseViewController {
 //        loadFirstPage()
     }
     
+    
     override func refreshStyle() {
         modeSegmentedControl.tintColor = getApplicationContext().getCurrentStyle().tintColor()
         modeSelectionView.backgroundColor = getApplicationContext().getCurrentStyle().postBackgroundColor()
@@ -113,6 +114,36 @@ class LatestPostsViewController: CommonBaseViewController {
         removeAllPosts()
         loadFirstPage()
     }
+    
+    @IBAction func presentCommentCreationView(_ sender: UIBarButtonItem) {
+        
+        //http://www.appcoda.com/presentation-controllers-tutorial/
+        let storyboard : UIStoryboard = UIStoryboard(name: "Comment", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "CommentCreator") as! UINavigationController
+            //        vc.modalPresentationStyle = UIModalPresentationStyle.Popover
+            //        let popover: UIPopoverPresentationController = vc.popoverPresentationController!
+                //        popover.delegate = self
+                    //        popover.barButtonItem = sender
+            
+                            //        popover.sourceView = modeSegmentedControl
+                                //        popover.sourceView = self.view
+                                    //        let center = CGPoint(x: CGRectGetMidX(view.bounds), y: CGRectGetMidY(view.bounds))
+                                        //        popover.sourceRect = CGRect(origin: center, size: CGSize(width: 10, height: 10))
+                                            //        removeAllPosts()
+                                                
+                                                //        popover.sourceRect = CGRect(x: view.bounds.width / 2 - 200, y: view.bounds.height / 2, width: 1, height: 1)
+                                                    //
+                                                        //        presentViewController(vc, animated: true, completion:nil)
+            
+                                                                        vc.modalPresentationStyle = UIModalPresentationStyle.formSheet
+                   present(vc, animated: true, completion:nil)
+            
+            //        vc.modalPresentationStyle = UIModalPresentationStyle.PageSheet
+                //        presentViewController(vc, animated: true, completion:nil)
+                
+                           loadFirstPage()
+    }
+
 }
 
 extension LatestPostsViewController /*: UIScrollViewDelegate*/ {

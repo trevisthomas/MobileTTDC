@@ -1,3 +1,4 @@
+
 //
 //  ApplicationContext.swift
 //  MobileTTDC
@@ -56,7 +57,10 @@ open class ApplicationContext : AuthenticatedUserDataProvider {
             UIApplication.shared.statusBarStyle = getCurrentStyle().statusBarStyle()
             
             
-//            UITextField.appearance().keyboardAppearance = .Dark
+            UITextField.appearance().keyboardAppearance = getCurrentStyle().keyboardAppearance()
+//            UITextView.appearance().keyboardAppearance = getCurrentStyle().keyboardAppearance()
+            
+//            UITextView.appear
             NotificationCenter.default.post(name: Notification.Name(rawValue: ApplicationContext.styleChangedNotificationKey), object: nil)
         }
     }

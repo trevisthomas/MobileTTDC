@@ -51,8 +51,11 @@ class LatestPostsViewController: CommonBaseViewController {
     override func refreshStyle() {
         modeSegmentedControl.tintColor = getApplicationContext().getCurrentStyle().tintColor()
         modeSelectionView.backgroundColor = getApplicationContext().getCurrentStyle().postBackgroundColor()
-        collectionView.backgroundColor = getApplicationContext().getCurrentStyle().postBackgroundColor()
+//        modeSelectionView.backgroundColor = getApplicationContext().getCurrentStyle().underneath()
+//        collectionView.backgroundColor = getApplicationContext().getCurrentStyle().postBackgroundColor()
+        collectionView.backgroundColor = getApplicationContext().getCurrentStyle().underneath()
         collectionView.indicatorStyle = getApplicationContext().getCurrentStyle().scrollBarStyle()
+        
     }
     
     //This is here so that the layout will adjust when you "maximize"
@@ -67,7 +70,7 @@ class LatestPostsViewController: CommonBaseViewController {
     }
     
     override func loadPosts(completion: @escaping ([Post]?) -> Void) {
-        
+        print("Load Posts - latest")
         switch getApplicationContext().displayMode {
         case .latestGrouped:
             loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED, completion: completion)
@@ -77,6 +80,7 @@ class LatestPostsViewController: CommonBaseViewController {
     }
     
     override func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void) {
+        print("Load More Posts - latest")
         switch getApplicationContext().displayMode {
         case .latestGrouped:
             loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED, pageNumber: pageNumber, completion: completion)

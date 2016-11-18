@@ -6,6 +6,8 @@
 //  Copyright © 2016 Trevis Thomas. All rights reserved.
 //
 
+//http://uicolor.xyz/#/hex-to-ui
+
 import UIKit
 
 public protocol AppStyle {
@@ -24,49 +26,68 @@ public protocol AppStyle {
     func attributedTextLabelColor() -> String //Html colors becase for some fucking reason attributed text behaves differently depending on where it's used?
     func selectionColor() -> UIColor
     func searchBackgroundColor() -> UIColor
+    func keyboardAppearance() -> UIKeyboardAppearance
+    
+    func underneath() -> UIColor
+}
+
+extension UIColor {
+    class func mutedPaper() -> UIColor {
+        return UIColor(hexString: "#f4f4f4")
+    }
+    class func mutedSilk() -> UIColor {
+        return UIColor(hexString: "#dcd0c0")
+    }
+    class func mutedPaleGold() -> UIColor {
+        return UIColor(hexString: "#c0b283")
+    }
+    class func mutedCharcoal() -> UIColor {
+        return UIColor(hexString: "#373737")
+    }
 }
 
 public struct AppStyleLight : AppStyle {
     
     public func headerTextColor() -> UIColor {
-        return UIColor.black
+        return UIColor.mutedCharcoal()
     }
     
     public func headerDetailTextColor() -> UIColor {
-        return UIColor.gray
+        return UIColor.mutedPaleGold()
     }
     
     public func entryTextColor() -> UIColor {
-        return UIColor.black
+        return UIColor.mutedCharcoal()
     }
     
     public func tintColor() -> UIColor {
-        return UIColor.blue
+        return UIColor.mutedPaleGold()
     }
     
     public func postFooterTextColor() -> UIColor {
-        return UIColor.lightGray
+        return UIColor.mutedSilk()
     }
     
     public func postFooterDetailColor() -> UIColor {
-        return UIColor.lightGray
+        return UIColor.mutedSilk()
     }
     
     public func postBackgroundColor() -> UIColor {
-        return UIColor.white
+        return UIColor.mutedPaper()
 //        return UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
     }
     
     public func postReplyBackgroundColor() -> UIColor {
-        return UIColor.white
+        return UIColor.mutedPaper()
     }
     
     public func navigationBackgroundColor() -> UIColor {
+//        return UIColor.white
         return UIColor.white
     }
     
     public func navigationColor() -> UIColor {
-        return UIColor.black
+        return UIColor.mutedCharcoal()
     }
     
     public func scrollBarStyle() -> UIScrollViewIndicatorStyle {
@@ -79,17 +100,28 @@ public struct AppStyleLight : AppStyle {
     }
     
     public func attributedTextLabelColor() -> String {
-        return "black"
+        return "#373737"
     }
     
     public func selectionColor() -> UIColor{
 //        return UIColor(red:0.90, green:0.90, blue:0.90, alpha:1.0)
-        return UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
+//        return UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
 //        return UIColor.redColor()
+        return UIColor.mutedSilk()
     }
     
     public func searchBackgroundColor() -> UIColor {
-        return UIColor(red:0.90, green:0.90, blue:0.90, alpha:1.0)
+//        return UIColor(red:0.90, green:0.90, blue:0.90, alpha:1.0)
+        return UIColor.mutedPaper()
+    }
+    
+    public func keyboardAppearance() -> UIKeyboardAppearance {
+        return .light
+    }
+    
+    public func underneath() -> UIColor {
+//        return UIColor(hexString: "#f4f4f4")
+        return UIColor.mutedSilk()
     }
 }
 
@@ -154,6 +186,14 @@ public struct AppStyleDark : AppStyle {
     
     public func searchBackgroundColor() -> UIColor {
         return postBackgroundColor()
+    }
+    
+    public func keyboardAppearance() -> UIKeyboardAppearance {
+        return .dark
+    }
+    
+    public func underneath() -> UIColor {
+        return  UIColor(red:0.05, green:0.05, blue:0.05, alpha:1.0)
     }
 }
 

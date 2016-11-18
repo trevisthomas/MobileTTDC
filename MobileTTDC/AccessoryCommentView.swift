@@ -15,10 +15,13 @@ protocol AccessoryCommentViewDelegate {
 class AccessoryCommentView: UIView {
     var delegate : AccessoryCommentViewDelegate!
     var postId : String!
+    @IBOutlet weak var postButton: UIButton!
+    @IBOutlet weak var photoButton: UIButton!
     
     var defaultText: NSAttributedString! {
         didSet{
-             postTextView.attributedText = self.defaultText
+//            postTextView.keyboardAppearance = getApplicationContext().getCurrentStyle().keyboardAppearance()
+            postTextView.attributedText = self.defaultText
         }
     }
     
@@ -33,13 +36,30 @@ class AccessoryCommentView: UIView {
     }
     
     override func becomeFirstResponder() -> Bool {
+//        postTextView.keyboardAppearance = getApplicationContext().getCurrentStyle().keyboardAppearance()
+
         super.becomeFirstResponder() //Maybe?
+        refreshStyle()
         return postTextView.becomeFirstResponder()
     }
     
     override func resignFirstResponder() -> Bool {
         super.resignFirstResponder() // Shrug
         return postTextView.resignFirstResponder()
+    }
+    
+    override func refreshStyle() {
+        let style = getApplicationContext().getCurrentStyle()
+        postTextView.keyboardAppearance = style.keyboardAppearance()
+        backgroundColor = style.navigationBackgroundColor()
+        
+        postTextView.backgroundColor = style.postBackgroundColor()
+        postTextView.textColor = style.entryTextColor()
+        postTextView.tintColor = style.tintColor()
+        
+//        postButton.backgroundColor = style.tintColor()
+        postButton.titleLabel?.textColor = style.tintColor()
+//        postButton.layer.cornerRadius = 10
     }
     
     /*

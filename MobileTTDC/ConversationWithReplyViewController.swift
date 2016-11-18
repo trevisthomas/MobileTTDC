@@ -26,10 +26,15 @@ class ConversationWithReplyViewController: PostBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+                replyTextView.keyboardAppearance = getApplicationContext().getCurrentStyle().keyboardAppearance()
+        
         navigationItem.title = "Conversation"
-        let view = Bundle.main.loadNibNamed("AccessoryCommentView", owner: replyTextView, options: nil)!.first as! AccessoryCommentView
-        view.delegate = self
-        replyTextView.inputAccessoryView = view
+        let accessoryCommentView = Bundle.main.loadNibNamed("AccessoryCommentView", owner: replyTextView, options: nil)!.first as! AccessoryCommentView
+        accessoryCommentView.delegate = self
+        replyTextView.inputAccessoryView = accessoryCommentView
+        
+//        accessoryCommentView.postTextView.keyboardAppearance = .dark
+        
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(ConversationWithReplyViewController.handleTapToResign(_:)))
         self.view.addGestureRecognizer(tap)
@@ -48,6 +53,12 @@ class ConversationWithReplyViewController: PostBaseViewController {
         replyTextView.textColor = style.entryTextColor()
         
         view.backgroundColor = style.navigationBackgroundColor()
+        
+        //Below probably does nothing because of my Accessory view. Unfortunately setting globally doesnt work on text views.  (But does on TextField! WTF.  
+        replyTextView.keyboardAppearance = style.keyboardAppearance()
+        
+//        let accessoryView = replyTextView.inputAccessoryView as! AccessoryCommentView
+//        accessoryView.postTextView.keyboardAppearance = style.keyboardAppearance()
         
         
 
@@ -87,6 +98,10 @@ class ConversationWithReplyViewController: PostBaseViewController {
         
         _ = accessory.becomeFirstResponder() //This puts the accessory view in focus.
         //NOTE:  The actual text view needs to have it's "editibale" flag set to false or else it will get focus after dismssing the keyboard+accessory.
+        
+//        accessory.postTextView.keyboardAppearance = .dark
+//        accessory.postTextView.keyboardAppearance = getApplicationContext().getCurrentStyle().keyboardAppearance()
+        
         replyTextView.inputAccessoryView?.isHidden = false
         
     }

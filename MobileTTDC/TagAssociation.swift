@@ -13,11 +13,13 @@ public struct TagAssociation : Decodable{
     let date : Date
     let creator: Person
     let tag: Tag
+    let post : Post?  //Trevis, you added this for like... is it really needed?
     
     public init?(json: JSON) {
         guid = ("guid" <~~ json)!
         date = ("date" <~~ json)!
         creator = ("creator" <~~ json)!
         tag = ("tag" <~~ json)!
+        post = ("post" <~~ json)
     }
 }

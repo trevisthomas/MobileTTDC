@@ -75,30 +75,30 @@ class LatestPostsViewController: CommonBaseViewController {
         statusBarHeight = originalTopOfDisapearingView
     }
     
-    override func loadPosts(completion: @escaping ([Post]?) -> Void) {
-        print("Load Posts - latest")
-        switch getApplicationContext().displayMode {
-        case .latestGrouped:
-            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED, completion: completion)
-        case .latestFlat:
-            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT, completion: completion)
-        case .latestConversations:
-            loadlatestConversationsFromWebservice(pageNumber: 1, completion: completion)
-        }
-        
-    }
-    
-    override func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void) {
-        print("Load More Posts - latest")
-        switch getApplicationContext().displayMode {
-        case .latestGrouped:
-            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED, pageNumber: pageNumber, completion: completion)
-        case .latestFlat:
-            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT, pageNumber: pageNumber, completion: completion)
-        case .latestConversations:
-            loadlatestConversationsFromWebservice(pageNumber: pageNumber, completion: completion)
-        }
-    }
+//    override func loadPosts(completion: @escaping ([Post]?) -> Void) {
+//        print("Load Posts - latest")
+//        switch getApplicationContext().displayMode {
+//        case .latestGrouped:
+//            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED, completion: completion)
+//        case .latestFlat:
+//            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT, completion: completion)
+//        case .latestConversations:
+//            loadlatestConversationsFromWebservice(pageNumber: 1, completion: completion)
+//        }
+//        
+//    }
+//    
+//    override func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void) {
+//        print("Load More Posts - latest")
+//        switch getApplicationContext().displayMode {
+//        case .latestGrouped:
+//            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED, pageNumber: pageNumber, completion: completion)
+//        case .latestFlat:
+//            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT, pageNumber: pageNumber, completion: completion)
+//        case .latestConversations:
+//            loadlatestConversationsFromWebservice(pageNumber: pageNumber, completion: completion)
+//        }
+//    }
     
     
     fileprivate func loadlatestPostDataFromWebservice(_ action: PostCommand.Action, pageNumber: Int = 1, completion: @escaping ([Post]?) -> Void){
@@ -221,6 +221,33 @@ extension LatestPostsViewController {
 
     override func getCollectionView() -> UICollectionView? {
         return collectionView
+    }
+}
+
+extension LatestPostsViewController : PostCollectionViewDelegate {
+    func loadPosts(completion: @escaping ([Post]?) -> Void) {
+        print("Load Posts - latest")
+        switch getApplicationContext().displayMode {
+        case .latestGrouped:
+            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED, completion: completion)
+        case .latestFlat:
+            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT, completion: completion)
+        case .latestConversations:
+            loadlatestConversationsFromWebservice(pageNumber: 1, completion: completion)
+        }
+        
+    }
+    
+    func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void) {
+        print("Load More Posts - latest")
+        switch getApplicationContext().displayMode {
+        case .latestGrouped:
+            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED, pageNumber: pageNumber, completion: completion)
+        case .latestFlat:
+            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT, pageNumber: pageNumber, completion: completion)
+        case .latestConversations:
+            loadlatestConversationsFromWebservice(pageNumber: pageNumber, completion: completion)
+        }
     }
 }
 

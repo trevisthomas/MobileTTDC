@@ -33,7 +33,12 @@ class ConversationsViewController: CommonBaseViewController {
         return collectionView
     }
     
-    override func loadPosts(completion: @escaping ([Post]?) -> Void){
+    
+    
+}
+
+extension ConversationsViewController : PostCollectionViewDelegate {
+    func loadPosts(completion: @escaping ([Post]?) -> Void){
         let cmd = SearchCommand(postSearchType: SearchCommand.PostSearchType.CONVERSATIONS, pageNumber: 1)
         
         Network.performSearchCommand(cmd){
@@ -49,7 +54,7 @@ class ConversationsViewController: CommonBaseViewController {
         };
     }
     
-    override func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void) {
+    func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void) {
         let cmd = SearchCommand(postSearchType: SearchCommand.PostSearchType.CONVERSATIONS, pageNumber: pageNumber)
         
         Network.performSearchCommand(cmd){
@@ -65,18 +70,6 @@ class ConversationsViewController: CommonBaseViewController {
             
         };
     }
-    
-    
-}
 
-extension CommonBaseViewController : UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let post = self.posts[indexPath.row]
-        var dict = [String: String]()
-        dict["threadId"] = post.threadId
-        performSegue(withIdentifier: "ConversationWithReplyView", sender: dict)
-        
-    }
 }
 

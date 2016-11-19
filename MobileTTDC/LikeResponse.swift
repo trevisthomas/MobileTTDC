@@ -9,13 +9,16 @@
 import Foundation
 
 public struct LikeResponse: Response {
+    
+    public let post : Post?
+    public let tagAssociation : TagAssociation
+    public let remove : Bool
+    //There are more flags...but they are weird
+    
     public init?(json: JSON) {
-        
+        post = "post" <~~ json
+        tagAssociation = ("associationPostTag" <~~ json)!
+        remove = ("remove" <~~ json)!
     }
 }
 
-public struct UnLikeResponse: Response {
-    public init?(json: JSON) {
-        
-    }
-}

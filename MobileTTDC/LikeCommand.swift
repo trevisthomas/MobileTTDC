@@ -25,19 +25,3 @@ open class LikeCommand : Command{
     
 }
 
-open class UnLikeCommand : Command{
-    open var token: String?
-    open var postId: String
-    
-    open func toJSON() -> JSON? {
-        return jsonify([
-            "token" ~~> self.token,
-            "postId" ~~> self.postId
-            ])
-    }
-    
-    init(postId : String){
-        self.postId = postId
-    }
-    
-}

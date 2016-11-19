@@ -23,6 +23,13 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate {
     var dataLoadingInProgress : Bool = false
     var pageNumber : Int = 1
     
+    private var delegate : PostCollectionViewDelegate!
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        delegate = self as! PostCollectionViewDelegate
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -195,17 +202,17 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate {
         return CGSize(width: frameSize.width, height: height)
     }
     
-    func loadPosts(completion: @escaping ([Post]?) -> Void){
-        abort()
-    }
-    
-    func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void) {
-        abort()
-    }
+//    func loadPosts(completion: @escaping ([Post]?) -> Void){
+//        abort()
+//    }
+//    
+//    func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void) {
+//        abort()
+//    }
     
     func loadFirstPage(completion: @escaping (() -> Void) = {}) {
         self.dataLoadingInProgress = true
-        loadPosts() {
+        delegate.loadPosts() {
             (posts) -> Void in
             self.dataLoadingInProgress = false
             guard (posts != nil) else {
@@ -225,7 +232,7 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate {
     func loadNextPage(completion: @escaping (() -> Void) = {}){
         pageNumber += 1
         
-        loadMorePosts(pageNumber: pageNumber) {
+        delegate.loadMorePosts(pageNumber: pageNumber) {
             (posts) -> Void in
             
             self.dataLoadingInProgress = false
@@ -338,6 +345,12 @@ extension CommonBaseViewController : UICollectionViewDataSource {
     
 }
 
+protocol PostCollectionViewDelegate {
+    func loadPosts(completion: @escaping ([Post]?) -> Void)
+    
+    func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void)
+}
+
 //extension CommonBaseViewController : UICollectionViewDelegate {
 //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        
@@ -348,6 +361,17 @@ extension CommonBaseViewController : UICollectionViewDataSource {
 //        
 //    }
 //}
+
+extension CommonBaseViewController : UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let post = self.posts[indexPath.row]
+        var dict = [String: String]()
+        dict["threadId"] = post.threadId
+        performSegue(withIdentifier: "ConversationWithReplyView", sender: dict)
+        
+    }
+}
 
 
 

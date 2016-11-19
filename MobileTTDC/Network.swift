@@ -72,9 +72,4 @@ public struct Network {
         command.token = getToken()
         NetworkAdapter.performCommand("\(getHost())/restful/like", command: command, completion: completion)
     }
-    
-    public static func performUnLikeCommand(_ command : UnLikeCommand, completion: @escaping (_ response : UnLikeResponse?, _ error: String?) -> Void){
-        command.token = getToken()
-        NetworkAdapter.performCommand("\(getHost())/restful/unlike", command: command, completion: completion)
-    }
 }

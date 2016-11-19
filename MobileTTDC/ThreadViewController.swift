@@ -14,26 +14,6 @@ class ThreadViewController: CommonBaseViewController {
     
     var rootPostId : String!
     
-    override func loadPosts(completion: @escaping ([Post]?) -> Void) {
-        fetchPost(rootPostId){
-            rootPost in
-            self.fetchPostTopic(self.rootPostId) {
-                replies in
-                var posts : [Post] = []
-                posts.append(rootPost!)
-                posts.append(contentsOf: replies!)
-                completion(posts)
-            }
-        }
-    }
-    
-    override func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void) {
-        self.fetchPostTopic(self.rootPostId, pageNumber: pageNumber) {
-            replies in
-            completion(replies)
-        }
-    }
-    
     fileprivate func fetchPostTopic(_ postId : String, pageNumber: Int = 1, completion: @escaping ([Post]?) -> Void){
         
         let cmd = TopicCommand(type: .NESTED_THREAD_SUMMARY, postId: postId, pageNumber: pageNumber)
@@ -92,6 +72,28 @@ class ThreadViewController: CommonBaseViewController {
         return collectionView
     }
     
+}
+
+extension ThreadViewController : PostCollectionViewDelegate {
+    func loadPosts(completion: @escaping ([Post]?) -> Void) {
+        fetchPost(rootPostId){
+            rootPost in
+            self.fetchPostTopic(self.rootPostId) {
+                replies in
+                var posts : [Post] = []
+                posts.append(rootPost!)
+                posts.append(contentsOf: replies!)
+                completion(posts)
+            }
+        }
+    }
+    
+    func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void) {
+        self.fetchPostTopic(self.rootPostId, pageNumber: pageNumber) {
+            replies in
+            completion(replies)
+        }
+    }
 }
 
 

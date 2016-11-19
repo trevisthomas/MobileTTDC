@@ -109,7 +109,14 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate {
     
     
     func likePost(_ post: Post){
-        
+        let cmd = LikeCommand(postId: post.postId)
+        Network.performLikeCommand(cmd) {
+            (response, message) in
+            guard let error = message else {
+                return
+            }
+            self.presentAlert("Sorry", message: error)
+        }
     }
     
     func viewComments(_ post: Post){

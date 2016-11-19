@@ -11,4 +11,5 @@ import Foundation
 public enum DisplayMode{
     case latestFlat
     case latestGrouped
+    case latestConversations
 }

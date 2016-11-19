@@ -31,6 +31,7 @@ class PostReplyCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var replyButton: UIButton!
     @IBOutlet weak var likesLabel: UILabel!
+    @IBOutlet weak var insetView: UIView!
     
     @IBOutlet weak var entryTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var entryBottomConstraint: NSLayoutConstraint!
@@ -58,6 +59,8 @@ class PostReplyCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
 //        entryTextView.backgroundColor = appStyle.postReplyBackgroundColor()
         entryTextView.backgroundColor = UIColor.clear
         entryTextView.tintColor = appStyle.headerDetailTextColor()
+        
+        insetView.backgroundColor = appStyle.postFooterBackgroundColor()
         
     }
 

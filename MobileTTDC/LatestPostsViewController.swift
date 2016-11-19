@@ -24,13 +24,19 @@ class LatestPostsViewController: CommonBaseViewController {
     @IBOutlet weak var modeSelectionHeightConstraint: NSLayoutConstraint!
     
     @IBAction func modeSelectSegmentedControll(_ sender: UISegmentedControl) {
+        super.removeAllPosts()
+        
         switch sender.selectedSegmentIndex {
         case 0:
             print("Selected flat")
             getApplicationContext().displayMode = .latestFlat
-        default:
+        case 1:
             print("Selected grouped")
             getApplicationContext().displayMode = .latestGrouped
+        case 2:
+            getApplicationContext().displayMode = .latestConversations
+        default:
+            abort()
         }
 //        handleModeChange()
         
@@ -76,7 +82,10 @@ class LatestPostsViewController: CommonBaseViewController {
             loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED, completion: completion)
         case .latestFlat:
             loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT, completion: completion)
+        case .latestConversations:
+            loadlatestConversationsFromWebservice(pageNumber: 1, completion: completion)
         }
+        
     }
     
     override func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void) {
@@ -86,6 +95,8 @@ class LatestPostsViewController: CommonBaseViewController {
             loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED, pageNumber: pageNumber, completion: completion)
         case .latestFlat:
             loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT, pageNumber: pageNumber, completion: completion)
+        case .latestConversations:
+            loadlatestConversationsFromWebservice(pageNumber: pageNumber, completion: completion)
         }
     }
     
@@ -110,6 +121,23 @@ class LatestPostsViewController: CommonBaseViewController {
         };
     }
     
+    fileprivate func loadlatestConversationsFromWebservice(pageNumber: Int, completion: @escaping ([Post]?) -> Void) {
+        let cmd = SearchCommand(postSearchType: SearchCommand.PostSearchType.CONVERSATIONS, pageNumber: pageNumber)
+        
+        Network.performSearchCommand(cmd){
+            (response, message) -> Void in
+            
+            guard (response != nil) else {
+                self.presentAlert("Error", message: message!)
+                completion(nil)
+                return;
+            }
+            
+            completion((response?.list)!)
+            
+        };
+    }
+    
     override func allowHierarchy() -> Bool {
         return getApplicationContext().displayMode == .latestGrouped
     }
@@ -124,29 +152,30 @@ class LatestPostsViewController: CommonBaseViewController {
         //http://www.appcoda.com/presentation-controllers-tutorial/
         let storyboard : UIStoryboard = UIStoryboard(name: "Comment", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "CommentCreator") as! UINavigationController
-            //        vc.modalPresentationStyle = UIModalPresentationStyle.Popover
-            //        let popover: UIPopoverPresentationController = vc.popoverPresentationController!
-                //        popover.delegate = self
-                    //        popover.barButtonItem = sender
-            
-                            //        popover.sourceView = modeSegmentedControl
-                                //        popover.sourceView = self.view
-                                    //        let center = CGPoint(x: CGRectGetMidX(view.bounds), y: CGRectGetMidY(view.bounds))
-                                        //        popover.sourceRect = CGRect(origin: center, size: CGSize(width: 10, height: 10))
-                                            //        removeAllPosts()
-                                                
-                                                //        popover.sourceRect = CGRect(x: view.bounds.width / 2 - 200, y: view.bounds.height / 2, width: 1, height: 1)
-                                                    //
-                                                        //        presentViewController(vc, animated: true, completion:nil)
-            
-                                                                        vc.modalPresentationStyle = UIModalPresentationStyle.formSheet
-                   present(vc, animated: true, completion:nil)
-            
-            //        vc.modalPresentationStyle = UIModalPresentationStyle.PageSheet
-                //        presentViewController(vc, animated: true, completion:nil)
-                
-                           loadFirstPage()
+        vc.modalPresentationStyle = UIModalPresentationStyle.formSheet
+        present(vc, animated: true, completion:nil)
+        loadFirstPage()
     }
+    
+//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+//        
+//        print("Orientation: PostDetailViewController")
+//        
+//        coordinator.animate(alongsideTransition: { context in
+//            // do whatever with your context
+//            context.viewController(forKey: UITransitionContextViewControllerKey.from)
+//        }, completion: {context in
+//            self.sizeCache = []
+//            self.loadSizeCache(posts: self.posts) {
+//                self.getCollectionView()?.collectionViewLayout.invalidateLayout()
+//            }
+//        }
+//        )
+//    }
+    
+//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+//        super.viewWillTransition(to: size, with: coordinator)
+//    }
 
 }
 
@@ -179,12 +208,13 @@ extension LatestPostsViewController {
     
     func handleModeChange(){
         switch getApplicationContext().displayMode{
+        case .latestConversations :
+            modeSegmentedControl.selectedSegmentIndex = 0
         case .latestGrouped:
-            self.navigationController?.navigationBar.topItem?.title = "Latest - Grouped"
             modeSegmentedControl.selectedSegmentIndex = 1
         case .latestFlat:
-            self.navigationController?.navigationBar.topItem?.title = "Latest - Flat"
-            modeSegmentedControl.selectedSegmentIndex = 0
+//            self.navigationController?.navigationBar.topItem?.title = "Doesnt work anyway"
+            modeSegmentedControl.selectedSegmentIndex = 2
         }
         
     }

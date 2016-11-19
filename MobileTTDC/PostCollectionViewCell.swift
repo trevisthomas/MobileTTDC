@@ -17,6 +17,19 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
     @IBOutlet weak var entryRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var entryLeftConstraint: NSLayoutConstraint!
     
+    
+    @IBOutlet weak var viewCommentsButton: UIButton!  //Deprecated?
+    @IBOutlet weak var commentButton: UIButton!
+    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var parentPostCreatorButton: UIButton!
+    
+    @IBOutlet weak var creatorButton: UIButton!
+    @IBOutlet weak var entryTextView: UITextView!
+    @IBOutlet weak var dateButton: UIButton!
+    @IBOutlet weak var threadTitleButton: UIButton!
+    @IBOutlet weak var creatorImageView: UIImageView!
+    @IBOutlet weak var likesLabel: UILabel!
+    
     var post : Post!{
         didSet{
             dateButton.setTitle(Utilities.singleton.simpleDateFormat(post.date), for: UIControlState())
@@ -47,23 +60,12 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
                 parentPostCreatorButton.setTitle("in response to \(inResponseTo)", for: UIControlState())
             }
             
- 
+            
             likesLabel.text = post.formatLikesString()
             
             refreshStyle()
         }
     }
-    @IBOutlet weak var viewCommentsButton: UIButton!  //Deprecated?
-    @IBOutlet weak var commentButton: UIButton!
-    @IBOutlet weak var likeButton: UIButton!
-    @IBOutlet weak var parentPostCreatorButton: UIButton!
-    
-    @IBOutlet weak var creatorButton: UIButton!
-    @IBOutlet weak var entryTextView: UITextView!
-    @IBOutlet weak var dateButton: UIButton!
-    @IBOutlet weak var threadTitleButton: UIButton!
-    @IBOutlet weak var creatorImageView: UIImageView!
-    @IBOutlet weak var likesLabel: UILabel!
     
     
     var delegate: PostViewCellDelegate?

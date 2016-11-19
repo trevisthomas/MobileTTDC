@@ -28,6 +28,8 @@ public protocol AppStyle {
     func searchBackgroundColor() -> UIColor
     func keyboardAppearance() -> UIKeyboardAppearance
     
+    func postFooterBackgroundColor() -> UIColor
+    
     func underneath() -> UIColor
 }
 
@@ -35,6 +37,11 @@ extension UIColor {
     class func mutedPaper() -> UIColor {
         return UIColor(hexString: "#f4f4f4")
     }
+    
+    class func mutedWhiterPaper() -> UIColor {
+        return UIColor(hexString: "#f9f9f9")
+    }
+    
     class func mutedSilk() -> UIColor {
         return UIColor(hexString: "#dcd0c0")
     }
@@ -73,7 +80,8 @@ public struct AppStyleLight : AppStyle {
     }
     
     public func postBackgroundColor() -> UIColor {
-        return UIColor.mutedPaper()
+//        return UIColor.mutedPaper()
+        return UIColor.mutedWhiterPaper()
 //        return UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
     }
     
@@ -122,6 +130,10 @@ public struct AppStyleLight : AppStyle {
     public func underneath() -> UIColor {
 //        return UIColor(hexString: "#f4f4f4")
         return UIColor.mutedSilk()
+    }
+    
+    public func postFooterBackgroundColor() -> UIColor {
+        return UIColor.mutedPaper()
     }
 }
 
@@ -195,5 +207,11 @@ public struct AppStyleDark : AppStyle {
     public func underneath() -> UIColor {
         return  UIColor(red:0.05, green:0.05, blue:0.05, alpha:1.0)
     }
+    
+    public func postFooterBackgroundColor() -> UIColor {
+//        return UIColor(red:0.05, green:0.05, blue:0.05, alpha:1.0)
+        return UIColor(red:0.12, green:0.12, blue:0.12, alpha:1.0)
+    }
+
 }
 

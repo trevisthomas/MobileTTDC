@@ -38,6 +38,7 @@
 		0F3CEABA1DC4D64F003CD432 /* AppStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3CEAB91DC4D64F003CD432 /* AppStyle.swift */; };
 		0F3CEABD1DC6F9D5003CD432 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F3CEABC1DC6F9D5003CD432 /* Profile.storyboard */; };
 		0F6E12B51DD8F9AD00927810 /* CommonBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6E12B41DD8F9AD00927810 /* CommonBaseViewController.swift */; };
+		0F7170891DDF7D9900E9348C /* HotboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7170881DDF7D9900E9348C /* HotboxView.swift */; };
 		0F76A87A1CFA165D00BDD499 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A8791CFA165D00BDD499 /* LoginViewController.swift */; };
 		0F76A87C1CFA16C300BDD499 /* ForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */; };
 		0F76A87E1CFA1C9400BDD499 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A87D1CFA1C9400BDD499 /* ProfileViewController.swift */; };
@@ -49,6 +50,8 @@
 		0F9FB1E21DBD56EF00B901ED /* PostSeperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9FB1E11DBD56EF00B901ED /* PostSeperator.swift */; };
 		0F9FB1E41DBDC23800B901ED /* ValidateCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9FB1E31DBDC23800B901ED /* ValidateCommand.swift */; };
 		0F9FB1E61DBDC29C00B901ED /* ValidateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9FB1E51DBDC29C00B901ED /* ValidateResponse.swift */; };
+		0FA3933B1DDFB5FB00E3BC2E /* LikeCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA3933A1DDFB5FA00E3BC2E /* LikeCommand.swift */; };
+		0FA3933D1DDFB61900E3BC2E /* LikeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA3933C1DDFB61900E3BC2E /* LikeResponse.swift */; };
 		0FA3F25E1DBBC7EA00268DC1 /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA3F25C1DBBC7EA00268DC1 /* PostCollectionViewCell.swift */; };
 		0FA3F25F1DBBC7EA00268DC1 /* PostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FA3F25D1DBBC7EA00268DC1 /* PostCollectionViewCell.xib */; };
 		0FA3F2621DBBC7FE00268DC1 /* PostReplyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA3F2601DBBC7FE00268DC1 /* PostReplyCollectionViewCell.swift */; };
@@ -147,6 +150,7 @@
 		0F3CEAB91DC4D64F003CD432 /* AppStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStyle.swift; sourceTree = "<group>"; };
 		0F3CEABC1DC6F9D5003CD432 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		0F6E12B41DD8F9AD00927810 /* CommonBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonBaseViewController.swift; sourceTree = "<group>"; };
+		0F7170881DDF7D9900E9348C /* HotboxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotboxView.swift; sourceTree = "<group>"; };
 		0F76A8791CFA165D00BDD499 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0F76A87B1CFA16C300BDD499 /* ForumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForumViewController.swift; sourceTree = "<group>"; };
 		0F76A87D1CFA1C9400BDD499 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -158,6 +162,8 @@
 		0F9FB1E11DBD56EF00B901ED /* PostSeperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostSeperator.swift; sourceTree = "<group>"; };
 		0F9FB1E31DBDC23800B901ED /* ValidateCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidateCommand.swift; sourceTree = "<group>"; };
 		0F9FB1E51DBDC29C00B901ED /* ValidateResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidateResponse.swift; sourceTree = "<group>"; };
+		0FA3933A1DDFB5FA00E3BC2E /* LikeCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeCommand.swift; sourceTree = "<group>"; };
+		0FA3933C1DDFB61900E3BC2E /* LikeResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeResponse.swift; sourceTree = "<group>"; };
 		0FA3F25C1DBBC7EA00268DC1 /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
 		0FA3F25D1DBBC7EA00268DC1 /* PostCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostCollectionViewCell.xib; sourceTree = "<group>"; };
 		0FA3F2601DBBC7FE00268DC1 /* PostReplyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostReplyCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -296,16 +302,17 @@
 		0FA3F2431DB982CD00268DC1 /* Post */ = {
 			isa = PBXGroup;
 			children = (
+				0F9FB1E11DBD56EF00B901ED /* PostSeperator.swift */,
+				0F7170881DDF7D9900E9348C /* HotboxView.swift */,
+				0FF4ED861DCAF9B800BE4CF4 /* StarRatingView.swift */,
 				0FA3F25C1DBBC7EA00268DC1 /* PostCollectionViewCell.swift */,
 				0FA3F25D1DBBC7EA00268DC1 /* PostCollectionViewCell.xib */,
 				0FA3F2601DBBC7FE00268DC1 /* PostReplyCollectionViewCell.swift */,
 				0FA3F2611DBBC7FE00268DC1 /* PostReplyCollectionViewCell.xib */,
-				0F9FB1E11DBD56EF00B901ED /* PostSeperator.swift */,
 				0F0997B31DC90EFB001991E2 /* MoviePostCollectionViewCell.swift */,
 				0F0997B41DC90EFB001991E2 /* MoviePostCollectionViewCell.xib */,
 				0FD00B7F1DC9372C001F555A /* ReviewPostCollectionViewCell.swift */,
 				0FD00B801DC9372C001F555A /* ReviewPostCollectionViewCell.xib */,
-				0FF4ED861DCAF9B800BE4CF4 /* StarRatingView.swift */,
 				0FF4ED881DCBD26400BE4CF4 /* MovieReviewSubView.swift */,
 				0FF4ED8A1DCBE1A900BE4CF4 /* MovieReviewSubView.xib */,
 				0F2B8CB41DCE7F4800BD62C6 /* RootPostCollectionViewCell.swift */,
@@ -422,6 +429,8 @@
 				0F0F69C51D3BE23D009600F7 /* ForumResponse.swift */,
 				0F9FB1E31DBDC23800B901ED /* ValidateCommand.swift */,
 				0F9FB1E51DBDC29C00B901ED /* ValidateResponse.swift */,
+				0FA3933A1DDFB5FA00E3BC2E /* LikeCommand.swift */,
+				0FA3933C1DDFB61900E3BC2E /* LikeResponse.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -556,6 +565,7 @@
 				0FB2F4A71D035B4A008F386A /* Utilities.swift in Sources */,
 				0F0F69B81D383730009600F7 /* AccessoryCommentView.swift in Sources */,
 				0FDA6A231DC7C75A00279596 /* NavigationViewController.swift in Sources */,
+				0FA3933B1DDFB5FB00E3BC2E /* LikeCommand.swift in Sources */,
 				0FF4ED891DCBD26400BE4CF4 /* MovieReviewSubView.swift in Sources */,
 				0FF4ED8D1DCBE44400BE4CF4 /* UIView+Nib.swift in Sources */,
 				0F0997B51DC90EFC001991E2 /* MoviePostCollectionViewCell.swift in Sources */,
@@ -564,6 +574,7 @@
 				0F3CEAB41DC272AA003CD432 /* TabBarViewController.swift in Sources */,
 				0F76A87C1CFA16C300BDD499 /* ForumViewController.swift in Sources */,
 				0F76A87E1CFA1C9400BDD499 /* ProfileViewController.swift in Sources */,
+				0F7170891DDF7D9900E9348C /* HotboxView.swift in Sources */,
 				0FE527301CFB65EB00407AAE /* ExtensionDictionary.swift in Sources */,
 				0FCC108A1D2B1CF700EA0B25 /* Response.swift in Sources */,
 				0FD0A33E1D0DFDD80030D36F /* TopicCommand.swift in Sources */,
@@ -577,6 +588,7 @@
 				0FCC10771D28392300EA0B25 /* LatestPostsProtocols.swift in Sources */,
 				0FD0A3221D0CA2530030D36F /* ConversationsViewController.swift in Sources */,
 				0F0F69AE1D32986B009600F7 /* PostCrudCommand.swift in Sources */,
+				0FA3933D1DDFB61900E3BC2E /* LikeResponse.swift in Sources */,
 				0F0F69C21D3ADCB7009600F7 /* ForumSelectionViewController.swift in Sources */,
 				0F2B8CBA1DCF1FE800BD62C6 /* LoadingCollectionViewCell.swift in Sources */,
 				0FCC10831D2AC51A00EA0B25 /* ChooseThreadViewController.swift in Sources */,

@@ -13,4 +13,12 @@ public struct Person: Decodable{
         login = ("login" <~~ json)!
         image = "image" <~~ json
     }
+    
+    public init(){
+        //No one
+        personId = ""
+        login = "No One"
+        image = nil
+        name = "Blank"
+    }
 }

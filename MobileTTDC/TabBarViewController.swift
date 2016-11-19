@@ -12,7 +12,7 @@ class TabBarViewController: UITabBarController {
     var controllerArray = [UIViewController]()
     
     var latest : UIViewController!
-    var conversation : UIViewController!
+//    var conversation : UIViewController!
     var login : UIViewController!
     var forum : UIViewController!
     var profile : UIViewController!
@@ -26,7 +26,7 @@ class TabBarViewController: UITabBarController {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         
         latest = storyboard.instantiateViewController(withIdentifier: "LatestNav")
-        conversation = storyboard.instantiateViewController(withIdentifier: "ConversationNav")
+//        conversation = storyboard.instantiateViewController(withIdentifier: "ConversationNav")
         forum = storyboard.instantiateViewController(withIdentifier: "ForumNav")
         login = storyboard.instantiateViewController(withIdentifier: "LoginNav")
         
@@ -104,8 +104,8 @@ class TabBarViewController: UITabBarController {
         
         controllerArray.removeAll()
         controllerArray.append(latest)
-        controllerArray.append(conversation)
-        controllerArray.append(forum)
+//        controllerArray.append(conversation)
+//        controllerArray.append(forum)
         controllerArray.append(profile)
         
         self.setViewControllers(controllerArray, animated: true)

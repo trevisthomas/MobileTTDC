@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController : PostBaseViewController {
+class SearchViewController : CommonBaseViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -16,47 +16,27 @@ class SearchViewController : PostBaseViewController {
     fileprivate var transactionId : Int = 0;
     
     fileprivate var autoCompleteItems : [AutoCompleteItem] = []
-    fileprivate var posts : [Post] = []
-    
-//    private var flatPrototypeCell : FlatCollectionViewCell!
-    
     @IBAction func doneButtonAction(_ sender: UIBarButtonItem) {
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let nib = UINib(nibName: "AutoCompleteCollectionViewCell", bundle: nil)
-//        self.collectionView!.registerNib(nib, forCellWithReuseIdentifier: ReuseIdentifiers.AUTO_COLLECTION_CELL)
-       
-//        flatPrototypeCell = registerAndCreatePrototypeCellFromNib("FlatCollectionViewCell", forReuseIdentifier: ReuseIdentifiers.FLAT_POST_CELL) as! FlatCollectionViewCell
-
         let nib = UINib(nibName: "AutoCompleteTableViewCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: ReuseIdentifiers.AUTO_TOPIC_CELL)
-        
         searchBar.delegate = self
-        
         searchBar.becomeFirstResponder()
-        
         registerForStyleUpdates()
     }
     
     override func refreshStyle() {
-//        searchBar
-        
         let style = getApplicationContext().getCurrentStyle()
         collectionView.backgroundColor = style.postBackgroundColor()
-        
         collectionView.indicatorStyle = style.scrollBarStyle()
-        
         searchBar.backgroundColor = style.navigationBackgroundColor()
-//        searchBar.textColor = style.entryTextColor()
         searchBar.tintColor = style.navigationColor()
         
         searchBar.barTintColor = style.navigationBackgroundColor()
-        
-//        searchBar.text
-//        searchBar.searchBarStyle
         searchBar.setTextColor(style.navigationColor())
         searchBar.setTextBackgroundColor(style.searchBackgroundColor())
 
@@ -68,16 +48,9 @@ class SearchViewController : PostBaseViewController {
         tableView.tintColor = style.tintColor()
     }
     
-//    
-//    func registerAndCreatePrototypeCellFromNib(withName: String, forReuseIdentifier: String) -> UICollectionViewCell{
-//        let nib = UINib(nibName: withName, bundle: nil)
-//        self.collectionView!.registerNib(nib, forCellWithReuseIdentifier: forReuseIdentifier)
-//        return nib.instantiateWithOwner(nil, options: nil)[0] as! UICollectionViewCell
-//    }
-    
     func switchToTable(){
         autoCompleteItems.removeAll()
-        posts.removeAll()
+        removeAllPosts()
         
         tableView.isHidden = false
         collectionView.isHidden = true
@@ -87,7 +60,6 @@ class SearchViewController : PostBaseViewController {
     
     func switchToCollectionView(){
         autoCompleteItems.removeAll()
-        posts.removeAll()
         
         tableView.isHidden = true
         collectionView.isHidden = false
@@ -104,7 +76,7 @@ extension SearchViewController : UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        performSearch(searchBar.text!)
+        loadFirstPage()
     }
     
 }
@@ -156,16 +128,15 @@ extension SearchViewController {
     
     
     
-    func performSearch(_ phrase: String){
-        let cmd = SearchCommand(phrase: phrase, postSearchType: SearchCommand.PostSearchType.ALL, pageNumber: 1, sortOrder: SearchCommand.SortOrder.BY_DATE, sortDirection: SearchCommand.SortDirection.DESC)
+    func performSearch(_ phrase: String, pageNumber : Int = 1, completion: @escaping ([Post]?) -> Void){
+        let cmd = SearchCommand(phrase: phrase, postSearchType: SearchCommand.PostSearchType.ALL, pageNumber: pageNumber, sortOrder: SearchCommand.SortOrder.BY_DATE, sortDirection: SearchCommand.SortDirection.DESC)
         
         Network.performSearchCommand(cmd){
             (response, message) -> Void in
             guard (response != nil) else {
                 print("Search failed")
-                
                 self.switchToCollectionView()
-                
+                completion([])
                 return;
             }
             
@@ -173,9 +144,8 @@ extension SearchViewController {
                 
             DispatchQueue.main.async {
                 self.switchToCollectionView()
-                        
-                self.posts = (response?.list)! //Hm, what if this is zero?
-                self.collectionView.reloadData()
+
+                completion(response?.list)
             }
                 
         };
@@ -196,11 +166,6 @@ extension SearchViewController {
     }
 }
 
-extension SearchViewController : UICollectionViewDelegate {
-//    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-//        code
-//    }
-}
 
 extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -208,21 +173,13 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        self.dismissKeyboard()
         let item = autoCompleteItems[indexPath.row]
-        
-//        if(item.postId == nil) {
-//            performSegueWithIdentifier("TopicCreationViewController", sender: indexPath)
-//        } else {
-//            performSegueWithIdentifier("CommentViewController", sender: indexPath)
-//        }
         
         print(item.displayTitle)
         
         performSegue(withIdentifier: "ThreadView", sender: item.postId)
         
     }
-    
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -235,58 +192,12 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension SearchViewController : UICollectionViewDataSource {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+extension SearchViewController : PostCollectionViewDelegate{
+    func loadPosts(completion: @escaping ([Post]?) -> Void) {
+        performSearch(searchBar.text!, completion: completion)
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return posts.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.AUTO_COLLECTION_CELL, forIndexPath: indexPath) as! AutoCompleteCollectionViewCell
-//        cell.threadTitleLabel.text = autoCompleteItems[indexPath.row].displayTitle
-//        return cell
-        
-//        return UICollectionViewCell()
-        
-//        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.FLAT_POST_CELL, forIndexPath: indexPath) as! FlatCollectionViewCell
-//        cell.post = posts[indexPath.row]
-//        cell.delegate = self
-//        return cell
-        
-        return dequeueCell(posts[indexPath.row], indexPath: indexPath)
-        //return dequeueCell(posts[indexPath.section].posts![indexPath.row], indexPath: indexPath)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
-        
-//        var height : CGFloat
-//        flatPrototypeCell.post = posts[indexPath.row]
-//        height = flatPrototypeCell.preferredHeight(collectionView.frame.width)
-//        
-//        return CGSize(width: collectionView.frame.width, height: height)
-        
-        return prototypeCellSize(post: posts[indexPath.row])
+    func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void) {
+        performSearch(searchBar.text!, pageNumber: pageNumber, completion: completion)
     }
 }
-
-/*
-extension SearchViewController : PostViewCellDelegate {
-    func likePost(post: Post){
-        
-    }
-    func viewComments(post: Post){
-        
-    }
-    func commentOnPost(post: Post){
-        
-    }
-    func viewThread(post: Post){
-        performSegueWithIdentifier("ThreadView", sender: post.threadId)
-    }
-
-}
-*/

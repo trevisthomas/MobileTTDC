@@ -281,6 +281,7 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate {
     
     func removeAllPosts(){
         posts = []
+        sizeCache = []
         getCollectionView()?.reloadData()
     }
 }

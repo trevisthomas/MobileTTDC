@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConversationWithReplyViewController: PostBaseViewController {
+class ConversationWithReplyViewController: CommonBaseViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var replyTextView: UITextView!
@@ -16,10 +16,11 @@ class ConversationWithReplyViewController: PostBaseViewController {
     var postId: String! {
         didSet{
             print("ConversationWithReplyViewController is loading \(postId)")
-            loadPost(postId)
+//            loadPost(postId)
+//            loadFirstPage()
         }
     }
-    var posts : [Post] = []
+//    var posts : [Post] = []
     
     var replyToPostId: String!
     
@@ -39,6 +40,7 @@ class ConversationWithReplyViewController: PostBaseViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(ConversationWithReplyViewController.handleTapToResign(_:)))
         self.view.addGestureRecognizer(tap)
         registerForStyleUpdates()
+        loadFirstPage()
         
     }
     
@@ -113,12 +115,16 @@ class ConversationWithReplyViewController: PostBaseViewController {
     override func commentOnPost(_ post: Post){
         print("comment on : " + post.postId)
     }
+    
+    override func allowHierarchy() -> Bool {
+        return true
+    }
    
 }
 
 extension ConversationWithReplyViewController {
     
-    fileprivate func loadPost(_ postId: String){
+    fileprivate func loadPost(_ postId: String, completion: @escaping ([Post]?) -> Void){
         let cmd = TopicCommand(type: .NESTED_THREAD_SUMMARY, postId: postId, pageNumber: -1, pageSize: 1)
         Network.performPostCommand(cmd){
             (response, message) -> Void in
@@ -131,12 +137,14 @@ extension ConversationWithReplyViewController {
             self.invokeLater{
                 
                 guard response?.list != nil else {
+//                    return
+                    completion([])
                     return
                 }
                 
-                self.posts = (response?.list)!.flattenPosts()
-                self.collectionView.reloadData()
-                
+                completion((response?.list)!.flattenPosts())
+//                self.collectionView.reloadData()
+//                
                 
 //                let time = DispatchTime(uptimeNanoseconds: DispatchTime.now()) + Double(1 * Int64(NSEC_PER_SEC)) / Double(NSEC_PER_SEC)
 //                DispatchQueue.main.asyncAfter(deadline: time) {
@@ -180,29 +188,29 @@ extension ConversationWithReplyViewController {
 }
 
 
-extension ConversationWithReplyViewController : UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return prototypeCellSize(post: posts[indexPath.row], allowHierarchy: true)
-    }
-}
+//extension ConversationWithReplyViewController : UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        
+//        return prototypeCellSize(post: posts[indexPath.row], allowHierarchy: true)
+//    }
+//}
 
-extension ConversationWithReplyViewController : UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return posts.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        return dequeueCell(posts[indexPath.row], indexPath: indexPath, allowHierarchy: true)
-    }
-    
-}
+//extension ConversationWithReplyViewController : UICollectionViewDelegate, UICollectionViewDataSource {
+//    
+//    func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        return 1
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return posts.count
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        
+//        return dequeueCell(posts[indexPath.row], indexPath: indexPath, allowHierarchy: true)
+//    }
+//    
+//}
 
 
 extension ConversationWithReplyViewController {
@@ -211,6 +219,8 @@ extension ConversationWithReplyViewController {
             self.presentAlert("Error", message: "Failed to create post.  Server error.")
             return
         }
+        
+        //Trevis!  This is a post being created!
         self.getApplicationContext().reloadAllData()
         
 //        self.commentTextArea.attributedText = nil //So that it doesnt get stashed when you post!
@@ -223,7 +233,19 @@ extension ConversationWithReplyViewController {
         let accessory = replyTextView.inputAccessoryView as! AccessoryCommentView
         accessory.postTextView.text = ""
         replyToPostId = nil //So that it w
-        loadPost(postId)
+//        loadPost(postId)
+        
+        loadFirstPage()
+    }
+}
+
+extension ConversationWithReplyViewController : PostCollectionViewDelegate {
+    func loadPosts(completion: @escaping ([Post]?) -> Void) {
+        loadPost(postId, completion: completion)
+    }
+    
+    func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void){
+//        abort() //I guess?
     }
 }
 

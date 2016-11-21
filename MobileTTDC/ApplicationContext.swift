@@ -17,6 +17,8 @@ open class ApplicationContext : AuthenticatedUserDataProvider {
     open static let styleDark : String = "darkStyle"
     open static let styleLight : String = "lightStyle"
 
+    open let broadcaster = Broacaster()
+    
     fileprivate static let defaultStyle : String = styleLight
     
     public enum Style {

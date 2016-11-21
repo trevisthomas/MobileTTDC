@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReviewPostCollectionViewCell: BasePostCell, PostEntryViewContract{
+class ReviewPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract, BroadcastEventConsumer {
     
     @IBOutlet weak var movieTitleButton: UIButton!
     @IBOutlet weak var movieCoverImageView: UIImageView!
@@ -28,7 +28,7 @@ class ReviewPostCollectionViewCell: BasePostCell, PostEntryViewContract{
     
     var delegate : PostViewCellDelegate?
     
-    override var post : Post! {
+    var post : Post! {
         didSet{
             
             movieTitleButton.setTitle(post.title, for: UIControlState())
@@ -69,6 +69,7 @@ class ReviewPostCollectionViewCell: BasePostCell, PostEntryViewContract{
         super.awakeFromNib()
         reviewTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0)
         registerForStyleUpdates() //causes refreshStyle to be called
+        getApplicationContext().broadcaster.subscribe(consumer: self)
     }
     
     
@@ -119,4 +120,7 @@ class ReviewPostCollectionViewCell: BasePostCell, PostEntryViewContract{
 //        }
 //    }
 
+    func onPostUpdated(post: Post) {
+        self.post = post
+    }
 }

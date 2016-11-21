@@ -45,8 +45,8 @@
 		0F7A58031DE23F1200E52B55 /* PostEntryViewContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7A58021DE23F1200E52B55 /* PostEntryViewContract.swift */; };
 		0F7A58051DE2408300E52B55 /* PostWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7A58041DE2408300E52B55 /* PostWrapper.swift */; };
 		0F7A58071DE240E100E52B55 /* Broacaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7A58061DE240E100E52B55 /* Broacaster.swift */; };
-		0F7A58091DE2483D00E52B55 /* BasePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7A58081DE2483D00E52B55 /* BasePostCell.swift */; };
 		0F7A580B1DE2B8DE00E52B55 /* PostCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7A580A1DE2B8DE00E52B55 /* PostCollectionViewDelegate.swift */; };
+		0F7D75671DE37D9F009ED635 /* WeakHashSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7D75661DE37D9F009ED635 /* WeakHashSet.swift */; };
 		0F83CF3E1D734AAF001A7F8F /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F83CF3D1D734AAE001A7F8F /* Search.storyboard */; };
 		0F83CF411D734C1F001A7F8F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F83CF401D734C1F001A7F8F /* SearchViewController.swift */; };
 		0F888A6F1D1DDDA0005F960A /* LatestPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F888A6D1D1DDD9F005F960A /* LatestPostsViewController.swift */; };
@@ -158,8 +158,8 @@
 		0F7A58021DE23F1200E52B55 /* PostEntryViewContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostEntryViewContract.swift; sourceTree = "<group>"; };
 		0F7A58041DE2408300E52B55 /* PostWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostWrapper.swift; sourceTree = "<group>"; };
 		0F7A58061DE240E100E52B55 /* Broacaster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Broacaster.swift; sourceTree = "<group>"; };
-		0F7A58081DE2483D00E52B55 /* BasePostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePostCell.swift; sourceTree = "<group>"; };
 		0F7A580A1DE2B8DE00E52B55 /* PostCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		0F7D75661DE37D9F009ED635 /* WeakHashSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakHashSet.swift; sourceTree = "<group>"; };
 		0F83CF3D1D734AAE001A7F8F /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		0F83CF401D734C1F001A7F8F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0F888A6D1D1DDD9F005F960A /* LatestPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestPostsViewController.swift; sourceTree = "<group>"; };
@@ -323,7 +323,6 @@
 				0F2B8CB81DCF1FE800BD62C6 /* LoadingCollectionViewCell.swift */,
 				0F2B8CB91DCF1FE800BD62C6 /* LoadingCollectionViewCell.xib */,
 				0F6E12B41DD8F9AD00927810 /* CommonBaseViewController.swift */,
-				0F7A58081DE2483D00E52B55 /* BasePostCell.swift */,
 				0F7A580A1DE2B8DE00E52B55 /* PostCollectionViewDelegate.swift */,
 			);
 			name = Post;
@@ -456,6 +455,7 @@
 			isa = PBXGroup;
 			children = (
 				0FE527331CFB65F100407AAE /* Gloss */,
+				0F7D75661DE37D9F009ED635 /* WeakHashSet.swift */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -566,6 +566,7 @@
 				0F0F69CE1D4D4F53009600F7 /* PostViewCellDelegate.swift in Sources */,
 				0FE527211CFB654300407AAE /* LoginCommand.swift in Sources */,
 				0FB2F4A71D035B4A008F386A /* Utilities.swift in Sources */,
+				0F7D75671DE37D9F009ED635 /* WeakHashSet.swift in Sources */,
 				0F0F69B81D383730009600F7 /* AccessoryCommentView.swift in Sources */,
 				0FDA6A231DC7C75A00279596 /* NavigationViewController.swift in Sources */,
 				0FA3933B1DDFB5FB00E3BC2E /* LikeCommand.swift in Sources */,
@@ -586,7 +587,6 @@
 				0FB2F4941CFF9C77008F386A /* NSDate+Gloss.swift in Sources */,
 				0FCC107B1D2ABB9800EA0B25 /* AutoCompleteResponse.swift in Sources */,
 				0FA3F2651DBBCAA100268DC1 /* UICollectionViewCell+TTDC.swift in Sources */,
-				0F7A58091DE2483D00E52B55 /* BasePostCell.swift in Sources */,
 				0FACAC5F1DDEC5B80090F094 /* UIColor+.swift in Sources */,
 				0FAFE33C1DCD44F0000BE422 /* UISearchBar+Custom.swift in Sources */,
 				0FCC10771D28392300EA0B25 /* LatestPostsProtocols.swift in Sources */,

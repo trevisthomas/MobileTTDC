@@ -8,9 +8,9 @@
 
 import UIKit
 
-class PostReplyCollectionViewCell: BasePostCell, PostEntryViewContract {
+class PostReplyCollectionViewCell: UICollectionViewCell, PostEntryViewContract, BroadcastEventConsumer {
     
-    override var post : Post! {
+    var post : Post! {
         didSet{
             creatorNameButton.setTitle(post.creator.login, for: UIControlState())
             entryTextView.setHtmlText(post.entry)
@@ -45,6 +45,7 @@ class PostReplyCollectionViewCell: BasePostCell, PostEntryViewContract {
         super.awakeFromNib()
         entryTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0)
         registerForStyleUpdates() //causes refreshStyle to be called
+        getApplicationContext().broadcaster.subscribe(consumer: self)
     }
     
     
@@ -88,5 +89,8 @@ class PostReplyCollectionViewCell: BasePostCell, PostEntryViewContract {
 //            self.post = post
 //        }
 //    }
-
+    
+    func onPostUpdated(post: Post) {
+        self.post = post
+    }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RootPostCollectionViewCell: BasePostCell, PostEntryViewContract {
+class RootPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract, BroadcastEventConsumer {
     
     
     @IBOutlet weak var entryConstraintBottom: NSLayoutConstraint!
@@ -16,7 +16,7 @@ class RootPostCollectionViewCell: BasePostCell, PostEntryViewContract {
     
     @IBOutlet weak var entryRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var entryLeftConstraint: NSLayoutConstraint!
-    override var post : Post!{
+    var post : Post!{
         didSet{
             dateButton.setTitle(Utilities.singleton.simpleDateFormat(post.date), for: UIControlState())
             entryTextView.setHtmlText(post.entry)
@@ -147,6 +147,7 @@ class RootPostCollectionViewCell: BasePostCell, PostEntryViewContract {
         
         entryTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0)
         registerForStyleUpdates() //causes refreshStyle to be called
+        getApplicationContext().broadcaster.subscribe(consumer: self)
     }
     
     
@@ -205,5 +206,8 @@ class RootPostCollectionViewCell: BasePostCell, PostEntryViewContract {
 //        }
 //    }
 
+    func onPostUpdated(post: Post) {
+        self.post = post
+    }
 
 }

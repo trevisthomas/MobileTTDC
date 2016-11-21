@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CommonBaseViewController: UIViewController, PostViewCellDelegate, BroadcastEventConsumer {
+class CommonBaseViewController: UIViewController, PostViewCellDelegate /*, BroadcastEventConsumer*/ {
     
     var replyPrototypeCell : PostReplyCollectionViewCell!
     var postPrototypeCell : PostCollectionViewCell!
@@ -126,9 +126,9 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate, Broadcas
             
             if let post = response?.post {
                 //Tag was removed.  The one inside of the association list still has the tag, so use this one.
-                Broacaster.postUpdated(post: post)
+                self.getApplicationContext().broadcaster.postUpdated(post: post)
             } else if let post = response?.tagAssociation.post {
-                Broacaster.postUpdated(post: post)
+                self.getApplicationContext().broadcaster.postUpdated(post: post)
             } else {
                 //This should never happen.
             }

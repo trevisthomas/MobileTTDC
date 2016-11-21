@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MoviePostCollectionViewCell: BasePostCell, PostEntryViewContract{
+class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract, BroadcastEventConsumer {
 
     @IBOutlet weak var subRatingStackView: UIStackView!
     @IBOutlet weak var movieTitleButton: UIButton!
@@ -22,7 +22,7 @@ class MoviePostCollectionViewCell: BasePostCell, PostEntryViewContract{
     
     var delegate : PostViewCellDelegate?
     
-    override var post : Post! {
+    var post : Post! {
         didSet{
             
             movieTitleButton.setTitle(post.title, for: UIControlState())
@@ -63,6 +63,7 @@ class MoviePostCollectionViewCell: BasePostCell, PostEntryViewContract{
     override func awakeFromNib() {
         super.awakeFromNib()
         registerForStyleUpdates() //causes refreshStyle to be called
+        getApplicationContext().broadcaster.subscribe(consumer: self)
     }
     
     
@@ -113,5 +114,7 @@ class MoviePostCollectionViewCell: BasePostCell, PostEntryViewContract{
 //            self.post = post
 //        }
 //    }
-
+    func onPostUpdated(post: Post) {
+        self.post = post
+    }
 }

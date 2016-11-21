@@ -1,4 +1,5 @@
 
+
 //
 //  ApplicationContext.swift
 //  MobileTTDC
@@ -251,6 +252,8 @@ open class ApplicationContext : AuthenticatedUserDataProvider {
             }
         };
     }
+    
+    
 }
 
 extension ApplicationContext : LatestPostsDataProvider {

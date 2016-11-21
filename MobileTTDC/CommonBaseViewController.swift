@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CommonBaseViewController: UIViewController, PostViewCellDelegate {
+class CommonBaseViewController: UIViewController, PostViewCellDelegate, BroadcastEventConsumer {
     
     var replyPrototypeCell : PostReplyCollectionViewCell!
     var postPrototypeCell : PostCollectionViewCell!
@@ -28,6 +28,7 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         delegate = self as! PostCollectionViewDelegate
+        setupPostBroacastUpdates() 
     }
     
     override func viewDidLoad() {
@@ -119,10 +120,19 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate {
         let cmd = LikeCommand(postId: post.postId)
         Network.performLikeCommand(cmd) {
             (response, message) in
-            guard let error = message else {
-                return
+            if let error = message {
+                self.presentAlert("Sorry", message: error)
             }
-            self.presentAlert("Sorry", message: error)
+            
+            if let post = response?.post {
+                //Tag was removed.  The one inside of the association list still has the tag, so use this one.
+                Broacaster.postUpdated(post: post)
+            } else if let post = response?.tagAssociation.post {
+                Broacaster.postUpdated(post: post)
+            } else {
+                //This should never happen.
+            }
+        
         }
     }
     
@@ -284,6 +294,23 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate {
         sizeCache = []
         getCollectionView()?.reloadData()
     }
+    
+    //I wanted to override the constructor to wire up here, but i couldnt figure out how.
+    func setupPostBroacastUpdates() {
+        NotificationCenter.default.addObserver(self, selector: #selector(catchPostUpdated), name: NSNotification.Name(rawValue: Event.postUpdated.rawValue), object: nil)
+    }
+    
+    func catchPostUpdated(_ notification: Notification) {
+        guard let postWrapper = notification.userInfo?["post"] as? PostWrapper else {
+            return
+        }
+        
+        onPostUpdated(post: postWrapper.post)
+    }
+    
+    func onPostUpdated(post : Post) {
+        print("Updated: \(post.postId)")
+    }
 }
 
 extension CommonBaseViewController : UICollectionViewDelegateFlowLayout {
@@ -346,11 +373,8 @@ extension CommonBaseViewController : UICollectionViewDataSource {
     
 }
 
-protocol PostCollectionViewDelegate {
-    func loadPosts(completion: @escaping ([Post]?) -> Void)
-    
-    func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void)
-}
+
+
 
 //extension CommonBaseViewController : UICollectionViewDelegate {
 //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -375,6 +399,27 @@ extension CommonBaseViewController : UICollectionViewDelegate {
 }
 
 
+
+//extension CommonBaseViewController : BroadcastEventConsumer {
+//    //I wanted to override the constructor to wire up here, but i couldnt figure out how.
+//    func setupPostBroacastUpdates() {
+//        NotificationCenter.default.addObserver(self, selector: #selector(catchPostUpdated), name: NSNotification.Name(rawValue: Event.postUpdated.rawValue), object: nil)
+//    }
+//    
+//    func catchPostUpdated(_ notification: Notification) {
+//        guard let postWrapper = notification.userInfo?["post"] as? PostWrapper else {
+//            return
+//        }
+//        
+//        onPostUpdated(post: postWrapper.post)
+//    }
+//    
+//    func onPostUpdated(post : Post) {
+//        print("Updated: \(post.postId)")
+//    }
+//    
+//    
+//}
 
 
 //protocol CommonBaseViewControllerDelegate {

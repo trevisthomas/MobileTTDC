@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
+class PostCollectionViewCell: BasePostCell, PostEntryViewContract {
     
     
     @IBOutlet weak var entryConstraintBottom: NSLayoutConstraint!
@@ -30,7 +30,7 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
     @IBOutlet weak var creatorImageView: UIImageView!
     @IBOutlet weak var likesLabel: UILabel!
     
-    var post : Post!{
+    override var post : Post!{
         didSet{
             dateButton.setTitle(Utilities.singleton.simpleDateFormat(post.date), for: UIControlState())
             entryTextView.setHtmlText(post.entry)
@@ -61,7 +61,9 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
             }
             
             
-            likesLabel.text = post.formatLikesString()
+            likesLabel.text = formatLikesString(post: post)
+            
+            configureLikeButton(post: post, button: likeButton)
             
             refreshStyle()
         }
@@ -74,7 +76,7 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
         super.awakeFromNib()
         // Initialization code
         
-        
+        setupPostBroacastUpdates()
         entryTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0)
         registerForStyleUpdates() //causes refreshStyle to be called
     }
@@ -126,6 +128,7 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
         return entryTextView
     }
 }
+
 
 
 

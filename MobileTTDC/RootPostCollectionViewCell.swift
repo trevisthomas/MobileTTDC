@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RootPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
+class RootPostCollectionViewCell: BasePostCell, PostEntryViewContract {
     
     
     @IBOutlet weak var entryConstraintBottom: NSLayoutConstraint!
@@ -16,7 +16,7 @@ class RootPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
     
     @IBOutlet weak var entryRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var entryLeftConstraint: NSLayoutConstraint!
-    var post : Post!{
+    override var post : Post!{
         didSet{
             dateButton.setTitle(Utilities.singleton.simpleDateFormat(post.date), for: UIControlState())
             entryTextView.setHtmlText(post.entry)
@@ -118,7 +118,9 @@ class RootPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
             //            print("Size of web: \(contentWebView.intrinsicContentSize())")
             //            print("Size of btn: \(dateButton.intrinsicContentSize())")
             
-            likesLabel.text = post.formatLikesString()
+            likesLabel.text = formatLikesString(post: post)
+            
+            configureLikeButton(post: post, button: likeButton)
             
             refreshStyle()
         }
@@ -196,5 +198,12 @@ class RootPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
     func postEntryTextView() -> UITextView? {
         return entryTextView
     }
+    
+//    override func onPostUpdated(post: Post) {
+//        if self.post.postId == post.postId {
+//            self.post = post
+//        }
+//    }
+
 
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReviewPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
+class ReviewPostCollectionViewCell: BasePostCell, PostEntryViewContract{
     
     @IBOutlet weak var movieTitleButton: UIButton!
     @IBOutlet weak var movieCoverImageView: UIImageView!
@@ -28,7 +28,7 @@ class ReviewPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
     
     var delegate : PostViewCellDelegate?
     
-    var post : Post! {
+    override var post : Post! {
         didSet{
             
             movieTitleButton.setTitle(post.title, for: UIControlState())
@@ -38,7 +38,9 @@ class ReviewPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
                 movieCoverImageView.downloadedFrom(link: url, contentMode: .scaleAspectFit)
             }
             dateCreatedButton.setTitle(Utilities.singleton.simpleDateTimeFormat(post.date), for: UIControlState())
-            likesLabel.text = post.formatLikesString()
+            
+            likesLabel.text = formatLikesString(post: post)
+            configureLikeButton(post: post, button: likeButton)
             
             if post.mass == 0 {
                 numCommentsButton.isHidden = true
@@ -58,7 +60,7 @@ class ReviewPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
             } else {
                 starRatingView.isHidden = true
             }
-            
+            configureLikeButton(post: post, button: likeButton)
             refreshStyle() //For some reason those attributed guys get unhappy if you dont do this
         }
     }
@@ -110,5 +112,11 @@ class ReviewPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
     func postEntryTextView() -> UITextView? {
         return reviewTextView
     }
+    
+//    override func onPostUpdated(post: Post) {
+//        if self.post.postId == post.postId {
+//            self.post = post
+//        }
+//    }
 
 }

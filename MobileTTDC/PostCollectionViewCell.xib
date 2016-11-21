@@ -120,20 +120,20 @@
                         <rect key="frame" x="0.0" y="170" width="600" height="30"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cSY-Ng-cAg">
-                                <rect key="frame" x="469" y="0.0" width="111" height="29"/>
+                                <rect key="frame" x="448" y="0.0" width="132" height="29"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DXF-oW-dN7">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="29"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="51" height="29"/>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                        <state key="normal" title="Like">
+                                        <state key="normal" title="Set Like">
                                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="likeAction:" destination="RoR-zW-R4a" eventType="touchUpInside" id="ijW-Db-uMj"/>
+                                            <action selector="likeAction:" destination="RoR-zW-R4a" eventType="touchUpInside" id="NwJ-Ue-uDO"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LjP-7r-a6R">
-                                        <rect key="frame" x="50" y="0.0" width="61" height="29"/>
+                                        <rect key="frame" x="71" y="0.0" width="61" height="29"/>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                         <state key="normal" title="Comment">
                                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>

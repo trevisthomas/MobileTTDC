@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
+class MoviePostCollectionViewCell: BasePostCell, PostEntryViewContract{
 
     @IBOutlet weak var subRatingStackView: UIStackView!
     @IBOutlet weak var movieTitleButton: UIButton!
@@ -22,7 +22,7 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
     
     var delegate : PostViewCellDelegate?
     
-    var post : Post! {
+    override var post : Post! {
         didSet{
             
             movieTitleButton.setTitle(post.title, for: UIControlState())
@@ -104,4 +104,14 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
             return frame.height
         }
     }
+    
+//    override func onPostUpdated(post: Post) {
+//        guard let p = self.post else {
+//            return
+//        }
+//        if self.post.postId == post.postId {
+//            self.post = post
+//        }
+//    }
+
 }

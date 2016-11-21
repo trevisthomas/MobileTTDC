@@ -176,6 +176,11 @@ class LatestPostsViewController: CommonBaseViewController {
 //    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
 //        super.viewWillTransition(to: size, with: coordinator)
 //    }
+    
+    override func onPostUpdated(post: Post) {
+        print("VC sees post \(post.postId)")
+    }
+
 
 }
 
@@ -222,7 +227,8 @@ extension LatestPostsViewController {
     override func getCollectionView() -> UICollectionView? {
         return collectionView
     }
-}
+    
+    }
 
 extension LatestPostsViewController : PostCollectionViewDelegate {
     func loadPosts(completion: @escaping ([Post]?) -> Void) {

@@ -60,23 +60,6 @@ public struct Post : Decodable{
         
     }
     
-    func formatLikesString() -> String {
-        
-        guard howManyLikes() > 0 else {
-            return ""
-        }
-        var likes = ""
-        for tagAss in tagAssociations! {
-            if(tagAss.tag.type == "LIKE"){
-                if (!likes.isEmpty){
-                    likes.append(", ")
-                }
-                likes.append(tagAss.creator.login)
-            }
-        }
-        return "Liked by: \(likes)"
-    }
-    
     func howManyLikes() -> Int {
         guard tagAssociations != nil else {
             return 0
@@ -88,6 +71,21 @@ public struct Post : Decodable{
             }
         }
         return count
+    }
+    
+    func isLikedByMe(personId : String) -> Bool {
+        guard tagAssociations != nil else {
+            return false
+        }
+        
+        for tagAss in tagAssociations! {
+            if(tagAss.tag.type == "LIKE"){
+                if tagAss.creator.personId == personId {
+                    return true
+                }
+            }
+        }
+        return false
     }
     
 }

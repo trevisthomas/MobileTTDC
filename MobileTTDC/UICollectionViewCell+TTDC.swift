@@ -19,28 +19,39 @@ extension UICollectionViewCell : UITextViewDelegate {
     
 }
 
-protocol PostEntryViewContract {
-    func postEntryInsets() -> UIEdgeInsets
-    func postEntryTextView() -> UITextView?
-}
 
-
-extension PostEntryViewContract {
-    func preferredHeight(_ width : CGFloat) -> CGFloat {
+extension UICollectionViewCell {
+    func configureLikeButton(post : Post, button : UIButton) {
+        if let currentUser = getApplicationContext().currentUser() {
+            button.isEnabled = true
+            
+            if post.isLikedByMe(personId: currentUser.personId) {
+                button.setTitle("Unlike", for: .normal)
+            } else {
+                button.setTitle("Like", for: .normal)
+            }
+            
+        } else {
+            button.isEnabled = false
+            button.setTitle("Like", for: .normal)
+        }
         
-        let entryInsets = postEntryInsets()
-        
-        let sizeThatFits = postEntryTextView()!.sizeThatFits(CGSize(width: width - entryInsets.left - entryInsets.right, height: CGFloat.greatestFiniteMagnitude))
-        let insets: UIEdgeInsets = postEntryTextView()!.textContainerInset;
-        let heightThatFits = sizeThatFits.height + insets.top + insets.bottom + entryInsets.top + entryInsets.bottom
-        return heightThatFits
     }
     
-//    func postEntryTextView() -> UITextView? {
-//        return nil
-//    }
-}
-
-extension PostEntryViewContract {
-    
+    func formatLikesString(post: Post) -> String {
+        
+        guard post.howManyLikes() > 0 else {
+            return ""
+        }
+        var likes = ""
+        for tagAss in post.tagAssociations! {
+            if(tagAss.tag.type == "LIKE"){
+                if (!likes.isEmpty){
+                    likes.append(", ")
+                }
+                likes.append(tagAss.creator.login)
+            }
+        }
+        return "Liked by: \(likes)"
+    }
 }

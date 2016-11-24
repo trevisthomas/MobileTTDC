@@ -13,3 +13,4 @@ protocol PostCollectionViewDelegate {
     
     func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void)
 }
+

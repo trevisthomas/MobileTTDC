@@ -112,9 +112,9 @@ class ConversationWithReplyViewController: CommonBaseViewController {
         return collectionView
     }
 
-    override func commentOnPost(_ post: Post){
-        print("comment on : " + post.postId)
-    }
+//    override func commentOnPost(_ post: Post){
+//        print("comment on : " + post.postId)
+//    }
     
     override func allowHierarchy() -> Bool {
         return true
@@ -221,6 +221,8 @@ extension ConversationWithReplyViewController {
         }
         
         //Trevis!  This is a post being created!
+        
+        self.getApplicationContext().broadcaster.postAdded(post: (response?.post)!)
         self.getApplicationContext().reloadAllData()
         
 //        self.commentTextArea.attributedText = nil //So that it doesnt get stashed when you post!

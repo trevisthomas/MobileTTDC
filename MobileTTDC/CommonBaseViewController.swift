@@ -8,8 +8,7 @@
 
 import UIKit
 
-class CommonBaseViewController: UIViewController, PostViewCellDelegate /*, BroadcastEventConsumer*/ {
-    
+class CommonBaseViewController: UIViewController {
     var replyPrototypeCell : PostReplyCollectionViewCell!
     var postPrototypeCell : PostCollectionViewCell!
     var reviewPostPrototypeCell : ReviewPostCollectionViewCell!
@@ -28,7 +27,7 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate /*, Broad
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         delegate = self as! PostCollectionViewDelegate
-        setupPostBroacastUpdates() 
+//        getApplicationContext().broadcaster.subscribeForPostAdd(consumer: self)
     }
     
     override func viewDidLoad() {
@@ -60,12 +59,6 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate /*, Broad
         }
         )
     }
-    
-//    override func viewWillLayoutSubviews() {
-//        super.viewWillLayoutSubviews()
-//        self.getCollectionView()?.collectionViewLayout.invalidateLayout()
-//        
-//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -116,40 +109,6 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate /*, Broad
     }
     
     
-    func likePost(_ post: Post){
-        let cmd = LikeCommand(postId: post.postId)
-        Network.performLikeCommand(cmd) {
-            (response, message) in
-            if let error = message {
-                self.presentAlert("Sorry", message: error)
-            }
-            
-            if let post = response?.post {
-                //Tag was removed.  The one inside of the association list still has the tag, so use this one.
-                self.getApplicationContext().broadcaster.postUpdated(post: post)
-            } else if let post = response?.tagAssociation.post {
-                self.getApplicationContext().broadcaster.postUpdated(post: post)
-            } else {
-                //This should never happen.
-            }
-        
-        }
-    }
-    
-    func viewComments(_ post: Post){
-        var dict = [String: String]()
-        dict["threadId"] = post.threadId
-        performSegue(withIdentifier: "ConversationWithReplyView", sender: dict)
-    }
-    func commentOnPost(_ post: Post){
-        var dict = [String: String]()
-        dict["threadId"] = post.threadId
-        dict["postId"] = post.postId
-        performSegue(withIdentifier: "ConversationWithReplyView", sender: dict)
-    }
-    func viewThread(_ post: Post) {
-        performSegue(withIdentifier: "ThreadView", sender: post.postId)
-    }
     
     func dequeueCell(_ post : Post, indexPath : IndexPath) -> UICollectionViewCell {
         if post.isMovie {
@@ -212,14 +171,6 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate /*, Broad
         return CGSize(width: frameSize.width, height: height)
     }
     
-//    func loadPosts(completion: @escaping ([Post]?) -> Void){
-//        abort()
-//    }
-//    
-//    func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void) {
-//        abort()
-//    }
-    
     func loadFirstPage(completion: @escaping (() -> Void) = {}) {
         self.dataLoadingInProgress = true
         delegate.loadPosts() {
@@ -273,12 +224,10 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate /*, Broad
         
     }
     func loadSizeCache(posts : [Post], completion: (@escaping () -> Swift.Void) = {}){
-        
         DispatchQueue.main.async {
             self.sizeCache = []
             for p in self.posts {
                 let size = self.prototypeCellSize(post: p)
-//                print(size)
                 self.sizeCache.append(size)
             }
             completion()
@@ -293,23 +242,6 @@ class CommonBaseViewController: UIViewController, PostViewCellDelegate /*, Broad
         posts = []
         sizeCache = []
         getCollectionView()?.reloadData()
-    }
-    
-    //I wanted to override the constructor to wire up here, but i couldnt figure out how.
-    func setupPostBroacastUpdates() {
-        NotificationCenter.default.addObserver(self, selector: #selector(catchPostUpdated), name: NSNotification.Name(rawValue: Event.postUpdated.rawValue), object: nil)
-    }
-    
-    func catchPostUpdated(_ notification: Notification) {
-        guard let postWrapper = notification.userInfo?["post"] as? PostWrapper else {
-            return
-        }
-        
-        onPostUpdated(post: postWrapper.post)
-    }
-    
-    func onPostUpdated(post : Post) {
-        print("Updated: \(post.postId)")
     }
 }
 
@@ -374,19 +306,6 @@ extension CommonBaseViewController : UICollectionViewDataSource {
 }
 
 
-
-
-//extension CommonBaseViewController : UICollectionViewDelegate {
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        
-//        let post = self.posts[indexPath.row]
-//        var dict = [String: String]()
-//        dict["threadId"] = post.threadId
-//        performSegue(withIdentifier: "ConversationWithReplyView", sender: dict)
-//        
-//    }
-//}
-
 extension CommonBaseViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -399,33 +318,46 @@ extension CommonBaseViewController : UICollectionViewDelegate {
 }
 
 
+extension CommonBaseViewController : PostViewCellDelegate {
+    func likePost(_ post: Post){
+//        getApplicationContext().broadcaster.postAdded(post: post)
+        
+        let cmd = LikeCommand(postId: post.postId)
+        Network.performLikeCommand(cmd) {
+            (response, message) in
+            if let error = message {
+                self.presentAlert("Sorry", message: error)
+            }
 
-//extension CommonBaseViewController : BroadcastEventConsumer {
-//    //I wanted to override the constructor to wire up here, but i couldnt figure out how.
-//    func setupPostBroacastUpdates() {
-//        NotificationCenter.default.addObserver(self, selector: #selector(catchPostUpdated), name: NSNotification.Name(rawValue: Event.postUpdated.rawValue), object: nil)
-//    }
-//    
-//    func catchPostUpdated(_ notification: Notification) {
-//        guard let postWrapper = notification.userInfo?["post"] as? PostWrapper else {
-//            return
-//        }
-//        
-//        onPostUpdated(post: postWrapper.post)
-//    }
-//    
-//    func onPostUpdated(post : Post) {
-//        print("Updated: \(post.postId)")
-//    }
-//    
-//    
-//}
+            if let post = response?.post {
+                //Tag was removed.  The one inside of the association list still has the tag, so use this one.
+                self.getApplicationContext().broadcaster.postUpdated(post: post)
+            } else if let post = response?.tagAssociation.post {
+                self.getApplicationContext().broadcaster.postUpdated(post: post)
+            } else {
+                //This should never happen.
+            }
 
+        }
+    }
+    
+    func viewComments(_ post: Post){
+        var dict = [String: String]()
+        dict["threadId"] = post.threadId
+        performSegue(withIdentifier: "ConversationWithReplyView", sender: dict)
+    }
+    func commentOnPost(_ post: Post){
+        var dict = [String: String]()
+        dict["threadId"] = post.threadId
+        dict["postId"] = post.postId
+        performSegue(withIdentifier: "ConversationWithReplyView", sender: dict)
+    }
+    func viewThread(_ post: Post) {
+        performSegue(withIdentifier: "ThreadView", sender: post.postId)
+    }
 
-//protocol CommonBaseViewControllerDelegate {
-//    func loadFirstPage(completion: @escaping () -> Void)
-//    
-//}
+}
+
 
 //http://stackoverflow.com/questions/32105957/swift-calling-subclasss-overridden-method-from-superclass/40558606#40558606
 //Trevis, WTF.  Adding this method to the PostBase* class directly and then calling it from that classes implementation doesnt call the overriden verison from the sub!  WTF!

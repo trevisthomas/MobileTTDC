@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LatestPostsViewController: CommonBaseViewController {
+class LatestPostsViewController: CommonBaseViewController, BroadcastPostAddConsumer {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -49,6 +49,8 @@ class LatestPostsViewController: CommonBaseViewController {
         super.viewDidLoad()
         
         handleModeChange()
+        
+        getApplicationContext().broadcaster.subscribeForPostAdd(consumer: self)
         
 //        loadFirstPage()
     }
@@ -157,6 +159,10 @@ class LatestPostsViewController: CommonBaseViewController {
         loadFirstPage()
     }
     
+    
+    internal func onPostAdded(post: Post) {
+        print("LatestVC sees post \(post.postId)")
+    }
 //    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
 //        
 //        print("Orientation: PostDetailViewController")
@@ -177,9 +183,11 @@ class LatestPostsViewController: CommonBaseViewController {
 //        super.viewWillTransition(to: size, with: coordinator)
 //    }
     
-    override func onPostUpdated(post: Post) {
-        print("VC sees post \(post.postId)")
-    }
+//    override func onPostUpdated(post: Post) {
+//        print("VC sees post \(post.postId)")
+//    }
+    
+    
 
 
 }
@@ -256,6 +264,7 @@ extension LatestPostsViewController : PostCollectionViewDelegate {
         }
     }
 }
+
 
 //extension LatestPostsViewController : LatestPostsObserver {
 //    func latestPostsUpdated(){

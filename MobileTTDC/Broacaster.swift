@@ -10,6 +10,7 @@ import UIKit
 
 enum Event : String {
     case postUpdated = "Update"
+    case postAdded = "added"
 }
 
 fileprivate class Weak<T: AnyObject> {
@@ -21,13 +22,22 @@ fileprivate class Weak<T: AnyObject> {
 
 public class Broacaster : NSObject {
     fileprivate var postUpdateObservers : [Weak<AnyObject>] = []
+    fileprivate var postAddObservers : [Weak<AnyObject>] = []
     
     func subscribe(consumer : BroadcastEventConsumer) {
         postUpdateObservers.append(Weak(value: consumer as AnyObject))
     }
     
+    func subscribeForPostAdd(consumer : BroadcastPostAddConsumer) {
+        postAddObservers.append(Weak(value: consumer as AnyObject))
+    }
+    
     func postUpdated(post : Post){
         NotificationCenter.default.post(name: Notification.Name(rawValue: Event.postUpdated.rawValue), object: nil, userInfo: ["post" : PostWrapper(post: post)])
+    }
+    
+    func postAdded(post: Post) {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: Event.postAdded.rawValue), object: nil, userInfo: ["post" : PostWrapper(post: post)])
     }
     
     override init() {
@@ -37,6 +47,8 @@ public class Broacaster : NSObject {
     
     func setupPostBroacastUpdates() {
         NotificationCenter.default.addObserver(self, selector: #selector(catchPostUpdated), name: NSNotification.Name(rawValue: Event.postUpdated.rawValue), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(catchPostAdded), name: NSNotification.Name(rawValue: Event.postAdded.rawValue), object: nil)
     }
     
     func catchPostUpdated(_ notification: Notification) {
@@ -57,11 +69,34 @@ public class Broacaster : NSObject {
             }
         }
     }
+    
+    func catchPostAdded(_ notification: Notification) {
+        guard let postWrapper = notification.userInfo?["post"] as? PostWrapper else {
+            return
+        }
+        for weakO in postAddObservers {
+            guard let consumer = weakO.value as? BroadcastPostAddConsumer else {
+                return
+            }
+//            if consumer.post == nil {
+//                continue
+//            }
+//            
+//            if consumer.post.postId == postWrapper.post.postId {
+//                consumer.onPostUpdated(post: postWrapper.post)
+//            }
+            
+            consumer.onPostAdded(post: postWrapper.post)
+        }
+    }
 }
 
-protocol BroadcastEventConsumer {
+protocol BroadcastEventConsumer { //Rename to post update
     var post : Post! {get set}
     func onPostUpdated(post : Post)
-    
+}
+
+protocol BroadcastPostAddConsumer {
+    func onPostAdded(post : Post)
 }
 

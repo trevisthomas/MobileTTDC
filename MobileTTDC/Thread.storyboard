@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hZy-J1-0Nw">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hZy-J1-0Nw">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,6 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7nL-zz-Hh8">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="G1E-S2-ljg">
                                     <size key="itemSize" width="50" height="50"/>
@@ -62,6 +66,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="7nL-zz-Hh8" id="KTQ-2s-wyu"/>
+                        <segue destination="v28-WL-CVk" kind="show" identifier="CommentViewController" id="Ukj-sX-WyR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2bL-X7-UaA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -74,7 +79,15 @@
                 <viewControllerPlaceholder storyboardName="Conversation" id="h48-eT-IKr" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QZi-r6-8Wg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3190" y="2669"/>
+            <point key="canvasLocation" x="3238" y="2543"/>
+        </scene>
+        <!--CommentViewController-->
+        <scene sceneID="iNT-0f-yln">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Comment" referencedIdentifier="CommentViewController" id="v28-WL-CVk" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="twe-2B-VWZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3279" y="2722"/>
         </scene>
         <!--Navigation View Controller-->
         <scene sceneID="FbM-TD-aSG">

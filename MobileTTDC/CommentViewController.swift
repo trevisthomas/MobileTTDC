@@ -45,7 +45,9 @@ class CommentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        commentTextArea.attributedText = getApplicationContext().commentStash
+        if let text = getApplicationContext().commentStash {
+            commentTextArea.setHtmlText(text)
+        }
         
         //TODO: Trevis, util for extention?
 //        let storyboard : UIStoryboard = UIStoryboard(name: "Comment", bundle: nil)
@@ -53,13 +55,13 @@ class CommentViewController: UIViewController {
         let view = Bundle.main.loadNibNamed("AccessoryCommentView", owner: commentTextArea, options: nil)!.first as! AccessoryCommentView
         
         view.delegate = self
-        view.defaultText = commentTextArea.attributedText
+        view.defaultText = commentTextArea.text
         commentTextArea.inputAccessoryView = view
         
         
         postBarButtonItem = UIBarButtonItem(title: "Post", style: UIBarButtonItemStyle.plain, target: self, action: #selector(CommentViewController.decidePostTypeAndPost))
         
-        
+        registerForStyleUpdates()
         
 //        threadTitle.inputAccessoryView = view
         
@@ -74,6 +76,20 @@ class CommentViewController: UIViewController {
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentViewController.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
         
         
+    }
+    
+    override func refreshStyle() {
+        let style = getApplicationContext().getCurrentStyle()
+        
+        view.backgroundColor = style.navigationBackgroundColor()
+        
+        threadTitle.textColor = style.headerTextColor()
+        threadSummaryLabel.textColor = style.headerDetailTextColor()
+        
+        
+        commentTextArea.textColor = UIColor.white
+        commentTextArea.backgroundColor = style.postBackgroundColor()
+        commentTextArea.tintColor = style.headerDetailTextColor()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -129,7 +145,7 @@ class CommentViewController: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        getApplicationContext().commentStash = commentTextArea.attributedText
+//        getApplicationContext().commentStash = commentTextArea.attributedText
     }
 }
 
@@ -210,7 +226,10 @@ extension CommentViewController {
 
 extension CommentViewController: AccessoryCommentViewDelegate {
     func accessoryCommentView(commentText: String) {
-        commentTextArea.text = commentText
+        commentTextArea.setHtmlText(commentText)
+        
+        refreshStyle()
+        getApplicationContext().commentStash = commentText
         commentTextArea.inputAccessoryView?.isHidden = true
         
         validateForPost()

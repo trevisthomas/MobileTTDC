@@ -14,6 +14,7 @@ class TopicCreationViewController: UIViewController {
     @IBOutlet weak var chooseForumButton: UIButton!
     @IBOutlet weak var topicDescriptionTextView: UITextView!
     @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var forumLabel: UILabel!
     
     var nextButtonItem : UIBarButtonItem!
     var closeButtonItem : UIBarButtonItem!
@@ -44,14 +45,37 @@ class TopicCreationViewController: UIViewController {
         
         closeButtonItem = rightBarButtonItem //Grabbing the ne created in IB.  I know that incosistancy is bad :-(
         
-        titleLabel.setHtmlText(topicTitle, fuckingColor:  "pink")
-        topicDescriptionTextView.attributedText = getApplicationContext().topicStash
+//        titleLabel.setHtmlText(topicTitle, fuckingColor:  "pink")
+        
+        titleLabel.text = topicTitle
+        
+        if let text = getApplicationContext().topicStash {
+            topicDescriptionTextView.setHtmlText(text)
+        }
+//        topicDescriptionTextView.attributedText = getApplicationContext().topicStash
 
         let view = Bundle.main.loadNibNamed("AccessoryCommentView", owner: topicDescriptionTextView, options: nil)!.first as! AccessoryCommentView
         view.delegate = self
         topicDescriptionTextView.inputAccessoryView = view
         
         validateForNextAction()
+        registerForStyleUpdates()
+        
+    }
+    
+    override func refreshStyle() {
+        let style = getApplicationContext().getCurrentStyle()
+        
+        view.backgroundColor = style.navigationBackgroundColor()
+        
+        titleLabel.textColor = style.headerTextColor()
+        
+        chooseForumButton.setTitleColor(style.tintColor(), for: .normal)
+        
+        
+        topicDescriptionTextView.textColor = UIColor.white
+        topicDescriptionTextView.backgroundColor = style.postBackgroundColor()
+        topicDescriptionTextView.tintColor = style.headerDetailTextColor()
         
     }
 
@@ -86,12 +110,12 @@ class TopicCreationViewController: UIViewController {
         if let vc = segue.destination as? CommentViewController {
             vc.forum = forum!
             vc.topicTitle = topicTitle
-            vc.topicDescription = topicDescriptionTextView.text
+            vc.topicDescription = getApplicationContext().topicStash
         }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        getApplicationContext().topicStash = topicDescriptionTextView.attributedText
+//        getApplicationContext().topicStash = topicDescriptionTextView.attributedText
     }
     
     @IBAction func handleTapGesture(_ recognizer:UITapGestureRecognizer) {
@@ -107,7 +131,10 @@ class TopicCreationViewController: UIViewController {
         topicDescriptionTextView.becomeFirstResponder() //This causes the keyboard to open.
         let accessory = topicDescriptionTextView.inputAccessoryView as! AccessoryCommentView
         
-        accessory.defaultText = topicDescriptionTextView.attributedText
+        if let text = getApplicationContext().topicStash {
+            accessory.defaultText = text
+        }
+
         _ = accessory.becomeFirstResponder() //This puts the accessory view in focus.
         //NOTE:  The actual text view needs to have it's "editibale" flag set to false or else it will get focus after dismssing the keyboard+accessory.
         topicDescriptionTextView.inputAccessoryView?.isHidden = false
@@ -140,7 +167,9 @@ extension TopicCreationViewController : UIPopoverPresentationControllerDelegate 
 
 extension TopicCreationViewController: AccessoryCommentViewDelegate {
     func accessoryCommentView(commentText: String) {
-        topicDescriptionTextView.text = commentText
+        topicDescriptionTextView.setHtmlText(commentText)
+        getApplicationContext().topicStash = commentText
+        refreshStyle() //Blunt, but you have to reapply style to textviews after setting the value.
         topicDescriptionTextView.inputAccessoryView?.isHidden = true
         
         validateForNextAction()

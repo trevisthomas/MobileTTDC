@@ -85,6 +85,7 @@
                     <connections>
                         <outlet property="collectionView" destination="Rn9-dX-02U" id="5Vl-DS-FWm"/>
                         <outlet property="replyTextView" destination="s61-UN-Dnk" id="cwv-Bn-3JW"/>
+                        <segue destination="axr-m1-HgP" kind="show" identifier="ThreadView" id="PMc-1K-Uig"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uzQ-JS-Zy9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -95,6 +96,14 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2329" y="2069"/>
+        </scene>
+        <!--Thread-->
+        <scene sceneID="tCK-Sd-FfI">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Thread" id="axr-m1-HgP" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JT3-Ya-IGn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2961" y="2051"/>
         </scene>
         <!--Navigation View Controller-->
         <scene sceneID="3fv-g3-I2r">

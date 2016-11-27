@@ -151,12 +151,12 @@ class LatestPostsViewController: CommonBaseViewController, BroadcastPostAddConsu
     
     @IBAction func presentCommentCreationView(_ sender: UIBarButtonItem) {
         
-        //http://www.appcoda.com/presentation-controllers-tutorial/
-        let storyboard : UIStoryboard = UIStoryboard(name: "Comment", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "CommentCreator") as! UINavigationController
-        vc.modalPresentationStyle = UIModalPresentationStyle.formSheet
-        present(vc, animated: true, completion:nil)
-        loadFirstPage()
+//        //http://www.appcoda.com/presentation-controllers-tutorial/
+//        let storyboard : UIStoryboard = UIStoryboard(name: "Comment", bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "CommentCreator") as! UINavigationController
+//        vc.modalPresentationStyle = UIModalPresentationStyle.formSheet
+//        present(vc, animated: true, completion:nil)
+        //loadFirstPage()
     }
     
     

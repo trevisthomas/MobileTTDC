@@ -62,6 +62,13 @@ class CommonBaseViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        if let destVC = segue.destination as? CommentViewController {
+            let dict = sender as! [String: String]
+            
+            destVC.parentId = dict["postId"]
+            return
+        }
+        
         guard let nav = segue.destination as? UINavigationController else {
             return
         }
@@ -350,7 +357,11 @@ extension CommonBaseViewController : PostViewCellDelegate {
         var dict = [String: String]()
         dict["threadId"] = post.threadId
         dict["postId"] = post.postId
-        performSegue(withIdentifier: "ConversationWithReplyView", sender: dict)
+        if(post.isRootPost) {
+            performSegue(withIdentifier: "CommentViewController", sender: dict)
+        } else {
+            performSegue(withIdentifier: "ConversationWithReplyView", sender: dict)
+        }
     }
     func viewThread(_ post: Post) {
         performSegue(withIdentifier: "ThreadView", sender: post.postId)

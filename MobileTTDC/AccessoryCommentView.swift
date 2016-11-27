@@ -18,10 +18,11 @@ class AccessoryCommentView: UIView {
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var photoButton: UIButton!
     
-    var defaultText: NSAttributedString! {
+    var defaultText: String! {
         didSet{
 //            postTextView.keyboardAppearance = getApplicationContext().getCurrentStyle().keyboardAppearance()
-            postTextView.attributedText = self.defaultText
+//            postTextView.attributedText = self.defaultText
+            postTextView.text = defaultText
         }
     }
     

@@ -39,7 +39,26 @@ class ChooseThreadViewController: UIViewController {
         //Looks for single or multiple taps.
 //        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CommentViewController.dismissKeyboard))
 //       tableView.addGestureRecognizer(tap)
+        registerForStyleUpdates()
     }
+    
+    override func refreshStyle() {
+        let style = getApplicationContext().getCurrentStyle()
+        searchBar.backgroundColor = style.navigationBackgroundColor()
+        searchBar.tintColor = style.navigationColor()
+        
+        searchBar.barTintColor = style.navigationBackgroundColor()
+        searchBar.setTextColor(style.navigationColor())
+        searchBar.setTextBackgroundColor(style.searchBackgroundColor())
+        
+        
+        view.backgroundColor = style.navigationBackgroundColor()
+        
+        tableView.backgroundColor = style.postBackgroundColor()
+        tableView.separatorColor = style.headerDetailTextColor()
+        tableView.tintColor = style.tintColor()
+    }
+    
     
     //Calls this function when the tap is recognized.
     func dismissKeyboard() {
@@ -111,11 +130,13 @@ extension ChooseThreadViewController {
 //    }
     
     func keyboardWillShow(_ notification: Notification) {
-//        if let keyboardFrame = notification.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue() {
-//            invokeLater {
+        if let keyboardFrame = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect {
+            invokeLater {
 //                self.bottomConstraintTableView.constant = keyboardFrame.height - 50 //Hm, is this 50px becaues of tabbar?!
-//            }
-//        }
+                
+                self.bottomConstraintTableView.constant = keyboardFrame.height
+            }
+        }
     }
     
     func keyboardDidHide(_ notification: Notification) {

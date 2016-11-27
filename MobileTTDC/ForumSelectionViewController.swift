@@ -22,12 +22,16 @@ class ForumSelectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadForums()
-        // Do any additional setup after loading the view.
+        registerForStyleUpdates()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func refreshStyle() {
+        let style = getApplicationContext().getCurrentStyle()
+        view.backgroundColor = style.navigationBackgroundColor()
+        
+        tableView.backgroundColor = style.postBackgroundColor()
+        tableView.separatorColor = style.headerDetailTextColor()
+        tableView.tintColor = style.tintColor()
     }
     
 
@@ -82,6 +86,11 @@ extension ForumSelectionViewController : UITableViewDelegate, UITableViewDataSou
         let cell = tableView.dequeueReusableCell(withIdentifier: "ForumTableCell")!
         
         cell.textLabel?.setHtmlText(forums[indexPath.row].displayValue, fuckingColor: "brown")
+        
+        let style = getApplicationContext().getCurrentStyle()
+        cell.backgroundColor = style.postBackgroundColor()
+        cell.textLabel?.tintColor = style.tintColor()
+        cell.textLabel?.textColor = style.entryTextColor()
         
         return cell
     }

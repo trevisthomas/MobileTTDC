@@ -293,7 +293,15 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mjS-oo-tEk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1806.5" y="1222"/>
+            <point key="canvasLocation" x="1887" y="1211"/>
+        </scene>
+        <!--Comment-->
+        <scene sceneID="vEf-Fg-r41">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Comment" id="KgX-z6-I5U" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R2N-dh-qyN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2041" y="1361"/>
         </scene>
         <!--Latest-->
         <scene sceneID="FL4-mH-Lzz">
@@ -369,6 +377,9 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="YE9-Z0-V2r">
                             <connections>
                                 <action selector="presentCommentCreationView:" destination="gyI-c6-Blm" id="9xD-ZM-Ti2"/>
+                                <segue destination="KgX-z6-I5U" kind="popoverPresentation" identifier="CreateComment" popoverAnchorBarButtonItem="YE9-Z0-V2r" id="ifB-Kh-WyY">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="GPm-n3-HeH">

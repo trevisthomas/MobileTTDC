@@ -58,9 +58,14 @@ open class ApplicationContext : AuthenticatedUserDataProvider {
     fileprivate(set) var currentStyleName : String = ApplicationContext.defaultStyle {
         didSet{
             UIApplication.shared.statusBarStyle = getCurrentStyle().statusBarStyle()
-            
+//            UINavigationBar.appearance().isOpaque = false
+            //setTranslucent(false)
+
+            //Trevis, remember that you can set colors globally
+//            UIView.appearance().backgroundColor = getCurrentStyle().navigationColor()
             
             UITextField.appearance().keyboardAppearance = getCurrentStyle().keyboardAppearance()
+            
 //            UITextView.appearance().keyboardAppearance = getCurrentStyle().keyboardAppearance()
             
 //            UITextView.appear
@@ -103,8 +108,8 @@ open class ApplicationContext : AuthenticatedUserDataProvider {
     fileprivate(set) open var token: String? = nil //WTF both?
     
     //Trevis: Your thought for these stashes was just to have a temporary place to hang on to user entered text in dialogs so that if they accidentally leave and the VC closes, that coming back, the text would still be avail.
-    open var commentStash : NSAttributedString? = nil
-    open var topicStash: NSAttributedString? = nil
+    open var commentStash : String? = nil
+    open var topicStash: String? = nil
     
     open var deviceToken: String? = nil {
         didSet{

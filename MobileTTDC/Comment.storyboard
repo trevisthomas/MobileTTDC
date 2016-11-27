@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oBV-jA-dQ8">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oBV-jA-dQ8">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,9 +23,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" placeholder="Choose a topic for new conversation" translatesAutoresizingMaskIntoConstraints="NO" id="ap4-ah-UNy">
+                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sPW-EO-OqB">
+                                <rect key="frame" x="16" y="108" width="343" height="539"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="yhJ-Fp-Mba" id="HVk-NT-Np3"/>
@@ -41,7 +46,8 @@
                             <constraint firstItem="sPW-EO-OqB" firstAttribute="top" secondItem="ap4-ah-UNy" secondAttribute="bottom" id="zbo-R8-zJU"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="z2n-2S-Z99">
+                    <navigationItem key="navigationItem" title="Choose Topic" id="z2n-2S-Z99">
+                        <barButtonItem key="backBarButtonItem" title="Choose" id="Qui-gK-dQo"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="JHg-NP-H3o">
                             <connections>
                                 <action selector="doneButtonTapped:" destination="yhJ-Fp-Mba" id="ula-dw-8GJ"/>
@@ -49,6 +55,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bottomConstraintTableView" destination="vY3-0l-nph" id="lCs-SO-h5i"/>
                         <outlet property="searchBar" destination="ap4-ah-UNy" id="EXB-Um-czp"/>
                         <outlet property="tableView" destination="sPW-EO-OqB" id="Wun-0V-3VI"/>
                         <segue destination="yxS-h0-zkn" kind="show" identifier="TopicCreationViewController" id="XAW-z0-lQB"/>
@@ -62,7 +69,7 @@
         <!--Comment View Controller-->
         <scene sceneID="fvC-kp-K4y">
             <objects>
-                <viewController id="0xa-SC-Ajo" customClass="CommentViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CommentViewController" id="0xa-SC-Ajo" customClass="CommentViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="S5Z-ux-3ca"/>
                         <viewControllerLayoutGuide type="bottom" id="ibz-6M-S0S"/>
@@ -71,21 +78,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvo-yc-5d6">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvo-yc-5d6">
+                                <rect key="frame" x="16" y="64" width="343" height="29"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VuK-fx-aAS">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VuK-fx-aAS">
+                                <rect key="frame" x="16" y="93" width="343" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nSQ-Wu-CiH">
+                                <rect key="frame" x="16" y="110.5" width="343" height="548.5"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes"/>
                                 <connections>
@@ -144,15 +153,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZaQ-3V-tWc">
+                                <rect key="frame" x="16" y="64" width="343" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Xdg-uR-p4z"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DyV-XQ-ZGU">
-                                <state key="normal" title="Tap here to choose a topic"/>
+                                <rect key="frame" x="16" y="112" width="343" height="30"/>
+                                <state key="normal" title="Tap here to choose a Forum"/>
                                 <connections>
                                     <action selector="chooseForumAction:" destination="yxS-h0-zkn" eventType="touchUpInside" id="AAp-JV-vmH"/>
                                     <segue destination="QEK-vM-WKF" kind="popoverPresentation" popoverAnchorView="DyV-XQ-ZGU" id="F6X-L4-FvU">
@@ -160,12 +171,8 @@
                                     </segue>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forum:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vVR-5O-pmn">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cpz-YI-4dD">
+                                <rect key="frame" x="16" y="150" width="343" height="501"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -178,15 +185,13 @@
                         <constraints>
                             <constraint firstAttribute="leadingMargin" secondItem="cpz-YI-4dD" secondAttribute="leading" id="8Dr-65-E9U"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZaQ-3V-tWc" secondAttribute="trailing" id="9fq-UX-zLu"/>
+                            <constraint firstItem="DyV-XQ-ZGU" firstAttribute="leading" secondItem="ZaQ-3V-tWc" secondAttribute="leading" id="A3W-15-D9t"/>
                             <constraint firstItem="cpz-YI-4dD" firstAttribute="top" secondItem="DyV-XQ-ZGU" secondAttribute="bottom" constant="8" id="B3X-UF-qhs"/>
-                            <constraint firstItem="lql-7w-k9F" firstAttribute="top" secondItem="cpz-YI-4dD" secondAttribute="bottom" id="Bac-oJ-hJg"/>
-                            <constraint firstItem="vVR-5O-pmn" firstAttribute="baseline" secondItem="DyV-XQ-ZGU" secondAttribute="baseline" id="DtZ-Ku-pSx"/>
-                            <constraint firstItem="vVR-5O-pmn" firstAttribute="leading" secondItem="ZaQ-3V-tWc" secondAttribute="leading" id="VA6-qU-gfF"/>
+                            <constraint firstItem="lql-7w-k9F" firstAttribute="top" secondItem="cpz-YI-4dD" secondAttribute="bottom" constant="16" id="Bac-oJ-hJg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DyV-XQ-ZGU" secondAttribute="trailing" id="ehz-os-meb"/>
+                            <constraint firstItem="DyV-XQ-ZGU" firstAttribute="top" secondItem="ZaQ-3V-tWc" secondAttribute="bottom" constant="4" id="lQV-n4-gYd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cpz-YI-4dD" secondAttribute="trailing" id="t7c-M5-QF7"/>
                             <constraint firstItem="ZaQ-3V-tWc" firstAttribute="leading" secondItem="VWE-L6-KVc" secondAttribute="leadingMargin" id="uI0-Mc-iET"/>
-                            <constraint firstItem="vVR-5O-pmn" firstAttribute="top" secondItem="ZaQ-3V-tWc" secondAttribute="bottom" constant="8" symbolic="YES" id="wcz-fs-QTL"/>
-                            <constraint firstItem="DyV-XQ-ZGU" firstAttribute="leading" secondItem="vVR-5O-pmn" secondAttribute="trailing" constant="3" id="wuy-Q5-3U6"/>
                             <constraint firstItem="ZaQ-3V-tWc" firstAttribute="top" secondItem="pfQ-3d-W0R" secondAttribute="bottom" id="x6f-Bk-Huw"/>
                         </constraints>
                     </view>
@@ -208,11 +213,11 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tVa-ts-tgd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="K6Z-5D-UaY">
                     <connections>
-                        <action selector="handleTap:" destination="yxS-h0-zkn" id="Bt7-FS-qOy"/>
+                        <action selector="handleTapGesture:" destination="yxS-h0-zkn" id="N3s-mq-2ev"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="917" y="1193"/>
+            <point key="canvasLocation" x="916" y="1192.3538230884558"/>
         </scene>
         <!--Forum Selection View Controller-->
         <scene sceneID="Kwf-d4-51K">
@@ -227,17 +232,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MnY-Py-eWu">
+                                <rect key="frame" x="20" y="28" width="560" height="564"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ForumTableCell" textLabel="3gz-dQ-OQ0" style="IBUITableViewCellStyleDefault" id="gKR-tW-MPC">
                                         <rect key="frame" x="0.0" y="28" width="560" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gKR-tW-MPC" id="f7a-GO-KII">
-                                            <frame key="frameInset" width="560" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3gz-dQ-OQ0">
-                                                    <frame key="frameInset" minX="15" width="530" height="43"/>
+                                                    <rect key="frame" x="15" y="0.0" width="530" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -255,9 +261,9 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="MnY-Py-eWu" firstAttribute="top" secondItem="76m-5Z-v6K" secondAttribute="bottom" id="Lei-d1-SA5"/>
+                            <constraint firstItem="MnY-Py-eWu" firstAttribute="top" secondItem="76m-5Z-v6K" secondAttribute="bottom" constant="8" id="Lei-d1-SA5"/>
                             <constraint firstItem="MnY-Py-eWu" firstAttribute="leading" secondItem="fzC-1h-esP" secondAttribute="leadingMargin" id="Vvk-fq-hNp"/>
-                            <constraint firstItem="fjl-MI-5H6" firstAttribute="top" secondItem="MnY-Py-eWu" secondAttribute="bottom" id="ZDV-Qo-RCu"/>
+                            <constraint firstItem="fjl-MI-5H6" firstAttribute="top" secondItem="MnY-Py-eWu" secondAttribute="bottom" constant="8" id="ZDV-Qo-RCu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="MnY-Py-eWu" secondAttribute="trailing" id="dps-8H-hCd"/>
                         </constraints>
                     </view>
@@ -277,10 +283,10 @@
             </objects>
             <point key="canvasLocation" x="2546" y="274"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation View Controller-->
         <scene sceneID="zxt-MY-onO">
             <objects>
-                <navigationController storyboardIdentifier="CommentCreator" automaticallyAdjustsScrollViewInsets="NO" id="oBV-jA-dQ8" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CommentCreator" automaticallyAdjustsScrollViewInsets="NO" id="oBV-jA-dQ8" customClass="NavigationViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IbD-Lp-9Hm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -297,6 +303,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xpY-dC-Mbo"/>
+        <segue reference="V5N-QX-7aT"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -14,6 +14,8 @@ class NavigationViewController: UINavigationController {
         super.viewDidLoad()
         registerForStyleUpdates()
         // Do any additional setup after loading the view.
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

@@ -21,6 +21,7 @@ extension UITextView {
     
     
     func setHtmlText(_ html : String, font sysfont : UIFont = UIFont(name:"Helvetica", size: UIFont.systemFontSize)!){
+        
         //UIFont = UIFont.systemFontOfSize(UIFont.systemFontSize())
         //        let sysfont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
         //UIFont.preferredFontForTextStyle(UIFontTextStyleBody)

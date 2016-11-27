@@ -72,6 +72,9 @@ class ThreadViewController: CommonBaseViewController {
         return collectionView
     }
     
+    override func allowHierarchy() -> Bool {
+        return true
+    }
 }
 
 extension ThreadViewController : PostCollectionViewDelegate {

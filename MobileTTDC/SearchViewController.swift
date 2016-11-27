@@ -177,6 +177,9 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
         
         print(item.displayTitle)
         
+        
+//        threadId
+        
         performSegue(withIdentifier: "ThreadView", sender: item.postId)
         
     }

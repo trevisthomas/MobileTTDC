@@ -232,18 +232,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MnY-Py-eWu">
-                                <rect key="frame" x="20" y="28" width="560" height="564"/>
+                                <rect key="frame" x="2" y="22" width="596" height="576"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ForumTableCell" textLabel="3gz-dQ-OQ0" style="IBUITableViewCellStyleDefault" id="gKR-tW-MPC">
-                                        <rect key="frame" x="0.0" y="28" width="560" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="596" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gKR-tW-MPC" id="f7a-GO-KII">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="596" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3gz-dQ-OQ0">
-                                                    <rect key="frame" x="15" y="0.0" width="530" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="566" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -261,10 +261,10 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="MnY-Py-eWu" firstAttribute="top" secondItem="76m-5Z-v6K" secondAttribute="bottom" constant="8" id="Lei-d1-SA5"/>
-                            <constraint firstItem="MnY-Py-eWu" firstAttribute="leading" secondItem="fzC-1h-esP" secondAttribute="leadingMargin" id="Vvk-fq-hNp"/>
-                            <constraint firstItem="fjl-MI-5H6" firstAttribute="top" secondItem="MnY-Py-eWu" secondAttribute="bottom" constant="8" id="ZDV-Qo-RCu"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="MnY-Py-eWu" secondAttribute="trailing" id="dps-8H-hCd"/>
+                            <constraint firstItem="MnY-Py-eWu" firstAttribute="top" secondItem="76m-5Z-v6K" secondAttribute="bottom" constant="2" id="Lei-d1-SA5"/>
+                            <constraint firstItem="MnY-Py-eWu" firstAttribute="leading" secondItem="fzC-1h-esP" secondAttribute="leading" constant="2" id="Vvk-fq-hNp"/>
+                            <constraint firstItem="fjl-MI-5H6" firstAttribute="top" secondItem="MnY-Py-eWu" secondAttribute="bottom" constant="2" id="ZDV-Qo-RCu"/>
+                            <constraint firstAttribute="trailing" secondItem="MnY-Py-eWu" secondAttribute="trailing" constant="2" id="dps-8H-hCd"/>
                         </constraints>
                     </view>
                     <connections>
@@ -303,6 +303,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="V5N-QX-7aT"/>
+        <segue reference="xpY-dC-Mbo"/>
     </inferredMetricsTieBreakers>
 </document>

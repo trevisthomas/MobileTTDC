@@ -14,6 +14,7 @@ protocol ForumSelectionDelegate{
 
 class ForumSelectionViewController: UIViewController {
     
+    fileprivate let selectionView = UIView()
     fileprivate var forums : [Forum] = []
     @IBOutlet weak var tableView: UITableView!
     
@@ -23,28 +24,22 @@ class ForumSelectionViewController: UIViewController {
         super.viewDidLoad()
         loadForums()
         registerForStyleUpdates()
+    
     }
 
     override func refreshStyle() {
         let style = getApplicationContext().getCurrentStyle()
-        view.backgroundColor = style.navigationBackgroundColor()
+        view.backgroundColor = style.headerDetailTextColor() //style.navigationBackgroundColor()
         
         tableView.backgroundColor = style.postBackgroundColor()
         tableView.separatorColor = style.headerDetailTextColor()
         tableView.tintColor = style.tintColor()
+        
+        selectionView.backgroundColor = style.selectionColor()
+        
+        popoverPresentationController?.backgroundColor = style.headerDetailTextColor()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 
@@ -91,7 +86,7 @@ extension ForumSelectionViewController : UITableViewDelegate, UITableViewDataSou
         cell.backgroundColor = style.postBackgroundColor()
         cell.textLabel?.tintColor = style.tintColor()
         cell.textLabel?.textColor = style.entryTextColor()
-        
+        cell.selectedBackgroundView = selectionView
         return cell
     }
 }

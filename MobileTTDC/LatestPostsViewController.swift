@@ -162,6 +162,20 @@ class LatestPostsViewController: CommonBaseViewController, BroadcastPostAddConsu
     
     internal func onPostAdded(post: Post) {
         print("LatestVC sees post \(post.postId)")
+        
+        loadFirstPage()
+        
+//        switch getApplicationContext().displayMode{
+//        case .latestConversations :
+//            loadFirstPage()
+//        case .latestGrouped:
+//            loadFirstPage()
+//        case .latestFlat:
+//            //            self.navigationController?.navigationBar.topItem?.title = "Doesnt work anyway"
+//            modeSegmentedControl.selectedSegmentIndex = 2
+//        }
+
+        //onPostAdded
     }
 //    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
 //        

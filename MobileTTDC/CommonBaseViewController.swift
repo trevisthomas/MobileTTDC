@@ -48,13 +48,16 @@ class CommonBaseViewController: UIViewController {
         
         print("Orientation: PostDetailViewController")
         
+//        reload
+        
         coordinator.animate(alongsideTransition: { context in
             // do whatever with your context
             context.viewController(forKey: UITransitionContextViewControllerKey.from)
         }, completion: {context in
             self.sizeCache = []
             self.loadSizeCache(posts: self.posts) {
-                   self.getCollectionView()?.collectionViewLayout.invalidateLayout()
+//                   self.getCollectionView()?.collectionViewLayout.invalidateLayout()
+                self.getCollectionView()?.performBatchUpdates(nil, completion: nil)
             }
         }
         )

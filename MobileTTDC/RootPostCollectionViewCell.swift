@@ -29,7 +29,7 @@ class RootPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract, B
             
             threadTitleButton.setTitle(post.title, for: UIControlState())
             
-            if let url = post.creator.image?.name {
+            if let url = post.creator?.image?.name {
                 creatorImageView.downloadedFrom(link: url, contentMode: .scaleAspectFit)
             }
             
@@ -42,7 +42,7 @@ class RootPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract, B
             
             rootDetailLabel.text = "\(post.mass) Conversations"
             
-            creatorButton.setTitle("\(post.creator.login)", for: UIControlState())
+            creatorButton.setTitle("\(post.creator?.login)", for: UIControlState())
             
             //            viewCommentsButton.hidden = false
             //            inReplyStackView.hidden = false

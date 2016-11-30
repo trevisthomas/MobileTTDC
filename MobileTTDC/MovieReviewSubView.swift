@@ -25,7 +25,7 @@ class MovieReviewSubView: UIView {
         didSet{
             registerForStyleUpdates()
             
-            creatorLabel.text = post!.creator.login
+            creatorLabel.text = post!.creator?.login
             print(creatorLabel.text!)
             if let rating = post!.reviewRating {
                 starRatingView.starsVisible = CGFloat (rating)

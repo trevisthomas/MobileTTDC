@@ -32,6 +32,7 @@ open class PostCrudCommand : Command {
     public enum Action : String{
         case CREATE = "CREATE"
         case READ = "READ"
+        case PREVIEW = "PREVIEW"
     }
     
     
@@ -76,8 +77,8 @@ open class PostCrudCommand : Command {
         self.loadRootAncestor = loadRootAncestor
     }
     
-    public init ( parentId: String, body: String) {
-        self.action = Action.CREATE
+    public init ( parentId: String, body: String, action : Action = .CREATE) {
+        self.action = action
         self.postId = nil
         self.parentId = parentId
         self.body = body
@@ -87,8 +88,8 @@ open class PostCrudCommand : Command {
         self.loadRootAncestor = nil
     }
     
-    public init ( title: String, body: String, forumId: String, topicDescription: String) {
-        self.action = Action.CREATE
+    public init ( title: String, body: String, forumId: String, topicDescription: String, action : Action = .CREATE) {
+        self.action = action
         self.postId = nil
         self.parentId = nil
         self.body = body

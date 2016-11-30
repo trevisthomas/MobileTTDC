@@ -39,12 +39,12 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract, Broad
             
             threadTitleButton.setTitle(post.title, for: UIControlState())
             
-            if let url = post.creator.image?.name {
+            if let url = post.creator?.image?.name {
                 creatorImageView.downloadedFrom(link: url, contentMode: .scaleAspectFit)
             }
             
             
-            creatorButton.setTitle("\(post.creator.login)", for: UIControlState())
+            creatorButton.setTitle("\(post.creator?.login)", for: UIControlState())
             parentPostCreatorButton.isHidden = false
             if post.threadPost {
                 if post.mass == 0 {

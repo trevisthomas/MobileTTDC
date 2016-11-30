@@ -87,7 +87,7 @@ class CommentViewController: UIViewController {
         threadSummaryLabel.textColor = style.headerDetailTextColor()
         
         
-        commentTextArea.textColor = UIColor.white
+        commentTextArea.textColor = style.entryTextColor()
         commentTextArea.backgroundColor = style.postBackgroundColor()
         commentTextArea.tintColor = style.headerDetailTextColor()
     }
@@ -130,6 +130,15 @@ class CommentViewController: UIViewController {
         }
         else {
             postComment(forum.tagId, topicTitle: topicTitle, topicDescription: topicDescription, body: commentTextArea.text)
+        }
+    }
+    
+    func decidePostTypeAndPreview(commentText: String){
+        if(parentId != nil) {
+            previewPost(parentId!, body: commentText)
+        }
+        else {
+            previewPost(forum.tagId, topicTitle: topicTitle, topicDescription: topicDescription, body: commentText)
         }
     }
     
@@ -224,16 +233,47 @@ extension CommentViewController {
         
         self.dismiss(animated: true, completion: nil)
     }
+    
+    func previewPost(_ forumTagId: String, topicTitle: String, topicDescription: String, body: String){
+        let cmd = PostCrudCommand(title: topicTitle, body: body, forumId: forumTagId, topicDescription: topicDescription, action: .PREVIEW)
+        
+        
+        Network.performPostCrudCommand(cmd, completion: handlePreviewResponse)
+    }
+    
+    func previewPost(_ parentId: String, body: String){
+        let cmd = PostCrudCommand(parentId: parentId, body: body, action: .PREVIEW)
+        
+        Network.performPostCrudCommand(cmd, completion: handlePreviewResponse)
+    }
+    
+    func handlePreviewResponse(_ response: PostCrudResponse?, error: String?){
+        guard let post = response?.post else {
+            self.presentAlert("Sorry", message: "Webservice request failed.")
+            //commentTextArea.text = ""
+            // What to do?
+            return;
+        }
+        
+        self.invokeLater{
+            self.commentTextArea.setHtmlText(post.entry)
+            self.refreshStyle()
+            self.validateForPost()
+            
+            self.commentTextArea.inputAccessoryView?.isHidden = true
+        }
+    }
+
 }
 
 extension CommentViewController: AccessoryCommentViewDelegate {
     func accessoryCommentView(commentText: String) {
-        commentTextArea.setHtmlText(commentText)
+        //commentTextArea.setHtmlText(commentText)
+        decidePostTypeAndPreview(commentText: commentText)
         
-        refreshStyle()
-        getApplicationContext().commentStash = commentText
-        commentTextArea.inputAccessoryView?.isHidden = true
+        self.getApplicationContext().commentStash = commentText
         
-        validateForPost()
+        
+        
     }
 }

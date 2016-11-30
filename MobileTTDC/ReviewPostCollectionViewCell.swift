@@ -32,7 +32,7 @@ class ReviewPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract,
         didSet{
             
             movieTitleButton.setTitle(post.title, for: UIControlState())
-            creatorButton.setTitle(post.creator.login, for: UIControlState())
+            creatorButton.setTitle(post.creator?.login, for: UIControlState())
             reviewTextView.setHtmlText(post.entry)
             if let url = post.image?.name {
                 movieCoverImageView.downloadedFrom(link: url, contentMode: .scaleAspectFit)

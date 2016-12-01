@@ -44,7 +44,7 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract, Broad
             }
             
             
-            creatorButton.setTitle("\(post.creator?.login)", for: UIControlState())
+            creatorButton.setTitle("\(post.creator!.login)", for: UIControlState())
             parentPostCreatorButton.isHidden = false
             if post.threadPost {
                 if post.mass == 0 {

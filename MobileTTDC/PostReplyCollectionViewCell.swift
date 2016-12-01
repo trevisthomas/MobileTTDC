@@ -12,7 +12,7 @@ class PostReplyCollectionViewCell: UICollectionViewCell, PostEntryViewContract, 
     
     var post : Post! {
         didSet{
-            creatorNameButton.setTitle(post.creator?.login, for: UIControlState())
+            creatorNameButton.setTitle(post.creator!.login, for: UIControlState())
             entryTextView.setHtmlText(post.entry)
             if let url = post.creator?.image?.thumbnailName {
                 creatorImageView.downloadedFrom(link: url, contentMode: .scaleAspectFit)

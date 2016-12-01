@@ -11,7 +11,7 @@
 import Foundation
 import UIKit
 
-open class ApplicationContext : AuthenticatedUserDataProvider {
+open class ApplicationContext /*: AuthenticatedUserDataProvider*/ {
     open static let currentUserKey : String = "us.ttdc.CurrentUser"
     open static let styleChangedNotificationKey : String = "us.ttdc.StyleChanged"
     open static let styleDark : String = "darkStyle"
@@ -260,9 +260,19 @@ open class ApplicationContext : AuthenticatedUserDataProvider {
         };
     }
     
+    public func currentUser() -> Person? {
+        return _currentUser
+    }
+    
+    public func logoff() {
+        _currentUser = nil
+        currentStyleName = ApplicationContext.defaultStyle
+        token = nil
+        self.saveState()
+    }
     
 }
-
+/*
 extension ApplicationContext : LatestPostsDataProvider {
 //    public func latestPosts() -> [Post] {
 //        return _latestPosts
@@ -308,6 +318,7 @@ extension ApplicationContext : LatestPostsDataProvider {
     
     
 }
+ */
 
 //extension ApplicationContext : LatestConversationsDataProvider {
 //    public func latestConversations() -> [Post] {

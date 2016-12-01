@@ -18,6 +18,7 @@ open class PostCommand : Command {
     public enum Action : String{
         case LATEST_GROUPED = "LATEST_GROUPED"
         case LATEST_FLAT = "LATEST_FLAT"
+        case LATEST_THREADS = "LATEST_THREADS"
     }
 
     

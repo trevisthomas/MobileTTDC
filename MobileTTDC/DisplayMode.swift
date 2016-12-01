@@ -8,8 +8,9 @@
 
 import Foundation
 
-public enum DisplayMode{
-    case latestFlat
-    case latestGrouped
-    case latestConversations
+public enum DisplayMode : String {
+    case latestFlat = "latestFlat"
+    case latestGrouped = "latestGrouped"
+    case latestConversations = "laetstCoversations"
+    case latestThreads = "latestThreads"
 }

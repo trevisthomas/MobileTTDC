@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+/*
 public protocol AuthenticatedUserObserver {
     func authenticatedUserChanged()
 }
@@ -30,6 +30,7 @@ public protocol LatestPostsDataProvider: AuthenticatedUserDataProvider{
 //    var latestPostsObserver : LatestPostsObserver?  {get set}
 //    func reloadLatestPosts()
 }
+ */
 
 //public protocol LatestConversationsObserver: AuthenticatedUserObserver  {
 //    func latestConversationsUpdated()

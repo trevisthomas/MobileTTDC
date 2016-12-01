@@ -167,13 +167,16 @@ class CommonBaseViewController: UIViewController {
         if p.isMovie{
             moviePostPrototypeCell.post = p
             height = moviePostPrototypeCell.preferredHeight(frameSize.width)
-        } else if (allowHierarchy() && !p.threadPost) {
+        } else if (allowHierarchy() && !p.threadPost && !p.isRootPost) {
             replyPrototypeCell.post = p
             height = replyPrototypeCell.preferredHeight(frameSize.width)
         } else if (p.isReview) {
             reviewPostPrototypeCell.post = p
             height = reviewPostPrototypeCell.preferredHeight(frameSize.width)
-        }else {
+        } else if (p.isRootPost) {
+            rootPostPrototypeCell.post = p
+            height = rootPostPrototypeCell.preferredHeight(frameSize.width)
+        } else {
             postPrototypeCell.post = p
             height = postPrototypeCell.preferredHeight(frameSize.width)
         }

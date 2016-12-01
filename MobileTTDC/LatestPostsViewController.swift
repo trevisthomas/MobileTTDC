@@ -35,6 +35,8 @@ class LatestPostsViewController: CommonBaseViewController, BroadcastPostAddConsu
             getApplicationContext().displayMode = .latestGrouped
         case 2:
             getApplicationContext().displayMode = .latestConversations
+        case 3:
+            getApplicationContext().displayMode = .latestThreads
         default:
             abort()
         }
@@ -202,7 +204,7 @@ class LatestPostsViewController: CommonBaseViewController, BroadcastPostAddConsu
 //    }
     
     
-
+    var prevYOffset : CGFloat = 0.0
 
 }
 
@@ -214,15 +216,33 @@ extension LatestPostsViewController /*: UIScrollViewDelegate*/ {
     
     func adjustHistoryViewBecauseScrollChangedAllTheWay(){
         let yOffset = collectionView.contentOffset.y
-        
+        /*
+        if(yOffset < prevYOffset) {
+            var distBack = prevYOffset - yOffset
+            if (distBack <= originalTopOfCollectionView!) {
+              //  print("Back \(distBack)")
+            } else {
+                distBack = originalTopOfCollectionView
+                //print("Back capped \(originalTopOfCollectionView)")
+            }
+            print("Back \(distBack)")
+        } else {
+            prevYOffset = yOffset
+        }
+ 
+        print("\(yOffset)")
+ */
         if(yOffset <= 0){
             collectionView.frame.origin.y = originalTopOfCollectionView 
             modeSelectionView.frame.origin.y = originalTopOfDisapearingView
             
         } else if yOffset < modeSelectionHeightConstraint.constant + originalTopOfDisapearingView - statusBarHeight{
+            //print("Between")
             collectionView.frame.origin.y = originalTopOfCollectionView - collectionView.contentOffset.y
             modeSelectionView.frame.origin.y = originalTopOfDisapearingView - collectionView.contentOffset.y
         } else {
+            
+            //print("shut")
             collectionView.frame.origin.y = 0 + statusBarHeight
             modeSelectionView.frame.origin.y = -modeSelectionHeightConstraint.constant + statusBarHeight
         }
@@ -242,6 +262,8 @@ extension LatestPostsViewController {
         case .latestFlat:
 //            self.navigationController?.navigationBar.topItem?.title = "Doesnt work anyway"
             modeSegmentedControl.selectedSegmentIndex = 2
+        case .latestThreads:
+            modeSegmentedControl.selectedSegmentIndex = 3
         }
         
     }
@@ -262,6 +284,8 @@ extension LatestPostsViewController : PostCollectionViewDelegate {
             loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT, completion: completion)
         case .latestConversations:
             loadlatestConversationsFromWebservice(pageNumber: 1, completion: completion)
+        case .latestThreads:
+            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_THREADS, completion: completion)
         }
         
     }
@@ -275,6 +299,8 @@ extension LatestPostsViewController : PostCollectionViewDelegate {
             loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT, pageNumber: pageNumber, completion: completion)
         case .latestConversations:
             loadlatestConversationsFromWebservice(pageNumber: pageNumber, completion: completion)
+        case .latestThreads:
+            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_THREADS, pageNumber: pageNumber,completion: completion)
         }
     }
 }

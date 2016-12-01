@@ -74,12 +74,15 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract, 
 
 
     @IBAction func likeAction(_ sender: UIButton) {
+        delegate?.likePost(post)
     }
     
     @IBAction func commentAction(_ sender: UIButton) {
+        delegate?.commentOnPost(post)
     }
     
     @IBAction func movieTitleAction(_ sender: UIButton) {
+        delegate?.viewThread(post)
     }
     
     func postEntryInsets() -> UIEdgeInsets {

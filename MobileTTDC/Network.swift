@@ -72,4 +72,15 @@ public struct Network {
         command.token = getToken()
         NetworkAdapter.performCommand("\(getHost())/restful/like", command: command, completion: completion)
     }
+    
+    public static func performConnectCommand(_ command : ConnectCommand, completion: @escaping (_ response : ConnectResponse?, _ error: String?) -> Void){
+        command.token = getToken()
+        NetworkAdapter.performCommand("\(getHost())/restful/connect", command: command, completion: completion)
+    }
+    
+    public static func performServerEventListCommand(_ command : ServerEventListCommand, completion: @escaping (_ response : ServerEventListResponse?, _ error: String?) -> Void){
+        command.token = getToken()
+        NetworkAdapter.performCommand("\(getHost())/restful/serverEventList", command: command, completion: completion)
+    }
+    
 }

@@ -39,7 +39,7 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract, Broad
             
             threadTitleButton.setTitle(post.title, for: UIControlState())
             
-            if let url = post.creator?.image?.name {
+            if let url = post.creator?.image?.thumbnailName {
                 creatorImageView.downloadedFrom(link: url, contentMode: .scaleAspectFit)
             }
             

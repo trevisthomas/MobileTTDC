@@ -20,7 +20,7 @@ fileprivate class Weak<T: AnyObject> {
     }
 }
 
-public class Broacaster : NSObject {
+public class Broadcaster : NSObject {
     fileprivate var postUpdateObservers : [Weak<AnyObject>] = []
     fileprivate var postAddObservers : [Weak<AnyObject>] = []
     
@@ -78,15 +78,18 @@ public class Broacaster : NSObject {
             guard let consumer = weakO.value as? BroadcastPostAddConsumer else {
                 return
             }
-//            if consumer.post == nil {
-//                continue
-//            }
-//            
-//            if consumer.post.postId == postWrapper.post.postId {
-//                consumer.onPostUpdated(post: postWrapper.post)
-//            }
             
             consumer.onPostAdded(post: postWrapper.post)
+        }
+    }
+    
+    func reloadPosts(){
+        for weakO in postAddObservers {
+            guard let consumer = weakO.value as? BroadcastPostAddConsumer else {
+                return
+            }
+            
+            consumer.reloadPosts()
         }
     }
 }
@@ -98,5 +101,6 @@ protocol BroadcastEventConsumer { //Rename to post update
 
 protocol BroadcastPostAddConsumer {
     func onPostAdded(post : Post)
+    func reloadPosts()
 }
 

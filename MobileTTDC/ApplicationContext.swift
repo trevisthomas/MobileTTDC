@@ -11,13 +11,13 @@
 import Foundation
 import UIKit
 
-open class ApplicationContext /*: AuthenticatedUserDataProvider*/ {
+open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
     open static let currentUserKey : String = "us.ttdc.CurrentUser"
     open static let styleChangedNotificationKey : String = "us.ttdc.StyleChanged"
     open static let styleDark : String = "darkStyle"
     open static let styleLight : String = "lightStyle"
 
-    open let broadcaster = Broacaster()
+    open let broadcaster = Broadcaster()
     
     fileprivate static let defaultStyle : String = styleLight
     
@@ -359,3 +359,19 @@ extension UIViewController : CurrentUserProtocol {
         //Default does nothing
     }
 }
+
+extension ApplicationContext : ServerEventMonitorDelegate {
+    func postUpdated(post : Post) {
+        self.broadcaster.postUpdated(post: post)
+    }
+    func postAdded(post : Post) {
+        self.broadcaster.postAdded(post: post)
+    }
+    
+    func reloadPosts() {
+        self.broadcaster.reloadPosts()
+    }
+
+}
+
+

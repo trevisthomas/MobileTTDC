@@ -13,7 +13,7 @@ public struct Post : Decodable{
     let date : Date
     let title : String
     let creator: Person?
-    let latestEntry: Entry
+//    let latestEntry: Entry
     let entry: String
     let replyCount : UInt
     let posts : [Post]?
@@ -34,14 +34,16 @@ public struct Post : Decodable{
         date = ("date" <~~ json)!
         
         //Trevis. It took you a long time to figure out that movie review's attached to a movie didnt have their title populated! This was during the work to add root posts and movie reviews so there were some server chagnges that were not quite vetted
-        if let t : String = ("title" <~~ json) {
-            title = t
-        } else {
-            title = "nil"
-        }
+//        if let t : String = ("title" <~~ json) {
+//            title = t
+//        } else {
+//            title = "nil"
+//        }
+        
+        title = ("title" <~~ json) ?? "nil"
         
         creator = ("creator" <~~ json)
-        latestEntry = ("latestEntry" <~~ json)!
+//        latestEntry = ("latestEntry" <~~ json)!
         entry = ("entry" <~~ json)!
         replyCount = ("replyCount" <~~ json)!
         posts = ("posts" <~~ json)

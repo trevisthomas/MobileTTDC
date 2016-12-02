@@ -9,7 +9,7 @@
 import UIKit
 
 class LatestPostsViewController: CommonBaseViewController, BroadcastPostAddConsumer {
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     fileprivate var originalHeight : CGFloat!
@@ -161,6 +161,9 @@ class LatestPostsViewController: CommonBaseViewController, BroadcastPostAddConsu
         //loadFirstPage()
     }
     
+    internal func reloadPosts() {
+        loadFirstPage()
+    }
     
     internal func onPostAdded(post: Post) {
         print("LatestVC sees post \(post.postId)")
@@ -260,19 +263,19 @@ extension LatestPostsViewController {
         case .latestGrouped:
             modeSegmentedControl.selectedSegmentIndex = 1
         case .latestFlat:
-//            self.navigationController?.navigationBar.topItem?.title = "Doesnt work anyway"
+            //            self.navigationController?.navigationBar.topItem?.title = "Doesnt work anyway"
             modeSegmentedControl.selectedSegmentIndex = 2
         case .latestThreads:
             modeSegmentedControl.selectedSegmentIndex = 3
         }
         
     }
-
+    
     override func getCollectionView() -> UICollectionView? {
         return collectionView
     }
     
-    }
+}
 
 extension LatestPostsViewController : PostCollectionViewDelegate {
     func loadPosts(completion: @escaping ([Post]?) -> Void) {

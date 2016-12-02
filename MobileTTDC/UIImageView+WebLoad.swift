@@ -27,7 +27,11 @@ extension UIImageView {
             let url = URL(string: link)
             else {return}
         contentMode = mode
-        URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) -> Void in
+        
+        
+        
+//        URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) -> Void in
+        NetworkAdapter.getUrlSession().dataTask(with: url, completionHandler: { (data, response, error) -> Void in
             guard
                 let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
                 let mimeType = response?.mimeType, mimeType.hasPrefix("image"),

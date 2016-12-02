@@ -16,10 +16,14 @@ public struct Network {
         return appDelegate.applicationContext.token
     }
     
+    public static func getUnsecuredHost()->String{
+        return "http://ttdc.us"
+    }
+    
     public static func getHost()-> String{
 //        return "http://ttdc.us:8888"
-        return "http://ttdc.us"
-//        return "https://ttdc.us"
+//        return "http://ttdc.us"
+        return "https://ttdc.us"
 //        return "http://192.168.1.106:8888"
     }
     

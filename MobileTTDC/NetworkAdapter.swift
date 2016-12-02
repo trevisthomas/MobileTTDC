@@ -44,6 +44,12 @@ class NetworkAdapter {
         })
     }
 
+    public static func getUrlSession() -> URLSession {
+        return URLSession(
+            configuration: URLSessionConfiguration.ephemeral,
+            delegate: NSURLSessionPinningDelegate(),
+            delegateQueue: nil)
+    }
     
     fileprivate static func performJsonRequest(_ urlString: String, json: JSON, completion:@escaping ( _ data: Data?, _ error: Error?) -> Void){
         
@@ -58,7 +64,10 @@ class NetworkAdapter {
             request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
             request.httpBody = jsonData
             
-            let session = URLSession.shared
+//            let session = URLSession.shared
+            
+            let session = getUrlSession()
+            
             
             let loadDataTask = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
                 if let responseError = error {

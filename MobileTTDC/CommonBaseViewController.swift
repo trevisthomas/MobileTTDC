@@ -310,6 +310,7 @@ extension CommonBaseViewController : UICollectionViewDataSource {
             return collectionView.dequeueReusableCell(withReuseIdentifier: ReuseIdentifiers.LOADING_CELL, for: indexPath)
         }
         
+        
         let post = posts[indexPath.row]
         
         return dequeueCell(post, indexPath: indexPath)

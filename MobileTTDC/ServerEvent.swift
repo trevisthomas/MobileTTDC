@@ -10,6 +10,7 @@ import Foundation
 
 
 // This was one of the worst things i've encounteded with dealing with ttdc.  It uses these generic events that it treats like Event<?,?> so what happens in reality is that those types change but i have no idea how to handle the types refering to different classes of source.  
+// Ok, i made changes on the server to hide the Event<?,?> abonination.
 
 public struct ServerEvent : Decodable{
     let sourcePost : Post?
@@ -19,25 +20,8 @@ public struct ServerEvent : Decodable{
     
     public init?(json: JSON) {
         type = ("type" <~~ json)!
-        switch type {
-        case "TRAFFIC":
-            sourcePerson = ("source" <~~ json)
-            sourcePost = nil
-            sourceTagAss = nil
-        case "NEW", "EDIT", "DELETE":
-            sourcePost = ("source" <~~ json)
-            sourcePerson = nil
-            sourceTagAss = nil
-        case "NEW_TAG", "REMOVED_TAG":
-            sourceTagAss = ("source" <~~ json)
-            sourcePost = nil
-            sourcePerson = nil
-        //case "RESET_SERVER_BROADCAST":
-        default:
-            sourcePost = nil
-            sourcePerson = nil
-            sourceTagAss = nil
-            break
-        }
+        sourcePerson = ("sourcePerson" <~~ json)
+        sourcePost = ("sourcePost" <~~ json)
+        sourceTagAss = ("sourceTagAssociation" <~~ json)
     }
 }

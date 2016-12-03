@@ -9,11 +9,9 @@
 import Foundation
 
 public struct ServerEventListResponse: Response {
-    public let person : Person
     public let events : [ServerEvent]
     
     public init?(json: JSON) {
-        person = ("person" <~~ json)!
         events = [ServerEvent].fromJSONArray(("events" <~~ json)!)
     }
 }

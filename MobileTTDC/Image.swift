@@ -12,14 +12,10 @@ public struct Image: Decodable{
     
     public let name: String
     public let thumbnailName: String
-    public let width: Int
-    public let height: Int
     
     public init?(json: JSON) {
         thumbnailName = Image.prependPath(("thumbnailName" <~~ json)!)
         name = Image.prependPath(("name" <~~ json)!)
-        width = ("width" <~~ json)!
-        height = ("height" <~~ json)!
     }
     
     fileprivate static func prependPath(_ imageFileName : String) -> String{

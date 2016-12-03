@@ -49,7 +49,8 @@ public struct Post : Decodable{
         posts = ("posts" <~~ json)
         mass = ("mass" <~~ json)!
 //        thread = ("thread" <~~ json)!
-        threadId = ("thread.postId" <~~ json)
+//        threadId = ("thread.postId" <~~ json)
+        threadId = ("threadId" <~~ json)
         threadPost = ("threadPost" <~~ json)! //isThreadPost
         parentPostCreator = ("parentPostCreator" <~~ json)
         parentPostCreatorId = ("parentPostCreatorId" <~~ json)

@@ -21,9 +21,9 @@ public struct Network {
     }
     
     public static func getHost()-> String{
-//        return "http://ttdc.us:8888"
+        return "http://ttdc.us:8888"
 //        return "http://ttdc.us"
-        return "https://ttdc.us"
+//        return "https://ttdc.us"
 //        return "http://192.168.1.106:8888"
     }
     
@@ -38,18 +38,18 @@ public struct Network {
     
     public static func performPostCommand(_ command : PostCommand, completion: @escaping (_ response : PostResponse?, _ error: String?) -> Void){
         command.token = getToken()
-        NetworkAdapter.performCommand("\(getHost())/restful/latestposts", command: command, completion: completion)
+        NetworkAdapter.performCommand("\(getHost())/restful/latestposts-mini", command: command, completion: completion)
     }
     
     public static func performSearchCommand(_ command : SearchCommand, completion: @escaping (_ response : SearchResponse?, _ error: String?) -> Void){
 //        NetworkAdapter.performCommand("https://ttdc.us/restful/latestConversations", command: command, completion: completion)
         command.token = getToken()
-        NetworkAdapter.performCommand("\(getHost())/restful/latestConversations", command: command, completion: completion)
+        NetworkAdapter.performCommand("\(getHost())/restful/search-mini", command: command, completion: completion)
     }
     
     public static func performPostCommand(_ command : TopicCommand, completion: @escaping (_ response : TopicResponse?, _ error: String?) -> Void){
         command.token = getToken()
-        NetworkAdapter.performCommand("\(getHost())/restful/topic", command: command, completion: completion)
+        NetworkAdapter.performCommand("\(getHost())/restful/topic-mini", command: command, completion: completion)
     }
     
     public static func performAutocompleteCommand(_ command : AutoCompleteCommand, completion: @escaping (_ response : AutoCompleteResponse?, _ error: String?) -> Void){
@@ -84,7 +84,7 @@ public struct Network {
     
     public static func performServerEventListCommand(_ command : ServerEventListCommand, completion: @escaping (_ response : ServerEventListResponse?, _ error: String?) -> Void){
         command.token = getToken()
-        NetworkAdapter.performCommand("\(getHost())/restful/serverEventList", command: command, completion: completion)
+        NetworkAdapter.performCommand("\(getHost())/restful/serverEventList-mini", command: command, completion: completion)
     }
     
 }

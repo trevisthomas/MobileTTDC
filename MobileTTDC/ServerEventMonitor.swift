@@ -30,7 +30,11 @@ class ServerEventMonitor : NSObject {
         let cmd = ConnectCommand()
         Network.performConnectCommand(cmd) {
             (result, messge) in
-            self.connectionId = result?.connectionId
+            guard let id = result?.connectionId else {
+                print("Server event subscription failed.")
+                return
+            }
+            self.connectionId = id
             print("Connected to server with id: \(self.connectionId)")
         }
     }
@@ -45,11 +49,11 @@ class ServerEventMonitor : NSObject {
     }
     
     func timerDidFire(){
-        print("Server event monitor debug.")
         guard let id = connectionId else {
             connect()
             return
         }
+        print("Server event monitor heartbeat.")
         let cmd = ServerEventListCommand(connectionId: id)
         Network.performServerEventListCommand(cmd) {
             (result, messge) in
@@ -75,16 +79,7 @@ class ServerEventMonitor : NSObject {
             delegate.postAdded(post: event.sourcePost!)
         case "NEW_TAG", "REMOVED_TAG":
             print(event.sourceTagAss!.tag.type)
-            let cmd = PostCrudCommand(postId: event.sourceTagAss!.post!.postId)
-            
-            Network.performPostCrudCommand(cmd){
-                (response, message) in
-                guard let post = response?.post else {
-                    return
-                }
-                self.delegate.postUpdated(post: post)
-            }
-            
+            //Trevis, you're ignoreing these because tag add/remove also send post edit events which is what you use to update the ui.
             
         case "RESET_SERVER_BROADCAST":
             connectionId = nil

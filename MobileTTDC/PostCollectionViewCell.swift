@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract, BroadcastEventConsumer {
+class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
     
     
     @IBOutlet weak var entryConstraintBottom: NSLayoutConstraint!
@@ -65,6 +65,8 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract, Broad
             configureLikeButton(post: post, button: likeButton)
             
             refreshStyle()
+            
+            getApplicationContext().broadcaster.subscribe(consumer: self)
         }
     }
     
@@ -78,7 +80,7 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract, Broad
 //        setupPostBroacastUpdates()
         entryTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0)
         registerForStyleUpdates() //causes refreshStyle to be called
-        getApplicationContext().broadcaster.subscribe(consumer: self)
+//        getApplicationContext().broadcaster.subscribe(consumer: self)
     }
     
 
@@ -100,16 +102,17 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract, Broad
     
     //This doesnt help for shit.  Hm.
     override func prepareForReuse() {
-        commentButton.setTitle(nil, for: .normal)
-        likeButton.setTitle(nil, for: .normal)
-        parentPostCreatorButton.setTitle(nil, for: .normal)
-        
-        creatorButton.setTitle(nil, for: .normal)
-        entryTextView.text = nil
-        dateButton.setTitle(nil, for: .normal)
-        threadTitleButton.setTitle(nil, for: .normal)
-        creatorImageView.image = nil
-        likesLabel.text = nil
+//        getApplicationContext().broadcaster.subscribe(consumer: self)
+//        commentButton.setTitle(nil, for: .normal)
+//        likeButton.setTitle(nil, for: .normal)
+//        parentPostCreatorButton.setTitle(nil, for: .normal)
+//        
+//        creatorButton.setTitle(nil, for: .normal)
+//        entryTextView.text = nil
+//        dateButton.setTitle(nil, for: .normal)
+//        threadTitleButton.setTitle(nil, for: .normal)
+//        creatorImageView.image = nil
+//        likesLabel.text = nil
     }
     
     //
@@ -141,12 +144,20 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract, Broad
     func postEntryTextView() -> UITextView? {
         return entryTextView
     }
-    
+}
+
+extension PostCollectionViewCell : BroadcastEventConsumer {
     func onPostUpdated(post: Post) {
         self.post = post
     }
+    
+    func observingPostId(postId: String) -> Bool {
+        if post == nil {
+            return false
+        }
+        return self.post.postId == postId
+    }
 }
-
 
 
 

@@ -17,8 +17,9 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
     open static let styleDark : String = "darkStyle"
     open static let styleLight : String = "lightStyle"
 
-    let broadcaster = Broadcaster()
-    let latestPostsModel = LatestPostsModel()
+    let broadcaster : Broadcaster
+    let latestPostsModel : LatestPostsModel
+//    let latestPostsModel = LatestPostsModel(broadcaster: broadcaster)
     
     fileprivate static let defaultStyle : String = styleLight
     
@@ -28,6 +29,12 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
     }
     
     open var imageCache : [String: UIImage] = [:]
+    
+    
+    init(){
+        broadcaster = Broadcaster()
+        latestPostsModel = LatestPostsModel(broadcaster: broadcaster)
+    }
     
     func setStyleDark(){
         currentStyleName = ApplicationContext.styleDark
@@ -118,9 +125,7 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
         }
     }
     
-    init(){
-        
-    }
+    
     
     fileprivate struct PersistantKeys {
         static let token = "token"

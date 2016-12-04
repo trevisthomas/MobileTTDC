@@ -19,6 +19,13 @@ class LatestPostsModel {
     
     var delegate : LatestPostDelegate?
     
+    init(broadcaster : Broadcaster) {
+//        broadcaster.subscribe(consumer: self)
+        
+        broadcaster.subscribeForPostAdd(consumer: self)
+        broadcaster.subscribe(consumer: self)
+    }
+    
     private var postDictionary : [DisplayMode : (list : [Post], page: Int)] = [:]
     
     func getPosts(forMode: DisplayMode) -> [Post]? {
@@ -116,4 +123,22 @@ class LatestPostsModel {
         };
     }
     
+}
+
+extension LatestPostsModel : BroadcastPostAddConsumer {
+    func onPostAdded(post : Post) {
+        print("LatestPostModel: Post Added")
+    }
+    func reloadPosts() {
+        print("LatestPostModel: reload all")
+    }
+}
+extension LatestPostsModel : BroadcastEventConsumer {
+    func observingPostId(postId: String) -> Bool {
+        return true;
+    }
+    func onPostUpdated(post : Post) {
+        print("LatestPostModel: Post updated")
+        
+    }
 }

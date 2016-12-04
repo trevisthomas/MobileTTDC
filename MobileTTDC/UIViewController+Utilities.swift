@@ -14,6 +14,19 @@ extension UIViewController {
         return appDelegate.applicationContext.token
     }
     
+    func presentAlert(_ title: String, message: String){
+        let alertController = UIAlertController(title: title, message:
+            message, preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func getApplicationContext() -> ApplicationContext {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.applicationContext
+    }
+    
     func invokeLater(_ completion : @escaping () -> ()) {
         DispatchQueue.main.async {
             completion()

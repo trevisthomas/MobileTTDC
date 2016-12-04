@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReviewPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract, BroadcastEventConsumer {
+class ReviewPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
     
     @IBOutlet weak var movieTitleButton: UIButton!
     @IBOutlet weak var movieCoverImageView: UIImageView!
@@ -62,6 +62,7 @@ class ReviewPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract,
             }
             configureLikeButton(post: post, button: likeButton)
             refreshStyle() //For some reason those attributed guys get unhappy if you dont do this
+            getApplicationContext().broadcaster.subscribe(consumer: self)
         }
     }
     
@@ -69,7 +70,7 @@ class ReviewPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract,
         super.awakeFromNib()
         reviewTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0)
         registerForStyleUpdates() //causes refreshStyle to be called
-        getApplicationContext().broadcaster.subscribe(consumer: self)
+//        getApplicationContext().broadcaster.subscribe(consumer: self)
     }
     
     
@@ -120,7 +121,19 @@ class ReviewPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract,
 //        }
 //    }
 
+    
+}
+
+extension ReviewPostCollectionViewCell : BroadcastEventConsumer {
     func onPostUpdated(post: Post) {
         self.post = post
     }
+    
+    func observingPostId(postId: String) -> Bool {
+        if post == nil {
+            return false
+        }
+        return self.post.postId == postId
+    }
 }
+

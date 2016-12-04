@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract, BroadcastEventConsumer {
+class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
 
     @IBOutlet weak var subRatingStackView: UIStackView!
     @IBOutlet weak var movieTitleButton: UIButton!
@@ -57,13 +57,15 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract, 
             
             
             refreshStyle() //For some reason those attributed guys get unhappy if you dont do this
+            
+            getApplicationContext().broadcaster.subscribe(consumer: self)
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         registerForStyleUpdates() //causes refreshStyle to be called
-        getApplicationContext().broadcaster.subscribe(consumer: self)
+//        getApplicationContext().broadcaster.subscribe(consumer: self)
     }
     
     
@@ -117,7 +119,19 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract, 
 //            self.post = post
 //        }
 //    }
+    
+}
+
+extension MoviePostCollectionViewCell : BroadcastEventConsumer {
     func onPostUpdated(post: Post) {
         self.post = post
     }
+    
+    func observingPostId(postId: String) -> Bool {
+        if post == nil {
+            return false
+        }
+        return self.post.postId == postId
+    }
 }
+

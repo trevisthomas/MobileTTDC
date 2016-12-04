@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Post : Decodable{
+public class Post : Decodable{
     let postId : String
     let date : Date
     let title : String
@@ -29,7 +29,9 @@ public struct Post : Decodable{
     let reviewRating: Float?
     let isRootPost : Bool
     
-    public init?(json: JSON) {
+    var size : (Float, Float)? // :-)  Is this bad?
+    
+    public required init?(json: JSON) {
         postId = ("postId" <~~ json) ?? ""
         date = ("date" <~~ json)!
         

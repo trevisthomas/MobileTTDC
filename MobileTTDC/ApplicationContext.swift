@@ -17,7 +17,8 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
     open static let styleDark : String = "darkStyle"
     open static let styleLight : String = "lightStyle"
 
-    open let broadcaster = Broadcaster()
+    let broadcaster = Broadcaster()
+    let latestPostsModel = LatestPostsModel()
     
     fileprivate static let defaultStyle : String = styleLight
     
@@ -345,6 +346,7 @@ extension ApplicationContext : LatestPostsDataProvider {
 //    }
 //    
 //}
+
 
 extension UIViewController : CurrentUserProtocol {
     func registerForUserChangeUpdates() {

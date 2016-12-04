@@ -9,18 +9,21 @@
 import UIKit
 
 class CommonBaseViewController: UIViewController {
-    var replyPrototypeCell : PostReplyCollectionViewCell!
-    var postPrototypeCell : PostCollectionViewCell!
-    var reviewPostPrototypeCell : ReviewPostCollectionViewCell!
-    var moviePostPrototypeCell : MoviePostCollectionViewCell!
-    var rootPostPrototypeCell : RootPostCollectionViewCell!
-    var loadingMessageCell : LoadingCollectionViewCell!
-    var refreshControl: UIRefreshControl = UIRefreshControl()
+    private var replyPrototypeCell : PostReplyCollectionViewCell!
+    private var postPrototypeCell : PostCollectionViewCell!
+    private var reviewPostPrototypeCell : ReviewPostCollectionViewCell!
+    private var moviePostPrototypeCell : MoviePostCollectionViewCell!
+    private var rootPostPrototypeCell : RootPostCollectionViewCell!
+    private var loadingMessageCell : LoadingCollectionViewCell!
+    private var refreshControl: UIRefreshControl = UIRefreshControl()
     
-    var posts : [Post] = []
-    var sizeCache : [CGSize] = []
-    var dataLoadingInProgress : Bool = false
-    var pageNumber : Int = 1
+    var posts : [Post] = [] {
+        didSet {
+            getCollectionView()?.reloadData()
+        }
+    }
+    fileprivate var dataLoadingInProgress : Bool = false
+    private var pageNumber : Int = 1
     
     private var delegate : PostCollectionViewDelegate!
     
@@ -54,7 +57,7 @@ class CommonBaseViewController: UIViewController {
             // do whatever with your context
             context.viewController(forKey: UITransitionContextViewControllerKey.from)
         }, completion: {context in
-            self.sizeCache = []
+//            self.sizeCache = []
             self.loadSizeCache(posts: self.posts) {
 //                   self.getCollectionView()?.collectionViewLayout.invalidateLayout()
                 self.getCollectionView()?.performBatchUpdates(nil, completion: nil)
@@ -238,10 +241,9 @@ class CommonBaseViewController: UIViewController {
     }
     func loadSizeCache(posts : [Post], completion: (@escaping () -> Swift.Void) = {}){
         DispatchQueue.main.async {
-            self.sizeCache = []
             for p in self.posts {
                 let size = self.prototypeCellSize(post: p)
-                self.sizeCache.append(size)
+                p.size = size.toTuple()
             }
             completion()
         }
@@ -253,7 +255,6 @@ class CommonBaseViewController: UIViewController {
     
     func removeAllPosts(){
         posts = []
-        sizeCache = []
         getCollectionView()?.reloadData()
     }
 }
@@ -264,7 +265,15 @@ extension CommonBaseViewController : UICollectionViewDelegateFlowLayout {
         if (indexPath.row >= posts.count) {
             return prototypeLoadingCellSize()
         } else {
-            return sizeCache[indexPath.row]
+
+            //This is a thought that i had for generating the size if for somereason it wasnt here. (because i'm thinking that if the model is loaded outside of this class that they wont be set.
+            let post = posts[indexPath.row]
+            
+            if post.size == nil {
+                let size = self.prototypeCellSize(post: post)
+                post.size = size.toTuple()
+            }
+            return CGSize.fromTuple(tuple: post.size!)
         }
     }
 }

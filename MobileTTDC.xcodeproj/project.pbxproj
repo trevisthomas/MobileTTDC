@@ -28,6 +28,8 @@
 		0F0F69CE1D4D4F53009600F7 /* PostViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F69CD1D4D4F53009600F7 /* PostViewCellDelegate.swift */; };
 		0F15F0011DF13C7E00EECF87 /* NSURLSessionPinningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F15F0001DF13C7E00EECF87 /* NSURLSessionPinningDelegate.swift */; };
 		0F15F0031DF148CD00EECF87 /* ttdc-us.cer in Resources */ = {isa = PBXBuildFile; fileRef = 0F15F0021DF148CD00EECF87 /* ttdc-us.cer */; };
+		0F15F0071DF3682A00EECF87 /* LatestPostsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F15F0061DF3682A00EECF87 /* LatestPostsModel.swift */; };
+		0F15F0091DF36AF500EECF87 /* CGSize+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F15F0081DF36AF500EECF87 /* CGSize+.swift */; };
 		0F2B8CB61DCE7F4800BD62C6 /* RootPostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B8CB41DCE7F4800BD62C6 /* RootPostCollectionViewCell.swift */; };
 		0F2B8CB71DCE7F4800BD62C6 /* RootPostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F2B8CB51DCE7F4800BD62C6 /* RootPostCollectionViewCell.xib */; };
 		0F2B8CBA1DCF1FE800BD62C6 /* LoadingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2B8CB81DCF1FE800BD62C6 /* LoadingCollectionViewCell.swift */; };
@@ -148,6 +150,8 @@
 		0F0F69CD1D4D4F53009600F7 /* PostViewCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewCellDelegate.swift; sourceTree = "<group>"; };
 		0F15F0001DF13C7E00EECF87 /* NSURLSessionPinningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSURLSessionPinningDelegate.swift; sourceTree = "<group>"; };
 		0F15F0021DF148CD00EECF87 /* ttdc-us.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ttdc-us.cer"; sourceTree = "<group>"; };
+		0F15F0061DF3682A00EECF87 /* LatestPostsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestPostsModel.swift; sourceTree = "<group>"; };
+		0F15F0081DF36AF500EECF87 /* CGSize+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+.swift"; sourceTree = "<group>"; };
 		0F2B8CB41DCE7F4800BD62C6 /* RootPostCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootPostCollectionViewCell.swift; sourceTree = "<group>"; };
 		0F2B8CB51DCE7F4800BD62C6 /* RootPostCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootPostCollectionViewCell.xib; sourceTree = "<group>"; };
 		0F2B8CB81DCF1FE800BD62C6 /* LoadingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -294,6 +298,14 @@
 			name = Commands;
 			sourceTree = "<group>";
 		};
+		0F15F0051DF367F200EECF87 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0F15F0061DF3682A00EECF87 /* LatestPostsModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		0F3CEABB1DC6F9B5003CD432 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,6 +341,7 @@
 				0FAFE33B1DCD44F0000BE422 /* UISearchBar+Custom.swift */,
 				0F2B8CBC1DCFCEE300BD62C6 /* UICollectionView+Utils.swift */,
 				0FACAC5E1DDEC5B80090F094 /* UIColor+.swift */,
+				0F15F0081DF36AF500EECF87 /* CGSize+.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -377,7 +390,7 @@
 			name = Post;
 			sourceTree = "<group>";
 		};
-		0FB2F4991CFFAA8D008F386A /* Models */ = {
+		0FB2F4991CFFAA8D008F386A /* DataTypes */ = {
 			isa = PBXGroup;
 			children = (
 				0FE527201CFB654300407AAE /* Person.swift */,
@@ -392,7 +405,7 @@
 				0F7A58041DE2408300E52B55 /* PostWrapper.swift */,
 				0F97BD971DF0C00D007E5F43 /* ServerEvent.swift */,
 			);
-			name = Models;
+			name = DataTypes;
 			sourceTree = "<group>";
 		};
 		0FCC10841D2AC52500EA0B25 /* Comment */ = {
@@ -433,7 +446,8 @@
 		0FCF01821CFA10E200924868 /* MobileTTDC */ = {
 			isa = PBXGroup;
 			children = (
-				0FB2F4991CFFAA8D008F386A /* Models */,
+				0F15F0051DF367F200EECF87 /* Models */,
+				0FB2F4991CFFAA8D008F386A /* DataTypes */,
 				0FE527341CFB65FA00407AAE /* Libraries */,
 				0FE527251CFB656200407AAE /* Network */,
 				0F9E08F91D145DCF006676C1 /* Extensions */,
@@ -622,6 +636,7 @@
 				0FA3F2651DBBCAA100268DC1 /* UICollectionViewCell+TTDC.swift in Sources */,
 				0FACAC5F1DDEC5B80090F094 /* UIColor+.swift in Sources */,
 				0FAFE33C1DCD44F0000BE422 /* UISearchBar+Custom.swift in Sources */,
+				0F15F0071DF3682A00EECF87 /* LatestPostsModel.swift in Sources */,
 				0F0F69AE1D32986B009600F7 /* PostCrudCommand.swift in Sources */,
 				0FA3933D1DDFB61900E3BC2E /* LikeResponse.swift in Sources */,
 				0F0F69C21D3ADCB7009600F7 /* ForumSelectionViewController.swift in Sources */,
@@ -677,6 +692,7 @@
 				0FE527221CFB654300407AAE /* LoginResponse.swift in Sources */,
 				0FE5272F1CFB65EB00407AAE /* ExtensionArray.swift in Sources */,
 				0F6E12B51DD8F9AD00927810 /* CommonBaseViewController.swift in Sources */,
+				0F15F0091DF36AF500EECF87 /* CGSize+.swift in Sources */,
 				0F7A58031DE23F1200E52B55 /* PostEntryViewContract.swift in Sources */,
 				0F0F69CA1D3C9863009600F7 /* ConversationWithReplyViewController.swift in Sources */,
 				0F317C641D280D7D00C110AE /* ApplicationContext.swift in Sources */,

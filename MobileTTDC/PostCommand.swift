@@ -24,18 +24,21 @@ open class PostCommand : Command {
     
     let action: Action
     let pageNumber: Int
+    let pageSize: Int?
     open var token: String?
     
     open func toJSON() -> JSON? {
         return jsonify([
             "action" ~~> self.action,
             "pageNumber" ~~> self.pageNumber,
+            "pageSize" ~~> self.pageSize,
             "token" ~~> (self.token ?? nil)
             ])
     }
     
-    public init( action: Action, pageNumber: Int){
+    public init( action: Action, pageNumber: Int, pageSize: Int = 20){
         self.action = action
         self.pageNumber = pageNumber
+        self.pageSize = pageSize
     }
 }

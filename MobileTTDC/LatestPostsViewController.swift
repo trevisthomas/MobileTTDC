@@ -44,7 +44,9 @@ class LatestPostsViewController: CommonBaseViewController, BroadcastPostAddConsu
         
 //        removeAllPosts()
         
-        loadFirstPage()
+//        loadFirstPage()
+        
+        loadDataFromModelOrFromService()
     }
     
     override func viewDidLoad() {
@@ -52,11 +54,23 @@ class LatestPostsViewController: CommonBaseViewController, BroadcastPostAddConsu
         
         handleModeChange()
         
+        getApplicationContext().latestPostsModel.delegate = self
+        
         getApplicationContext().broadcaster.subscribeForPostAdd(consumer: self)
         
 //        loadFirstPage()
+        
+        loadDataFromModelOrFromService()
     }
     
+    private func loadDataFromModelOrFromService() {
+        if let list = getApplicationContext().latestPostsModel.getPosts(forMode: getApplicationContext().displayMode) {
+            self.posts = list
+        } else {
+            loadFirstPage()
+        }
+
+    }
     
     override func refreshStyle() {
         modeSegmentedControl.tintColor = getApplicationContext().getCurrentStyle().tintColor()
@@ -207,7 +221,7 @@ class LatestPostsViewController: CommonBaseViewController, BroadcastPostAddConsu
 //    }
     
     
-    var prevYOffset : CGFloat = 0.0
+//    var prevYOffset : CGFloat = 0.0
 
 }
 
@@ -277,34 +291,55 @@ extension LatestPostsViewController {
     
 }
 
+//extension LatestPostsViewController : PostCollectionViewDelegate {
+//    func loadPosts(completion: @escaping ([Post]?) -> Void) {
+//        print("Load Posts - latest")
+//        switch getApplicationContext().displayMode {
+//        case .latestGrouped:
+//            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED, completion: completion)
+//        case .latestFlat:
+//            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT, completion: completion)
+//        case .latestConversations:
+//            loadlatestConversationsFromWebservice(pageNumber: 1, completion: completion)
+//        case .latestThreads:
+//            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_THREADS, completion: completion)
+//        }
+//        
+//    }
+//    
+//    func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void) {
+//        print("Load More Posts - latest")
+//        switch getApplicationContext().displayMode {
+//        case .latestGrouped:
+//            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED, pageNumber: pageNumber, completion: completion)
+//        case .latestFlat:
+//            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT, pageNumber: pageNumber, completion: completion)
+//        case .latestConversations:
+//            loadlatestConversationsFromWebservice(pageNumber: pageNumber, completion: completion)
+//        case .latestThreads:
+//            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_THREADS, pageNumber: pageNumber,completion: completion)
+//        }
+//    }
+//}
+
+
 extension LatestPostsViewController : PostCollectionViewDelegate {
     func loadPosts(completion: @escaping ([Post]?) -> Void) {
-        print("Load Posts - latest")
-        switch getApplicationContext().displayMode {
-        case .latestGrouped:
-            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED, completion: completion)
-        case .latestFlat:
-            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT, completion: completion)
-        case .latestConversations:
-            loadlatestConversationsFromWebservice(pageNumber: 1, completion: completion)
-        case .latestThreads:
-            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_THREADS, completion: completion)
-        }
-        
+        getApplicationContext().latestPostsModel.reloadData(displayMode: getApplicationContext().displayMode, completion: completion)
     }
     
     func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void) {
         print("Load More Posts - latest")
-        switch getApplicationContext().displayMode {
-        case .latestGrouped:
-            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED, pageNumber: pageNumber, completion: completion)
-        case .latestFlat:
-            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT, pageNumber: pageNumber, completion: completion)
-        case .latestConversations:
-            loadlatestConversationsFromWebservice(pageNumber: pageNumber, completion: completion)
-        case .latestThreads:
-            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_THREADS, pageNumber: pageNumber,completion: completion)
-        }
+        getApplicationContext().latestPostsModel.loadNextPage(displayMode: getApplicationContext().displayMode, completion: completion)
+    }
+}
+
+extension LatestPostsViewController : LatestPostDelegate {
+    func dataLoadError(message : String) {
+        self.presentAlert("Sorry", message: message)
+    }
+    func dataUpdated(displayMode : DisplayMode) {
+        print("Data updated, or at leastt that's what the model says")
     }
 }
 

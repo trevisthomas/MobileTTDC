@@ -18,7 +18,6 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract, Broad
     @IBOutlet weak var entryLeftConstraint: NSLayoutConstraint!
     
     
-    @IBOutlet weak var viewCommentsButton: UIButton!  //Deprecated?
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var parentPostCreatorButton: UIButton!
@@ -97,6 +96,20 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract, Broad
         entryTextView.backgroundColor = appStyle.postBackgroundColor()
         entryTextView.tintColor = appStyle.headerDetailTextColor()
      
+    }
+    
+    //This doesnt help for shit.  Hm.
+    override func prepareForReuse() {
+        commentButton.setTitle(nil, for: .normal)
+        likeButton.setTitle(nil, for: .normal)
+        parentPostCreatorButton.setTitle(nil, for: .normal)
+        
+        creatorButton.setTitle(nil, for: .normal)
+        entryTextView.text = nil
+        dateButton.setTitle(nil, for: .normal)
+        threadTitleButton.setTitle(nil, for: .normal)
+        creatorImageView.image = nil
+        likesLabel.text = nil
     }
     
     //

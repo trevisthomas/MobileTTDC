@@ -37,6 +37,7 @@ open class SearchCommand : Command {
     
     let postSearchType: PostSearchType
     let pageNumber: Int
+    let pageSize: Int
     let sortOrder: SortOrder?
     let sortDirection: SortDirection?
     let phrase: String?
@@ -54,22 +55,24 @@ open class SearchCommand : Command {
             ])
     }
     
-    public init( postSearchType: PostSearchType, pageNumber: Int = 1, sortOrder: SortOrder = SortOrder.BY_DATE,
+    public init( postSearchType: PostSearchType, pageSize: Int = 20, pageNumber: Int = 1, sortOrder: SortOrder = SortOrder.BY_DATE,
                  sortDirection: SortDirection = SortDirection.DESC){
         self.postSearchType = postSearchType
         self.pageNumber = pageNumber
         self.sortOrder = sortOrder
         self.sortDirection = sortDirection
         self.phrase = nil
+        self.pageSize = pageSize
     }
     
-    public init( phrase: String, postSearchType: PostSearchType, pageNumber: Int = 1, sortOrder: SortOrder = SortOrder.BY_DATE,
+    public init( phrase: String, postSearchType: PostSearchType, pageSize: Int = 20, pageNumber: Int = 1, sortOrder: SortOrder = SortOrder.BY_DATE,
                  sortDirection: SortDirection = SortDirection.DESC){
         self.postSearchType = postSearchType
         self.pageNumber = pageNumber
         self.sortOrder = sortOrder
         self.sortDirection = sortDirection
         self.phrase = phrase
+        self.pageSize = pageSize
     }
     
     //TODO: Add more constructors for more search types

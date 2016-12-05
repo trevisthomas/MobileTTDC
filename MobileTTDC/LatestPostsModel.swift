@@ -10,7 +10,7 @@ import Foundation
 
 protocol LatestPostDelegate {
     func dataLoadError(message : String)
-    func dataUpdated(displayMode : DisplayMode)
+    func dataUpdated(displayMode : DisplayMode, posts: [Post])
 }
 
 class LatestPostsModel {
@@ -26,7 +26,7 @@ class LatestPostsModel {
         broadcaster.subscribe(consumer: self)
     }
     
-    private var postDictionary : [DisplayMode : (list : [Post], page: Int)] = [:]
+    fileprivate var postDictionary : [DisplayMode : (list : [Post], page: Int)] = [:]
     
     func getPosts(forMode: DisplayMode) -> [Post]? {
         return postDictionary[forMode]?.list
@@ -123,6 +123,13 @@ class LatestPostsModel {
         };
     }
     
+//    fileprivate func indexOfPost(sourcePost : Post, posts : [Post]) -> Int?{
+//        let index = posts.index(){
+//            (post) -> Bool in
+//            return post.postId == sourcePost.postId
+//        }
+//        return index
+//    }
 }
 
 extension LatestPostsModel : BroadcastPostAddConsumer {
@@ -137,8 +144,29 @@ extension LatestPostsModel : BroadcastEventConsumer {
     func observingPostId(postId: String) -> Bool {
         return true;
     }
+    
+    private func indexOfPost(sourcePost : Post, posts : [Post]) -> Int?{
+        let index = posts.index(){
+            (post) -> Bool in
+            return post.postId == sourcePost.postId
+        }
+        return index
+    }
+
+    
     func onPostUpdated(post : Post) {
         print("LatestPostModel: Post updated")
+        
+        for (type, tuple) in self.postDictionary {
+            guard let index = indexOfPost(sourcePost: post, posts: tuple.list) else {
+                print("Post not found in list")
+                return
+            }
+            postDictionary[type]?.list[index] = post
+            
+            let debug = postDictionary[type]?.list[index].tagAssociations
+            print("Debug \(debug)")
+        }
         
     }
 }

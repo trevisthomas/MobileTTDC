@@ -52,6 +52,8 @@ class LatestPostsViewController: CommonBaseViewController, BroadcastPostAddConsu
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tabBarController?.delegate = self
+        
         handleModeChange()
         
         getApplicationContext().latestPostsModel.delegate = self
@@ -338,8 +340,21 @@ extension LatestPostsViewController : LatestPostDelegate {
     func dataLoadError(message : String) {
         self.presentAlert("Sorry", message: message)
     }
-    func dataUpdated(displayMode : DisplayMode) {
+    func dataUpdated(displayMode : DisplayMode, posts : [Post]) {
+        if getApplicationContext().displayMode == displayMode {
+            //The idea is that i'm just swapping out the list.  The length should be the same.  Size will be nil, but the base should be able to handle that and recalculate it.  Also, no need to reload the collection view because the Cell's are updated another way.  Is this the best idea?
+            self.posts = posts
+        }
         print("Data updated, or at leastt that's what the model says")
+    }
+}
+
+extension LatestPostsViewController : UITabBarControllerDelegate{
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        if let _ = tabBarController.selectedViewController?.childViewControllers.contains(self) {
+            let indexPath = IndexPath(item: 0, section: 0)
+            getCollectionView()?.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.top, animated: true)
+        }
     }
 }
 

@@ -39,9 +39,19 @@ class ServerEventMonitor : NSObject {
         }
     }
     
+    func fireNow(){
+        timer?.fire()
+    }
+    
     func start(){
         stop()
+        
+        //If the connection id is not nil then we must have been asleep so try to get your data immediately. 
+        if connectionId != nil {
+            timerDidFire()
+        }
         timer = Timer.scheduledTimer(timeInterval: updateFrequency, target: self, selector: #selector(timerDidFire), userInfo: nil, repeats: true)
+        
     }
     
     func stop(){

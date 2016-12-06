@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
+class MoviePostCollectionViewCell: BaseCollectionViewCell, PostEntryViewContract {
 
     @IBOutlet weak var subRatingStackView: UIStackView!
     @IBOutlet weak var movieTitleButton: UIButton!
@@ -22,7 +22,7 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
     
     var delegate : PostViewCellDelegate?
     
-    var post : Post! {
+    override var post : Post! {
         didSet{
             
             movieTitleButton.setTitle(post.title, for: UIControlState())
@@ -58,7 +58,8 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
             
             refreshStyle() //For some reason those attributed guys get unhappy if you dont do this
             
-            getApplicationContext().broadcaster.subscribe(consumer: self)
+//            getApplicationContext().broadcaster.subscribe(consumer: self)
+            getApplicationContext().latestPostsModel.addListener(listener: self)
         }
     }
     
@@ -120,18 +121,26 @@ class MoviePostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
 //        }
 //    }
     
+//    func onPostUpdated(post: Post) {
+//        self.post = post
+//    }
+//    
+//    func getPostId() -> String? {
+//        return self.post.postId
+//    }
+    
 }
 
-extension MoviePostCollectionViewCell : BroadcastEventConsumer {
-    func onPostUpdated(post: Post) {
-        self.post = post
-    }
-    
-    func observingPostId(postId: String) -> Bool {
-        if post == nil {
-            return false
-        }
-        return self.post.postId == postId
-    }
-}
+//extension MoviePostCollectionViewCell : BroadcastEventConsumer {
+//    func onPostUpdated(post: Post) {
+//        self.post = post
+//    }
+//    
+//    func observingPostId(postId: String) -> Bool {
+//        if post == nil {
+//            return false
+//        }
+//        return self.post.postId == postId
+//    }
+//}
 

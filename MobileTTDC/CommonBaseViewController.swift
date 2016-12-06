@@ -329,16 +329,16 @@ extension CommonBaseViewController : UICollectionViewDataSource {
 }
 
 
-extension CommonBaseViewController : UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let post = self.posts[indexPath.row]
-        var dict = [String: String]()
-        dict["threadId"] = post.threadId
-        performSegue(withIdentifier: "ConversationWithReplyView", sender: dict)
-        
-    }
-}
+//extension CommonBaseViewController : UICollectionViewDelegate {
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        
+//        let post = self.posts[indexPath.row]
+//        var dict = [String: String]()
+//        dict["threadId"] = post.threadId
+//        performSegue(withIdentifier: "ConversationWithReplyView", sender: dict)
+//        
+//    }
+//}
 
 
 extension CommonBaseViewController : PostViewCellDelegate {

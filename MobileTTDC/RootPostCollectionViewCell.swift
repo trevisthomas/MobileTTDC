@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RootPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
+class RootPostCollectionViewCell: BaseCollectionViewCell, PostEntryViewContract {
     
     
     @IBOutlet weak var entryConstraintBottom: NSLayoutConstraint!
@@ -16,7 +16,7 @@ class RootPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
     
     @IBOutlet weak var entryRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var entryLeftConstraint: NSLayoutConstraint!
-    var post : Post!{
+    override var post : Post!{
         didSet{
             dateButton.setTitle(Utilities.singleton.simpleDateFormat(post.date), for: UIControlState())
             entryTextView.setHtmlText(post.entry)
@@ -124,7 +124,9 @@ class RootPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
             
             refreshStyle()
             
-            getApplicationContext().broadcaster.subscribe(consumer: self)
+//            getApplicationContext().broadcaster.subscribe(consumer: self)
+            
+            getApplicationContext().latestPostsModel.addListener(listener: self)
         }
     }
     @IBOutlet weak var commentButton: UIButton!
@@ -207,19 +209,26 @@ class RootPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
 //            self.post = post
 //        }
 //    }
-
+//
+//    func onPostUpdated(post: Post) {
+//        self.post = post
+//    }
+//    
+//    func getPostId() -> String? {
+//        return self.post.postId
+//    }
     
 }
 
-extension RootPostCollectionViewCell : BroadcastEventConsumer {
-    func onPostUpdated(post: Post) {
-        self.post = post
-    }
-    
-    func observingPostId(postId: String) -> Bool {
-        if post == nil {
-            return false
-        }
-        return self.post.postId == postId
-    }
-}
+//extension RootPostCollectionViewCell : BroadcastEventConsumer {
+//    func onPostUpdated(post: Post) {
+//        self.post = post
+//    }
+//    
+//    func observingPostId(postId: String) -> Bool {
+//        if post == nil {
+//            return false
+//        }
+//        return self.post.postId == postId
+//    }
+//}

@@ -55,3 +55,8 @@ extension UICollectionViewCell {
         return "Liked by: \(likes)"
     }
 }
+
+//extension UICollectionViewCell : PostUpdateListener {
+//    
+//}
+

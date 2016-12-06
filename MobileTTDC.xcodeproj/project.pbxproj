@@ -41,6 +41,7 @@
 		0F3CEAB41DC272AA003CD432 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3CEAB31DC272AA003CD432 /* TabBarViewController.swift */; };
 		0F3CEABA1DC4D64F003CD432 /* AppStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3CEAB91DC4D64F003CD432 /* AppStyle.swift */; };
 		0F3CEABD1DC6F9D5003CD432 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F3CEABC1DC6F9D5003CD432 /* Profile.storyboard */; };
+		0F6597641DF6AF4F001E7DF1 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6597631DF6AF4F001E7DF1 /* BaseCollectionViewCell.swift */; };
 		0F6E12B51DD8F9AD00927810 /* CommonBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6E12B41DD8F9AD00927810 /* CommonBaseViewController.swift */; };
 		0F7170891DDF7D9900E9348C /* HotboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7170881DDF7D9900E9348C /* HotboxView.swift */; };
 		0F76A87A1CFA165D00BDD499 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F76A8791CFA165D00BDD499 /* LoginViewController.swift */; };
@@ -162,6 +163,7 @@
 		0F3CEAB31DC272AA003CD432 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		0F3CEAB91DC4D64F003CD432 /* AppStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStyle.swift; sourceTree = "<group>"; };
 		0F3CEABC1DC6F9D5003CD432 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		0F6597631DF6AF4F001E7DF1 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		0F6E12B41DD8F9AD00927810 /* CommonBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonBaseViewController.swift; sourceTree = "<group>"; };
 		0F7170881DDF7D9900E9348C /* HotboxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotboxView.swift; sourceTree = "<group>"; };
 		0F76A8791CFA165D00BDD499 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -383,6 +385,7 @@
 				0F2B8CB91DCF1FE800BD62C6 /* LoadingCollectionViewCell.xib */,
 				0F6E12B41DD8F9AD00927810 /* CommonBaseViewController.swift */,
 				0F7A580A1DE2B8DE00E52B55 /* PostCollectionViewDelegate.swift */,
+				0F6597631DF6AF4F001E7DF1 /* BaseCollectionViewCell.swift */,
 			);
 			name = Post;
 			sourceTree = "<group>";
@@ -691,6 +694,7 @@
 				0F15F0091DF36AF500EECF87 /* CGSize+.swift in Sources */,
 				0F7A58031DE23F1200E52B55 /* PostEntryViewContract.swift in Sources */,
 				0F0F69CA1D3C9863009600F7 /* ConversationWithReplyViewController.swift in Sources */,
+				0F6597641DF6AF4F001E7DF1 /* BaseCollectionViewCell.swift in Sources */,
 				0F317C641D280D7D00C110AE /* ApplicationContext.swift in Sources */,
 				0FD0A33C1D0DF4140030D36F /* ReuseIdentifiers.swift in Sources */,
 				0FB2F4AB1D037008008F386A /* UIView+Utillities.swift in Sources */,

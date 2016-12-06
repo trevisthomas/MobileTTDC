@@ -18,7 +18,7 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
     open static let styleLight : String = "lightStyle"
 
     let broadcaster : Broadcaster
-    let latestPostsModel : LatestPostsModel
+    let latestPostsModel : LatestPostsModel<BaseCollectionViewCell>
 //    let latestPostsModel = LatestPostsModel(broadcaster: broadcaster)
     
     fileprivate static let defaultStyle : String = styleLight

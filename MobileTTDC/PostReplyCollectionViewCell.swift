@@ -8,9 +8,9 @@
 
 import UIKit
 
-class PostReplyCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
+class PostReplyCollectionViewCell: BaseCollectionViewCell, PostEntryViewContract{
     
-    var post : Post! {
+    override var post : Post! {
         didSet{
             creatorNameButton.setTitle(post.creator!.login, for: UIControlState())
             entryTextView.setHtmlText(post.entry)
@@ -24,7 +24,8 @@ class PostReplyCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
             
             refreshStyle() //For some reason those attributed guys get unhappy if you dont do this
             
-            getApplicationContext().broadcaster.subscribe(consumer: self)
+//            getApplicationContext().broadcaster.subscribe(consumer: self)
+            getApplicationContext().latestPostsModel.addListener(listener: self)
         }
     }
     
@@ -93,19 +94,14 @@ class PostReplyCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
 //    }
     
     
+//    func onPostUpdated(post: Post) {
+//        self.post = post
+//    }
+//    
+//    func getPostId() -> String? {
+//        return self.post.postId
+//    }
 }
 
-extension PostReplyCollectionViewCell : BroadcastEventConsumer {
-    func onPostUpdated(post: Post) {
-        self.post = post
-    }
-    
-    func observingPostId(postId: String) -> Bool {
-        if post == nil {
-            return false
-        }
-        return self.post.postId == postId
-    }
-}
 
 

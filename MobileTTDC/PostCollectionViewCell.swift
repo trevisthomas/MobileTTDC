@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
+class PostCollectionViewCell: BaseCollectionViewCell, PostEntryViewContract {
     
     
     @IBOutlet weak var entryConstraintBottom: NSLayoutConstraint!
@@ -29,7 +29,7 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
     @IBOutlet weak var creatorImageView: UIImageView!
     @IBOutlet weak var likesLabel: UILabel!
     
-    var post : Post!{
+    override var post : Post!{
         didSet{
             dateButton.setTitle(Utilities.singleton.simpleDateFormat(post.date), for: UIControlState())
             entryTextView.setHtmlText(post.entry)
@@ -66,7 +66,8 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
             
             refreshStyle()
             
-            getApplicationContext().broadcaster.subscribe(consumer: self)
+//            getApplicationContext().broadcaster.subscribe(consumer: self)
+            getApplicationContext().latestPostsModel.addListener(listener: self)
         }
     }
     
@@ -144,20 +145,22 @@ class PostCollectionViewCell: UICollectionViewCell, PostEntryViewContract {
     func postEntryTextView() -> UITextView? {
         return entryTextView
     }
+    
+    
 }
 
-extension PostCollectionViewCell : BroadcastEventConsumer {
-    func onPostUpdated(post: Post) {
-        self.post = post
-    }
-    
-    func observingPostId(postId: String) -> Bool {
-        if post == nil {
-            return false
-        }
-        return self.post.postId == postId
-    }
-}
+//extension PostCollectionViewCell : BroadcastEventConsumer {
+//    func onPostUpdated(post: Post) {
+//        self.post = post
+//    }
+//    
+//    func observingPostId(postId: String) -> Bool {
+//        if post == nil {
+//            return false
+//        }
+//        return self.post.postId == postId
+//    }
+//}
 
 
 

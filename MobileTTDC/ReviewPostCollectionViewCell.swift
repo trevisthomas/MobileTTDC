@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReviewPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
+class ReviewPostCollectionViewCell: BaseCollectionViewCell, PostEntryViewContract{
     
     @IBOutlet weak var movieTitleButton: UIButton!
     @IBOutlet weak var movieCoverImageView: UIImageView!
@@ -28,7 +28,7 @@ class ReviewPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
     
     var delegate : PostViewCellDelegate?
     
-    var post : Post! {
+    override var post : Post! {
         didSet{
             
             movieTitleButton.setTitle(post.title, for: UIControlState())
@@ -62,7 +62,8 @@ class ReviewPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
             }
             configureLikeButton(post: post, button: likeButton)
             refreshStyle() //For some reason those attributed guys get unhappy if you dont do this
-            getApplicationContext().broadcaster.subscribe(consumer: self)
+//            getApplicationContext().broadcaster.subscribe(consumer: self)
+            getApplicationContext().latestPostsModel.addListener(listener: self)
         }
     }
     
@@ -121,19 +122,25 @@ class ReviewPostCollectionViewCell: UICollectionViewCell, PostEntryViewContract{
 //        }
 //    }
 
-    
+//    func onPostUpdated(post: Post) {
+//        self.post = post
+//    }
+//    
+//    func getPostId() -> String? {
+//        return self.post.postId
+//    }
 }
 
-extension ReviewPostCollectionViewCell : BroadcastEventConsumer {
-    func onPostUpdated(post: Post) {
-        self.post = post
-    }
-    
-    func observingPostId(postId: String) -> Bool {
-        if post == nil {
-            return false
-        }
-        return self.post.postId == postId
-    }
-}
+//extension ReviewPostCollectionViewCell : BroadcastEventConsumer {
+//    func onPostUpdated(post: Post) {
+//        self.post = post
+//    }
+//    
+//    func observingPostId(postId: String) -> Bool {
+//        if post == nil {
+//            return false
+//        }
+//        return self.post.postId == postId
+//    }
+//}
 

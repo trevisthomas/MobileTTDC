@@ -13,7 +13,28 @@ protocol LatestPostDelegate {
     func dataUpdated(displayMode : DisplayMode, posts: [Post])
 }
 
-class LatestPostsModel {
+protocol PostUpdateListener : Hashable {
+    //The id of the post that you care about
+    func getPostId() -> String?
+    
+    //Callback when the post changes
+    func onPostUpdated(post : Post)
+    
+//    func observingPostId(postId: String) -> Bool
+//    func onPostUpdated(post : Post)
+}
+
+extension PostUpdateListener {
+    func getPostId() -> String? {
+        abort()
+    }
+    
+    func onPostUpdated(post : Post) {
+        assert(false)
+    }
+}
+
+class LatestPostsModel <T : PostUpdateListener>{
     private let flatPageSize = 20;
     private let groupedPageSize = 5;
     
@@ -31,6 +52,25 @@ class LatestPostsModel {
     func getPosts(forMode: DisplayMode) -> [Post]? {
         return postDictionary[forMode]?.list
     }
+    
+    var listeners = Set<T>()
+    
+    func addListener(listener: T) {
+        listeners.insert(listener)
+    }
+    
+    func removeListener(listener: T) {
+        listeners.remove(listener)
+    }
+    
+    fileprivate func notifyUpdateListeners(ofPost post : Post) {
+        for listener in listeners{
+            if listener.getPostId() == post.postId {
+                listener.onPostUpdated(post: post)
+            }
+        }
+    }
+
     
     func reloadData(displayMode : DisplayMode, completion: @escaping ([Post]?) -> Void){
         
@@ -167,6 +207,8 @@ extension LatestPostsModel : BroadcastEventConsumer {
             let debug = postDictionary[type]?.list[index].tagAssociations
             print("Debug \(debug)")
         }
+        
+        self.notifyUpdateListeners(ofPost: post)
         
     }
 }

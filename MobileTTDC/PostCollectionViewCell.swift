@@ -67,7 +67,7 @@ class PostCollectionViewCell: BaseCollectionViewCell, PostEntryViewContract {
             refreshStyle()
             
 //            getApplicationContext().broadcaster.subscribe(consumer: self)
-            getApplicationContext().latestPostsModel.addListener(listener: self)
+//            getApplicationContext().latestPostsModel.addListener(listener: self)
         }
     }
     

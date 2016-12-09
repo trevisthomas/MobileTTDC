@@ -15,22 +15,28 @@ protocol LatestPostDelegate {
 
 protocol PostUpdateListener : Hashable {
     //The id of the post that you care about
-    func getPostId() -> String?
+//    func getPostId() -> String?
     
     //Callback when the post changes
-    func onPostUpdated(post : Post)
+    func onPostUpdated(post : Post, index : Int)
+    
+    func getDisplayMode() -> DisplayMode
     
 //    func observingPostId(postId: String) -> Bool
 //    func onPostUpdated(post : Post)
 }
 
 extension PostUpdateListener {
-    func getPostId() -> String? {
+    func getDisplayMode() -> DisplayMode {
         abort()
     }
     
-    func onPostUpdated(post : Post) {
-        assert(false)
+//    func onPostUpdated(post : Post) {
+//        assert(false)
+//    }
+    
+    func onPostUpdated(post : Post, index : Int) {
+        abort()
     }
 }
 
@@ -53,7 +59,7 @@ class LatestPostsModel <T : PostUpdateListener>{
         return postDictionary[forMode]?.list
     }
     
-    var listeners = Set<T>()
+    private var listeners = Set<T>()
     
     func addListener(listener: T) {
         listeners.insert(listener)
@@ -63,10 +69,10 @@ class LatestPostsModel <T : PostUpdateListener>{
         listeners.remove(listener)
     }
     
-    fileprivate func notifyUpdateListeners(ofPost post : Post) {
+    fileprivate func notifyUpdateListeners(ofPost post : Post, index : Int, displayMode : DisplayMode) {
         for listener in listeners{
-            if listener.getPostId() == post.postId {
-                listener.onPostUpdated(post: post)
+            if(listener.getDisplayMode() == displayMode) {
+                listener.onPostUpdated(post: post, index: index)
             }
         }
     }
@@ -111,7 +117,7 @@ class LatestPostsModel <T : PostUpdateListener>{
         
         switch displayMode {
         case .latestGrouped:
-            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED, pageNumber: pageNumber, pageSize:groupedPageSize, completion: localCompletion)
+            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED,flatten: true, pageNumber: pageNumber, pageSize:groupedPageSize, completion: localCompletion)
         case .latestFlat:
             loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT, pageNumber: pageNumber, pageSize:flatPageSize, completion: localCompletion)
         case .latestConversations:
@@ -204,11 +210,13 @@ extension LatestPostsModel : BroadcastEventConsumer {
             }
             postDictionary[type]?.list[index] = post
             
+            self.notifyUpdateListeners(ofPost: post, index : index, displayMode : type)
+            
             let debug = postDictionary[type]?.list[index].tagAssociations
             print("Debug \(debug)")
         }
         
-        self.notifyUpdateListeners(ofPost: post)
+//        self.notifyUpdateListeners(ofPost: post)
         
     }
 }

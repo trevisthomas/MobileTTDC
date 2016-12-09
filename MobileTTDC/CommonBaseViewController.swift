@@ -17,11 +17,14 @@ class CommonBaseViewController: UIViewController {
     private var loadingMessageCell : LoadingCollectionViewCell!
     private var refreshControl: UIRefreshControl = UIRefreshControl()
     
-    var posts : [Post] = [] {
-        didSet {
-            getCollectionView()?.reloadData()
-        }
-    }
+    var posts : [Post] = []
+    
+//    var posts : [Post] = [] {
+//        didSet {
+//            print("I'm the asshole")
+//            getCollectionView()?.reloadData()
+//        }
+//    }
     fileprivate var dataLoadingInProgress : Bool = false
     private var pageNumber : Int = 1
     
@@ -31,6 +34,7 @@ class CommonBaseViewController: UIViewController {
         super.init(coder: aDecoder)
         delegate = self as! PostCollectionViewDelegate
 //        getApplicationContext().broadcaster.subscribeForPostAdd(consumer: self)
+//        getApplicationContext().latestPostsModel.addListener(listener: self)
     }
     
     override func viewDidLoad() {
@@ -197,6 +201,7 @@ class CommonBaseViewController: UIViewController {
                 return;
             }
             self.posts = posts!
+            self.getCollectionView()?.reloadData()
             
             self.loadSizeCache(posts: self.posts){
                 self.getCollectionView()?.reloadData()
@@ -236,6 +241,16 @@ class CommonBaseViewController: UIViewController {
                 self.getCollectionView()?.reloadData()
                 completion()
             }
+            
+           
+// Anoying crash
+//            self.posts.append(contentsOf: list)
+//            
+//            self.loadSizeCache(posts: self.posts){
+//                self.getCollectionView()?.insertItems(at: paths)
+//                completion()                
+//            }
+            
         }
         
     }
@@ -257,6 +272,8 @@ class CommonBaseViewController: UIViewController {
         posts = []
         getCollectionView()?.reloadData()
     }
+    
+    
 }
 
 extension CommonBaseViewController : UICollectionViewDelegateFlowLayout {
@@ -326,6 +343,16 @@ extension CommonBaseViewController : UICollectionViewDataSource {
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        //This mighht need more thought.  Probably not needed if the post hasnt changed.
+        guard let postCell = cell as? BaseCollectionViewCell else {
+            return
+        }
+        
+        postCell.post = posts[indexPath.row]
+        
+    }
+    
 }
 
 
@@ -384,6 +411,20 @@ extension CommonBaseViewController : PostViewCellDelegate {
     }
 
 }
+
+//extension CommonBaseViewController : PostUpdateListener {
+//    func getDisplayMode() -> DisplayMode {
+//        return getApplicationContext().displayMode
+//    }
+//    
+//    func onPostUpdated(post : Post, index : Int) {
+//        let path = IndexPath(item: index, section: 0)
+//        if let cell = getCollectionView()?.cellForItem(at: path) as? BaseCollectionViewCell {
+//            cell.post = post
+//        }
+//    }
+//
+//}
 
 
 //http://stackoverflow.com/questions/32105957/swift-calling-subclasss-overridden-method-from-superclass/40558606#40558606

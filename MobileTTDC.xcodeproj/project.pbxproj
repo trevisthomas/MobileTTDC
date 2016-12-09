@@ -383,8 +383,8 @@
 				0F2B8CB51DCE7F4800BD62C6 /* RootPostCollectionViewCell.xib */,
 				0F2B8CB81DCF1FE800BD62C6 /* LoadingCollectionViewCell.swift */,
 				0F2B8CB91DCF1FE800BD62C6 /* LoadingCollectionViewCell.xib */,
-				0F6E12B41DD8F9AD00927810 /* CommonBaseViewController.swift */,
 				0F7A580A1DE2B8DE00E52B55 /* PostCollectionViewDelegate.swift */,
+				0F6E12B41DD8F9AD00927810 /* CommonBaseViewController.swift */,
 				0F6597631DF6AF4F001E7DF1 /* BaseCollectionViewCell.swift */,
 			);
 			name = Post;

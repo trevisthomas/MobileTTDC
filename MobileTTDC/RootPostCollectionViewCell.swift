@@ -126,7 +126,7 @@ class RootPostCollectionViewCell: BaseCollectionViewCell, PostEntryViewContract 
             
 //            getApplicationContext().broadcaster.subscribe(consumer: self)
             
-            getApplicationContext().latestPostsModel.addListener(listener: self)
+//            getApplicationContext().latestPostsModel.addListener(listener: self)
         }
     }
     @IBOutlet weak var commentButton: UIButton!

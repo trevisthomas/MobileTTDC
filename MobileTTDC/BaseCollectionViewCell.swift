@@ -8,7 +8,8 @@
 
 import UIKit
 
-class BaseCollectionViewCell : UICollectionViewCell, PostUpdateListener {
+//Deprecate this once you're done?
+class BaseCollectionViewCell : UICollectionViewCell /*, PostUpdateListener*/ {
 //    func getPostId() -> String? {
 //        abort()
 //    }
@@ -19,11 +20,11 @@ class BaseCollectionViewCell : UICollectionViewCell, PostUpdateListener {
     
     var post : Post!
     
-    func onPostUpdated(post: Post) {
-        self.post = post
-    }
-    
-    func getPostId() -> String? {
-        return self.post.postId
-    }
+//    func onPostUpdated(post: Post) {
+//        self.post = post
+//    }
+//    
+//    func getPostId() -> String? {
+//        return self.post.postId
+//    }
 }

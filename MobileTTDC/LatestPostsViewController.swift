@@ -63,7 +63,21 @@ class LatestPostsViewController: CommonBaseViewController, BroadcastPostAddConsu
 //        loadFirstPage()
         
         loadDataFromModelOrFromService()
+        
+        
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getApplicationContext().latestPostsModel.addListener(listener: self)
+        if let posts = getApplicationContext().latestPostsModel.getPosts(forMode:  getApplicationContext().displayMode) {
+            self.posts = posts
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        getApplicationContext().latestPostsModel.removeListener(listener: self)
+    }
+    
     
     private func loadDataFromModelOrFromService() {
         if let list = getApplicationContext().latestPostsModel.getPosts(forMode: getApplicationContext().displayMode) {
@@ -380,3 +394,20 @@ extension LatestPostsViewController : UITabBarControllerDelegate{
 //        return UIModalPresentationStyle.fullScreen
 //    }
 //}
+
+
+extension LatestPostsViewController : PostUpdateListener {
+    func getDisplayMode() -> DisplayMode {
+        return getApplicationContext().displayMode
+    }
+    
+    func onPostUpdated(post : Post, index : Int) {
+        posts[index] = post
+        let path = IndexPath(item: index, section: 0)
+        if let cell = getCollectionView()?.cellForItem(at: path) as? BaseCollectionViewCell {
+            cell.post = post
+        } /*else {
+         _ = dequeueCell(post, indexPath: path)
+         }*/
+    }
+}

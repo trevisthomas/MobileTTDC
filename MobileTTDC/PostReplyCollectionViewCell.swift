@@ -25,7 +25,7 @@ class PostReplyCollectionViewCell: BaseCollectionViewCell, PostEntryViewContract
             refreshStyle() //For some reason those attributed guys get unhappy if you dont do this
             
 //            getApplicationContext().broadcaster.subscribe(consumer: self)
-            getApplicationContext().latestPostsModel.addListener(listener: self)
+//            getApplicationContext().latestPostsModel.addListener(listener: self)
         }
     }
     

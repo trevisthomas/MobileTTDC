@@ -18,7 +18,7 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
     open static let styleLight : String = "lightStyle"
 
     let broadcaster : Broadcaster
-    let latestPostsModel : LatestPostsModel<BaseCollectionViewCell>
+    let latestPostsModel : LatestPostsModel<LatestPostsViewController> //TODO: Remove this class generic. Use method generic
 //    let latestPostsModel = LatestPostsModel(broadcaster: broadcaster)
     
     fileprivate static let defaultStyle : String = styleLight
@@ -172,6 +172,17 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
         }
         
         
+//        if let style = defaults.string(forKey: PersistantKeys.style) {
+//            self.currentStyleName = style
+//        } else {
+//            self.currentStyleName = ApplicationContext.defaultStyle
+//        }
+        
+        loadStyle()
+    }
+    
+    public func loadStyle() {
+        let defaults = UserDefaults.standard
         if let style = defaults.string(forKey: PersistantKeys.style) {
             self.currentStyleName = style
         } else {

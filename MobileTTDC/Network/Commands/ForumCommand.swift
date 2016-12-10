@@ -9,6 +9,8 @@
 import Foundation
 
 open class ForumCommand : Command{
+    public var connectionId: String?
+
     open var token: String?
     open var action: String
     

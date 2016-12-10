@@ -69,8 +69,15 @@ class LatestPostsViewController: CommonBaseViewController, BroadcastPostAddConsu
     
     override func viewWillAppear(_ animated: Bool) {
         getApplicationContext().latestPostsModel.addListener(listener: self)
+        
+        //This was added because I didnt want reload the data every time, because this is fired when you open and close a thread or a conversation.  
+        if !getApplicationContext().latestPostsModel.dataChanged {
+            return
+        }
+        
         if let posts = getApplicationContext().latestPostsModel.getPosts(forMode:  getApplicationContext().displayMode) {
             self.posts = posts
+            getCollectionView()?.reloadData()
         }
     }
     

@@ -10,7 +10,7 @@ import Foundation
 
 open class ServerEventListCommand : Command {
     public var token: String?
-    open var connectionId: String
+    open var connectionId: String?
     
     open func toJSON() -> JSON? {
         return jsonify([

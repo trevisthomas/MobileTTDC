@@ -15,15 +15,15 @@ protocol LatestPostDelegate {
 
 protocol PostUpdateListener : Hashable {
     //The id of the post that you care about
-//    func getPostId() -> String?
+    //    func getPostId() -> String?
     
     //Callback when the post changes
     func onPostUpdated(post : Post, index : Int)
     
     func getDisplayMode() -> DisplayMode
     
-//    func observingPostId(postId: String) -> Bool
-//    func onPostUpdated(post : Post)
+    //    func observingPostId(postId: String) -> Bool
+    //    func onPostUpdated(post : Post)
 }
 
 extension PostUpdateListener {
@@ -31,9 +31,9 @@ extension PostUpdateListener {
         abort()
     }
     
-//    func onPostUpdated(post : Post) {
-//        assert(false)
-//    }
+    //    func onPostUpdated(post : Post) {
+    //        assert(false)
+    //    }
     
     func onPostUpdated(post : Post, index : Int) {
         abort()
@@ -44,18 +44,20 @@ class LatestPostsModel <T : PostUpdateListener>{
     private let flatPageSize = 20;
     private let groupedPageSize = 5;
     
+    fileprivate(set) var dataChanged : Bool = true
     var delegate : LatestPostDelegate?
     
     init(broadcaster : Broadcaster) {
-//        broadcaster.subscribe(consumer: self)
+        //        broadcaster.subscribe(consumer: self)
         
-        broadcaster.subscribeForPostAdd(consumer: self)
+//        broadcaster.subscribeForPostAdd(consumer: self)
         broadcaster.subscribe(consumer: self)
     }
     
     fileprivate var postDictionary : [DisplayMode : (list : [Post], page: Int)] = [:]
     
     func getPosts(forMode: DisplayMode) -> [Post]? {
+        dataChanged = false 
         return postDictionary[forMode]?.list
     }
     
@@ -76,14 +78,15 @@ class LatestPostsModel <T : PostUpdateListener>{
             }
         }
     }
-
+    
     
     func reloadData(displayMode : DisplayMode, completion: @escaping ([Post]?) -> Void){
         
         let localCompletion = {(posts : [Post], totalPosts : Int) -> Void in
             self.postDictionary[displayMode] = (list: posts, page: 1)
-//            self.delegate?.dataUpdated(displayMode: displayMode)
+            //            self.delegate?.dataUpdated(displayMode: displayMode)
             
+            self.dataChanged = true
             completion(posts)
         }
         
@@ -110,8 +113,8 @@ class LatestPostsModel <T : PostUpdateListener>{
         let localCompletion = {(posts : [Post]?, totalPosts : Int?) -> Void in
             self.postDictionary[displayMode]?.list.append(contentsOf: posts!)
             self.postDictionary[displayMode]?.page = pageNumber
-//            self.delegate?.dataUpdated(displayMode: displayMode)
-            
+            //            self.delegate?.dataUpdated(displayMode: displayMode)
+            self.dataChanged = true
             completion(posts)
         }
         
@@ -133,18 +136,18 @@ class LatestPostsModel <T : PostUpdateListener>{
         
         Network.performPostCommand(cmd){
             (response, message) -> Void in
-//            guard (response != nil) else {
-//                self.delegate?.dataLoadError(message: message!)
-//                return;
-//            }
+            //            guard (response != nil) else {
+            //                self.delegate?.dataLoadError(message: message!)
+            //                return;
+            //            }
             
             guard let r = response else {
                 self.delegate?.dataLoadError(message: message!)
-//                completion(nil, nil)
+                //                completion(nil, nil)
                 return;
             }
             
-//            if self.getApplicationContext().displayMode == .latestGrouped {
+            //            if self.getApplicationContext().displayMode == .latestGrouped {
             if flatten {
                 completion(r.list.flattenPosts(), r.totalResults)
             } else {
@@ -161,7 +164,7 @@ class LatestPostsModel <T : PostUpdateListener>{
             
             guard let r = response else {
                 self.delegate?.dataLoadError(message: message!)
-//                completion(nil, nil)
+                //                completion(nil, nil)
                 return;
             }
             
@@ -169,45 +172,51 @@ class LatestPostsModel <T : PostUpdateListener>{
         };
     }
     
-//    fileprivate func indexOfPost(sourcePost : Post, posts : [Post]) -> Int?{
+    //    fileprivate func indexOfPost(sourcePost : Post, posts : [Post]) -> Int?{
+    //        let index = posts.index(){
+    //            (post) -> Bool in
+    //            return post.postId == sourcePost.postId
+    //        }
+    //        return index
+    //    }
+}
+
+//extension LatestPostsModel : BroadcastPostAddConsumer {
+//    func onPostAdded(post : Post) {
+//        print("LatestPostModel: Post Added")
+//    }
+//    func reloadPosts() {
+//        print("LatestPostModel: reload all")
+//    }
+//}
+extension LatestPostsModel : BroadcastEventConsumer {
+    func observingPostId(postId: String) -> Bool {
+        return true;
+    }
+    
+//    private func indexOfPost(sourcePost : Post, posts : [Post]) -> Int?{
 //        let index = posts.index(){
 //            (post) -> Bool in
 //            return post.postId == sourcePost.postId
 //        }
 //        return index
 //    }
-}
-
-extension LatestPostsModel : BroadcastPostAddConsumer {
-    func onPostAdded(post : Post) {
-        print("LatestPostModel: Post Added")
-    }
-    func reloadPosts() {
-        print("LatestPostModel: reload all")
-    }
-}
-extension LatestPostsModel : BroadcastEventConsumer {
-    func observingPostId(postId: String) -> Bool {
-        return true;
-    }
-    
-    private func indexOfPost(sourcePost : Post, posts : [Post]) -> Int?{
-        let index = posts.index(){
-            (post) -> Bool in
-            return post.postId == sourcePost.postId
-        }
-        return index
-    }
-
+//    
     
     func onPostUpdated(post : Post) {
         print("LatestPostModel: Post updated")
         
         for (type, tuple) in self.postDictionary {
-            guard let index = indexOfPost(sourcePost: post, posts: tuple.list) else {
+            //            guard let index = indexOfPost(sourcePost: post, posts: tuple.list) else {
+            //                print("Post not found in list")
+            //                return
+            //            }
+            
+            guard let index = tuple.list.indexOfPost(sourcePost: post) else {
                 print("Post not found in list")
                 return
             }
+            self.dataChanged = true
             postDictionary[type]?.list[index] = post
             
             self.notifyUpdateListeners(ofPost: post, index : index, displayMode : type)
@@ -216,7 +225,7 @@ extension LatestPostsModel : BroadcastEventConsumer {
             print("Debug \(debug)")
         }
         
-//        self.notifyUpdateListeners(ofPost: post)
+        //        self.notifyUpdateListeners(ofPost: post)
         
     }
 }

@@ -72,7 +72,7 @@ public class Broadcaster : NSObject {
         setupPostBroacastUpdates()
     }
     
-    func setupPostBroacastUpdates() {
+    private func setupPostBroacastUpdates() {
         NotificationCenter.default.addObserver(self, selector: #selector(catchPostUpdated), name: NSNotification.Name(rawValue: Event.postUpdated.rawValue), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(catchPostAdded), name: NSNotification.Name(rawValue: Event.postAdded.rawValue), object: nil)

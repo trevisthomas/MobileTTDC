@@ -9,6 +9,8 @@
 import Foundation
 
 open class ValidateCommand : Command{
+    public var connectionId: String?
+
     open var token: String?
     
     open func toJSON() -> JSON? {

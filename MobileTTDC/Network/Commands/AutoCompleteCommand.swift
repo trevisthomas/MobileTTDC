@@ -9,6 +9,8 @@
 import Foundation
 
 open class AutoCompleteCommand : Command{
+    public var connectionId: String?
+
     let query : String
     open var token: String?
     open var transactionId: Int?

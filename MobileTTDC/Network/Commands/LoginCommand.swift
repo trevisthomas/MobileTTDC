@@ -1,6 +1,8 @@
 import Foundation
 
 open class LoginCommand : Command{
+    public var connectionId: String?
+
     
     let login: String
     let password: String

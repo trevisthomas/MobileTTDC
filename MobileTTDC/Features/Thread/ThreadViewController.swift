@@ -55,6 +55,9 @@ class ThreadViewController: CommonBaseViewController {
         registerForStyleUpdates()
         
         loadFirstPage()
+        
+        getApplicationContext().broadcaster.subscribe(consumer: self)
+        getApplicationContext().broadcaster.subscribeForPostAdd(consumer: self)
     }
     
     override func refreshStyle() {
@@ -96,6 +99,39 @@ extension ThreadViewController : PostCollectionViewDelegate {
             replies in
             completion(replies)
         }
+    }
+}
+
+extension ThreadViewController: BroadcastEventConsumer {
+    func observingPostId(postId: String) -> Bool {
+        return true
+    }
+    func onPostUpdated(post : Post) {
+        guard let index = posts.indexOfPost(sourcePost: post) else {
+            return
+        }
+        
+        posts[index] = post
+        let path = IndexPath(item: index, section: 0)
+        if let cell = getCollectionView()?.cellForItem(at: path) as? BaseCollectionViewCell {
+            cell.post = post
+        }
+        
+    }
+}
+
+extension ThreadViewController: BroadcastPostAddConsumer {
+    func onPostAdded(post : Post) {
+        //Find out if this post belongs in your hierarchy and respond acordingly.
+        for p in posts {
+            if(p.postId == post.parentPostId) {
+                //TODO, let the user know that the data changed.  Dont auto refresh.
+                loadFirstPage()
+            }
+        }
+    }
+    func reloadPosts(){
+        loadFirstPage()
     }
 }
 

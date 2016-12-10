@@ -16,14 +16,19 @@ public struct Network {
         return appDelegate.applicationContext.token
     }
     
+    private static func getConnectionId() -> String? {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.serverEventMonitor.connectionId
+    }
+    
     public static func getUnsecuredHost()->String{
         return "http://ttdc.us"
     }
     
     public static func getHost()-> String{
-//        return "http://ttdc.us:8888"
+        return "http://ttdc.us:8888"
 //        return "http://ttdc.us"
-        return "https://ttdc.us"
+//        return "https://ttdc.us"
 //        return "http://192.168.1.106:8888"
     }
     
@@ -59,6 +64,7 @@ public struct Network {
     
     public static func performPostCrudCommand(_ command: PostCrudCommand, completion: @escaping (_ response: PostCrudResponse?, _ error: String?)->Void){
         command.token = getToken()
+        command.connectionId = getConnectionId()
         NetworkAdapter.performCommand("\(getHost())/restful/post", command: command, completion: completion)
     }
     
@@ -74,6 +80,7 @@ public struct Network {
     
     public static func performLikeCommand(_ command : LikeCommand, completion: @escaping (_ response : LikeResponse?, _ error: String?) -> Void){
         command.token = getToken()
+        command.connectionId = getConnectionId()
         NetworkAdapter.performCommand("\(getHost())/restful/like", command: command, completion: completion)
     }
     

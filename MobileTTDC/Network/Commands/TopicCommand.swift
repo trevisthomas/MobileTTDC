@@ -9,6 +9,8 @@
 import Foundation
 
 open class TopicCommand : Command {
+    public var connectionId: String?
+
     
     //Grouped
     //Replies to a conversation

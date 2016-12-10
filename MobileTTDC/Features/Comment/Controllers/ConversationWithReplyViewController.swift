@@ -42,6 +42,9 @@ class ConversationWithReplyViewController: CommonBaseViewController {
         registerForStyleUpdates()
         loadFirstPage()
         
+        getApplicationContext().broadcaster.subscribeForPostAdd(consumer: self)
+        getApplicationContext().broadcaster.subscribe(consumer: self)
+        
     }
     
     override func refreshStyle() {
@@ -237,7 +240,7 @@ extension ConversationWithReplyViewController {
         replyToPostId = nil //So that it w
 //        loadPost(postId)
         
-        loadFirstPage()
+//        loadFirstPage() //Use broadcaster to handle these!
     }
 }
 
@@ -266,4 +269,37 @@ extension ConversationWithReplyViewController: AccessoryCommentViewDelegate {
         
     }
     
+}
+
+extension ConversationWithReplyViewController: BroadcastEventConsumer {
+    func observingPostId(postId: String) -> Bool {
+        return true
+    }
+    func onPostUpdated(post : Post) {
+        guard let index = posts.indexOfPost(sourcePost: post) else {
+            return
+        }
+        
+        posts[index] = post
+        let path = IndexPath(item: index, section: 0)
+        if let cell = getCollectionView()?.cellForItem(at: path) as? BaseCollectionViewCell {
+            cell.post = post
+        }
+        
+    }
+}
+
+extension ConversationWithReplyViewController: BroadcastPostAddConsumer {
+    func onPostAdded(post : Post) {
+        //Find out if this post belongs in your hierarchy and respond acordingly.
+        for p in posts {
+            if(p.postId == post.parentPostId) {
+                //TODO, let the user know that the data changed.  Dont auto refresh.
+                loadFirstPage()
+            }
+        }
+    }
+    func reloadPosts(){
+        loadFirstPage()
+    }
 }

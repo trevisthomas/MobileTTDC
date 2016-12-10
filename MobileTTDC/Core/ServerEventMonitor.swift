@@ -16,7 +16,7 @@ protocol ServerEventMonitorDelegate {
 
 class ServerEventMonitor : NSObject {
     private var updateFrequency = 10.0
-    private var connectionId : String?
+    private(set) var connectionId : String?
     private var timer : Timer?
     private let delegate : ServerEventMonitorDelegate
     
@@ -63,7 +63,7 @@ class ServerEventMonitor : NSObject {
             connect()
             return
         }
-        print("Server event monitor heartbeat.")
+//        print("Server event monitor heartbeat.")
         let cmd = ServerEventListCommand(connectionId: id)
         Network.performServerEventListCommand(cmd) {
             (result, messge) in

@@ -20,6 +20,7 @@ public class Post : Decodable{
     let mass : UInt
     let threadId: String?
     let threadPost: Bool //For conversations this is true.
+    let parentPostId: String!
     let parentPostCreator: String!
     let parentPostCreatorId: String!
     let tagAssociations:[TagAssociation]?
@@ -52,10 +53,17 @@ public class Post : Decodable{
         mass = ("mass" <~~ json)!
         //        thread = ("thread" <~~ json)!
         //        threadId = ("thread.postId" <~~ json)
-        threadId = ("threadId" <~~ json)
+        
+        //If the thread hapens to be on the object, us it.  If not use the one from the minified json response
+        if let thread : Post = ("thread" <~~ json) {
+            threadId = thread.postId
+        } else {
+            threadId = ("threadId" <~~ json)
+        }
         threadPost = ("threadPost" <~~ json)! //isThreadPost
         parentPostCreator = ("parentPostCreator" <~~ json)
         parentPostCreatorId = ("parentPostCreatorId" <~~ json)
+        parentPostId = ("parentPostId" <~~ json)
         tagAssociations = ("tagAssociations" <~~ json)
         isMovie = ("movie" <~~ json)!
         isReview = ("review" <~~ json)!
@@ -95,19 +103,4 @@ public class Post : Decodable{
     
 }
 
-//Entending array so that it can flatten groupped posts
-extension Sequence where Iterator.Element == Post {
-    func flattenPosts() -> [Post]{
-        var flatPosts : [Post] = []
-        for post in self {
-            flatPosts.append(post)
-            guard (post.posts != nil) else {
-                continue
-            }
-            for reply in post.posts! {
-                flatPosts.append(reply)
-            }
-        }
-        return flatPosts
-    }
-}
+

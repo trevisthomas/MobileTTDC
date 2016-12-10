@@ -9,6 +9,8 @@
 import Foundation
 
 open class RegisterCommand : Command{
+    public var connectionId: String?
+
     
     let deviceToken: String
     open var token: String?

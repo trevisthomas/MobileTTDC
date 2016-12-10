@@ -28,6 +28,8 @@ import Foundation
  */
 
 open class PostCrudCommand : Command {
+    public var connectionId: String?
+
     
     public enum Action : String{
         case CREATE = "CREATE"
@@ -58,7 +60,8 @@ open class PostCrudCommand : Command {
             "body" ~~> (self.body ?? nil),
             "forumId" ~~> (self.forumId ?? nil),
             "topicDescription" ~~> (self.topicDescription ?? nil),
-            "loadRootAncestor" ~~> (self.loadRootAncestor ?? nil)
+            "loadRootAncestor" ~~> (self.loadRootAncestor ?? nil),
+            "connectionId" ~~> self.connectionId
             ])
     }
     

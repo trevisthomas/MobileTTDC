@@ -14,6 +14,8 @@ import Foundation
 //}
 
 open class PostCommand : Command {
+    public var connectionId: String?
+
     
     public enum Action : String{
         case LATEST_GROUPED = "LATEST_GROUPED"

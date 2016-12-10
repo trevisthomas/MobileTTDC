@@ -10,4 +10,5 @@ import Foundation
 
 public protocol Command : Encodable, TransactionTrackable{
     var token : String?{get set}
+    var connectionId : String?{get set}
 }

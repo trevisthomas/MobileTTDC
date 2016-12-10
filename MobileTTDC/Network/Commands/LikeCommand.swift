@@ -10,12 +10,15 @@ import Foundation
 
 open class LikeCommand : Command{
     open var token: String?
+    open var connectionId: String?
+    
     open var postId: String
     
     open func toJSON() -> JSON? {
         return jsonify([
             "token" ~~> self.token,
-            "postId" ~~> self.postId
+            "postId" ~~> self.postId,
+            "connectionId" ~~> self.connectionId
             ])
     }
     

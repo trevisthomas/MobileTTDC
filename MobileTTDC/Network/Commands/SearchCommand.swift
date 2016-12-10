@@ -19,6 +19,8 @@ import Foundation
  
  */
 open class SearchCommand : Command {
+    public var connectionId: String?
+
     public enum PostSearchType : String{
         case CONVERSATIONS = "CONVERSATIONS"
         case ALL = "ALL"

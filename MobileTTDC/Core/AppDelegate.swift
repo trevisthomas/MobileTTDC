@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window : UIWindow?
     
     let applicationContext = ApplicationContext()
-    private var serverEventMonitor : ServerEventMonitor!
+    private(set) var serverEventMonitor : ServerEventMonitor!
     
 //    var CommentBarButton : UIBarButtonItem {
 //        get{

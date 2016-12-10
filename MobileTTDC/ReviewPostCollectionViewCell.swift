@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReviewPostCollectionViewCell: BaseCollectionViewCell, PostEntryViewContract{
+class ReviewPostCollectionViewCell: BaseCollectionViewCell {
     
     @IBOutlet weak var movieTitleButton: UIButton!
     @IBOutlet weak var movieCoverImageView: UIImageView!
@@ -108,11 +108,11 @@ class ReviewPostCollectionViewCell: BaseCollectionViewCell, PostEntryViewContrac
     }
     
     
-    func postEntryInsets() -> UIEdgeInsets {
+    override func postEntryInsets() -> UIEdgeInsets {
         return UIEdgeInsets(top: entryConstraintTop.constant, left: entryConstraintLeft.constant, bottom: entryConstraintBottom.constant, right: entryConstraintRight.constant)
     }
     
-    func postEntryTextView() -> UITextView? {
+    override func postEntryTextView() -> UITextView? {
         return reviewTextView
     }
     

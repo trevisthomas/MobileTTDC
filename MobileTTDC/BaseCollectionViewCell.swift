@@ -8,23 +8,33 @@
 
 import UIKit
 
-//Deprecate this once you're done?
-class BaseCollectionViewCell : UICollectionViewCell /*, PostUpdateListener*/ {
-//    func getPostId() -> String? {
-//        abort()
-//    }
-//    
-//    func onPostUpdated(post : Post) {
-//        assert(false)
-//    }
-    
+
+class BaseCollectionViewCell : UICollectionViewCell{
     var post : Post!
+}
+
+protocol PostEntryViewContract {
+    func postEntryInsets() -> UIEdgeInsets
+    func postEntryTextView() -> UITextView?
+}
+
+
+extension BaseCollectionViewCell : PostEntryViewContract {
+    func postEntryInsets() -> UIEdgeInsets {
+        abort()
+    }
+    func postEntryTextView() -> UITextView? {
+        abort()
+    }
+
     
-//    func onPostUpdated(post: Post) {
-//        self.post = post
-//    }
-//    
-//    func getPostId() -> String? {
-//        return self.post.postId
-//    }
+    func preferredHeight(_ width : CGFloat) -> CGFloat {
+
+        let entryInsets = postEntryInsets()
+
+        let sizeThatFits = postEntryTextView()!.sizeThatFits(CGSize(width: width - entryInsets.left - entryInsets.right, height: CGFloat.greatestFiniteMagnitude))
+        let insets: UIEdgeInsets = postEntryTextView()!.textContainerInset;
+        let heightThatFits = sizeThatFits.height + insets.top + insets.bottom + entryInsets.top + entryInsets.bottom
+        return heightThatFits
+    }
 }

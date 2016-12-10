@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MoviePostCollectionViewCell: BaseCollectionViewCell, PostEntryViewContract {
+class MoviePostCollectionViewCell: BaseCollectionViewCell {
 
     @IBOutlet weak var subRatingStackView: UIStackView!
     @IBOutlet weak var movieTitleButton: UIButton!
@@ -88,15 +88,15 @@ class MoviePostCollectionViewCell: BaseCollectionViewCell, PostEntryViewContract
         delegate?.viewThread(post)
     }
     
-    func postEntryInsets() -> UIEdgeInsets {
+    override func postEntryInsets() -> UIEdgeInsets {
         return UIEdgeInsetsMake(0, 0, 0, 0) //Not used for movie summary
     }
     
-    func postEntryTextView() -> UITextView? {
+    override func postEntryTextView() -> UITextView? {
         return nil
     }
     
-    func preferredHeight(_ width: CGFloat) -> CGFloat {
+    override func preferredHeight(_ width: CGFloat) -> CGFloat {
         
         if let posts = post.posts {
             

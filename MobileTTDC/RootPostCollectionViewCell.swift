@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RootPostCollectionViewCell: BaseCollectionViewCell, PostEntryViewContract {
+class RootPostCollectionViewCell: BaseCollectionViewCell {
     
     
     @IBOutlet weak var entryConstraintBottom: NSLayoutConstraint!
@@ -196,11 +196,11 @@ class RootPostCollectionViewCell: BaseCollectionViewCell, PostEntryViewContract 
         delegate?.viewThread(post)
     }
     
-    func postEntryInsets() -> UIEdgeInsets {
+    override func postEntryInsets() -> UIEdgeInsets {
         return UIEdgeInsets(top: entryConstraintTop.constant, left: entryLeftConstraint.constant, bottom: entryConstraintBottom.constant, right: entryRightConstraint.constant)
     }
     
-    func postEntryTextView() -> UITextView? {
+    override func postEntryTextView() -> UITextView? {
         return entryTextView
     }
     

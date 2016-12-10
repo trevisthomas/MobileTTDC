@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostReplyCollectionViewCell: BaseCollectionViewCell, PostEntryViewContract{
+class PostReplyCollectionViewCell: BaseCollectionViewCell {
     
     override var post : Post! {
         didSet{
@@ -79,11 +79,11 @@ class PostReplyCollectionViewCell: BaseCollectionViewCell, PostEntryViewContract
         delegate?.likePost(post)
     }
     
-    func postEntryInsets() -> UIEdgeInsets {
+    override func postEntryInsets() -> UIEdgeInsets {
         return UIEdgeInsets(top: entryTopConstraint.constant, left: entryLeftConstraint.constant, bottom: entryBottomConstraint.constant, right: entryRightConstraint.constant)
     }
     
-    func postEntryTextView() -> UITextView? {
+    override func postEntryTextView() -> UITextView? {
         return entryTextView
     }
     

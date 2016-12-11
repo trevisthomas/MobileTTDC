@@ -370,7 +370,10 @@ extension CommonBaseViewController : UICollectionViewDataSource {
 
 extension CommonBaseViewController : PostViewCellDelegate {
     func likePost(_ post: Post){
-//        getApplicationContext().broadcaster.postAdded(post: post)
+        guard !getApplicationContext().isAuthenticated() else {
+            self.presentAlert("Hey Guest", message: "You must be logged in to like posts.")
+            return
+        }
         
         let cmd = LikeCommand(postId: post.postId)
         Network.performLikeCommand(cmd) {
@@ -379,15 +382,6 @@ extension CommonBaseViewController : PostViewCellDelegate {
                 self.presentAlert("Sorry", message: error)
             }
 
-//            if let post = response?.post {
-//                //Tag was removed.  The one inside of the association list still has the tag, so use this one.
-//                self.getApplicationContext().broadcaster.postUpdated(post: post)
-//            } else if let post = response?.tagAssociation.post {
-//                self.getApplicationContext().broadcaster.postUpdated(post: post)
-//            } else {
-//                //This should never happen.
-//            }
-            
             if let post = response?.tagAssociation.post {
                 self.getApplicationContext().broadcaster.postUpdated(post: post)
             }
@@ -401,6 +395,12 @@ extension CommonBaseViewController : PostViewCellDelegate {
         performSegue(withIdentifier: "ConversationWithReplyView", sender: dict)
     }
     func commentOnPost(_ post: Post){
+        
+        guard !getApplicationContext().isAuthenticated() else {
+            self.presentAlert("Hey Guest", message: "You must be logged in to post comments.")
+            return
+        }
+        
         var dict = [String: String]()
         dict["threadId"] = post.threadId
         dict["postId"] = post.postId

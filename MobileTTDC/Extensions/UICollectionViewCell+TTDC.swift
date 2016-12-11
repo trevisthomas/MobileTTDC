@@ -23,7 +23,7 @@ extension UICollectionViewCell : UITextViewDelegate {
 extension UICollectionViewCell {
     func configureLikeButton(post : Post, button : UIButton) {
         if let currentUser = getApplicationContext().currentUser() {
-            button.isEnabled = true
+//            button.isEnabled = true
             
             if post.isLikedByMe(personId: currentUser.personId) {
                 button.setTitle("Unlike", for: .normal)
@@ -32,7 +32,7 @@ extension UICollectionViewCell {
             }
             
         } else {
-            button.isEnabled = false
+//            button.isEnabled = false
             button.setTitle("Like", for: .normal)
         }
         

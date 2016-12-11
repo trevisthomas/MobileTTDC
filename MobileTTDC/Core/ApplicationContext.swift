@@ -281,6 +281,11 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
         return _currentUser
     }
     
+    public func isAuthenticated() -> Bool {
+        //For now, just use nil.  Once you fix the prelogin experience switch this to reflect
+        return _currentUser == nil
+    }
+    
     public func logoff() {
         _currentUser = nil
         currentStyleName = ApplicationContext.defaultStyle

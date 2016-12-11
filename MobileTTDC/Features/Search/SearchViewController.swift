@@ -126,26 +126,24 @@ extension SearchViewController {
         
     }
     
-    
-    
-    func performSearch(_ phrase: String, pageNumber : Int = 1, completion: @escaping ([Post]?) -> Void){
+    func performSearch(_ phrase: String, pageNumber : Int = 1, completion: @escaping ([Post]?, Bool) -> Void){
         let cmd = SearchCommand(phrase: phrase, postSearchType: SearchCommand.PostSearchType.ALL, pageNumber: pageNumber, sortOrder: SearchCommand.SortOrder.BY_DATE, sortDirection: SearchCommand.SortDirection.DESC)
+        
+        let postCount = pageNumber * cmd.pageSize
         
         Network.performSearchCommand(cmd){
             (response, message) -> Void in
-            guard (response != nil) else {
+            guard let r = response else {
                 print("Search failed")
                 self.switchToCollectionView()
-                completion([])
+                completion([], false)
                 return;
             }
             
-            
-                
             DispatchQueue.main.async {
                 self.switchToCollectionView()
-
-                completion(response?.list)
+                let remaining = postCount < r.totalResults
+                completion(r.list, remaining)
             }
                 
         };
@@ -196,11 +194,11 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource {
 }
 
 extension SearchViewController : PostCollectionViewDelegate{
-    func loadPosts(completion: @escaping ([Post]?) -> Void) {
+    func loadPosts(completion: @escaping ([Post]?, Bool) -> Void) {
         performSearch(searchBar.text!, completion: completion)
     }
     
-    func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void) {
+    func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?, Bool) -> Void) {
         performSearch(searchBar.text!, pageNumber: pageNumber, completion: completion)
     }
 }

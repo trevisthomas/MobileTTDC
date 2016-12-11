@@ -347,11 +347,12 @@ extension LatestPostsViewController {
 
 
 extension LatestPostsViewController : PostCollectionViewDelegate {
-    func loadPosts(completion: @escaping ([Post]?) -> Void) {
-        getApplicationContext().latestPostsModel.reloadData(displayMode: getApplicationContext().displayMode, completion: completion)
+    func loadPosts(completion: @escaping ([Post]?, Bool) -> Void) {
+        getApplicationContext().latestPostsModel.loadFirstPage(displayMode: getApplicationContext().displayMode, completion: completion)
     }
     
-    func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void) {
+    func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?, Bool) -> Void) {
+        //Heads up!  Page number is ignored for latest! The model handles it.
         print("Load More Posts - latest")
         getApplicationContext().latestPostsModel.loadNextPage(displayMode: getApplicationContext().displayMode, completion: completion)
     }

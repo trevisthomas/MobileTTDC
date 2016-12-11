@@ -300,6 +300,16 @@
 			path = Commands;
 			sourceTree = "<group>";
 		};
+		0F2B2BB31DFDE56B0024856A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0F7170881DDF7D9900E9348C /* HotboxView.swift */,
+				0F9FB1E11DBD56EF00B901ED /* PostSeperator.swift */,
+				0FF4ED861DCAF9B800BE4CF4 /* StarRatingView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		0F3CEABB1DC6F9B5003CD432 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -366,12 +376,10 @@
 		0FA3F2431DB982CD00268DC1 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				0F2B2BB31DFDE56B0024856A /* Views */,
 				0FF630981DFB79E500DD3DD2 /* Cells */,
 				0F6E12B41DD8F9AD00927810 /* CommonBaseViewController.swift */,
 				0F0F69CD1D4D4F53009600F7 /* PostViewCellDelegate.swift */,
-				0F7170881DDF7D9900E9348C /* HotboxView.swift */,
-				0F9FB1E11DBD56EF00B901ED /* PostSeperator.swift */,
-				0FF4ED861DCAF9B800BE4CF4 /* StarRatingView.swift */,
 			);
 			name = Shared;
 			path = ../Post;

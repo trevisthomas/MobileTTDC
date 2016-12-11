@@ -84,14 +84,14 @@ class LatestPostsModel <T : PostUpdateListener>{
     }
     
     
-    func reloadData(displayMode : DisplayMode, completion: @escaping ([Post]?) -> Void){
+    func loadFirstPage(displayMode : DisplayMode, completion: @escaping ([Post]?, Bool) -> Void){
         
         let localCompletion = {(posts : [Post], totalPosts : Int) -> Void in
             self.postDictionary[displayMode] = (list: posts, page: 1)
             //            self.delegate?.dataUpdated(displayMode: displayMode)
             
             self.dataChanged = true
-            completion(posts)
+            completion(posts, true) //Warning, hard coding that there are more.
         }
         
         switch displayMode {
@@ -106,7 +106,7 @@ class LatestPostsModel <T : PostUpdateListener>{
         }
     }
     
-    func loadNextPage(displayMode : DisplayMode, completion: @escaping ([Post]?) -> Void){
+    func loadNextPage(displayMode : DisplayMode, completion: @escaping ([Post]?, Bool) -> Void){
         guard let tuple = postDictionary[displayMode] else {
             print("Error: Post dictionary is trying to load a new page when the first page was never loaded.")
             return
@@ -119,7 +119,7 @@ class LatestPostsModel <T : PostUpdateListener>{
             self.postDictionary[displayMode]?.page = pageNumber
             //            self.delegate?.dataUpdated(displayMode: displayMode)
             self.dataChanged = true
-            completion(posts)
+            completion(posts, true) //Warning, hard coding that there are more.
         }
         
         switch displayMode {

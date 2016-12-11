@@ -27,6 +27,7 @@ class CommonBaseViewController: UIViewController {
 //    }
     fileprivate var dataLoadingInProgress : Bool = false
     private var pageNumber : Int = 1
+    fileprivate var morePostsRemaining : Bool = true
     
     private var delegate : PostCollectionViewDelegate!
     
@@ -195,14 +196,20 @@ class CommonBaseViewController: UIViewController {
     
     func loadFirstPage(completion: @escaping (() -> Void) = {}) {
         self.dataLoadingInProgress = true
+        
+        pageNumber = 1
+        
         delegate.loadPosts() {
-            (posts) -> Void in
+            (posts, remaining) -> Void in
             self.dataLoadingInProgress = false
+            self.morePostsRemaining = remaining
             guard (posts != nil) else {
                 completion()
                 return;
             }
             self.posts = posts!
+            
+            //TODO: What is going on here?  Two reloads?
             self.getCollectionView()?.reloadData()
             
             self.loadSizeCache(posts: self.posts){
@@ -217,8 +224,8 @@ class CommonBaseViewController: UIViewController {
         pageNumber += 1
         
         delegate.loadMorePosts(pageNumber: pageNumber) {
-            (posts) -> Void in
-            
+            (posts, remaining) -> Void in
+            self.morePostsRemaining = remaining
             self.dataLoadingInProgress = false
             guard (posts != nil) else {
                 completion()
@@ -312,7 +319,7 @@ extension CommonBaseViewController : UIScrollViewDelegate {
         else if (scrollOffset + scrollViewHeight == scrollContentSizeHeight)
         {
             
-            if(!dataLoadingInProgress) {
+            if(!dataLoadingInProgress && self.morePostsRemaining) {
                 dataLoadingInProgress = true
                 loadNextPage()
             }
@@ -328,7 +335,11 @@ extension CommonBaseViewController : UICollectionViewDataSource {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return posts.count + 1
+        if self.morePostsRemaining {
+            return posts.count + 1
+        } else {
+            return posts.count
+        }
     }
     
     

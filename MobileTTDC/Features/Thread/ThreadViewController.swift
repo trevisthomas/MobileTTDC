@@ -14,20 +14,23 @@ class ThreadViewController: CommonBaseViewController {
     
     var rootPostId : String!
     
-    fileprivate func fetchPostTopic(_ postId : String, pageNumber: Int = 1, completion: @escaping ([Post]?) -> Void){
+    fileprivate func fetchPostTopic(_ postId : String, pageNumber: Int = 1, completion: @escaping ([Post]?, Bool) -> Void){
         
         let cmd = TopicCommand(type: .NESTED_THREAD_SUMMARY, postId: postId, pageNumber: pageNumber)
         
+        let postCount = pageNumber * cmd.pageSize
+        
         Network.performPostCommand(cmd){
             (response, message) -> Void in
-            guard (response != nil) else {
+            guard let r = response else {
                 self.presentAlert("Sorry", message: "Webservice request failed.")
-                completion(nil)
+                completion(nil, false)
                 return;
             }
             
             self.invokeLater{
-                completion((response?.list)!.flattenPosts())
+                let remaining = postCount < r.totalResults
+                completion(r.list.flattenPosts(), remaining)
             }
         };
     }
@@ -81,23 +84,23 @@ class ThreadViewController: CommonBaseViewController {
 }
 
 extension ThreadViewController : PostCollectionViewDelegate {
-    func loadPosts(completion: @escaping ([Post]?) -> Void) {
+    func loadPosts(completion: @escaping ([Post]?, Bool) -> Void) {
         fetchPost(rootPostId){
             rootPost in
             self.fetchPostTopic(self.rootPostId) {
-                replies in
+                (replies, remaining) in
                 var posts : [Post] = []
                 posts.append(rootPost!)
                 posts.append(contentsOf: replies!)
-                completion(posts)
+                completion(posts, remaining)
             }
         }
     }
     
-    func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void) {
+    func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?, Bool) -> Void) {
         self.fetchPostTopic(self.rootPostId, pageNumber: pageNumber) {
-            replies in
-            completion(replies)
+            (replies, remaining) in
+            completion(replies, remaining)
         }
     }
 }

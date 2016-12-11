@@ -127,7 +127,7 @@ class ConversationWithReplyViewController: CommonBaseViewController {
 
 extension ConversationWithReplyViewController {
     
-    fileprivate func loadPost(_ postId: String, completion: @escaping ([Post]?) -> Void){
+    fileprivate func loadPost(_ postId: String, completion: @escaping ([Post]?, Bool) -> Void){
         let cmd = TopicCommand(type: .NESTED_THREAD_SUMMARY, postId: postId, pageNumber: -1, pageSize: 1)
         Network.performPostCommand(cmd){
             (response, message) -> Void in
@@ -141,11 +141,11 @@ extension ConversationWithReplyViewController {
                 
                 guard response?.list != nil else {
 //                    return
-                    completion([])
+                    completion([], false)
                     return
                 }
                 
-                completion((response?.list)!.flattenPosts())
+                completion((response?.list)!.flattenPosts(), false) //Conversations arent paged.
 //                self.collectionView.reloadData()
 //                
                 
@@ -245,11 +245,11 @@ extension ConversationWithReplyViewController {
 }
 
 extension ConversationWithReplyViewController : PostCollectionViewDelegate {
-    func loadPosts(completion: @escaping ([Post]?) -> Void) {
+    func loadPosts(completion: @escaping ([Post]?, Bool) -> Void) {
         loadPost(postId, completion: completion)
     }
     
-    func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void){
+    func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?, Bool) -> Void){
 //        abort() //I guess?
     }
 }

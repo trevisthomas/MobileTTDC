@@ -9,8 +9,8 @@
 import Foundation
 
 protocol PostCollectionViewDelegate {
-    func loadPosts(completion: @escaping ([Post]?) -> Void)
+    func loadPosts(completion: @escaping ([Post]?, _ remaining: Bool) -> Void)
     
-    func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void)
+    func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?,  _ remaining: Bool) -> Void)
 }
 

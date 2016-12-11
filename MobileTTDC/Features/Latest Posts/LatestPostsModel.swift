@@ -71,6 +71,10 @@ class LatestPostsModel <T : PostUpdateListener>{
         listeners.remove(listener)
     }
     
+    func invalidate(){
+        self.postDictionary.removeAll()
+    }
+    
     fileprivate func notifyUpdateListeners(ofPost post : Post, index : Int, displayMode : DisplayMode) {
         for listener in listeners{
             if(listener.getDisplayMode() == displayMode) {

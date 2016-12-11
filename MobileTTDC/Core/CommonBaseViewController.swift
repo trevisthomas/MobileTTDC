@@ -120,6 +120,8 @@ class CommonBaseViewController: UIViewController {
     
     
     func performDataRefresh(_ refreshControl: UIRefreshControl) {
+        getApplicationContext().latestPostsModel.invalidate()
+        
         loadFirstPage() {
             refreshControl.endRefreshing()
         }

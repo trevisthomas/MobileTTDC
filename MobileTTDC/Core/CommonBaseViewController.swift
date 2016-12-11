@@ -379,13 +379,17 @@ extension CommonBaseViewController : PostViewCellDelegate {
                 self.presentAlert("Sorry", message: error)
             }
 
-            if let post = response?.post {
-                //Tag was removed.  The one inside of the association list still has the tag, so use this one.
+//            if let post = response?.post {
+//                //Tag was removed.  The one inside of the association list still has the tag, so use this one.
+//                self.getApplicationContext().broadcaster.postUpdated(post: post)
+//            } else if let post = response?.tagAssociation.post {
+//                self.getApplicationContext().broadcaster.postUpdated(post: post)
+//            } else {
+//                //This should never happen.
+//            }
+            
+            if let post = response?.tagAssociation.post {
                 self.getApplicationContext().broadcaster.postUpdated(post: post)
-            } else if let post = response?.tagAssociation.post {
-                self.getApplicationContext().broadcaster.postUpdated(post: post)
-            } else {
-                //This should never happen.
             }
 
         }

@@ -19,12 +19,21 @@ class ServerEventMonitor : NSObject {
     private(set) var connectionId : String?
     private var timer : Timer?
     private let delegate : ServerEventMonitorDelegate
+    private var latestPostId : String! {
+        didSet{
+            print("Latest post was set to: \(latestPostId)")
+        }
+    }
     
     init(delegate : ServerEventMonitorDelegate){
         self.delegate = delegate
     }
     
     func connect(){
+        guard connectionId == nil else {
+            //Dont call me twice... if i'm alredy setup.
+            return
+        }
         stop()
         connectionId = nil
         let cmd = ConnectCommand()
@@ -36,7 +45,13 @@ class ServerEventMonitor : NSObject {
             }
             self.connectionId = id
             print("Connected to server with id: \(self.connectionId)")
+            
+            self.fetchLatestPostId(){
+                (postId) in
+                self.latestPostId = postId
+            }
         }
+        
     }
     
     func fireNow(){
@@ -58,6 +73,7 @@ class ServerEventMonitor : NSObject {
         timer?.invalidate()
     }
     
+    //Not private due to #selector
     func timerDidFire(){
         guard let id = connectionId else {
             connect()
@@ -86,18 +102,47 @@ class ServerEventMonitor : NSObject {
             delegate.postUpdated(post: event.sourcePost!)
         case "NEW":
             print("New post \(event.sourcePost!.postId)")
+            latestPostId = event.sourcePost!.postId
             delegate.postAdded(post: event.sourcePost!)
         case "NEW_TAG", "REMOVED_TAG":
             print(event.sourceTagAss!.tag.type)
             //Trevis, you're ignoreing these because tag add/remove also send post edit events which is what you use to update the ui.
             
         case "RESET_SERVER_BROADCAST":
-            connectionId = nil
             print("Expired id.")
-            delegate.reloadPosts()
+            fetchLatestPostId(){
+                (postId) -> Void in
+                
+                if postId == self.latestPostId {
+                    print("Latest post is still current.  Just reset connection, dont refresh posts")
+                    self.connectionId = nil
+                } else {
+                    print("Latest post is stale.  Reset connection and reload posts.")
+                    self.connectionId = nil
+                    self.latestPostId = nil
+                    self.delegate.reloadPosts()
+                }
+            }
         default:
             break
         }
+    }
+    
+    private func fetchLatestPostId(callback : @escaping (String?) -> Void){
+        let cmd = PostCommand(action: .LATEST_FLAT, pageNumber: 1, pageSize: 1)
+        
+        Network.performPostCommand(cmd){
+            (response, message) -> Void in
+            
+            guard let post = response?.list[0] else {
+                //This should never happen.
+                callback(nil)
+                return;
+            }
+            
+            callback(post.postId)
+        };
+
     }
     
 }

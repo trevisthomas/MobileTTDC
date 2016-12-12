@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,12 +21,45 @@
                     <view key="view" contentMode="scaleToFill" id="wZN-qV-88X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bad-Ip-7kn">
+                                <rect key="frame" x="152" y="323" width="71" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TTDC 2016" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CyX-xw-bc2">
+                                <rect key="frame" x="285.5" y="642" width="73.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Bad-Ip-7kn" firstAttribute="centerY" secondItem="wZN-qV-88X" secondAttribute="centerY" id="Exe-RW-2Eb"/>
+                            <constraint firstItem="SBG-rQ-dCJ" firstAttribute="top" secondItem="CyX-xw-bc2" secondAttribute="bottom" constant="8" id="fCW-aM-nbX"/>
+                            <constraint firstItem="Bad-Ip-7kn" firstAttribute="centerX" secondItem="wZN-qV-88X" secondAttribute="centerX" id="grU-sl-ei8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CyX-xw-bc2" secondAttribute="trailing" id="onk-WN-4n6"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="footerLabel" destination="CyX-xw-bc2" id="dwh-An-4Xm"/>
+                        <outlet property="welcomeLabel" destination="Bad-Ip-7kn" id="Md2-Ax-9EI"/>
+                        <segue destination="BPO-Us-txb" kind="show" identifier="Main" id="HZf-sW-UfK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L0F-UZ-yew" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="234" y="26"/>
+            <point key="canvasLocation" x="232.80000000000001" y="25.637181409295355"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="ZkS-33-tt5">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="BPO-Us-txb" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dg8-ja-hCc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="863" y="40"/>
         </scene>
     </scenes>
 </document>

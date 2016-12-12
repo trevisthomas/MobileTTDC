@@ -46,6 +46,8 @@ class LatestPostsViewController: CommonBaseViewController, BroadcastPostAddConsu
         
 //        loadFirstPage()
         
+        getApplicationContext().saveState()
+        
         loadDataFromModelOrFromService()
     }
     
@@ -295,12 +297,11 @@ extension LatestPostsViewController {
     
     func handleModeChange(){
         switch getApplicationContext().displayMode{
-        case .latestConversations :
+        case .latestFlat:
             modeSegmentedControl.selectedSegmentIndex = 0
         case .latestGrouped:
             modeSegmentedControl.selectedSegmentIndex = 1
-        case .latestFlat:
-            //            self.navigationController?.navigationBar.topItem?.title = "Doesnt work anyway"
+        case .latestConversations :
             modeSegmentedControl.selectedSegmentIndex = 2
         case .latestThreads:
             modeSegmentedControl.selectedSegmentIndex = 3

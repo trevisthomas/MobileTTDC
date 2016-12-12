@@ -16,8 +16,8 @@ public struct Person: Decodable{
     
     public init(){
         //No one
-        personId = ""
-        login = "No One"
+        personId = "111@111" 
+        login = "Anonymous"
         image = nil
         name = "Blank"
     }

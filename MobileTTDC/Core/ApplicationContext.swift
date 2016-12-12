@@ -12,28 +12,82 @@ import Foundation
 import UIKit
 
 open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
+    
+    
     open static let currentUserKey : String = "us.ttdc.CurrentUser"
     open static let styleChangedNotificationKey : String = "us.ttdc.StyleChanged"
     open static let styleDark : String = "darkStyle"
     open static let styleLight : String = "lightStyle"
-
-    let broadcaster : Broadcaster
-    let latestPostsModel : LatestPostsModel<LatestPostsViewController> //TODO: Remove this class generic. Use method generic
-//    let latestPostsModel = LatestPostsModel(broadcaster: broadcaster)
     
-    fileprivate static let defaultStyle : String = styleLight
+    private static let anonymous = Person()
+
+    private(set) var broadcaster : Broadcaster!
+    private(set) var latestPostsModel : LatestPostsModel<LatestPostsViewController>! //TODO: Remove this class generic. Use method generic
+//    let latestPostsModel = LatestPostsModel(broadcaster: broadcaster)
+    private var serverEventMonitor : ServerEventMonitor!
+    
+    private static let defaultStyle : String = styleLight
+    private static let defaultDisplayMode : DisplayMode = .latestFlat
+    
+    public var connectionId : String? {
+//        guard let id = serverEventMonitor.connectionId else {
+//            return nil
+//        }
+//        return id
+        return serverEventMonitor.connectionId
+    }
     
     public enum Style {
         case dark
         case light
     }
     
+    enum UserDefaultsKeys : String{
+        case token = "token"
+        case style = "style"
+        case displayMode = "displayMode"
+    }
+    
+    
     open var imageCache : [String: UIImage] = [:]
     
     
     init(){
+//        broadcaster = Broadcaster()
+//        latestPostsModel = LatestPostsModel(broadcaster: broadcaster)
+    }
+    
+    func initialize(callback : @escaping (Person) -> Void) {
         broadcaster = Broadcaster()
         latestPostsModel = LatestPostsModel(broadcaster: broadcaster)
+        
+        serverEventMonitor = ServerEventMonitor(delegate: self)
+        serverEventMonitor.connect()
+        
+        becomeActive(callback: callback)
+        
+        
+    }
+    
+    func resignActive(){
+        serverEventMonitor.stop()
+    }
+    
+    func becomeActive(callback : @escaping (Person) -> Void = {_ in }){
+        guard let _ = broadcaster else {
+            //If the broadcaster isnt initialized i'm assuming that becomeActive is being called before init.
+            return
+        }
+        loadState() {
+            (person) in
+            if self._currentUser?.personId != person.personId {
+                self._currentUser = person
+            }
+            self.registerForPush()
+            self.reloadAllData()
+            self.serverEventMonitor.start()
+            callback(person)
+        }
     }
     
     func setStyleDark(){
@@ -88,19 +142,18 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
 //        }
 //    }
     
-    fileprivate var previousUser: Person? = nil
+//    fileprivate var previousUser: Person? = nil
     fileprivate var _currentUser : Person? = nil {
-        willSet{
-            previousUser = _currentUser
-        }
+//        willSet{
+//            previousUser = _currentUser
+//        }
         
         didSet{
-//            NSNotificationCenter.defaultCenter().postNotificationName(ApplicationContext.currentUserKey, object: _currentUser?.login) //Sigh.  I hate struts.  Were they a bad idea?
             
-            guard previousUser?.login != _currentUser?.login else {
-                return
-            }
-            
+//            guard previousUser?.login != _currentUser?.login else {
+//                return
+//            }
+//            
             var objects = [Any?]()
             objects.append(_currentUser?.login)
             
@@ -119,6 +172,23 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
     open var commentStash : String? = nil
     open var topicStash: String? = nil
     
+    
+    open var displayMode : DisplayMode = ApplicationContext.defaultDisplayMode 
+    
+    //    open var displayMode : DisplayMode = DisplayMode.latestGrouped {
+    //        didSet{
+    //
+    //            //Trevis, do you need to change the displaymode external to the Latest posts?
+    ////            reloadLatestPosts()
+    ////            latestPostsObserver?.displayModeChanged()
+    //
+    //        }
+    //    }
+    //    open var latestPostsObserver : LatestPostsObserver? = nil
+    //
+    //    open var latestConversationsObserver : LatestConversationsObserver? = nil
+
+    
     open var deviceToken: String? = nil {
         didSet{
             registerForPush()
@@ -127,24 +197,21 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
     
     
     
-    fileprivate struct PersistantKeys {
-        static let token = "token"
-        static let style = "style"
-    }
     
     open func saveState(){
         let defaults = UserDefaults.standard
         
-        defaults.setValue(token, forKey: PersistantKeys.token)
-        defaults.setValue(currentStyleName, forKeyPath: PersistantKeys.style)
+        defaults.setValue(token, forKey: UserDefaultsKeys.token.rawValue)
+        defaults.setValue(currentStyleName, forKeyPath: UserDefaultsKeys.style.rawValue)
+        defaults.setValue(displayMode.rawValue, forKeyPath: UserDefaultsKeys.displayMode.rawValue)
         
         defaults.synchronize()
     }
     
-    open func loadState(){
+    private func loadState(callback : @escaping (Person) -> Void){
         let defaults = UserDefaults.standard
         
-        if let t = defaults.string(forKey: PersistantKeys.token){
+        if let t = defaults.string(forKey: UserDefaultsKeys.token.rawValue){
             
 //            _currentUser = nil
             self.token = t
@@ -153,22 +220,25 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
             
             Network.performValidate(cmd){
                 (response, message) -> Void in
-                guard (response != nil) else {
+                guard let r = response else {
                     self.logoff()
+                    callback(ApplicationContext.anonymous)
                     return;
                 }
                 
                 DispatchQueue.main.async {
                     self.token = response?.token
                     self._currentUser = response?.person
-                    self.registerForPush()
-                    self.reloadAllData()
+//                    self.registerForPush()
+//                    self.reloadAllData()
+                    callback(r.person!)
                 }
                 
             };
         } else {
             self.logoff()
             self.reloadAllData()
+            callback(ApplicationContext.anonymous)
         }
         
         
@@ -183,12 +253,21 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
     
     public func loadStyle() {
         let defaults = UserDefaults.standard
-        if let style = defaults.string(forKey: PersistantKeys.style) {
+        if let style = defaults.string(forKey: UserDefaultsKeys.style.rawValue) {
             self.currentStyleName = style
         } else {
             self.currentStyleName = ApplicationContext.defaultStyle
         }
+        
+        if let mode = defaults.string(forKey: UserDefaultsKeys.displayMode.rawValue) {
+            self.displayMode = DisplayMode(rawValue: mode)!
+        } else {
+            self.displayMode = ApplicationContext.defaultDisplayMode
+        }
+        
     }
+    
+    
     
 //    fileprivate var _latestPosts : [Post] = [] {
 //        didSet{
@@ -201,19 +280,6 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
 //            latestConversationsObserver?.latestConversationsUpdated()
 //        }
 //    }
-    
-    open var displayMode : DisplayMode = DisplayMode.latestGrouped {
-        didSet{
-            
-            //Trevis, do you need to change the displaymode external to the Latest posts?
-//            reloadLatestPosts()
-//            latestPostsObserver?.displayModeChanged()
-            
-        }
-    }
-//    open var latestPostsObserver : LatestPostsObserver? = nil
-//    
-//    open var latestConversationsObserver : LatestConversationsObserver? = nil
     
     open func reloadAllData(){
 //        reloadLatestPosts()
@@ -282,13 +348,17 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
     }
     
     public func isAuthenticated() -> Bool {
-        //For now, just use nil.  Once you fix the prelogin experience switch this to reflect
-        return _currentUser == nil
+        if _currentUser == nil || _currentUser?.personId == ApplicationContext.anonymous.personId{
+            return false
+        } else {
+            return true
+        }
     }
     
     public func logoff() {
         _currentUser = nil
         currentStyleName = ApplicationContext.defaultStyle
+        displayMode = ApplicationContext.defaultDisplayMode
         token = nil
         self.saveState()
     }

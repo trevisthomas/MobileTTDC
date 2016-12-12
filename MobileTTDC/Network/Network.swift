@@ -18,7 +18,8 @@ public struct Network {
     
     private static func getConnectionId() -> String? {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.serverEventMonitor.connectionId
+        return appDelegate.applicationContext.connectionId
+//        return serverEventMonitor.connectionId
     }
     
     public static func getUnsecuredHost()->String{

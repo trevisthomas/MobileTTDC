@@ -34,7 +34,7 @@ class TabBarViewController: UITabBarController {
         
         profile = profileStoryboard.instantiateViewController(withIdentifier: "ProfileNav")
         
-        configureGuest()
+        onCurrentUserChanged()
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TabBarViewController.catchNotification), name: ApplicationContext.currentUserKey, object: nil)
 //        
         registerForUserChangeUpdates()
@@ -44,7 +44,7 @@ class TabBarViewController: UITabBarController {
     }
     
     override func onCurrentUserChanged() {
-        if getApplicationContext().currentUser() != nil {
+        if getApplicationContext().isAuthenticated() {
             configureAuthenticated()
         } else {
             configureGuest()

@@ -383,7 +383,7 @@ extension CommonBaseViewController : UICollectionViewDataSource {
 
 extension CommonBaseViewController : PostViewCellDelegate {
     func likePost(_ post: Post){
-        guard !getApplicationContext().isAuthenticated() else {
+        guard getApplicationContext().isAuthenticated() else {
             self.presentAlert("Hey Guest", message: "You must be logged in to like posts.")
             return
         }
@@ -409,7 +409,7 @@ extension CommonBaseViewController : PostViewCellDelegate {
     }
     func commentOnPost(_ post: Post){
         
-        guard !getApplicationContext().isAuthenticated() else {
+        guard getApplicationContext().isAuthenticated() else {
             self.presentAlert("Hey Guest", message: "You must be logged in to post comments.")
             return
         }

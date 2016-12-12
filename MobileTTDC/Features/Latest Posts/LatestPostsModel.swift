@@ -217,7 +217,7 @@ extension LatestPostsModel : BroadcastEventConsumer {
             //            }
             
             guard let index = tuple.list.indexOfPost(sourcePost: post) else {
-                print("Post not found in list")
+                print("Post not found in list: \(type)")
                 return
             }
             self.dataChanged = true

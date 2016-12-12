@@ -228,7 +228,7 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
                 
                 DispatchQueue.main.async {
                     self.token = response?.token
-                    self._currentUser = response?.person
+//                    self._currentUser = response?.person
 //                    self.registerForPush()
 //                    self.reloadAllData()
                     callback(r.person!)

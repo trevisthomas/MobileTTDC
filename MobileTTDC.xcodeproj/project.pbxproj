@@ -247,8 +247,8 @@
 		0FF4ED881DCBD26400BE4CF4 /* MovieReviewSubView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieReviewSubView.swift; sourceTree = "<group>"; };
 		0FF4ED8A1DCBE1A900BE4CF4 /* MovieReviewSubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieReviewSubView.xib; sourceTree = "<group>"; };
 		0FF4ED8C1DCBE44400BE4CF4 /* UIView+Nib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
-		0FF630991DFB889900DD3DD2 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
-		0FF6309D1DFB8B4C00DD3DD2 /* Spash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Spash.storyboard; sourceTree = "<group>"; };
+		0FF630991DFB889900DD3DD2 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SplashViewController.swift; path = ../Core/SplashViewController.swift; sourceTree = "<group>"; };
+		0FF6309D1DFB8B4C00DD3DD2 /* Spash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Spash.storyboard; path = ../Core/Spash.storyboard; sourceTree = "<group>"; };
 		0FF896621D736F60007813F7 /* ThreadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadViewController.swift; sourceTree = "<group>"; };
 		0FF896651D737096007813F7 /* Thread.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Thread.storyboard; sourceTree = "<group>"; };
 		0FF896671D73767A007813F7 /* AutoCompleteCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoCompleteCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -319,6 +319,15 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		0F73065D1E02127900D30D12 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				0FF6309D1DFB8B4C00DD3DD2 /* Spash.storyboard */,
+				0FF630991DFB889900DD3DD2 /* SplashViewController.swift */,
+			);
+			name = Splash;
+			sourceTree = "<group>";
+		};
 		0F83CF3F1D734C03001A7F8F /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -364,8 +373,6 @@
 				0FDA6A221DC7C75A00279596 /* NavigationViewController.swift */,
 				0FD0A33B1D0DF4140030D36F /* ReuseIdentifiers.swift */,
 				0F97BDA11DF0C66D007E5F43 /* ServerEventMonitor.swift */,
-				0FF6309D1DFB8B4C00DD3DD2 /* Spash.storyboard */,
-				0FF630991DFB889900DD3DD2 /* SplashViewController.swift */,
 				0F3CEAB31DC272AA003CD432 /* TabBarViewController.swift */,
 				0FB2F4A61D035B4A008F386A /* Utilities.swift */,
 				0FCBD8581DBD101000DE8F2A /* style.css */,
@@ -512,6 +519,7 @@
 		0FF630971DFB795D00DD3DD2 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				0F73065D1E02127900D30D12 /* Splash */,
 				0FCC10841D2AC52500EA0B25 /* Comment */,
 				0FF630951DFB78AE00DD3DD2 /* Latest Posts */,
 				0FF630961DFB78EA00DD3DD2 /* Login */,

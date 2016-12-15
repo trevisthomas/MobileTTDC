@@ -67,7 +67,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        applicationContext.loadState() //Calls reload data once any saved token is vaidated
 //        serverEventMonitor.start()
         
-        applicationContext.becomeActive()
+        if let _ = applicationContext {
+            applicationContext.becomeActive()
+        }
         
     }
 

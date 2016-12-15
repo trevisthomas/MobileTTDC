@@ -312,11 +312,11 @@
                         <viewControllerLayoutGuide type="bottom" id="mfP-mi-Qym"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zL8-Xa-5Tc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Sdd-xr-J9t">
-                                <rect key="frame" x="0.0" y="128" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="9JW-E1-Qj6">
                                     <size key="itemSize" width="50" height="50"/>
@@ -340,7 +340,7 @@
                                 </connections>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Efd-hk-DWs">
-                                <rect key="frame" x="0.0" y="64" width="375" height="64"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="XVd-yt-4Wc">
                                         <rect key="frame" x="8" y="18" width="359" height="29"/>
@@ -463,7 +463,7 @@
                 <navigationController storyboardIdentifier="LatestNav" automaticallyAdjustsScrollViewInsets="NO" id="a4H-aW-Zxr" customClass="NavigationViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Latest" image="second" id="Ci5-iC-Xne"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PsT-sO-B4D">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="PsT-sO-B4D">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

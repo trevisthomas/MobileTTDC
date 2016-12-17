@@ -356,11 +356,18 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
     }
     
     public func logoff() {
-        _currentUser = nil
-        currentStyleName = ApplicationContext.defaultStyle
-        displayMode = ApplicationContext.defaultDisplayMode
-        token = nil
-        self.saveState()
+        let cmd = RegisterCommand(deviceToken: "")
+        
+        Network.performRegisterForPushCommand(cmd){
+            (response, message) -> Void in
+            
+            self._currentUser = nil
+            self.currentStyleName = ApplicationContext.defaultStyle
+            self.displayMode = ApplicationContext.defaultDisplayMode
+            self.token = nil
+            self.saveState()
+
+        };
     }
     
 }

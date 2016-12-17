@@ -211,6 +211,7 @@
 		0FCC10821D2AC51A00EA0B25 /* ChooseThreadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseThreadViewController.swift; sourceTree = "<group>"; };
 		0FCC10891D2B1CF700EA0B25 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		0FCC108B1D2B352500EA0B25 /* UITextView+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Utilities.swift"; sourceTree = "<group>"; };
+		0FCCBE6E1E0466AB0074EAA6 /* MobileTTDC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MobileTTDC.entitlements; sourceTree = "<group>"; };
 		0FCF01801CFA10E200924868 /* MobileTTDC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTTDC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FCF01831CFA10E200924868 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0FCF018A1CFA10E200924868 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -441,6 +442,7 @@
 		0FCF01821CFA10E200924868 /* MobileTTDC */ = {
 			isa = PBXGroup;
 			children = (
+				0FCCBE6E1E0466AB0074EAA6 /* MobileTTDC.entitlements */,
 				0F9E08FA1D145E43006676C1 /* Core */,
 				0F9E08F91D145DCF006676C1 /* Extensions */,
 				0FF630971DFB795D00DD3DD2 /* Features */,
@@ -597,6 +599,11 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = KRNJ229R7J;
 						LastSwiftMigration = 0810;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -874,6 +881,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MobileTTDC/MobileTTDC.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MobileTTDC/Core/Info.plist;
@@ -889,6 +897,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MobileTTDC/MobileTTDC.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MobileTTDC/Core/Info.plist;

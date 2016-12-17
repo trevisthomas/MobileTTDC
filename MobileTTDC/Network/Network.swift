@@ -27,9 +27,9 @@ public struct Network {
     }
     
     public static func getHost()-> String{
-//        return "http://ttdc.us:8888"
+        return "http://ttdc.us:8888"
 //        return "http://ttdc.us"
-        return "https://ttdc.us"
+//        return "https://ttdc.us"
 //        return "http://192.168.1.106:8888"
     }
     

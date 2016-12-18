@@ -18,7 +18,7 @@ class RootPostCollectionViewCell: BaseCollectionViewCell {
     @IBOutlet weak var entryLeftConstraint: NSLayoutConstraint!
     override var post : Post!{
         didSet{
-            dateButton.setTitle(Utilities.singleton.simpleDateFormat(post.date), for: UIControlState())
+            dateButton.setTitle(Utilities.singleton.simpleDateTimeFormat(post.date), for: UIControlState())
             entryTextView.setHtmlText(post.entry)
             
             

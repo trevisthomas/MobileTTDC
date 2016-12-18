@@ -28,6 +28,8 @@ public protocol AppStyle {
     func selectionColor() -> UIColor
     func searchBackgroundColor() -> UIColor
     func keyboardAppearance() -> UIKeyboardAppearance
+    func starStroke() -> UIColor
+    func starFill() -> UIColor
     
     func postFooterBackgroundColor() -> UIColor
     
@@ -143,6 +145,14 @@ public struct AppStyleLight : AppStyle {
     public func postFooterBackgroundColor() -> UIColor {
         return UIColor.mutedPaper()
     }
+    
+    public func starStroke() -> UIColor {
+        return UIColor.orange
+    }
+    
+    public func starFill() -> UIColor {
+        return UIColor.orange
+    }
 }
 
 public struct AppStyleDark : AppStyle {
@@ -190,7 +200,8 @@ public struct AppStyleDark : AppStyle {
     }
     
     public func navigationTintColor() -> UIColor {
-        return UIColor(red:0.05, green:0.05, blue:0.05, alpha:1.0)
+        //return UIColor(red:0.05, green:0.05, blue:0.05, alpha:1.0)
+        return UIColor.lightGray
     }
     
     public func scrollBarStyle() -> UIScrollViewIndicatorStyle {
@@ -224,6 +235,14 @@ public struct AppStyleDark : AppStyle {
     public func postFooterBackgroundColor() -> UIColor {
 //        return UIColor(red:0.05, green:0.05, blue:0.05, alpha:1.0)
         return UIColor(red:0.12, green:0.12, blue:0.12, alpha:1.0)
+    }
+    
+    public func starStroke() -> UIColor {
+        return UIColor.orange
+    }
+    
+    public func starFill() -> UIColor {
+        return UIColor.orange
     }
 
 }

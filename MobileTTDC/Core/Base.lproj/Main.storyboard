@@ -441,7 +441,7 @@
         <scene sceneID="DCJ-2t-PK3">
             <objects>
                 <navigationController storyboardIdentifier="LatestNav" automaticallyAdjustsScrollViewInsets="NO" id="a4H-aW-Zxr" customClass="NavigationViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Latest" image="home.png" id="Ci5-iC-Xne"/>
+                    <tabBarItem key="tabBarItem" title="Latest" image="home" id="Ci5-iC-Xne"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="PsT-sO-B4D">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -476,7 +476,7 @@
         <scene sceneID="5E3-3T-hyl">
             <objects>
                 <navigationController storyboardIdentifier="LoginNav" automaticallyAdjustsScrollViewInsets="NO" id="NZ6-Dg-sdm" customClass="NavigationViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Login" image="login.png" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Login" image="login" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="R3b-lL-ap7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -495,7 +495,7 @@
         <scene sceneID="PTK-v2-FSQ">
             <objects>
                 <navigationController storyboardIdentifier="ProfileNav" automaticallyAdjustsScrollViewInsets="NO" id="eqQ-ak-UPW" customClass="NavigationViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="settings.png" id="OJp-jh-A1T"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="settings" id="OJp-jh-A1T"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="VlQ-es-dWR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -513,9 +513,9 @@
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
-        <image name="home.png" width="32" height="32"/>
-        <image name="login.png" width="32" height="32"/>
-        <image name="settings.png" width="32" height="32"/>
+        <image name="home" width="32" height="32"/>
+        <image name="login" width="32" height="32"/>
+        <image name="settings" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="DvZ-ZA-J9J"/>

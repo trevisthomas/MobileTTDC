@@ -51,8 +51,8 @@ class SplashViewController: UIViewController {
         self.navBarPlaceholderView.backgroundColor = style.tintColor()
         self.navigationController?.navigationBar.barTintColor = style.navigationBackgroundColor()
         self.tabBarPlaceHolderView.backgroundColor = style.navigationBackgroundColor()
-        self.segmentedControlPlaceholderView.backgroundColor = style.underneath()
-        self.segmenetdControl.tintColor = style.tintColor()
+        self.segmentedControlPlaceholderView.backgroundColor = style.tintColor()
+        self.segmenetdControl.tintColor = style.entryTextColor()
         
         animateCurtain()
         

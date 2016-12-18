@@ -233,37 +233,6 @@
             </objects>
             <point key="canvasLocation" x="196" y="1378"/>
         </scene>
-        <!--Forum View Controller-->
-        <scene sceneID="Vg9-Gi-c5a">
-            <objects>
-                <viewController id="TD1-jc-Xqs" customClass="ForumViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="OGe-qI-239"/>
-                        <viewControllerLayoutGuide type="bottom" id="olU-mG-a9A"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="KKB-EM-K7r">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="TODO: Forums" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJv-VW-St0">
-                                <rect key="frame" x="243" y="289" width="114" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="wJv-VW-St0" firstAttribute="centerY" secondItem="KKB-EM-K7r" secondAttribute="centerY" id="1BS-um-1Wo"/>
-                            <constraint firstItem="wJv-VW-St0" firstAttribute="centerX" secondItem="KKB-EM-K7r" secondAttribute="centerX" id="Drp-wm-Ifq"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="rON-Iw-OP4"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6f3-zR-cB4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1662" y="1316"/>
-        </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
@@ -279,11 +248,22 @@
                         <segue destination="Evh-0M-sie" kind="relationship" relationship="viewControllers" id="pCa-DR-yxV"/>
                         <segue destination="NZ6-Dg-sdm" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="wS3-mg-khx" kind="relationship" relationship="viewControllers" id="rDQ-j4-zsa"/>
+                        <segue destination="eqQ-ak-UPW" kind="relationship" relationship="viewControllers" id="1dD-T4-g1a"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="220" y="-216"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="4go-J8-pUG">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" id="ygJ-En-r4R" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Uq5-xg-OOC"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Sl-Xv-9Um" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2963.1999999999998" y="468.66566716641682"/>
         </scene>
         <!--Search-->
         <scene sceneID="3Tq-pj-D3j">
@@ -461,9 +441,9 @@
         <scene sceneID="DCJ-2t-PK3">
             <objects>
                 <navigationController storyboardIdentifier="LatestNav" automaticallyAdjustsScrollViewInsets="NO" id="a4H-aW-Zxr" customClass="NavigationViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Latest" image="second" id="Ci5-iC-Xne"/>
+                    <tabBarItem key="tabBarItem" title="Latest" image="home.png" id="Ci5-iC-Xne"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="PsT-sO-B4D">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="PsT-sO-B4D">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -474,7 +454,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tv6-di-CYW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2268" y="562.66866566716647"/>
+            <point key="canvasLocation" x="4146.3999999999996" y="562.66866566716647"/>
         </scene>
         <!--Forum-->
         <scene sceneID="HRl-SV-gao">
@@ -487,9 +467,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="TD1-jc-Xqs" kind="relationship" relationship="rootViewController" id="0ES-Ux-sb4"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MNs-Hc-EDz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -499,7 +476,7 @@
         <scene sceneID="5E3-3T-hyl">
             <objects>
                 <navigationController storyboardIdentifier="LoginNav" automaticallyAdjustsScrollViewInsets="NO" id="NZ6-Dg-sdm" customClass="NavigationViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Login" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Login" image="login.png" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="R3b-lL-ap7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -514,10 +491,31 @@
             </objects>
             <point key="canvasLocation" x="2224.8000000000002" y="-216.34182908545728"/>
         </scene>
+        <!--Profile-->
+        <scene sceneID="PTK-v2-FSQ">
+            <objects>
+                <navigationController storyboardIdentifier="ProfileNav" automaticallyAdjustsScrollViewInsets="NO" id="eqQ-ak-UPW" customClass="NavigationViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="settings.png" id="OJp-jh-A1T"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VlQ-es-dWR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ygJ-En-r4R" kind="relationship" relationship="rootViewController" id="M0c-Jp-dVR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="efv-VC-cM3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1886" y="587"/>
+        </scene>
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="home.png" width="32" height="32"/>
+        <image name="login.png" width="32" height="32"/>
+        <image name="settings.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="DvZ-ZA-J9J"/>

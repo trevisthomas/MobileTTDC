@@ -29,10 +29,10 @@ class TabBarViewController: UITabBarController {
 //        conversation = storyboard.instantiateViewController(withIdentifier: "ConversationNav")
         forum = storyboard.instantiateViewController(withIdentifier: "ForumNav")
         login = storyboard.instantiateViewController(withIdentifier: "LoginNav")
+        profile = storyboard.instantiateViewController(withIdentifier: "ProfileNav")
         
-        let profileStoryboard = UIStoryboard(name: "Profile", bundle: Bundle.main)
-        
-        profile = profileStoryboard.instantiateViewController(withIdentifier: "ProfileNav")
+//        let profileStoryboard = UIStoryboard(name: "Profile", bundle: Bundle.main)
+//        profile = profileStoryboard.instantiateViewController(withIdentifier: "ProfileNav")
         
         onCurrentUserChanged()
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TabBarViewController.catchNotification), name: ApplicationContext.currentUserKey, object: nil)

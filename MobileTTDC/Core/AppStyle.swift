@@ -21,6 +21,7 @@ public protocol AppStyle {
     func postReplyBackgroundColor() -> UIColor
     func navigationBackgroundColor() -> UIColor
     func navigationColor() -> UIColor
+    func navigationTintColor() -> UIColor
     func scrollBarStyle() -> UIScrollViewIndicatorStyle
     func statusBarStyle() -> UIStatusBarStyle
     func attributedTextLabelColor() -> String //Html colors becase for some fucking reason attributed text behaves differently depending on where it's used?
@@ -50,6 +51,9 @@ extension UIColor {
     }
     class func mutedCharcoal() -> UIColor {
         return UIColor(hexString: "#373737")
+    }
+    class func bloodRed() -> UIColor {
+        return UIColor(hexString: "#6c2c2c")
     }
 }
 
@@ -95,6 +99,10 @@ public struct AppStyleLight : AppStyle {
     }
     
     public func navigationColor() -> UIColor {
+        return UIColor.mutedCharcoal()
+    }
+    
+    public func navigationTintColor() -> UIColor {
         return UIColor.mutedCharcoal()
     }
     
@@ -152,7 +160,8 @@ public struct AppStyleDark : AppStyle {
     }
     
     public func tintColor() -> UIColor {
-        return UIColor.orange
+//        return UIColor.orange
+        return UIColor.bloodRed()
     }
     
     public func postFooterTextColor() -> UIColor {
@@ -178,6 +187,10 @@ public struct AppStyleDark : AppStyle {
     
     public func navigationColor() -> UIColor {
         return UIColor.white
+    }
+    
+    public func navigationTintColor() -> UIColor {
+        return UIColor(red:0.05, green:0.05, blue:0.05, alpha:1.0)
     }
     
     public func scrollBarStyle() -> UIScrollViewIndicatorStyle {

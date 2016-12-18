@@ -66,7 +66,7 @@ class PostReplyCollectionViewCell: BaseCollectionViewCell {
         entryTextView.backgroundColor = UIColor.clear
         entryTextView.tintColor = appStyle.headerDetailTextColor()
         
-        insetView.backgroundColor = appStyle.postFooterBackgroundColor()
+        insetView.backgroundColor = appStyle.underneath()
         
     }
 

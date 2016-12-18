@@ -100,65 +100,66 @@
                             <constraint firstAttribute="width" constant="40" id="fzv-c7-Fvs"/>
                         </constraints>
                     </imageView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vEW-7t-5gq" customClass="HotboxView" customModule="MobileTTDC" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="170" width="600" height="30"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cSY-Ng-cAg">
-                                <rect key="frame" x="448" y="0.0" width="132" height="29"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DXF-oW-dN7">
-                                        <rect key="frame" x="0.0" y="0.0" width="51" height="29"/>
-                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                        <state key="normal" title="Set Like">
-                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="likeAction:" destination="RoR-zW-R4a" eventType="touchUpInside" id="NwJ-Ue-uDO"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LjP-7r-a6R">
-                                        <rect key="frame" x="71" y="0.0" width="61" height="29"/>
-                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                        <state key="normal" title="Comment">
-                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="commentAction:" destination="RoR-zW-R4a" eventType="touchUpInside" id="8fu-OT-6On"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="30" id="34l-eY-7OL"/>
-                            <constraint firstAttribute="trailing" secondItem="cSY-Ng-cAg" secondAttribute="trailing" constant="20" id="T2B-ab-2Nl"/>
-                            <constraint firstItem="cSY-Ng-cAg" firstAttribute="centerY" secondItem="vEW-7t-5gq" secondAttribute="centerY" id="U8Y-eF-3Ba"/>
-                        </constraints>
-                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4c-A6-yxm">
                         <rect key="frame" x="563.5" y="144" width="28.5" height="14"/>
                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cSY-Ng-cAg">
+                        <rect key="frame" x="464" y="172" width="132" height="20"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DXF-oW-dN7">
+                                <rect key="frame" x="0.0" y="0.0" width="51" height="20"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                <state key="normal" title="Set Like">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="likeAction:" destination="RoR-zW-R4a" eventType="touchUpInside" id="NwJ-Ue-uDO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LjP-7r-a6R">
+                                <rect key="frame" x="71" y="0.0" width="61" height="20"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                <state key="normal" title="Comment">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="commentAction:" destination="RoR-zW-R4a" eventType="touchUpInside" id="8fu-OT-6On"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="5cM-nW-bDP"/>
+                        </constraints>
+                    </stackView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ePQ-I1-riB" customClass="SeperatorLineView" customModule="MobileTTDC" customModuleProvider="target">
+                        <rect key="frame" x="4" y="162" width="592" height="1"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Cjg-ll-t3W"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="v4c-A6-yxm" secondAttribute="bottom" constant="42" id="7Vk-8P-1WU"/>
+                <constraint firstItem="ePQ-I1-riB" firstAttribute="trailing" secondItem="iaW-Bm-g0V" secondAttribute="trailing" id="DQP-FM-GdZ"/>
                 <constraint firstItem="iaW-Bm-g0V" firstAttribute="top" secondItem="RoR-zW-R4a" secondAttribute="top" constant="56" id="FbO-pC-iIo"/>
                 <constraint firstAttribute="trailing" secondItem="iaW-Bm-g0V" secondAttribute="trailing" constant="4" id="GkN-Wk-mDf"/>
-                <constraint firstItem="vEW-7t-5gq" firstAttribute="leading" secondItem="RoR-zW-R4a" secondAttribute="leading" id="MQN-d7-WEf"/>
                 <constraint firstItem="nT1-Ac-hIw" firstAttribute="top" secondItem="RoR-zW-R4a" secondAttribute="top" constant="2" id="VYC-RD-CHb"/>
                 <constraint firstAttribute="trailing" secondItem="nT1-Ac-hIw" secondAttribute="trailing" id="YXd-v5-awH"/>
                 <constraint firstItem="iaW-Bm-g0V" firstAttribute="leading" secondItem="RoR-zW-R4a" secondAttribute="leading" constant="4" id="ZtL-pH-BeH"/>
-                <constraint firstAttribute="bottom" secondItem="vEW-7t-5gq" secondAttribute="bottom" id="cPL-1Q-5qB"/>
+                <constraint firstAttribute="bottom" secondItem="ePQ-I1-riB" secondAttribute="bottom" constant="37" id="dLf-pa-Jpy"/>
                 <constraint firstItem="TGF-XQ-j4s" firstAttribute="top" secondItem="RoR-zW-R4a" secondAttribute="top" constant="8" id="fIi-UI-KJu"/>
                 <constraint firstAttribute="trailing" secondItem="v4c-A6-yxm" secondAttribute="trailing" constant="8.5" id="gRd-xr-cms"/>
                 <constraint firstItem="TGF-XQ-j4s" firstAttribute="leading" secondItem="RoR-zW-R4a" secondAttribute="leading" constant="8" id="ieB-br-tWF"/>
-                <constraint firstAttribute="trailing" secondItem="vEW-7t-5gq" secondAttribute="trailing" id="isY-hX-xyB"/>
                 <constraint firstAttribute="bottom" secondItem="iaW-Bm-g0V" secondAttribute="bottom" constant="64" id="l5O-mO-VhV"/>
+                <constraint firstItem="cSY-Ng-cAg" firstAttribute="top" secondItem="iaW-Bm-g0V" secondAttribute="bottom" constant="36" id="ncq-gg-w6W"/>
                 <constraint firstItem="nT1-Ac-hIw" firstAttribute="leading" secondItem="TGF-XQ-j4s" secondAttribute="trailing" constant="4" id="sjC-hL-tjB"/>
+                <constraint firstItem="ePQ-I1-riB" firstAttribute="leading" secondItem="iaW-Bm-g0V" secondAttribute="leading" id="tJz-jU-22g"/>
+                <constraint firstItem="cSY-Ng-cAg" firstAttribute="trailing" secondItem="iaW-Bm-g0V" secondAttribute="trailing" id="yR2-Qd-AHb"/>
             </constraints>
             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
             <size key="customSize" width="414" height="167"/>
@@ -177,7 +178,7 @@
                 <outlet property="parentPostCreatorButton" destination="YFo-as-I72" id="HVP-bA-qSf"/>
                 <outlet property="threadTitleButton" destination="ZaU-h5-V0o" id="D2h-wc-PP4"/>
             </connections>
-            <point key="canvasLocation" x="467" y="461"/>
+            <point key="canvasLocation" x="467" y="433"/>
         </collectionViewCell>
     </objects>
 </document>

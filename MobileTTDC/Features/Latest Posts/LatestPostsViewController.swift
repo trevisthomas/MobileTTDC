@@ -98,8 +98,8 @@ class LatestPostsViewController: CommonBaseViewController, BroadcastPostAddConsu
     }
     
     override func refreshStyle() {
-        modeSegmentedControl.tintColor = getApplicationContext().getCurrentStyle().tintColor()
-        modeSelectionView.backgroundColor = getApplicationContext().getCurrentStyle().postBackgroundColor()
+        modeSegmentedControl.tintColor = getApplicationContext().getCurrentStyle().navigationTintColor()
+        modeSelectionView.backgroundColor = getApplicationContext().getCurrentStyle().tintColor()
 //        modeSelectionView.backgroundColor = getApplicationContext().getCurrentStyle().underneath()
 //        collectionView.backgroundColor = getApplicationContext().getCurrentStyle().postBackgroundColor()
         collectionView.backgroundColor = getApplicationContext().getCurrentStyle().underneath()

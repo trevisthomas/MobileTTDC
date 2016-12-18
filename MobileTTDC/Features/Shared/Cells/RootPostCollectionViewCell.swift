@@ -66,26 +66,26 @@ class RootPostCollectionViewCell: BaseCollectionViewCell {
             //                viewCommentsButton.setTitle("response", forState: .Normal)
             //            }
             
-            
-            parentPostCreatorButton.isHidden = false
-            if post.threadPost {
-                if post.mass == 0 {
-                    parentPostCreatorButton.isHidden = true
-                }
-                else if post.mass == 1 {
-                    //                    inReplyPrefixLabel.text = "view"
-                    parentPostCreatorButton.setTitle("one comment", for: UIControlState())
-                } else {
-                    //                    inReplyPrefixLabel.text = "view"
-                    parentPostCreatorButton.setTitle("\(post.mass) comments", for: UIControlState())
-                }
-                
-            } else {
-                //                toParentCreatorStackView.hidden = false
-                //                parentPostCreatorButton.setTitle("\(post.parentPostCreator)", forState: .Normal)
-                //                inReplyPrefixLabel.text = "in"
-                parentPostCreatorButton.setTitle("in response to \(post.parentPostCreator)", for: UIControlState())
-            }
+//            
+//            parentPostCreatorButton.isHidden = false
+//            if post.threadPost {
+//                if post.mass == 0 {
+//                    parentPostCreatorButton.isHidden = true
+//                }
+//                else if post.mass == 1 {
+//                    //                    inReplyPrefixLabel.text = "view"
+//                    parentPostCreatorButton.setTitle("one comment", for: UIControlState())
+//                } else {
+//                    //                    inReplyPrefixLabel.text = "view"
+//                    parentPostCreatorButton.setTitle("\(post.mass) comments", for: UIControlState())
+//                }
+//                
+//            } else {
+//                //                toParentCreatorStackView.hidden = false
+//                //                parentPostCreatorButton.setTitle("\(post.parentPostCreator)", forState: .Normal)
+//                //                inReplyPrefixLabel.text = "in"
+//                parentPostCreatorButton.setTitle("in response to \(post.parentPostCreator)", for: UIControlState())
+//            }
             
             //
             //            contentWebView.setNeedsLayout()
@@ -131,7 +131,7 @@ class RootPostCollectionViewCell: BaseCollectionViewCell {
     }
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var likeButton: UIButton!
-    @IBOutlet weak var parentPostCreatorButton: UIButton!
+//    @IBOutlet weak var parentPostCreatorButton: UIButton!
     
     @IBOutlet weak var creatorButton: UIButton!
     @IBOutlet weak var entryTextView: UITextView!
@@ -152,6 +152,8 @@ class RootPostCollectionViewCell: BaseCollectionViewCell {
         entryTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0)
         registerForStyleUpdates() //causes refreshStyle to be called
 //        getApplicationContext().broadcaster.subscribe(consumer: self)
+        self.threadTitleButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        self.threadTitleButton.titleLabel?.minimumScaleFactor = 0.5
     }
     
     

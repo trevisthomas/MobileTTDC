@@ -67,12 +67,16 @@ class MoviePostCollectionViewCell: BaseCollectionViewCell {
         super.awakeFromNib()
         registerForStyleUpdates() //causes refreshStyle to be called
 //        getApplicationContext().broadcaster.subscribe(consumer: self)
+        
+        self.movieTitleButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        self.movieTitleButton.titleLabel?.minimumScaleFactor = 0.5
     }
     
     
     override func refreshStyle() {
         let appStyle = getApplicationContext().getCurrentStyle()
         movieTitleButton.setTitleColor(appStyle.headerTextColor(), for: UIControlState())
+        backgroundColor = appStyle.postBackgroundColor()
     }
 
 

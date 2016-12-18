@@ -50,7 +50,8 @@ class ConversationWithReplyViewController: CommonBaseViewController {
     override func refreshStyle() {
         
         let style = getApplicationContext().getCurrentStyle()
-        collectionView.backgroundColor = style.postBackgroundColor()
+        
+        collectionView.backgroundColor = style.underneath()
         
         collectionView.indicatorStyle = style.scrollBarStyle()
         
@@ -58,6 +59,8 @@ class ConversationWithReplyViewController: CommonBaseViewController {
         replyTextView.textColor = style.entryTextColor()
         
         view.backgroundColor = style.navigationBackgroundColor()
+        
+        
         
         //Below probably does nothing because of my Accessory view. Unfortunately setting globally doesnt work on text views.  (But does on TextField! WTF.  
         replyTextView.keyboardAppearance = style.keyboardAppearance()

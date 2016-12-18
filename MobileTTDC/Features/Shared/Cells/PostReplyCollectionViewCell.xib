@@ -71,57 +71,8 @@
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
                     </textView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pns-iO-gEK" customClass="HotboxView" customModule="MobileTTDC" customModuleProvider="target">
-                        <rect key="frame" x="32" y="170" width="568" height="30"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="iXE-pY-TB2">
-                                <rect key="frame" x="437" y="7" width="111" height="16"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kOV-Zn-ol9">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="16"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="16" id="9yD-Ox-WPU"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                        <state key="normal" title="Like">
-                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="likeAction:" destination="tHN-IQ-gWD" eventType="touchUpInside" id="XfB-w0-R0N"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kfi-fM-QCv">
-                                        <rect key="frame" x="50" y="0.0" width="61" height="16"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="16" id="Eif-bq-BTl"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                        <state key="normal" title="Comment">
-                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="replyAction:" destination="tHN-IQ-gWD" eventType="touchUpInside" id="2cp-j1-sze"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="iXE-pY-TB2" secondAttribute="trailing" constant="20" id="59G-VW-ksX"/>
-                            <constraint firstAttribute="height" constant="30" id="EhE-cC-zzJ"/>
-                            <constraint firstItem="iXE-pY-TB2" firstAttribute="centerY" secondItem="pns-iO-gEK" secondAttribute="centerY" id="Vlx-Yv-uvr"/>
-                        </constraints>
-                    </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L1f-mM-lBL">
-                        <rect key="frame" x="0.0" y="0.0" width="32" height="200"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="32" id="bsp-ce-4LP"/>
-                        </constraints>
-                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDJ-bu-eQY">
-                        <rect key="frame" x="80" y="146" width="28.5" height="14"/>
+                        <rect key="frame" x="563" y="146" width="28.5" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="m8m-h3-oai"/>
                         </constraints>
@@ -129,25 +80,69 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="iXE-pY-TB2">
+                        <rect key="frame" x="481" y="172" width="111" height="20"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kOV-Zn-ol9">
+                                <rect key="frame" x="0.0" y="0.0" width="30" height="20"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                <state key="normal" title="Like">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="likeAction:" destination="tHN-IQ-gWD" eventType="touchUpInside" id="XfB-w0-R0N"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kfi-fM-QCv">
+                                <rect key="frame" x="50" y="0.0" width="61" height="20"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                <state key="normal" title="Comment">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="replyAction:" destination="tHN-IQ-gWD" eventType="touchUpInside" id="2cp-j1-sze"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="F14-em-iIr"/>
+                        </constraints>
+                    </stackView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J5I-vB-3nQ">
+                        <rect key="frame" x="0.0" y="0.0" width="24" height="200"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="F4C-m3-JHT"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bnq-6q-0we" customClass="SeperatorLineView" customModule="MobileTTDC" customModuleProvider="target">
+                        <rect key="frame" x="64" y="163" width="528" height="1"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Su3-Nz-5uG"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="L1f-mM-lBL" firstAttribute="top" secondItem="tHN-IQ-gWD" secondAttribute="top" id="3UU-kO-7ka"/>
+                <constraint firstItem="J5I-vB-3nQ" firstAttribute="leading" secondItem="tHN-IQ-gWD" secondAttribute="leading" id="0fu-4c-PGu"/>
+                <constraint firstItem="tDJ-bu-eQY" firstAttribute="top" secondItem="BPY-CK-hbz" secondAttribute="bottom" constant="6" id="8Fa-K8-Esu"/>
                 <constraint firstItem="cwU-ac-t1N" firstAttribute="leading" secondItem="BPY-CK-hbz" secondAttribute="leading" id="8i9-N1-jnx"/>
-                <constraint firstAttribute="bottom" secondItem="pns-iO-gEK" secondAttribute="bottom" id="GG9-dL-Kmx"/>
-                <constraint firstAttribute="trailing" secondItem="pns-iO-gEK" secondAttribute="trailing" id="HWO-zp-vYu"/>
                 <constraint firstItem="BPY-CK-hbz" firstAttribute="top" secondItem="tHN-IQ-gWD" secondAttribute="top" constant="22" id="I5O-DB-GSa"/>
+                <constraint firstItem="bnq-6q-0we" firstAttribute="trailing" secondItem="BPY-CK-hbz" secondAttribute="trailing" id="JpC-S6-PDt"/>
                 <constraint firstItem="BPY-CK-hbz" firstAttribute="leading" secondItem="tHN-IQ-gWD" secondAttribute="leading" constant="64" id="Ncs-QV-yzJ"/>
-                <constraint firstItem="pns-iO-gEK" firstAttribute="leading" secondItem="tHN-IQ-gWD" secondAttribute="leading" constant="32" id="R3X-dq-tE1"/>
-                <constraint firstItem="tDJ-bu-eQY" firstAttribute="leading" secondItem="tHN-IQ-gWD" secondAttribute="leading" constant="80" id="Tty-Fe-ygz"/>
+                <constraint firstItem="iXE-pY-TB2" firstAttribute="top" secondItem="BPY-CK-hbz" secondAttribute="bottom" constant="32" id="Oob-ci-FkZ"/>
+                <constraint firstAttribute="trailing" secondItem="tDJ-bu-eQY" secondAttribute="trailing" constant="8.5" id="Rdj-Ro-hZ2"/>
                 <constraint firstItem="BPY-CK-hbz" firstAttribute="top" secondItem="cwU-ac-t1N" secondAttribute="bottom" constant="4" id="aSQ-2r-euJ"/>
                 <constraint firstAttribute="bottom" secondItem="BPY-CK-hbz" secondAttribute="bottom" constant="60" id="d6h-yi-2WT"/>
-                <constraint firstItem="L1f-mM-lBL" firstAttribute="leading" secondItem="tHN-IQ-gWD" secondAttribute="leading" id="eCf-LH-NdF"/>
                 <constraint firstAttribute="trailing" secondItem="BPY-CK-hbz" secondAttribute="trailing" constant="8" id="fTY-KL-6m2"/>
+                <constraint firstItem="iXE-pY-TB2" firstAttribute="trailing" secondItem="BPY-CK-hbz" secondAttribute="trailing" id="iyn-tG-gIz"/>
+                <constraint firstItem="J5I-vB-3nQ" firstAttribute="top" secondItem="tHN-IQ-gWD" secondAttribute="top" id="jku-uy-n8Q"/>
                 <constraint firstItem="BPY-CK-hbz" firstAttribute="leading" secondItem="fWg-v2-BuY" secondAttribute="trailing" constant="8" symbolic="YES" id="l4D-cN-waf"/>
-                <constraint firstAttribute="bottom" secondItem="L1f-mM-lBL" secondAttribute="bottom" id="lWZ-Nc-L3C"/>
-                <constraint firstItem="pns-iO-gEK" firstAttribute="top" secondItem="tDJ-bu-eQY" secondAttribute="bottom" constant="10" id="ral-j8-Q9m"/>
+                <constraint firstAttribute="bottom" secondItem="bnq-6q-0we" secondAttribute="bottom" constant="36" id="olH-rc-teu"/>
+                <constraint firstAttribute="bottom" secondItem="J5I-vB-3nQ" secondAttribute="bottom" id="p6d-3G-Vb0"/>
                 <constraint firstItem="fWg-v2-BuY" firstAttribute="top" secondItem="tHN-IQ-gWD" secondAttribute="top" constant="4" id="tfU-M6-ZbJ"/>
+                <constraint firstItem="bnq-6q-0we" firstAttribute="leading" secondItem="BPY-CK-hbz" secondAttribute="leading" id="wlM-FV-F0J"/>
             </constraints>
             <size key="customSize" width="537" height="167"/>
             <connections>
@@ -159,7 +154,7 @@
                 <outlet property="entryRightConstraint" destination="fTY-KL-6m2" id="Lvd-iZ-ISi"/>
                 <outlet property="entryTextView" destination="BPY-CK-hbz" id="Hze-bf-uJU"/>
                 <outlet property="entryTopConstraint" destination="I5O-DB-GSa" id="wKL-7g-2jq"/>
-                <outlet property="insetView" destination="L1f-mM-lBL" id="PS3-ou-yHz"/>
+                <outlet property="insetView" destination="J5I-vB-3nQ" id="nYJ-HM-ivJ"/>
                 <outlet property="likeButton" destination="kOV-Zn-ol9" id="kyY-t7-G7h"/>
                 <outlet property="likesLabel" destination="tDJ-bu-eQY" id="IiL-lU-bdZ"/>
                 <outlet property="replyButton" destination="Kfi-fM-QCv" id="mcH-YR-dnE"/>

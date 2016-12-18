@@ -72,6 +72,9 @@ class ReviewPostCollectionViewCell: BaseCollectionViewCell {
         reviewTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0)
         registerForStyleUpdates() //causes refreshStyle to be called
 //        getApplicationContext().broadcaster.subscribe(consumer: self)
+        
+        self.movieTitleButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        self.movieTitleButton.titleLabel?.minimumScaleFactor = 0.5
     }
     
     

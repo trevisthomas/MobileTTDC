@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2RN-rf-deH">
-                        <rect key="frame" x="8" y="8" width="476" height="34"/>
+                        <rect key="frame" x="8" y="8" width="584" height="34"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                         <inset key="titleEdgeInsets" minX="0.0" minY="-8" maxX="0.0" maxY="0.0"/>
                         <state key="normal" title="Thread Title">
@@ -31,14 +31,14 @@
                         </connections>
                     </button>
                     <stackView autoresizesSubviews="NO" opaque="NO" contentMode="top" axis="vertical" distribution="equalSpacing" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="iuX-5M-Zur">
-                        <rect key="frame" x="8" y="49" width="476" height="20"/>
+                        <rect key="frame" x="8" y="49" width="480" height="20"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="Eu3-he-ebn"/>
                         </constraints>
                     </stackView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VdL-TF-HhS">
-                        <rect key="frame" x="492" y="8" width="100" height="150"/>
+                        <rect key="frame" x="492" y="40" width="100" height="150"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="150" id="JEa-bF-7aR"/>
                             <constraint firstAttribute="width" constant="100" id="s7d-mu-zE4"/>
@@ -48,13 +48,13 @@
             </view>
             <constraints>
                 <constraint firstItem="iuX-5M-Zur" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="49" id="4uq-PU-cQE"/>
-                <constraint firstItem="VdL-TF-HhS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="9FN-h6-26a"/>
+                <constraint firstAttribute="trailing" secondItem="2RN-rf-deH" secondAttribute="trailing" constant="8" id="5Zf-RF-PQ4"/>
+                <constraint firstItem="VdL-TF-HhS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="40" id="9FN-h6-26a"/>
                 <constraint firstAttribute="trailing" secondItem="VdL-TF-HhS" secondAttribute="trailing" constant="8" id="L9i-i6-7fr"/>
                 <constraint firstItem="iuX-5M-Zur" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="Llw-ZM-Ef8"/>
                 <constraint firstItem="2RN-rf-deH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leadingMargin" id="Zvz-42-ZyV"/>
-                <constraint firstItem="iuX-5M-Zur" firstAttribute="width" secondItem="2RN-rf-deH" secondAttribute="width" id="hJd-NQ-kOV"/>
+                <constraint firstItem="VdL-TF-HhS" firstAttribute="leading" secondItem="iuX-5M-Zur" secondAttribute="trailing" constant="4" id="fwr-pu-wdd"/>
                 <constraint firstItem="2RN-rf-deH" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="topMargin" id="vaD-0Z-pnW"/>
-                <constraint firstItem="VdL-TF-HhS" firstAttribute="leading" secondItem="2RN-rf-deH" secondAttribute="trailing" constant="8" id="wny-Pz-e5o"/>
             </constraints>
             <size key="customSize" width="880" height="224"/>
             <connections>

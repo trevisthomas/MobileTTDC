@@ -8,6 +8,15 @@
 
 import Foundation
 
+
+func delay(seconds: Double, completion:@escaping ()->()) {
+    let popTime = DispatchTime.now() + Double(Int64( Double(NSEC_PER_SEC) * seconds )) / Double(NSEC_PER_SEC)
+    
+    DispatchQueue.main.asyncAfter(deadline: popTime) {
+        completion()
+    }
+}
+
 open class Utilities{
     
     open static let singleton : Utilities = Utilities()

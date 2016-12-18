@@ -37,6 +37,8 @@ class StarRatingView: UIView {
         fillColor = style.tintColor()
         strokeColor = style.tintColor()
         bgColor = style.postBackgroundColor()
+        
+        setNeedsDisplay()
     }
     
     override func draw(_ rect: CGRect) {

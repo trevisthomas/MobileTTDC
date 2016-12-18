@@ -302,6 +302,16 @@ extension CommonBaseViewController : UICollectionViewDelegateFlowLayout {
             return CGSize.fromTuple(tuple: post.size!)
         }
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//        return 5
+//    }
+    
+    //Spacing between cells.
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 20
+    }
 }
 
 extension CommonBaseViewController : UIScrollViewDelegate {

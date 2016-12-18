@@ -82,6 +82,10 @@ class PostCollectionViewCell: BaseCollectionViewCell {
         entryTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0)
         registerForStyleUpdates() //causes refreshStyle to be called
 //        getApplicationContext().broadcaster.subscribe(consumer: self)
+        
+        self.threadTitleButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        self.threadTitleButton.titleLabel?.minimumScaleFactor = 0.5
+
     }
     
 

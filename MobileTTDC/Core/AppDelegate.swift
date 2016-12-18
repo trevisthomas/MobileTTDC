@@ -31,6 +31,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().isTranslucent = false//Trevis is ths working?
         UITabBar.appearance().isTranslucent = false
         
+        //Below is the code for removing the one pixel line (drop shadow i guess?) on NavigationBar
+        UINavigationBar.appearance().setBackgroundImage(
+            UIImage(),
+            for: .any,
+            barMetrics: .default)
+        
+        UINavigationBar.appearance().shadowImage = UIImage()
+        
         return true
     }
     

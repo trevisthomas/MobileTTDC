@@ -103,6 +103,7 @@
 		0FCCBE981E06194D0074EAA6 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FCCBE8F1E06194D0074EAA6 /* settings.png */; };
 		0FCCBE991E06194D0074EAA6 /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FCCBE901E06194D0074EAA6 /* settings@2x.png */; };
 		0FCCBE9A1E06194D0074EAA6 /* settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FCCBE911E06194D0074EAA6 /* settings@3x.png */; };
+		0FCCBEA31E066CF60074EAA6 /* SeperatorLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCCBEA21E066CF60074EAA6 /* SeperatorLineView.swift */; };
 		0FCF01841CFA10E200924868 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF01831CFA10E200924868 /* AppDelegate.swift */; };
 		0FCF018B1CFA10E200924868 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FCF01891CFA10E200924868 /* Main.storyboard */; };
 		0FCF018D1CFA10E200924868 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FCF018C1CFA10E200924868 /* Assets.xcassets */; };
@@ -242,6 +243,7 @@
 		0FCCBE8F1E06194D0074EAA6 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		0FCCBE901E06194D0074EAA6 /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
 		0FCCBE911E06194D0074EAA6 /* settings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@3x.png"; sourceTree = "<group>"; };
+		0FCCBEA21E066CF60074EAA6 /* SeperatorLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeperatorLineView.swift; sourceTree = "<group>"; };
 		0FCF01801CFA10E200924868 /* MobileTTDC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTTDC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FCF01831CFA10E200924868 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0FCF018A1CFA10E200924868 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 				0F7170881DDF7D9900E9348C /* HotboxView.swift */,
 				0F9FB1E11DBD56EF00B901ED /* PostSeperator.swift */,
 				0FF4ED861DCAF9B800BE4CF4 /* StarRatingView.swift */,
+				0FCCBEA21E066CF60074EAA6 /* SeperatorLineView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -743,6 +746,7 @@
 				0FA3933B1DDFB5FB00E3BC2E /* LikeCommand.swift in Sources */,
 				0F7A58051DE2408300E52B55 /* PostWrapper.swift in Sources */,
 				0F97BD981DF0C00D007E5F43 /* ServerEvent.swift in Sources */,
+				0FCCBEA31E066CF60074EAA6 /* SeperatorLineView.swift in Sources */,
 				0FF4ED891DCBD26400BE4CF4 /* MovieReviewSubView.swift in Sources */,
 				0FF4ED8D1DCBE44400BE4CF4 /* UIView+Nib.swift in Sources */,
 				0F0997B51DC90EFC001991E2 /* MoviePostCollectionViewCell.swift in Sources */,

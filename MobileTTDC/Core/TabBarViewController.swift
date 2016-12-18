@@ -67,7 +67,7 @@ class TabBarViewController: UITabBarController {
     
     override func refreshStyle() {
         self.tabBar.tintColor = getApplicationContext().getCurrentStyle().tintColor()
-        self.tabBar.barTintColor = getApplicationContext().getCurrentStyle().navigationBackgroundColor()
+        self.tabBar.barTintColor = getApplicationContext().getCurrentStyle().tabbarBackgroundColor()
     }
     
     override func didReceiveMemoryWarning() {

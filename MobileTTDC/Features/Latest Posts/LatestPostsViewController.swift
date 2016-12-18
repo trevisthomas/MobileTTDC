@@ -54,6 +54,20 @@ class LatestPostsViewController: CommonBaseViewController, BroadcastPostAddConsu
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
+//        self.navigationController?.navigationBar.backgroundImage(for: .any, barMetrics: .default) = UIImage()
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+//        UINavigationBar.appearance().setBackgroundImage(
+//            UIImage(),
+//            for: .any,
+//            barMetrics: .default)
+//        
+//        UINavigationBar.appearance().shadowImage = UIImage()
+        
+        
         tabBarController?.delegate = self
         
         handleModeChange()
@@ -99,7 +113,8 @@ class LatestPostsViewController: CommonBaseViewController, BroadcastPostAddConsu
     
     override func refreshStyle() {
         modeSegmentedControl.tintColor = getApplicationContext().getCurrentStyle().navigationTintColor()
-        modeSelectionView.backgroundColor = getApplicationContext().getCurrentStyle().tintColor()
+        modeSelectionView.backgroundColor = getApplicationContext().getCurrentStyle().navigationBackgroundColor()
+        
         
         //modeSegmentedControl.tintColor = getApplicationContext().getCurrentStyle().navigationTintColor()
         //modeSelectionView.backgroundColor = getApplicationContext().getCurrentStyle().tintColor()

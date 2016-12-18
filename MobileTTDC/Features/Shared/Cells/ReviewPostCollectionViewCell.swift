@@ -75,12 +75,16 @@ class ReviewPostCollectionViewCell: BaseCollectionViewCell {
         
         self.movieTitleButton.titleLabel?.adjustsFontSizeToFitWidth = true
         self.movieTitleButton.titleLabel?.minimumScaleFactor = 0.5
+        
+        
     }
     
     
     override func refreshStyle() {
         let appStyle = getApplicationContext().getCurrentStyle()
         likeButton.setTitleColor(appStyle.postFooterTextColor(), for: UIControlState())
+        commentButton.setTitleColor(appStyle.postFooterTextColor(), for: UIControlState())
+        
         dateCreatedButton.setTitleColor(appStyle.headerDetailTextColor(), for: UIControlState())
         likesLabel.textColor = appStyle.postFooterTextColor()
         backgroundColor = appStyle.postBackgroundColor()
@@ -94,6 +98,9 @@ class ReviewPostCollectionViewCell: BaseCollectionViewCell {
         reviewTextView.tintColor = appStyle.headerDetailTextColor()
         
         movieTitleButton.setTitleColor(appStyle.headerTextColor(), for: UIControlState())
+        
+        
+        
         
     }
     

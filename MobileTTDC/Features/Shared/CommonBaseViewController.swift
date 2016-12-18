@@ -310,7 +310,7 @@ extension CommonBaseViewController : UICollectionViewDelegateFlowLayout {
     //Spacing between cells.
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 20
+        return 2
     }
 }
 

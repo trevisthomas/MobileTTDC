@@ -32,6 +32,7 @@ public protocol AppStyle {
     func starFill() -> UIColor
     
     func postFooterBackgroundColor() -> UIColor
+    func tabbarBackgroundColor() -> UIColor
     
     func underneath() -> UIColor
 }
@@ -54,58 +55,82 @@ extension UIColor {
     class func mutedCharcoal() -> UIColor {
         return UIColor(hexString: "#373737")
     }
-    class func bloodRed() -> UIColor {
+    class var bloodRed : UIColor {
         return UIColor(hexString: "#6c2c2c")
     }
+    
+    class var blueness : UIColor {
+        return UIColor(hexString: "#d6ddf4")
+        //return UIColor(red:0.84, green:0.87, blue:0.96, alpha:1.0)
+        //return UIColor.yellow
+    }
+    
+    class var greyness : UIColor {
+        return UIColor(hexString: "#dddddd")
+    }
+    
+    class var blackish : UIColor {
+        return UIColor(hexString: "#444f67")
+    }
+    
+    class var palegrey : UIColor {
+        return UIColor(hexString: "#f8f8f4")
+    }
+    
 }
 
 public struct AppStyleLight : AppStyle {
     
     public func headerTextColor() -> UIColor {
-        return UIColor.mutedCharcoal()
+        return UIColor.black
     }
     
     public func headerDetailTextColor() -> UIColor {
-        return UIColor.mutedPaleGold()
+        return UIColor.blackish
     }
     
     public func entryTextColor() -> UIColor {
-        return UIColor.mutedCharcoal()
+        return UIColor.black
     }
     
     public func tintColor() -> UIColor {
-        return UIColor.mutedPaleGold()
+        return UIColor.blackish
     }
     
     public func postFooterTextColor() -> UIColor {
-        return UIColor.mutedSilk()
+        return UIColor.black
     }
     
     public func postFooterDetailColor() -> UIColor {
-        return UIColor.mutedSilk()
+        return UIColor.black
     }
     
     public func postBackgroundColor() -> UIColor {
 //        return UIColor.mutedPaper()
-        return UIColor.mutedWhiterPaper()
+//        return UIColor.palegrey
+        return UIColor.white
 //        return UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
     }
     
     public func postReplyBackgroundColor() -> UIColor {
-        return UIColor.mutedPaper()
+        return UIColor.red //depreated?
     }
     
     public func navigationBackgroundColor() -> UIColor {
 //        return UIColor.white
-        return UIColor.white
+        return UIColor.blueness
+    }
+    
+    public func tabbarBackgroundColor() -> UIColor {
+        return UIColor.greyness
     }
     
     public func navigationColor() -> UIColor {
-        return UIColor.mutedCharcoal()
+        return UIColor.black
     }
     
     public func navigationTintColor() -> UIColor {
-        return UIColor.mutedCharcoal()
+        return UIColor.blackish
     }
     
     public func scrollBarStyle() -> UIScrollViewIndicatorStyle {
@@ -118,19 +143,19 @@ public struct AppStyleLight : AppStyle {
     }
     
     public func attributedTextLabelColor() -> String {
-        return "#373737"
+        return "#444f67"
     }
     
     public func selectionColor() -> UIColor{
 //        return UIColor(red:0.90, green:0.90, blue:0.90, alpha:1.0)
 //        return UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
 //        return UIColor.redColor()
-        return UIColor.mutedSilk()
+        return UIColor.greyness
     }
     
     public func searchBackgroundColor() -> UIColor {
 //        return UIColor(red:0.90, green:0.90, blue:0.90, alpha:1.0)
-        return UIColor.mutedPaper()
+        return UIColor.palegrey
     }
     
     public func keyboardAppearance() -> UIKeyboardAppearance {
@@ -139,11 +164,12 @@ public struct AppStyleLight : AppStyle {
     
     public func underneath() -> UIColor {
 //        return UIColor(hexString: "#f4f4f4")
-        return UIColor.mutedSilk()
+//        return UIColor.white
+        return UIColor.palegrey
     }
     
     public func postFooterBackgroundColor() -> UIColor {
-        return UIColor.mutedPaper()
+        return UIColor.greyness
     }
     
     public func starStroke() -> UIColor {
@@ -171,7 +197,7 @@ public struct AppStyleDark : AppStyle {
     
     public func tintColor() -> UIColor {
 //        return UIColor.orange
-        return UIColor.bloodRed()
+        return UIColor.bloodRed
     }
     
     public func postFooterTextColor() -> UIColor {
@@ -192,6 +218,10 @@ public struct AppStyleDark : AppStyle {
     }
     
     public func navigationBackgroundColor() -> UIColor {
+        return UIColor.bloodRed
+    }
+    
+    public func tabbarBackgroundColor() -> UIColor {
         return  UIColor(red:0.10, green:0.10, blue:0.10, alpha:1.0)
     }
     

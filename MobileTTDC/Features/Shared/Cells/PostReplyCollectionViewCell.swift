@@ -55,6 +55,7 @@ class PostReplyCollectionViewCell: BaseCollectionViewCell {
     override func refreshStyle() {
         let appStyle = getApplicationContext().getCurrentStyle()
         likeButton.setTitleColor(appStyle.postFooterTextColor(), for: UIControlState())
+        replyButton.setTitleColor(appStyle.postFooterTextColor(), for: UIControlState())
         dateButton.setTitleColor(appStyle.headerDetailTextColor(), for: UIControlState())
         likesLabel.textColor = appStyle.postFooterTextColor()
         backgroundColor = appStyle.postBackgroundColor()

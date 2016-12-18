@@ -1,21 +1,25 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LoadingCollectionViewCell" id="gTV-IL-0wX" customClass="LoadingCollectionViewCell" customModule="MobileTTDC" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="205" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="205" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dID-a9-cW2">
+                        <rect key="frame" x="150" y="15" width="75" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -23,12 +27,14 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="dID-a9-cW2" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Oo2-xS-X9h"/>
-                <constraint firstItem="dID-a9-cW2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="crR-0S-wB3"/>
-                <constraint firstAttribute="trailing" secondItem="dID-a9-cW2" secondAttribute="trailing" id="uVt-oD-NXS"/>
+                <constraint firstItem="dID-a9-cW2" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="7yC-N5-SJ3"/>
+                <constraint firstItem="dID-a9-cW2" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="IjM-gc-VxB"/>
             </constraints>
-            <size key="customSize" width="205" height="50"/>
-            <point key="canvasLocation" x="120.5" y="164"/>
+            <size key="customSize" width="425" height="50"/>
+            <connections>
+                <outlet property="loadingLabel" destination="dID-a9-cW2" id="gdb-Ex-qhn"/>
+            </connections>
+            <point key="canvasLocation" x="10.5" y="164"/>
         </collectionViewCell>
     </objects>
 </document>

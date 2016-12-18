@@ -44,15 +44,15 @@ class SplashViewController: UIViewController {
         welcomeLabel.textColor = style.tintColor()
         
         curtainView = UIView(frame: view.bounds)
-        curtainView.backgroundColor = style.tintColor()
+        curtainView.backgroundColor = style.navigationBackgroundColor()
         view.addSubview(curtainView)
 //        self.navigationController?.navigationBar.backgroundColor = style.tintColor()
         
-        self.navBarPlaceholderView.backgroundColor = style.tintColor()
+        self.navBarPlaceholderView.backgroundColor = style.navigationBackgroundColor()
         self.navigationController?.navigationBar.barTintColor = style.navigationBackgroundColor()
-        self.tabBarPlaceHolderView.backgroundColor = style.navigationBackgroundColor()
-        self.segmentedControlPlaceholderView.backgroundColor = style.tintColor()
-        self.segmenetdControl.tintColor = style.entryTextColor()
+        self.tabBarPlaceHolderView.backgroundColor = style.tabbarBackgroundColor()
+        self.segmentedControlPlaceholderView.backgroundColor = style.navigationBackgroundColor()
+        self.segmenetdControl.tintColor = style.navigationTintColor()
         
         animateCurtain()
         

@@ -63,9 +63,12 @@
                             <action selector="movieTitleAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="EfV-K4-6Q6"/>
                         </connections>
                     </button>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gN3-Gb-Y5d" customClass="PostSeperator" customModule="MobileTTDC" customModuleProvider="target">
-                        <rect key="frame" x="8" y="164" width="584" height="8"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gN3-Gb-Y5d" customClass="SeperatorLineView" customModule="MobileTTDC" customModuleProvider="target">
+                        <rect key="frame" x="8" y="164" width="584" height="1"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="RYw-Da-G1S"/>
+                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
                                 <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -109,27 +112,12 @@
                             <constraint firstAttribute="height" constant="16" id="P44-F6-0ie"/>
                         </constraints>
                     </stackView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LLv-E0-lyg" customClass="PostSeperator" customModule="MobileTTDC" customModuleProvider="target">
-                        <rect key="frame" x="8" y="192" width="584" height="8"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="8" id="0cD-5l-Jm3"/>
-                        </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
-                                <color key="value" red="0.97601928380000003" green="0.97601928380000003" blue="0.97601928380000003" alpha="1" colorSpace="calibratedRGB"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="thickness">
-                                <real key="value" value="1"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </view>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="iRp-m8-w2E">
-                        <rect key="frame" x="475" y="176" width="117" height="16"/>
+                        <rect key="frame" x="481" y="169" width="111" height="16"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Km6-VN-4Fm">
                                 <rect key="frame" x="0.0" y="0.0" width="30" height="16"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                 <state key="normal" title="Like">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -138,8 +126,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s1m-Bm-Kkt">
-                                <rect key="frame" x="50" y="0.0" width="67" height="16"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <rect key="frame" x="50" y="0.0" width="61" height="16"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                 <state key="normal" title="Comment">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -168,12 +156,9 @@
                 <constraint firstItem="g3h-HM-RuF" firstAttribute="baseline" secondItem="idl-Y2-h4J" secondAttribute="baseline" id="4iT-47-jZA"/>
                 <constraint firstItem="g3h-HM-RuF" firstAttribute="firstBaseline" secondItem="idl-Y2-h4J" secondAttribute="baseline" id="5z9-tW-vT2"/>
                 <constraint firstItem="EMd-lo-n4X" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="6Mc-TK-PsN"/>
-                <constraint firstAttribute="trailing" secondItem="LLv-E0-lyg" secondAttribute="trailing" constant="8" id="6vI-Dx-B1x"/>
                 <constraint firstItem="g3h-HM-RuF" firstAttribute="baseline" secondItem="idl-Y2-h4J" secondAttribute="firstBaseline" id="6xW-qg-Vh9"/>
                 <constraint firstItem="MBu-Qa-NoH" firstAttribute="leading" secondItem="EMd-lo-n4X" secondAttribute="leading" id="8eS-bq-SJl"/>
-                <constraint firstItem="LLv-E0-lyg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="9VS-GS-Dbt"/>
                 <constraint firstItem="EMd-lo-n4X" firstAttribute="leading" secondItem="dji-ja-hhO" secondAttribute="trailing" constant="3" id="BhO-M2-t7S"/>
-                <constraint firstItem="LLv-E0-lyg" firstAttribute="top" secondItem="iRp-m8-w2E" secondAttribute="bottom" id="BnC-Tn-BEm"/>
                 <constraint firstItem="dji-ja-hhO" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="7" id="F50-3T-5SU"/>
                 <constraint firstItem="sYB-Uw-3HB" firstAttribute="top" secondItem="MBu-Qa-NoH" secondAttribute="bottom" constant="4" id="Fho-xY-RdC"/>
                 <constraint firstItem="iRp-m8-w2E" firstAttribute="top" secondItem="gN3-Gb-Y5d" secondAttribute="bottom" constant="4" id="JGZ-j5-3vk"/>
@@ -189,7 +174,6 @@
                 <constraint firstItem="gN3-Gb-Y5d" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="mpa-C6-p9g"/>
                 <constraint firstItem="sYB-Uw-3HB" firstAttribute="leading" secondItem="dji-ja-hhO" secondAttribute="trailing" constant="3" id="nGW-nY-b2j"/>
                 <constraint firstAttribute="trailing" secondItem="gN3-Gb-Y5d" secondAttribute="trailing" constant="8" id="ngg-cO-mES"/>
-                <constraint firstAttribute="bottom" secondItem="LLv-E0-lyg" secondAttribute="bottom" id="nzd-fb-Uam"/>
                 <constraint firstItem="g3h-HM-RuF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15.5" id="qrZ-tW-Yam"/>
                 <constraint firstItem="ufy-4w-J6I" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="sON-Py-flI"/>
                 <constraint firstAttribute="trailing" secondItem="EMd-lo-n4X" secondAttribute="trailing" constant="1" id="zAE-KL-sj8"/>

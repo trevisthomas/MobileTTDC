@@ -9,10 +9,19 @@
 import UIKit
 
 class LoadingCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var loadingLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        registerForStyleUpdates() //causes refreshStyle to be called
+       
     }
+    
+    override func refreshStyle() {
+        let style = getApplicationContext().getCurrentStyle()
+        backgroundColor = style.underneath()
+        loadingLabel.textColor = style.entryTextColor()
+    }
+
 
 }

@@ -11,7 +11,7 @@ import UIKit
 class AutoCompleteTableViewCell: UITableViewCell {
 
     @IBOutlet weak var contentLabel: UILabel!
-    let selectionView = UIView()
+    private let selectionView = UIView()
     
     var item : AutoCompleteItem! {
         didSet{
@@ -45,6 +45,8 @@ class AutoCompleteTableViewCell: UITableViewCell {
         
         
         contentLabel.backgroundColor = style.postBackgroundColor()
+        //Remember the text color is via attributed text color!!!!!
+        //contentLabel.textColor = style.entryTextColor()
         
     }
 

@@ -166,7 +166,8 @@ class CommonBaseViewController: UIViewController {
     }
     
     func prototypeLoadingCellSize() -> CGSize {
-        return loadingMessageCell.frame.size
+        let frameSize = getCollectionView()!.frame.size
+        return CGSize(width: frameSize.width, height: loadingMessageCell.frame.height)
     }
     
     func prototypeCellSize(post p: Post) -> CGSize {

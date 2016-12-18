@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hZy-J1-0Nw">
-    <device id="retina4_7" orientation="portrait">
+    <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -18,11 +18,11 @@
                         <viewControllerLayoutGuide type="bottom" id="iCu-ke-dtl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="NeO-zY-l7R">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7nL-zz-Hh8">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="40" y="64" width="688" height="960"/>
                                 <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="G1E-S2-ljg">
                                     <size key="itemSize" width="50" height="50"/>
@@ -51,8 +51,12 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="7nL-zz-Hh8" firstAttribute="leading" secondItem="NeO-zY-l7R" secondAttribute="leading" id="Cjt-20-qe1"/>
-                            <constraint firstAttribute="trailing" secondItem="7nL-zz-Hh8" secondAttribute="trailing" id="Qd9-cf-IjI"/>
+                            <constraint firstItem="7nL-zz-Hh8" firstAttribute="leading" secondItem="NeO-zY-l7R" secondAttribute="leading" id="Cjt-20-qe1">
+                                <variation key="heightClass=regular-widthClass=regular" constant="40"/>
+                            </constraint>
+                            <constraint firstAttribute="trailing" secondItem="7nL-zz-Hh8" secondAttribute="trailing" id="Qd9-cf-IjI">
+                                <variation key="heightClass=regular-widthClass=regular" constant="40"/>
+                            </constraint>
                             <constraint firstItem="iCu-ke-dtl" firstAttribute="top" secondItem="7nL-zz-Hh8" secondAttribute="bottom" id="S4u-1J-vBB"/>
                             <constraint firstItem="7nL-zz-Hh8" firstAttribute="top" secondItem="NEz-mA-ktR" secondAttribute="bottom" id="n8P-Wd-WCd"/>
                         </constraints>

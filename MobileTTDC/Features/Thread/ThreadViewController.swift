@@ -66,6 +66,7 @@ class ThreadViewController: CommonBaseViewController {
     override func refreshStyle() {
         collectionView.backgroundColor = getApplicationContext().getCurrentStyle().underneath()
         collectionView.indicatorStyle = getApplicationContext().getCurrentStyle().scrollBarStyle()
+        view.backgroundColor = getApplicationContext().getCurrentStyle().underneath()
     }
 
     

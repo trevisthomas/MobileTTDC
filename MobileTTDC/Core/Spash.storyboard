@@ -48,13 +48,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DkD-cg-8tu">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DkD-cg-8tu">
                                 <rect key="frame" x="0.0" y="621" width="375" height="46"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="LdT-Og-7ah"/>
+                                </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TTDC 2016" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CyX-xw-bc2">
-                                <rect key="frame" x="285.5" y="642" width="73.5" height="17"/>
+                                <rect key="frame" x="285" y="642" width="74" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -69,9 +71,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jd6-Cb-gTm">
                                 <rect key="frame" x="0.0" y="64" width="375" height="64"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="EkA-wb-TQV">
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="EkA-wb-TQV">
                                         <rect key="frame" x="8" y="18" width="359" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
                                             <segment title=""/>
                                             <segment title=""/>
@@ -82,15 +83,21 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="EkA-wb-TQV" firstAttribute="top" secondItem="jd6-Cb-gTm" secondAttribute="top" constant="18" id="BPj-q3-HkW"/>
                                     <constraint firstAttribute="height" constant="64" id="KhQ-6I-iXB"/>
+                                    <constraint firstItem="EkA-wb-TQV" firstAttribute="leading" secondItem="jd6-Cb-gTm" secondAttribute="leading" constant="8" id="OdB-mH-g5U"/>
+                                    <constraint firstAttribute="bottom" secondItem="EkA-wb-TQV" secondAttribute="bottom" constant="18" id="d2S-Fb-Xof"/>
+                                    <constraint firstAttribute="trailing" secondItem="EkA-wb-TQV" secondAttribute="trailing" constant="8" id="f7A-bH-jCG"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="DkD-cg-8tu" firstAttribute="leading" secondItem="wZN-qV-88X" secondAttribute="leadingMargin" constant="-16" id="88p-Uu-Deg"/>
                             <constraint firstItem="SBG-rQ-dCJ" firstAttribute="top" secondItem="go1-S9-dlK" secondAttribute="bottom" constant="44" id="EqX-tS-gKl"/>
                             <constraint firstItem="Bad-Ip-7kn" firstAttribute="centerY" secondItem="wZN-qV-88X" secondAttribute="centerY" id="Exe-RW-2Eb"/>
                             <constraint firstItem="RtA-dO-3ne" firstAttribute="leading" secondItem="wZN-qV-88X" secondAttribute="leadingMargin" constant="-16" id="LYK-yW-zEo"/>
+                            <constraint firstItem="SBG-rQ-dCJ" firstAttribute="top" secondItem="DkD-cg-8tu" secondAttribute="bottom" id="M44-8c-lpf"/>
                             <constraint firstAttribute="trailing" secondItem="go1-S9-dlK" secondAttribute="trailing" id="MuT-TY-RQo"/>
                             <constraint firstItem="jd6-Cb-gTm" firstAttribute="leading" secondItem="wZN-qV-88X" secondAttribute="leadingMargin" constant="-16" id="PSH-Y2-h8K"/>
                             <constraint firstItem="jd6-Cb-gTm" firstAttribute="width" secondItem="RtA-dO-3ne" secondAttribute="width" id="PhI-sb-Iqi"/>
@@ -102,6 +109,9 @@
                             <constraint firstItem="Bad-Ip-7kn" firstAttribute="centerX" secondItem="wZN-qV-88X" secondAttribute="centerX" id="grU-sl-ei8"/>
                             <constraint firstItem="go1-S9-dlK" firstAttribute="top" secondItem="jd6-Cb-gTm" secondAttribute="bottom" id="hEx-xc-jXo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CyX-xw-bc2" secondAttribute="trailing" id="onk-WN-4n6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DkD-cg-8tu" secondAttribute="trailing" constant="-16" id="ptJ-ye-IAo"/>
+                            <constraint firstItem="jd6-Cb-gTm" firstAttribute="top" secondItem="Fjv-G9-atP" secondAttribute="bottom" constant="44" id="s6u-hh-ODB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jd6-Cb-gTm" secondAttribute="trailing" constant="-16" id="xTt-i1-3eK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1VI-kg-kfx"/>

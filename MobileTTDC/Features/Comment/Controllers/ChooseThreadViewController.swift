@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChooseThreadViewController: UIViewController {
+class ChooseThreadViewController: UIViewController{
 
     fileprivate var transactionId : Int = 0;
     @IBOutlet weak var topicSelectorTextField: UITextField!
@@ -40,6 +40,8 @@ class ChooseThreadViewController: UIViewController {
 //        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CommentViewController.dismissKeyboard))
 //       tableView.addGestureRecognizer(tap)
         registerForStyleUpdates()
+        
+        tableView.delegate = self
     }
     
     override func refreshStyle() {
@@ -130,13 +132,12 @@ extension ChooseThreadViewController {
 //    }
     
     func keyboardWillShow(_ notification: Notification) {
-        if let keyboardFrame = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect {
-            invokeLater {
-//                self.bottomConstraintTableView.constant = keyboardFrame.height - 50 //Hm, is this 50px becaues of tabbar?!
-                
-                self.bottomConstraintTableView.constant = keyboardFrame.height
-            }
-        }
+//        if let keyboardFrame = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? CGRect {
+//            invokeLater {
+//                //Trevis, this works on iphone, but is bad news on ipad.  For now i'm disabling it and just hiding the keyboard when the user tries to scroll
+//                self.bottomConstraintTableView.constant = keyboardFrame.height
+//            }
+//        }
     }
     
     func keyboardDidHide(_ notification: Notification) {
@@ -242,5 +243,11 @@ extension ChooseThreadViewController : UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false
+    }
+}
+
+extension ChooseThreadViewController : UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchBar.resignFirstResponder()
     }
 }

@@ -100,6 +100,7 @@
 		0FD0A33C1D0DF4140030D36F /* ReuseIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD0A33B1D0DF4140030D36F /* ReuseIdentifiers.swift */; };
 		0FD0A33E1D0DFDD80030D36F /* TopicCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD0A33D1D0DFDD80030D36F /* TopicCommand.swift */; };
 		0FD0A3401D0DFE980030D36F /* TopicResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD0A33F1D0DFE980030D36F /* TopicResponse.swift */; };
+		0FD324011E07330500C4C0CA /* AnimatedLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD324001E07330500C4C0CA /* AnimatedLabelTextField.swift */; };
 		0FD597691D316CD500CAE7FF /* AutoCompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD597671D316CD500CAE7FF /* AutoCompleteTableViewCell.swift */; };
 		0FD5976A1D316CD500CAE7FF /* AutoCompleteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FD597681D316CD500CAE7FF /* AutoCompleteTableViewCell.xib */; };
 		0FDA6A231DC7C75A00279596 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDA6A221DC7C75A00279596 /* NavigationViewController.swift */; };
@@ -227,6 +228,7 @@
 		0FD0A33B1D0DF4140030D36F /* ReuseIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReuseIdentifiers.swift; sourceTree = "<group>"; };
 		0FD0A33D1D0DFDD80030D36F /* TopicCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCommand.swift; sourceTree = "<group>"; };
 		0FD0A33F1D0DFE980030D36F /* TopicResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicResponse.swift; sourceTree = "<group>"; };
+		0FD324001E07330500C4C0CA /* AnimatedLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatedLabelTextField.swift; path = Controls/AnimatedLabelTextField.swift; sourceTree = "<group>"; };
 		0FD597671D316CD500CAE7FF /* AutoCompleteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoCompleteTableViewCell.swift; sourceTree = "<group>"; };
 		0FD597681D316CD500CAE7FF /* AutoCompleteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutoCompleteTableViewCell.xib; sourceTree = "<group>"; };
 		0FDA6A221DC7C75A00279596 /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 		0FA3F2431DB982CD00268DC1 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				0FD323FF1E0732D000C4C0CA /* Controls */,
 				0FF630981DFB79E500DD3DD2 /* Cells */,
 				0F2B2BB31DFDE56B0024856A /* Views */,
 				0F6E12B41DD8F9AD00927810 /* CommonBaseViewController.swift */,
@@ -453,6 +456,14 @@
 				0FE527251CFB656200407AAE /* Network */,
 			);
 			path = MobileTTDC;
+			sourceTree = "<group>";
+		};
+		0FD323FF1E0732D000C4C0CA /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				0FD324001E07330500C4C0CA /* AnimatedLabelTextField.swift */,
+			);
+			name = Controls;
 			sourceTree = "<group>";
 		};
 		0FE527251CFB656200407AAE /* Network */ = {
@@ -752,6 +763,7 @@
 				0FE5273E1CFD058700407AAE /* PostResponse.swift in Sources */,
 				0F3CEABA1DC4D64F003CD432 /* AppStyle.swift in Sources */,
 				0F97BDA21DF0C66D007E5F43 /* ServerEventMonitor.swift in Sources */,
+				0FD324011E07330500C4C0CA /* AnimatedLabelTextField.swift in Sources */,
 				0FE527221CFB654300407AAE /* LoginResponse.swift in Sources */,
 				0FE5272F1CFB65EB00407AAE /* ExtensionArray.swift in Sources */,
 				0F6E12B51DD8F9AD00927810 /* CommonBaseViewController.swift in Sources */,

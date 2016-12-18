@@ -122,7 +122,7 @@ class LatestPostsViewController: CommonBaseViewController, BroadcastPostAddConsu
 //        collectionView.backgroundColor = getApplicationContext().getCurrentStyle().postBackgroundColor()
         collectionView.backgroundColor = getApplicationContext().getCurrentStyle().underneath()
         collectionView.indicatorStyle = getApplicationContext().getCurrentStyle().scrollBarStyle()
-        
+        view.backgroundColor = getApplicationContext().getCurrentStyle().underneath()
     }
     
     //This is here so that the layout will adjust when you "maximize"

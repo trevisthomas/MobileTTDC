@@ -46,15 +46,15 @@ class ChooseThreadViewController: UIViewController{
     
     override func refreshStyle() {
         let style = getApplicationContext().getCurrentStyle()
-        searchBar.backgroundColor = style.navigationBackgroundColor()
+        searchBar.backgroundColor = style.postBackgroundColor()
         searchBar.tintColor = style.navigationColor()
         
-        searchBar.barTintColor = style.navigationBackgroundColor()
+        searchBar.barTintColor = style.postBackgroundColor()
         searchBar.setTextColor(style.navigationColor())
-        searchBar.setTextBackgroundColor(style.searchBackgroundColor())
+        searchBar.setTextBackgroundColor(style.underneath())
         
         
-        view.backgroundColor = style.navigationBackgroundColor()
+        view.backgroundColor = style.postBackgroundColor()
         
         tableView.backgroundColor = style.postBackgroundColor()
         tableView.separatorColor = style.headerDetailTextColor()
@@ -172,8 +172,11 @@ extension ChooseThreadViewController {
             guard (response != nil) else {
                 print("Autocomplete fail")
                 
-                self.autoCompleteItems.removeAll()
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.autoCompleteItems.removeAll()
+                    self.tableView.reloadData()
+                }
+                
                 
                 return;
             }

@@ -22,24 +22,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4bg-Dr-EIx">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4bg-Dr-EIx" customClass="AnimatedLabelTextField" customModule="MobileTTDC" customModuleProvider="target">
                                 <rect key="frame" x="40" y="104" width="688" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
-                                <connections>
-                                    <outlet property="delegate" destination="8rJ-Kc-sve" id="5vj-e1-I0f"/>
-                                </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bL2-PP-Bjg">
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bL2-PP-Bjg" customClass="AnimatedLabelTextField" customModule="MobileTTDC" customModuleProvider="target">
                                 <rect key="frame" x="40" y="174" width="688" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" secureTextEntry="YES"/>
-                                <connections>
-                                    <outlet property="delegate" destination="8rJ-Kc-sve" id="UbL-zm-MqE"/>
-                                </connections>
                             </textField>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvk-sU-ufB">
-                                <rect key="frame" x="365" y="244" width="38" height="30"/>
+                                <rect key="frame" x="284" y="244" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="muo-ma-OTT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="loginButton:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="0MX-fu-pi8"/>
@@ -67,15 +65,16 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="geo-gO-uWN"/>
+                    <navigationItem key="navigationItem" title="Login" id="geo-gO-uWN"/>
                     <connections>
-                        <outlet property="loginTextField" destination="4bg-Dr-EIx" id="Lbr-io-afr"/>
-                        <outlet property="passwordTextField" destination="bL2-PP-Bjg" id="vPQ-BD-jeR"/>
+                        <outlet property="loginButton" destination="hvk-sU-ufB" id="ESr-2y-Ies"/>
+                        <outlet property="loginTextField" destination="4bg-Dr-EIx" id="3t0-ws-hYL"/>
+                        <outlet property="passwordTextField" destination="bL2-PP-Bjg" id="7ko-Vb-4gu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3164" y="-216.34182908545728"/>
+            <point key="canvasLocation" x="3163.28125" y="-216.796875"/>
         </scene>
         <!--Conversations-->
         <scene sceneID="rQb-qh-osa">

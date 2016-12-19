@@ -13,7 +13,11 @@ class AnimatedLabelTextField: UITextField, UITextFieldDelegate {
     
     var labelScale : CGFloat = 1.1
     var textInset : CGFloat = 6.0
-    var placeHolderColor = UIColor.black
+    var placeHolderColor = UIColor.black {
+        didSet {
+            label.textColor = placeHolderColor
+        }
+    }
     var placeHolderAlpha : CGFloat = 0.2
     var borderHighlightColor : UIColor = UIColor.orange
     //    var borderDefaultColor : UIColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1)
@@ -25,15 +29,24 @@ class AnimatedLabelTextField: UITextField, UITextFieldDelegate {
     private var labelRect : CGRect = CGRect.zero
     var inLabelMode : Bool = false
     
+    
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
         clipsToBounds = false
         placeholderTextBackup = placeholder
+        
         setup()
     }
     
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//        setup()
+//    }
+    
     func setup() {
+        
+        
         
         delegate = self
         
@@ -158,4 +171,19 @@ class AnimatedLabelTextField: UITextField, UITextFieldDelegate {
         
     }
     
+}
+
+extension AnimatedLabelTextField {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag+1;
+        
+        if let loginButton = textField.superview?.viewWithTag(nextTag) as? UIButton!{
+            loginButton.sendActions(for: UIControlEvents.touchUpInside)
+        } else if let nextResponder=textField.superview?.viewWithTag(nextTag) as UIResponder!{
+            nextResponder.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return false // We do not want UITextField to insert line-breaks.
+    }
 }

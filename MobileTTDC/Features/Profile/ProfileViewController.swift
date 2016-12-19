@@ -56,6 +56,7 @@ class ProfileViewController: UIViewController {
     }
     @IBAction func logoutAction(_ sender: AnyObject) {
         getApplicationContext().logoff()
+        tabBarController?.selectedIndex = 0
     }
 
 }

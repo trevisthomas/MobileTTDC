@@ -66,15 +66,15 @@ class TopicCreationViewController: UIViewController {
     override func refreshStyle() {
         let style = getApplicationContext().getCurrentStyle()
         
-        view.backgroundColor = style.navigationBackgroundColor()
+        view.backgroundColor = style.postBackgroundColor()
         
         titleLabel.textColor = style.headerTextColor()
         
         chooseForumButton.setTitleColor(style.tintColor(), for: .normal)
         
         
-        topicDescriptionTextView.textColor = UIColor.white
-        topicDescriptionTextView.backgroundColor = style.postBackgroundColor()
+        topicDescriptionTextView.textColor = style.entryTextColor()
+        topicDescriptionTextView.backgroundColor = style.underneath()
         topicDescriptionTextView.tintColor = style.headerDetailTextColor()
         
     }

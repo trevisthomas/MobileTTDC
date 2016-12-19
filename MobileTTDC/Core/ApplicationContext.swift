@@ -80,9 +80,9 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
         }
         loadState() {
             (person) in
-            if self._currentUser?.personId != person.personId {
+//            if self._currentUser?.personId != person.personId {
                 self._currentUser = person
-            }
+//            }
             self.registerForPush()
             self.reloadAllData()
             self.serverEventMonitor.start()
@@ -150,10 +150,10 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
         
         didSet{
             
-//            guard previousUser?.login != _currentUser?.login else {
-//                return
-//            }
-//            
+            guard oldValue?.login != _currentUser?.login else {
+                return
+            }
+//
             var objects = [Any?]()
             objects.append(_currentUser?.login)
             
@@ -236,7 +236,7 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
                 
             };
         } else {
-            self.logoff()
+//            self.logoff()
             self.reloadAllData()
             callback(ApplicationContext.anonymous)
         }
@@ -299,7 +299,7 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
         Network.performLogin(cmd){
             (response, message) -> Void in
             guard (response != nil) else {
-                self._currentUser = nil
+                self._currentUser = ApplicationContext.anonymous
                 self.token = nil
                 completion(false, "Invalid login or password")
                 return;
@@ -360,11 +360,10 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
         
         Network.performRegisterForPushCommand(cmd){
             (response, message) -> Void in
-            
-            self._currentUser = nil
+            self.token = nil //Wow.
+            self._currentUser = ApplicationContext.anonymous
             self.currentStyleName = ApplicationContext.defaultStyle
             self.displayMode = ApplicationContext.defaultDisplayMode
-            self.token = nil
             self.saveState()
 
         };

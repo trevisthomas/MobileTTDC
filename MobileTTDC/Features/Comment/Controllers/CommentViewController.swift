@@ -81,14 +81,14 @@ class CommentViewController: UIViewController {
     override func refreshStyle() {
         let style = getApplicationContext().getCurrentStyle()
         
-        view.backgroundColor = style.navigationBackgroundColor()
+        view.backgroundColor = style.postBackgroundColor()
         
         threadTitle.textColor = style.headerTextColor()
         threadSummaryLabel.textColor = style.headerDetailTextColor()
         
         
         commentTextArea.textColor = style.entryTextColor()
-        commentTextArea.backgroundColor = style.postBackgroundColor()
+        commentTextArea.backgroundColor = style.underneath()
         commentTextArea.tintColor = style.headerDetailTextColor()
     }
     

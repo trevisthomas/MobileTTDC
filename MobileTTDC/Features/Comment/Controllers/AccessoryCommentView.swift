@@ -135,7 +135,7 @@ class AccessoryCommentView: UIView, UITextViewDelegate {
     override func refreshStyle() {
         let style = getApplicationContext().getCurrentStyle()
         postTextView.keyboardAppearance = style.keyboardAppearance()
-        backgroundColor = style.navigationBackgroundColor()
+        backgroundColor = style.underneath()
         
         postTextView.backgroundColor = style.postBackgroundColor()
         postTextView.textColor = style.entryTextColor()

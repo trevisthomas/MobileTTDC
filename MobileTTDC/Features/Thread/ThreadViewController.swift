@@ -28,7 +28,7 @@ class ThreadViewController: CommonBaseViewController {
                 return;
             }
             
-            self.invokeLater{
+            invokeLater{
                 let remaining = postCount < r.totalResults
                 completion(r.list.flattenPosts(), remaining)
             }
@@ -47,7 +47,7 @@ class ThreadViewController: CommonBaseViewController {
                 return;
             }
             
-            self.invokeLater{
+            invokeLater{
                 completion(response?.post)
             }
         };

@@ -204,18 +204,20 @@ class CommonBaseViewController: UIViewController {
             (posts, remaining) -> Void in
             self.dataLoadingInProgress = false
             self.morePostsRemaining = remaining
-            guard (posts != nil) else {
-                completion()
-                return;
-            }
-            self.posts = posts!
-            
-            //TODO: What is going on here?  Two reloads?
-            self.getCollectionView()?.reloadData()
-            
-            self.loadSizeCache(posts: self.posts){
+            invokeLater {
+                guard (posts != nil) else {
+                    completion()
+                    return;
+                }
+                self.posts = posts!
+                
+                //TODO: What is going on here?  Two reloads?
                 self.getCollectionView()?.reloadData()
-                completion()
+                
+                self.loadSizeCache(posts: self.posts){
+                    self.getCollectionView()?.reloadData()
+                    completion()
+                }
             }
             
         }
@@ -228,30 +230,31 @@ class CommonBaseViewController: UIViewController {
             (posts, remaining) -> Void in
             self.morePostsRemaining = remaining
             self.dataLoadingInProgress = false
-            guard (posts != nil) else {
-                completion()
-                return;
-            }
+            invokeLater{
+                guard (posts != nil) else {
+                    completion()
+                    return;
+                }
 
-            
-            // Hours of time wasted on what is below. Turns out the failure is in the attrbuted text thing.  The attributed text size thing that i do in my prototype doesnt work
-            var count = self.posts.count - 1
-            let list = posts!
-            
-            var paths : [IndexPath] = []
-            for _ in list {
-                let path = IndexPath(row: count, section: 0)
-                paths.append(path)
-                count = count + 1
+                
+                // Hours of time wasted on what is below. Turns out the failure is in the attrbuted text thing.  The attributed text size thing that i do in my prototype doesnt work
+                var count = self.posts.count - 1
+                let list = posts!
+                
+                var paths : [IndexPath] = []
+                for _ in list {
+                    let path = IndexPath(row: count, section: 0)
+                    paths.append(path)
+                    count = count + 1
+                }
+                
+                self.posts.append(contentsOf: list)
+                
+                self.loadSizeCache(posts: self.posts){
+                    self.getCollectionView()?.reloadData()
+                    completion()
+                }
             }
-            
-            self.posts.append(contentsOf: list)
-            
-            self.loadSizeCache(posts: self.posts){
-                self.getCollectionView()?.reloadData()
-                completion()
-            }
-            
            
 // Anoying crash
 //            self.posts.append(contentsOf: list)
@@ -265,7 +268,7 @@ class CommonBaseViewController: UIViewController {
         
     }
     func loadSizeCache(posts : [Post], completion: (@escaping () -> Swift.Void) = {}){
-        DispatchQueue.main.async {
+        invokeLater {
             for p in self.posts {
                 let size = self.prototypeCellSize(post: p)
                 p.size = size.toTuple()

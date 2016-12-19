@@ -90,7 +90,8 @@ class LatestPostsModel <T : PostUpdateListener>{
             self.postDictionary[displayMode] = (list: posts, page: 1)
             //            self.delegate?.dataUpdated(displayMode: displayMode)
             
-            self.dataChanged = true
+            self.dataChanged = false // Because the completion block tells the caller what's up.
+            
             completion(posts, true) //Warning, hard coding that there are more.
         }
         
@@ -118,8 +119,10 @@ class LatestPostsModel <T : PostUpdateListener>{
             self.postDictionary[displayMode]?.list.append(contentsOf: posts!)
             self.postDictionary[displayMode]?.page = pageNumber
             //            self.delegate?.dataUpdated(displayMode: displayMode)
-            self.dataChanged = true
-            completion(posts, true) //Warning, hard coding that there are more.
+            self.dataChanged = false // Because the completion block tells the caller what's up.
+            invokeLater{
+                completion(posts, true) //Warning, hard coding that there are more.
+            }
         }
         
         switch displayMode {

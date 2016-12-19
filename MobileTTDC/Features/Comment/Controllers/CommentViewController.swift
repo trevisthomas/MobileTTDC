@@ -81,14 +81,14 @@ class CommentViewController: UIViewController {
     override func refreshStyle() {
         let style = getApplicationContext().getCurrentStyle()
         
-        view.backgroundColor = style.postBackgroundColor()
+        view.backgroundColor = style.underneath()
         
         threadTitle.textColor = style.headerTextColor()
         threadSummaryLabel.textColor = style.headerDetailTextColor()
         
         
         commentTextArea.textColor = style.entryTextColor()
-        commentTextArea.backgroundColor = style.underneath()
+        commentTextArea.backgroundColor = style.searchBackgroundColor()
         commentTextArea.tintColor = style.headerDetailTextColor()
     }
     
@@ -194,7 +194,7 @@ extension CommentViewController {
                 return;
             }
             
-            self.invokeLater{
+            invokeLater{
                 self.parentPost = (response?.post)!
 //                self.commentTextArea.becomeFirstResponder()
                 self.commentAccessoryBecomeFirstResponder()
@@ -255,7 +255,7 @@ extension CommentViewController {
             return;
         }
         
-        self.invokeLater{
+        invokeLater{
             self.commentTextArea.setHtmlText(post.entry)
             self.refreshStyle()
             self.validateForPost()

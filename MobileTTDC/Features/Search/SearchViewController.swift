@@ -36,12 +36,12 @@ class SearchViewController : CommonBaseViewController {
         searchBar.backgroundColor = style.navigationBackgroundColor()
         searchBar.tintColor = style.navigationColor()
         
-        searchBar.barTintColor = style.navigationBackgroundColor()
+        searchBar.barTintColor = style.underneath()
         searchBar.setTextColor(style.navigationColor())
         searchBar.setTextBackgroundColor(style.searchBackgroundColor())
 
         
-        view.backgroundColor = style.navigationBackgroundColor()
+        view.backgroundColor = style.underneath()
 
         tableView.backgroundColor = style.postBackgroundColor()
         tableView.separatorColor = style.headerDetailTextColor()
@@ -140,7 +140,7 @@ extension SearchViewController {
                 return;
             }
             
-            DispatchQueue.main.async {
+            invokeLater {
                 self.switchToCollectionView()
                 let remaining = postCount < r.totalResults
                 completion(r.list, remaining)

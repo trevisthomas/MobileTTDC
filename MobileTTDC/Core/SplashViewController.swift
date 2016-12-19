@@ -67,7 +67,7 @@ class SplashViewController: UIViewController {
             
             applicationContext.latestPostsModel.loadFirstPage(displayMode: applicationContext.displayMode, completion: {
                 (_,_) in
-                self.invokeLater {
+                invokeLater {
                     self.performSegue(withIdentifier: "Main", sender: nil)
                 }
                 

@@ -155,7 +155,7 @@ public struct AppStyleLight : AppStyle {
     
     public func searchBackgroundColor() -> UIColor {
 //        return UIColor(red:0.90, green:0.90, blue:0.90, alpha:1.0)
-        return UIColor.palegrey
+        return UIColor.white
     }
     
     public func keyboardAppearance() -> UIKeyboardAppearance {

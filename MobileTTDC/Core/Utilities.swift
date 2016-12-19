@@ -17,6 +17,13 @@ func delay(seconds: Double, completion:@escaping ()->()) {
     }
 }
 
+func invokeLater(_ completion : @escaping () -> ()) {
+    DispatchQueue.main.async {
+        completion()
+    }
+}
+
+
 open class Utilities{
     
     open static let singleton : Utilities = Utilities()

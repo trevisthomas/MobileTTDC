@@ -140,7 +140,7 @@ extension ConversationWithReplyViewController {
                 return;
             }
             
-            self.invokeLater{
+            invokeLater{
                 
                 guard response?.list != nil else {
 //                    return

@@ -49,12 +49,12 @@ class ChooseThreadViewController: UIViewController{
         searchBar.backgroundColor = style.postBackgroundColor()
         searchBar.tintColor = style.navigationColor()
         
-        searchBar.barTintColor = style.postBackgroundColor()
+        searchBar.barTintColor = style.underneath()
         searchBar.setTextColor(style.navigationColor())
-        searchBar.setTextBackgroundColor(style.underneath())
+        searchBar.setTextBackgroundColor(style.searchBackgroundColor())
         
         
-        view.backgroundColor = style.postBackgroundColor()
+        view.backgroundColor = style.underneath()
         
         tableView.backgroundColor = style.postBackgroundColor()
         tableView.separatorColor = style.headerDetailTextColor()

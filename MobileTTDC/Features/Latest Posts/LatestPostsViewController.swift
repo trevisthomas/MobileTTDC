@@ -429,12 +429,14 @@ extension LatestPostsViewController : PostUpdateListener {
     }
     
     func onPostUpdated(post : Post, index : Int) {
-        posts[index] = post
-        let path = IndexPath(item: index, section: 0)
-        if let cell = getCollectionView()?.cellForItem(at: path) as? BaseCollectionViewCell {
-            cell.post = post
-        } /*else {
-         _ = dequeueCell(post, indexPath: path)
-         }*/
+        invokeLater{
+            self.posts[index] = post
+            let path = IndexPath(item: index, section: 0)
+            if let cell = self.getCollectionView()?.cellForItem(at: path) as? BaseCollectionViewCell {
+                cell.post = post
+            } /*else {
+             _ = dequeueCell(post, indexPath: path)
+             }*/
+        }
     }
 }

@@ -27,12 +27,7 @@ extension UIViewController {
         return appDelegate.applicationContext
     }
     
-    func invokeLater(_ completion : @escaping () -> ()) {
-        DispatchQueue.main.async {
-            completion()
-        }
-    }
-    
+        
     func registerAndCreatePrototypeCellFromNib(_ withName: String, forReuseIdentifier: String) -> UICollectionViewCell{
         let nib = UINib(nibName: withName, bundle: nil)
         self.getCollectionView()!.register(nib, forCellWithReuseIdentifier: forReuseIdentifier)

@@ -66,7 +66,7 @@ class TopicCreationViewController: UIViewController {
     override func refreshStyle() {
         let style = getApplicationContext().getCurrentStyle()
         
-        view.backgroundColor = style.postBackgroundColor()
+        view.backgroundColor = style.underneath()
         
         titleLabel.textColor = style.headerTextColor()
         
@@ -74,7 +74,7 @@ class TopicCreationViewController: UIViewController {
         
         
         topicDescriptionTextView.textColor = style.entryTextColor()
-        topicDescriptionTextView.backgroundColor = style.underneath()
+        topicDescriptionTextView.backgroundColor = style.searchBackgroundColor()
         topicDescriptionTextView.tintColor = style.headerDetailTextColor()
         
     }

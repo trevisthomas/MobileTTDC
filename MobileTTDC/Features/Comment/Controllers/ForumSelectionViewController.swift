@@ -55,7 +55,7 @@ extension ForumSelectionViewController{
                 return;
             }
             
-            self.invokeLater{
+            invokeLater{
                 self.forums = list
                 self.tableView.reloadData()
             }

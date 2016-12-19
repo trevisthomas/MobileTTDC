@@ -26,7 +26,7 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
 //    let latestPostsModel = LatestPostsModel(broadcaster: broadcaster)
     private var serverEventMonitor : ServerEventMonitor!
     
-    private static let defaultStyle : String = styleDark
+    private static let defaultStyle : String = styleLight
     private static let defaultDisplayMode : DisplayMode = .latestFlat
     
     public var connectionId : String? {

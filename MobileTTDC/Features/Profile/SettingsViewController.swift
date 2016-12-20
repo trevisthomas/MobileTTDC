@@ -1,21 +1,23 @@
 //
-//  ProfileViewController.swift
+//  SettingsViewController.swift
 //  MobileTTDC
 //
-//  Created by Trevis Thomas on 5/28/16.
+//  Created by Trevis Thomas on 12/20/16.
 //  Copyright © 2016 Trevis Thomas. All rights reserved.
 //
 
 import UIKit
 
-class ProfileViewController: UIViewController {
-
+class SettingsViewController: UIViewController {
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var profilePicImageView: UIImageView!
     @IBOutlet weak var lightDarkSegmentedControl: UISegmentedControl!
     @IBOutlet weak var privateStarView: StarRatingView!
-    @IBOutlet weak var webLinkButtonStackView: UIStackView!
-    @IBOutlet weak var bioTextView: UITextView!
+    @IBOutlet weak var styleLabel: UILabel!
+    
+    @IBOutlet weak var nsfwLabel: UILabel!
+    @IBOutlet weak var nwsSwitch: UISwitch!
     
     var person : Person!
     
@@ -30,12 +32,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-
         registerForStyleUpdates()
-        
-        
-
-        
     }
     
     private func setup(){
@@ -44,19 +41,14 @@ class ProfileViewController: UIViewController {
         }
         
         
-//        //Configure the view for edit or for view based on person id
-//        if (getApplicationContext().currentUser()?.personId == person.personId) {
-//            //Display update components
-//        } else {
-//            //Hide updatable stuff
-//        }
+        //        //Configure the view for edit or for view based on person id
+        //        if (getApplicationContext().currentUser()?.personId == person.personId) {
+        //            //Display update components
+        //        } else {
+        //            //Hide updatable stuff
+        //        }
         
         titleLabel.text = person.login
-        if let bio = person.bio {
-            bioTextView.setHtmlText(bio)
-        } else {
-            bioTextView.setHtmlText("")
-        }
         
         if let url = person.image?.name {
             profilePicImageView.downloadedFrom(link: url, contentMode: .scaleAspectFit)
@@ -68,14 +60,19 @@ class ProfileViewController: UIViewController {
             privateStarView.isHidden = true
         }
         
+        nwsSwitch.isEnabled = false
         
-        
+        if let nws = person.nws {
+            nwsSwitch.isOn = nws
+        } else {
+            nwsSwitch.isOn = false
+        }
     }
     
-//    override func viewWillAppear(animated: Bool) {
-//        lightDarkSegmentedControl.selectedSegmentIndex = getApplicationContext().isStyleLight() ? 0 : 1
-//    }
-
+    //    override func viewWillAppear(animated: Bool) {
+    //        lightDarkSegmentedControl.selectedSegmentIndex = getApplicationContext().isStyleLight() ? 0 : 1
+    //    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -84,15 +81,19 @@ class ProfileViewController: UIViewController {
     override func refreshStyle() {
         let style = getApplicationContext().getCurrentStyle()
         titleLabel.textColor = style.entryTextColor()
-
+        
         self.view.backgroundColor = style.postBackgroundColor()
-        
-        self.bioTextView.backgroundColor = style.underneath()
-        self.bioTextView.textColor = style.entryTextColor()
-        
+        nsfwLabel.textColor = style.entryTextColor()
+        styleLabel.textColor = style.entryTextColor()
         
 //        lightDarkSegmentedControl.tintColor = style.tintColor()
-//        lightDarkSegmentedControl.selectedSegmentIndex = getApplicationContext().isStyleLight() ? 0 : 1
+        lightDarkSegmentedControl.tintColor = style.navigationTintColor()
+        lightDarkSegmentedControl.selectedSegmentIndex = getApplicationContext().isStyleLight() ? 0 : 1
+        
+        nwsSwitch.tintColor = style.underneath()
+        nwsSwitch.onTintColor = style.navigationTintColor()
+        nwsSwitch.thumbTintColor = style.navigationBackgroundColor()
+        
     }
     
     @IBAction func lightDarkSegmentedControlAction(_ sender: UISegmentedControl) {
@@ -106,5 +107,5 @@ class ProfileViewController: UIViewController {
         getApplicationContext().logoff()
         tabBarController?.selectedIndex = 0
     }
-
+    
 }

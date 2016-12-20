@@ -254,10 +254,10 @@
             </objects>
             <point key="canvasLocation" x="220" y="-216"/>
         </scene>
-        <!--Profile-->
+        <!--Settings-->
         <scene sceneID="4go-J8-pUG">
             <objects>
-                <viewControllerPlaceholder storyboardName="Profile" id="ygJ-En-r4R" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="Settings" id="ygJ-En-r4R" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Uq5-xg-OOC"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Sl-Xv-9Um" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -504,11 +504,11 @@
             </objects>
             <point key="canvasLocation" x="2224.8000000000002" y="-216.34182908545728"/>
         </scene>
-        <!--Profile-->
+        <!--Settings-->
         <scene sceneID="PTK-v2-FSQ">
             <objects>
                 <navigationController storyboardIdentifier="ProfileNav" automaticallyAdjustsScrollViewInsets="NO" id="eqQ-ak-UPW" customClass="NavigationViewController" customModule="MobileTTDC" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="settings" id="OJp-jh-A1T"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" id="OJp-jh-A1T"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="VlQ-es-dWR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

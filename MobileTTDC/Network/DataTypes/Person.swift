@@ -22,7 +22,7 @@ public struct Person: Decodable{
         webPageUserObjects = "webPageUserObjects" <~~ json
         
         administrator = "administrator" <~~ json
-        nws = "nws" <~~ json
+        nws = "nwsEnabled" <~~ json
         privateAccessAccount = "privateAccessAccount" <~~ json
         hits = "hits" <~~ json
         bio = "bio" <~~ json

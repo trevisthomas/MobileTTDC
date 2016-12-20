@@ -34,6 +34,7 @@ class StarRatingView: UIView {
     
     override func refreshStyle() {
         let style = getApplicationContext().getCurrentStyle()
+        backgroundColor = UIColor.clear
         fillColor = style.starFill()
         strokeColor = style.starStroke()
         bgColor = style.postBackgroundColor()

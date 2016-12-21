@@ -142,7 +142,7 @@ class RootPostCollectionViewCell: BaseCollectionViewCell {
     @IBOutlet weak var rootDetailLabel: UILabel!
     
     
-    var delegate: PostViewCellDelegate?
+//    var delegate: PostViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -154,6 +154,8 @@ class RootPostCollectionViewCell: BaseCollectionViewCell {
 //        getApplicationContext().broadcaster.subscribe(consumer: self)
         self.threadTitleButton.titleLabel?.adjustsFontSizeToFitWidth = true
         self.threadTitleButton.titleLabel?.minimumScaleFactor = 0.5
+        
+        connectCreatorImageView(creatorImageView: creatorImageView)
     }
     
     

@@ -95,6 +95,7 @@
                     </stackView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TGF-XQ-j4s">
                         <rect key="frame" x="8" y="8" width="40" height="40"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="X7e-Hj-IMV"/>
                             <constraint firstAttribute="width" constant="40" id="fzv-c7-Fvs"/>
@@ -107,7 +108,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cSY-Ng-cAg">
-                        <rect key="frame" x="464" y="172" width="132" height="20"/>
+                        <rect key="frame" x="460" y="172" width="132" height="20"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DXF-oW-dN7">
                                 <rect key="frame" x="0.0" y="0.0" width="51" height="20"/>
@@ -151,6 +152,7 @@
                 <constraint firstItem="nT1-Ac-hIw" firstAttribute="top" secondItem="RoR-zW-R4a" secondAttribute="top" constant="2" id="VYC-RD-CHb"/>
                 <constraint firstAttribute="trailing" secondItem="nT1-Ac-hIw" secondAttribute="trailing" id="YXd-v5-awH"/>
                 <constraint firstItem="iaW-Bm-g0V" firstAttribute="leading" secondItem="RoR-zW-R4a" secondAttribute="leading" constant="4" id="ZtL-pH-BeH"/>
+                <constraint firstAttribute="trailing" secondItem="cSY-Ng-cAg" secondAttribute="trailing" constant="8" id="a26-aq-s1G"/>
                 <constraint firstAttribute="bottom" secondItem="ePQ-I1-riB" secondAttribute="bottom" constant="37" id="dLf-pa-Jpy"/>
                 <constraint firstItem="TGF-XQ-j4s" firstAttribute="top" secondItem="RoR-zW-R4a" secondAttribute="top" constant="8" id="fIi-UI-KJu"/>
                 <constraint firstAttribute="trailing" secondItem="v4c-A6-yxm" secondAttribute="trailing" constant="8.5" id="gRd-xr-cms"/>
@@ -159,7 +161,6 @@
                 <constraint firstItem="cSY-Ng-cAg" firstAttribute="top" secondItem="iaW-Bm-g0V" secondAttribute="bottom" constant="36" id="ncq-gg-w6W"/>
                 <constraint firstItem="nT1-Ac-hIw" firstAttribute="leading" secondItem="TGF-XQ-j4s" secondAttribute="trailing" constant="4" id="sjC-hL-tjB"/>
                 <constraint firstItem="ePQ-I1-riB" firstAttribute="leading" secondItem="iaW-Bm-g0V" secondAttribute="leading" id="tJz-jU-22g"/>
-                <constraint firstItem="cSY-Ng-cAg" firstAttribute="trailing" secondItem="iaW-Bm-g0V" secondAttribute="trailing" id="yR2-Qd-AHb"/>
             </constraints>
             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
             <size key="customSize" width="414" height="167"/>

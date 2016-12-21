@@ -81,6 +81,8 @@
 		0FB2F4A91D035E34008F386A /* UIImageView+WebLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2F4A81D035E34008F386A /* UIImageView+WebLoad.swift */; };
 		0FB2F4AB1D037008008F386A /* UIView+Utillities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2F4AA1D037008008F386A /* UIView+Utillities.swift */; };
 		0FC8633E1E09DC7B00AE3634 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC8633D1E09DC7B00AE3634 /* SettingsViewController.swift */; };
+		0FC863401E0A0FD400AE3634 /* PersonCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC8633F1E0A0FD400AE3634 /* PersonCommand.swift */; };
+		0FC863421E0A0FE700AE3634 /* PersonResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC863411E0A0FE700AE3634 /* PersonResponse.swift */; };
 		0FCBD8591DBD101000DE8F2A /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 0FCBD8581DBD101000DE8F2A /* style.css */; };
 		0FCC107B1D2ABB9800EA0B25 /* AutoCompleteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCC107A1D2ABB9800EA0B25 /* AutoCompleteResponse.swift */; };
 		0FCC107D1D2ABC2000EA0B25 /* AutoCompleteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCC107C1D2ABC2000EA0B25 /* AutoCompleteItem.swift */; };
@@ -209,6 +211,8 @@
 		0FB2F4A81D035E34008F386A /* UIImageView+WebLoad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+WebLoad.swift"; sourceTree = "<group>"; };
 		0FB2F4AA1D037008008F386A /* UIView+Utillities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utillities.swift"; sourceTree = "<group>"; };
 		0FC8633D1E09DC7B00AE3634 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		0FC8633F1E0A0FD400AE3634 /* PersonCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCommand.swift; sourceTree = "<group>"; };
+		0FC863411E0A0FE700AE3634 /* PersonResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonResponse.swift; sourceTree = "<group>"; };
 		0FCBD8581DBD101000DE8F2A /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		0FCC107A1D2ABB9800EA0B25 /* AutoCompleteResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoCompleteResponse.swift; sourceTree = "<group>"; };
 		0FCC107C1D2ABC2000EA0B25 /* AutoCompleteItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoCompleteItem.swift; sourceTree = "<group>"; };
@@ -307,6 +311,8 @@
 				0F0F69B11D329B61009600F7 /* TransactionTrackable.swift */,
 				0F9FB1E31DBDC23800B901ED /* ValidateCommand.swift */,
 				0F9FB1E51DBDC29C00B901ED /* ValidateResponse.swift */,
+				0FC8633F1E0A0FD400AE3634 /* PersonCommand.swift */,
+				0FC863411E0A0FE700AE3634 /* PersonResponse.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -705,6 +711,7 @@
 				0F0997B51DC90EFC001991E2 /* MoviePostCollectionViewCell.swift in Sources */,
 				0FE527231CFB654300407AAE /* NetworkAdapter.swift in Sources */,
 				0F2B2BB21DFCA86D0024856A /* Sequence+.swift in Sources */,
+				0FC863401E0A0FD400AE3634 /* PersonCommand.swift in Sources */,
 				0F97BDA01DF0C3F0007E5F43 /* ServerEventListResponse.swift in Sources */,
 				0FF6309B1DFB889900DD3DD2 /* SplashViewController.swift in Sources */,
 				0FC8633E1E09DC7B00AE3634 /* SettingsViewController.swift in Sources */,
@@ -774,6 +781,7 @@
 				0FE5273E1CFD058700407AAE /* PostResponse.swift in Sources */,
 				0F3CEABA1DC4D64F003CD432 /* AppStyle.swift in Sources */,
 				0F97BDA21DF0C66D007E5F43 /* ServerEventMonitor.swift in Sources */,
+				0FC863421E0A0FE700AE3634 /* PersonResponse.swift in Sources */,
 				0FD324011E07330500C4C0CA /* AnimatedLabelTextField.swift in Sources */,
 				0FE527221CFB654300407AAE /* LoginResponse.swift in Sources */,
 				0FE5272F1CFB65EB00407AAE /* ExtensionArray.swift in Sources */,

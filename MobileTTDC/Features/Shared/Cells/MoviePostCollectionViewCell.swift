@@ -20,7 +20,7 @@ class MoviePostCollectionViewCell: BaseCollectionViewCell {
     fileprivate let starHeight : Int = 20
     @IBOutlet weak var starStackViewHeightConstraint: NSLayoutConstraint!
     
-    var delegate : PostViewCellDelegate?
+//    var delegate : PostViewCellDelegate?
     
     override var post : Post! {
         didSet{

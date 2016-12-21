@@ -26,7 +26,7 @@ class ReviewPostCollectionViewCell: BaseCollectionViewCell {
     @IBOutlet weak var entryConstraintRight: NSLayoutConstraint!
     @IBOutlet weak var starRatingView: StarRatingView!
     
-    var delegate : PostViewCellDelegate?
+//    var delegate : PostViewCellDelegate?
     
     override var post : Post! {
         didSet{
@@ -75,7 +75,6 @@ class ReviewPostCollectionViewCell: BaseCollectionViewCell {
         
         self.movieTitleButton.titleLabel?.adjustsFontSizeToFitWidth = true
         self.movieTitleButton.titleLabel?.minimumScaleFactor = 0.5
-        
         
     }
     

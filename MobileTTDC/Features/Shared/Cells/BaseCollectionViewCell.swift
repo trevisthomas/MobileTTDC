@@ -9,17 +9,33 @@
 import UIKit
 
 
-class BaseCollectionViewCell : UICollectionViewCell{
+class BaseCollectionViewCell : UICollectionViewCell, UIGestureRecognizerDelegate, PostEntryViewContract{
     var post : Post!
+    var delegate: PostViewCellDelegate?
+    
+    func connectCreatorImageView(creatorImageView : UIImageView) {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTapOnCreator))
+        tap.delegate = self
+        creatorImageView.isUserInteractionEnabled = true
+        creatorImageView.addGestureRecognizer(tap)
+        
+    }
+    
+    func handleTapOnCreator (_ sender: UIGestureRecognizer) {
+        delegate?.presentCreator(post.creator!.personId)
+    }
 }
 
 protocol PostEntryViewContract {
     func postEntryInsets() -> UIEdgeInsets
     func postEntryTextView() -> UITextView?
+    var delegate: PostViewCellDelegate? {get set}
 }
 
 
-extension BaseCollectionViewCell : PostEntryViewContract {
+extension BaseCollectionViewCell {
+    
+    
     func postEntryInsets() -> UIEdgeInsets {
         abort()
     }
@@ -37,4 +53,6 @@ extension BaseCollectionViewCell : PostEntryViewContract {
         let heightThatFits = sizeThatFits.height + insets.top + insets.bottom + entryInsets.top + entryInsets.bottom
         return heightThatFits
     }
+    
+    
 }

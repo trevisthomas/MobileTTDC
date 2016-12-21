@@ -154,11 +154,14 @@ extension SearchViewController {
             return
         }
         
-        let threadId = sender as! String
+        if let vc = segue.destination.childViewControllers.first as? ThreadViewController {
+            let threadId = sender as! String
+            vc.rootPostId = threadId
+        }
         
-        let vc = segue.destination.childViewControllers.first as! ThreadViewController
-        
-        vc.rootPostId = threadId
+        if let vc = segue.destination.childViewControllers.first as? ProfileViewController {
+            vc.personId = sender as! String
+        }
         
         
     }

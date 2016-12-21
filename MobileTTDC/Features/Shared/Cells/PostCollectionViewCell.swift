@@ -73,7 +73,7 @@ class PostCollectionViewCell: BaseCollectionViewCell {
     }
     
     
-    var delegate: PostViewCellDelegate?
+//    var delegate: PostViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -86,7 +86,13 @@ class PostCollectionViewCell: BaseCollectionViewCell {
         
         self.threadTitleButton.titleLabel?.adjustsFontSizeToFitWidth = true
         self.threadTitleButton.titleLabel?.minimumScaleFactor = 0.5
-
+        
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTapOnCreator))
+//        tap.delegate = self
+//        creatorImageView.isUserInteractionEnabled = true
+//        creatorImageView.addGestureRecognizer(tap)
+        
+        connectCreatorImageView(creatorImageView: creatorImageView)
     }
     
 
@@ -151,7 +157,9 @@ class PostCollectionViewCell: BaseCollectionViewCell {
         return entryTextView
     }
     
-    
+//    func handleTapOnCreator (_ sender: UIGestureRecognizer) {
+//        delegate?.presentCreator(post.creator!.personId)
+//    }
 }
 
 //extension PostCollectionViewCell : BroadcastEventConsumer {

@@ -13,4 +13,5 @@ protocol PostViewCellDelegate {
     func viewComments(_ post: Post)
     func commentOnPost(_ post: Post)
     func viewThread(_ post: Post)
+    func presentCreator(_ personId: String)
 }

@@ -272,7 +272,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mjS-oo-tEk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1887" y="1211"/>
+            <point key="canvasLocation" x="2007" y="1256"/>
         </scene>
         <!--Comment-->
         <scene sceneID="vEf-Fg-r41">
@@ -280,7 +280,15 @@
                 <viewControllerPlaceholder storyboardName="Comment" id="KgX-z6-I5U" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R2N-dh-qyN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2041" y="1361"/>
+            <point key="canvasLocation" x="2016" y="1352"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="QqK-VH-wKS">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" id="43x-Ok-ykL" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Scw-l2-l5b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2006" y="1439"/>
         </scene>
         <!--Latest-->
         <scene sceneID="FL4-mH-Lzz">
@@ -392,6 +400,7 @@
                         <outlet property="modeSelectionView" destination="Efd-hk-DWs" id="fSS-6n-iPS"/>
                         <segue destination="Rsi-aW-7qZ" kind="presentation" identifier="ConversationWithReplyView" modalPresentationStyle="formSheet" id="Tbg-Sh-HGH"/>
                         <segue destination="iT6-UF-28K" kind="show" identifier="ThreadView" id="gvA-9t-fNh"/>
+                        <segue destination="43x-Ok-ykL" kind="presentation" identifier="Profile" modalPresentationStyle="formSheet" id="boa-GS-Aa5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Af-58-Ddn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -404,7 +413,7 @@
                 <viewControllerPlaceholder storyboardName="Conversation" id="Rsi-aW-7qZ" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DYG-mx-0q2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1837" y="1567"/>
+            <point key="canvasLocation" x="2026" y="1552"/>
         </scene>
         <!--Thread-->
         <scene sceneID="aHS-nB-6ui">
@@ -521,7 +530,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="efv-VC-cM3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1886" y="587"/>
+            <point key="canvasLocation" x="1282" y="148"/>
         </scene>
     </scenes>
     <resources>

@@ -42,13 +42,15 @@ class PostReplyCollectionViewCell: BaseCollectionViewCell {
     @IBOutlet weak var entryBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var entryLeftConstraint: NSLayoutConstraint!
     @IBOutlet weak var entryRightConstraint: NSLayoutConstraint!
-    var delegate : PostViewCellDelegate?
+//    var delegate : PostViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         entryTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0)
         registerForStyleUpdates() //causes refreshStyle to be called
 //        getApplicationContext().broadcaster.subscribe(consumer: self)
+        
+        connectCreatorImageView(creatorImageView: creatorImageView)
     }
     
     

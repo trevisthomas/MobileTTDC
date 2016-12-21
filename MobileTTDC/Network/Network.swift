@@ -94,5 +94,11 @@ public struct Network {
         command.token = getToken()
         NetworkAdapter.performCommand("\(getHost())/restful/serverEventList-mini", command: command, completion: completion)
     }
+    public static func performPerson(_ command : PersonCommand, completion: @escaping (_ response : PersonResponse?, _ error: String?) -> Void){
+        command.token = getToken()
+        NetworkAdapter.performCommand("\(getHost())/restful/person", command: command, completion: completion)
+    }
+    
+    
     
 }

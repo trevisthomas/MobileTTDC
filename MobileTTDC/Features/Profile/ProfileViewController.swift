@@ -17,39 +17,24 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var webLinkButtonStackView: UIStackView!
     @IBOutlet weak var bioTextView: UITextView!
     
-    var person : Person!
-    
-    var personId : String! {
-        didSet{
-            //load person
-            //TODO: Really load the person from a webservice.
-            person = getApplicationContext().currentUser()!
+    private var person : Person! {
+        didSet {
+            setup()
         }
     }
+    
+    var personId : String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
+//        setup()
 
         registerForStyleUpdates()
         
-        
-
-        
+        loadPerson(personId: personId)
     }
     
     private func setup(){
-        if person == nil {  //This way, if the VC is launched from the tab, it will just populate with the authenticated user.
-            person = getApplicationContext().currentUser()
-        }
-        
-        
-//        //Configure the view for edit or for view based on person id
-//        if (getApplicationContext().currentUser()?.personId == person.personId) {
-//            //Display update components
-//        } else {
-//            //Hide updatable stuff
-//        }
         
         titleLabel.text = person.login
         if let bio = person.bio {
@@ -68,8 +53,7 @@ class ProfileViewController: UIViewController {
             privateStarView.isHidden = true
         }
         
-        
-        
+        refreshStyle()
     }
     
 //    override func viewWillAppear(animated: Bool) {
@@ -87,12 +71,13 @@ class ProfileViewController: UIViewController {
 
         self.view.backgroundColor = style.postBackgroundColor()
         
-        self.bioTextView.backgroundColor = style.underneath()
-        self.bioTextView.textColor = style.entryTextColor()
+//        self.bioTextView.backgroundColor = style.underneath()
+//        self.bioTextView.textColor = style.entryTextColor()
         
+        bioTextView.textColor = style.entryTextColor()
+        bioTextView.backgroundColor = style.underneath()
+        bioTextView.tintColor = style.headerDetailTextColor()
         
-//        lightDarkSegmentedControl.tintColor = style.tintColor()
-//        lightDarkSegmentedControl.selectedSegmentIndex = getApplicationContext().isStyleLight() ? 0 : 1
     }
     
     @IBAction func lightDarkSegmentedControlAction(_ sender: UISegmentedControl) {
@@ -102,9 +87,29 @@ class ProfileViewController: UIViewController {
             getApplicationContext().setStyleDark()
         }
     }
-    @IBAction func logoutAction(_ sender: AnyObject) {
-        getApplicationContext().logoff()
-        tabBarController?.selectedIndex = 0
+    
+    @IBAction func doneButtonAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
+    
+    func loadPerson(personId : String) {
+        let cmd = PersonCommand(personId: personId)
+        
+        
+        Network.performPerson(cmd){
+            (response, message) -> Void in
+            
+            guard let p = response?.person else {
+                print("Failed to load person")
+                return
+            }
+            
+            invokeLater {
+                self.person = p
+                
+            }
+            
+        };
 
+    }
 }

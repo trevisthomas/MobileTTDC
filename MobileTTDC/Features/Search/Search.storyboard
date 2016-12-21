@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Mic-U1-DU4">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Mic-U1-DU4">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,9 +24,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="VjJ-DD-Fuc">
+                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xie-yZ-WUa">
+                                <rect key="frame" x="8" y="108" width="359" height="559"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="ocp-Xg-cr8" id="vyl-IY-2VN"/>
@@ -31,6 +36,7 @@
                                 </connections>
                             </tableView>
                             <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VxX-CQ-H19">
+                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
                                 <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iiD-W4-sus">
                                     <size key="itemSize" width="50" height="50"/>
@@ -81,6 +87,7 @@
                         <outlet property="searchBar" destination="VjJ-DD-Fuc" id="krj-1i-ZhL"/>
                         <outlet property="tableView" destination="xie-yZ-WUa" id="2lX-sE-IqF"/>
                         <segue destination="Pr6-g5-bUn" kind="show" identifier="ThreadView" id="y7h-fR-xkr"/>
+                        <segue destination="aA8-60-csl" kind="presentation" identifier="Profile" modalPresentationStyle="formSheet" id="xEd-1s-7uX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BmA-YQ-zGK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -94,6 +101,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JJj-d6-NHJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1094.5" y="707"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="y0k-VN-viQ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" id="aA8-60-csl" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Og8-Cy-27D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1658" y="694"/>
         </scene>
         <!--Navigation View Controller-->
         <scene sceneID="Au8-bj-aHY">

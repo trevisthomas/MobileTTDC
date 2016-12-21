@@ -73,6 +73,7 @@ class CommonBaseViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        
         if let destVC = segue.destination as? CommentViewController {
             let dict = sender as! [String: String]
             
@@ -90,18 +91,24 @@ class CommonBaseViewController: UIViewController {
             return
         }
         
-        guard let vc = nav.topViewController as? ConversationWithReplyViewController else {
+        if let vc = nav.topViewController as? ConversationWithReplyViewController {
+            let dict = sender as! [String: String]
+            
+            print(dict["threadId"]!)
+            
+            vc.postId = dict["threadId"]
+            if let postId = dict["postId"] {
+                vc.replyToPostId = postId
+            }
             return
         }
         
-        let dict = sender as! [String: String]
-        
-        print(dict["threadId"]!)
-        
-        vc.postId = dict["threadId"]
-        if let postId = dict["postId"] {
-            vc.replyToPostId = postId
+        if let vc = nav.topViewController as? ProfileViewController {
+            vc.personId = sender as! String
+            return
         }
+        
+        
     }
 
     
@@ -439,6 +446,10 @@ extension CommonBaseViewController : PostViewCellDelegate {
     }
     func viewThread(_ post: Post) {
         performSegue(withIdentifier: "ThreadView", sender: post.postId)
+    }
+    
+    func presentCreator(_ personId: String) {
+        performSegue(withIdentifier: "Profile", sender: personId)
     }
 
 }

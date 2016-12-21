@@ -71,6 +71,7 @@
                     <connections>
                         <outlet property="collectionView" destination="7nL-zz-Hh8" id="KTQ-2s-wyu"/>
                         <segue destination="v28-WL-CVk" kind="show" identifier="CommentViewController" id="Ukj-sX-WyR"/>
+                        <segue destination="ZcM-fB-fhQ" kind="presentation" identifier="Profile" modalPresentationStyle="formSheet" id="LoB-eH-U4m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2bL-X7-UaA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -92,6 +93,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="twe-2B-VWZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3279" y="2722"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="rZL-2f-U2v">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" id="ZcM-fB-fhQ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sYz-9c-sGz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3199" y="2835"/>
         </scene>
         <!--Navigation View Controller-->
         <scene sceneID="FbM-TD-aSG">

@@ -321,7 +321,11 @@ extension CommonBaseViewController : UICollectionViewDelegateFlowLayout {
     //Spacing between cells.
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 2
+        if self.traitCollection.horizontalSizeClass == .regular && self.traitCollection.verticalSizeClass == .regular {
+            return 20
+        } else {
+            return 2
+        }
     }
 }
 

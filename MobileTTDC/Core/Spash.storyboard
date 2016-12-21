@@ -48,6 +48,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jje-jw-JGe">
+                                <rect key="frame" x="16" y="352" width="343" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DkD-cg-8tu">
                                 <rect key="frame" x="0.0" y="621" width="375" height="46"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -118,6 +125,7 @@
                     <connections>
                         <outlet property="collectionView" destination="go1-S9-dlK" id="C9k-XV-sSP"/>
                         <outlet property="footerLabel" destination="CyX-xw-bc2" id="dwh-An-4Xm"/>
+                        <outlet property="loadingLabel" destination="jje-jw-JGe" id="zIn-dY-yrV"/>
                         <outlet property="navBarPlaceholderView" destination="RtA-dO-3ne" id="bfB-jp-Kvu"/>
                         <outlet property="segmenetdControl" destination="EkA-wb-TQV" id="oDX-eA-lf5"/>
                         <outlet property="segmentedControlPlaceholderView" destination="jd6-Cb-gTm" id="V5Q-29-a0p"/>

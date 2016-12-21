@@ -20,6 +20,7 @@ class SplashViewController: UIViewController {
     @IBOutlet weak var segmentedControlPlaceholderView: UIView!
     @IBOutlet weak var segmenetdControl: UISegmentedControl!
     
+    @IBOutlet weak var loadingLabel: UILabel!
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -46,15 +47,20 @@ class SplashViewController: UIViewController {
         curtainView = UIView(frame: view.bounds)
         curtainView.backgroundColor = style.navigationBackgroundColor()
         view.addSubview(curtainView)
-//        self.navigationController?.navigationBar.backgroundColor = style.tintColor()
         
         self.navBarPlaceholderView.backgroundColor = style.navigationBackgroundColor()
         self.navigationController?.navigationBar.barTintColor = style.navigationBackgroundColor()
         self.tabBarPlaceHolderView.backgroundColor = style.tabbarBackgroundColor()
         self.segmentedControlPlaceholderView.backgroundColor = style.navigationBackgroundColor()
         self.segmenetdControl.tintColor = style.navigationTintColor()
+        self.loadingLabel.textColor = style.navigationTintColor()
+        
         
         animateCurtain()
+        
+        self.messageCenter = self.loadingLabel.center
+        self.animateLoading()
+        
         
         appDelegate.initialize(appContext: applicationContext) //This will try to get a device token and try to store it. No worries, he cant send it to the server if he doesnt have a ttdc token.
         
@@ -65,20 +71,39 @@ class SplashViewController: UIViewController {
             self.welcomeLabel.text = "Hi, \(person.login)"
             print("Bootstrap complete.  Welcome \(person.login).")
             
-            applicationContext.latestPostsModel.loadFirstPage(displayMode: applicationContext.displayMode, completion: {
-                (_,_) in
-                invokeLater {
-                    self.performSegue(withIdentifier: "Main", sender: nil)
-                }
-                
-            })
             
-            
+//            delay(seconds: 20, completion: {
+                applicationContext.latestPostsModel.loadFirstPage(displayMode: applicationContext.displayMode, completion: {
+                    (_,_) in
+                    invokeLater {
+                        self.performSegue(withIdentifier: "Main", sender: nil)
+                    }
+                    
+                })
+//            })
         }
+    }
+    
+    
+    var messageCenter : CGPoint!
+    let messages = ["loading...", "still, loading...", "is it taking a while?", ":-(", "sorry.", "i'm still trying.", "just givem me a sec."]
+    var messageIndex : Int = 0
+    func animateLoading(){
         
-        
-        
-        
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseIn, animations: {
+            self.loadingLabel.center.x = self.messageCenter.x
+            
+        }, completion: {_ in
+            UIView.animate(withDuration: 0.5, delay: 1.0, options: .curveEaseOut, animations: {
+                self.loadingLabel.center.x = self.messageCenter.x - self.view.bounds.width
+                
+            }, completion: {_ in
+                self.messageIndex = (self.messageIndex + 1) % self.messages.count
+                self.loadingLabel.text = self.messages[self.messageIndex]
+                self.loadingLabel.center.x = self.messageCenter.x + self.view.bounds.width
+                self.animateLoading()
+            })
+        })
     }
     
     private func animateCurtain(){

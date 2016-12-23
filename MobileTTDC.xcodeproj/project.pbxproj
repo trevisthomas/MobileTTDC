@@ -626,6 +626,7 @@
 				TargetAttributes = {
 					0FCF017F1CFA10E200924868 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = KRNJ229R7J;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -920,12 +921,13 @@
 				CODE_SIGN_ENTITLEMENTS = MobileTTDC/MobileTTDC.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = KRNJ229R7J;
 				INFOPLIST_FILE = MobileTTDC/Core/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = us.ttdc.MobileTTDC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "b5ad9223-650a-444f-bb65-ceff92f6959d";
+				PROVISIONING_PROFILE_SPECIFIER = "MobileTTDC - Development";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;

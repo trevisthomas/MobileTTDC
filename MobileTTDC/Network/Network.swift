@@ -9,6 +9,11 @@
 import UIKit
 import Foundation
 
+
+public protocol NetworkInterface {
+    func performPostCrudCommand(_ command: PostCrudCommand, completion: @escaping (_ response: PostCrudResponse?, _ error: String?)->Void)
+}
+
 public struct Network {
     
     fileprivate static func getToken() -> String? {
@@ -27,8 +32,7 @@ public struct Network {
     }
     
     public static func getHost()-> String{
-        //return "http://ttdc.us:8888"
-//        return "http://ttdc.us"
+//        return "http://ttdc.us:8888"
         return "https://ttdc.us"
 //        return "http://192.168.1.106:8888"
     }

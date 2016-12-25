@@ -52,6 +52,9 @@
 		0F7A58071DE240E100E52B55 /* Broacaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7A58061DE240E100E52B55 /* Broacaster.swift */; };
 		0F7A580B1DE2B8DE00E52B55 /* PostCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7A580A1DE2B8DE00E52B55 /* PostCollectionViewDelegate.swift */; };
 		0F7D75671DE37D9F009ED635 /* WeakHashSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7D75661DE37D9F009ED635 /* WeakHashSet.swift */; };
+		0F807A641E0DE35300AB6C25 /* MobileTTDCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F807A631E0DE35300AB6C25 /* MobileTTDCTests.swift */; };
+		0F807A6E1E0DE69800AB6C25 /* PushServerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F807A6D1E0DE69800AB6C25 /* PushServerEvent.swift */; };
+		0F807A721E0F42F300AB6C25 /* ServerEventMonitorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F807A711E0F42F300AB6C25 /* ServerEventMonitorDelegate.swift */; };
 		0F83CF3E1D734AAF001A7F8F /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F83CF3D1D734AAE001A7F8F /* Search.storyboard */; };
 		0F83CF411D734C1F001A7F8F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F83CF401D734C1F001A7F8F /* SearchViewController.swift */; };
 		0F888A6F1D1DDDA0005F960A /* LatestPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F888A6D1D1DDD9F005F960A /* LatestPostsViewController.swift */; };
@@ -60,7 +63,6 @@
 		0F97BD9C1DF0C330007E5F43 /* ConnectResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97BD9B1DF0C330007E5F43 /* ConnectResponse.swift */; };
 		0F97BD9E1DF0C3E3007E5F43 /* ServerEventListCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97BD9D1DF0C3E3007E5F43 /* ServerEventListCommand.swift */; };
 		0F97BDA01DF0C3F0007E5F43 /* ServerEventListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97BD9F1DF0C3F0007E5F43 /* ServerEventListResponse.swift */; };
-		0F97BDA21DF0C66D007E5F43 /* ServerEventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97BDA11DF0C66D007E5F43 /* ServerEventMonitor.swift */; };
 		0F9FB1E21DBD56EF00B901ED /* PostSeperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9FB1E11DBD56EF00B901ED /* PostSeperator.swift */; };
 		0F9FB1E41DBDC23800B901ED /* ValidateCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9FB1E31DBDC23800B901ED /* ValidateCommand.swift */; };
 		0F9FB1E61DBDC29C00B901ED /* ValidateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9FB1E51DBDC29C00B901ED /* ValidateResponse.swift */; };
@@ -136,6 +138,16 @@
 		0FF8966A1D73767A007813F7 /* AutoCompleteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FF896681D73767A007813F7 /* AutoCompleteCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0F807A661E0DE35300AB6C25 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0FCF01781CFA10E100924868 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0FCF017F1CFA10E200924868;
+			remoteInfo = MobileTTDC;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0F0997B31DC90EFB001991E2 /* MoviePostCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviePostCollectionViewCell.swift; sourceTree = "<group>"; };
 		0F0997B41DC90EFB001991E2 /* MoviePostCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoviePostCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -182,6 +194,11 @@
 		0F7A58061DE240E100E52B55 /* Broacaster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Broacaster.swift; sourceTree = "<group>"; };
 		0F7A580A1DE2B8DE00E52B55 /* PostCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		0F7D75661DE37D9F009ED635 /* WeakHashSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakHashSet.swift; sourceTree = "<group>"; };
+		0F807A611E0DE35200AB6C25 /* MobileTTDCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileTTDCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F807A631E0DE35300AB6C25 /* MobileTTDCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileTTDCTests.swift; sourceTree = "<group>"; };
+		0F807A651E0DE35300AB6C25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F807A6D1E0DE69800AB6C25 /* PushServerEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushServerEvent.swift; sourceTree = "<group>"; };
+		0F807A711E0F42F300AB6C25 /* ServerEventMonitorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerEventMonitorDelegate.swift; sourceTree = "<group>"; };
 		0F83CF3D1D734AAE001A7F8F /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		0F83CF401D734C1F001A7F8F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0F888A6D1D1DDD9F005F960A /* LatestPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestPostsViewController.swift; sourceTree = "<group>"; };
@@ -190,7 +207,6 @@
 		0F97BD9B1DF0C330007E5F43 /* ConnectResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectResponse.swift; sourceTree = "<group>"; };
 		0F97BD9D1DF0C3E3007E5F43 /* ServerEventListCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerEventListCommand.swift; sourceTree = "<group>"; };
 		0F97BD9F1DF0C3F0007E5F43 /* ServerEventListResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerEventListResponse.swift; sourceTree = "<group>"; };
-		0F97BDA11DF0C66D007E5F43 /* ServerEventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerEventMonitor.swift; sourceTree = "<group>"; };
 		0F9FB1E11DBD56EF00B901ED /* PostSeperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostSeperator.swift; sourceTree = "<group>"; };
 		0F9FB1E31DBDC23800B901ED /* ValidateCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidateCommand.swift; sourceTree = "<group>"; };
 		0F9FB1E51DBDC29C00B901ED /* ValidateResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidateResponse.swift; sourceTree = "<group>"; };
@@ -271,6 +287,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0F807A5E1E0DE35200AB6C25 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0FCF017D1CFA10E200924868 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -347,6 +370,15 @@
 			name = Splash;
 			sourceTree = "<group>";
 		};
+		0F807A621E0DE35300AB6C25 /* MobileTTDCTests */ = {
+			isa = PBXGroup;
+			children = (
+				0F807A631E0DE35300AB6C25 /* MobileTTDCTests.swift */,
+				0F807A651E0DE35300AB6C25 /* Info.plist */,
+			);
+			path = MobileTTDCTests;
+			sourceTree = "<group>";
+		};
 		0F83CF3F1D734C03001A7F8F /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -391,10 +423,11 @@
 				0FCF01891CFA10E200924868 /* Main.storyboard */,
 				0FDA6A221DC7C75A00279596 /* NavigationViewController.swift */,
 				0FD0A33B1D0DF4140030D36F /* ReuseIdentifiers.swift */,
-				0F97BDA11DF0C66D007E5F43 /* ServerEventMonitor.swift */,
 				0F3CEAB31DC272AA003CD432 /* TabBarViewController.swift */,
 				0FB2F4A61D035B4A008F386A /* Utilities.swift */,
 				0FCBD8581DBD101000DE8F2A /* style.css */,
+				0F807A6D1E0DE69800AB6C25 /* PushServerEvent.swift */,
+				0F807A711E0F42F300AB6C25 /* ServerEventMonitorDelegate.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -448,6 +481,7 @@
 			isa = PBXGroup;
 			children = (
 				0FCF01821CFA10E200924868 /* MobileTTDC */,
+				0F807A621E0DE35300AB6C25 /* MobileTTDCTests */,
 				0FCF01811CFA10E200924868 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -456,6 +490,7 @@
 			isa = PBXGroup;
 			children = (
 				0FCF01801CFA10E200924868 /* MobileTTDC.app */,
+				0F807A611E0DE35200AB6C25 /* MobileTTDCTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -597,6 +632,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0F807A601E0DE35200AB6C25 /* MobileTTDCTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0F807A681E0DE35300AB6C25 /* Build configuration list for PBXNativeTarget "MobileTTDCTests" */;
+			buildPhases = (
+				0F807A5D1E0DE35200AB6C25 /* Sources */,
+				0F807A5E1E0DE35200AB6C25 /* Frameworks */,
+				0F807A5F1E0DE35200AB6C25 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0F807A671E0DE35300AB6C25 /* PBXTargetDependency */,
+			);
+			name = MobileTTDCTests;
+			productName = MobileTTDCTests;
+			productReference = 0F807A611E0DE35200AB6C25 /* MobileTTDCTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		0FCF017F1CFA10E200924868 /* MobileTTDC */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0FCF01941CFA10E200924868 /* Build configuration list for PBXNativeTarget "MobileTTDC" */;
@@ -620,16 +673,25 @@
 		0FCF01781CFA10E100924868 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 0810;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Trevis Thomas";
 				TargetAttributes = {
+					0F807A601E0DE35200AB6C25 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = KRNJ229R7J;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 0FCF017F1CFA10E200924868;
+					};
 					0FCF017F1CFA10E200924868 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = KRNJ229R7J;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -651,11 +713,19 @@
 			projectRoot = "";
 			targets = (
 				0FCF017F1CFA10E200924868 /* MobileTTDC */,
+				0F807A601E0DE35200AB6C25 /* MobileTTDCTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0F807A5F1E0DE35200AB6C25 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0FCF017E1CFA10E200924868 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -687,12 +757,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0F807A5D1E0DE35200AB6C25 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F807A641E0DE35300AB6C25 /* MobileTTDCTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0FCF017C1CFA10E200924868 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				0FE5273A1CFC9FB800407AAE /* Command.swift in Sources */,
 				0FA3F25E1DBBC7EA00268DC1 /* PostCollectionViewCell.swift in Sources */,
+				0F807A721E0F42F300AB6C25 /* ServerEventMonitorDelegate.swift in Sources */,
 				0FF4ED871DCAF9B800BE4CF4 /* StarRatingView.swift in Sources */,
 				0FB2F4981CFFA8FC008F386A /* Image.swift in Sources */,
 				0FCF01841CFA10E200924868 /* AppDelegate.swift in Sources */,
@@ -781,11 +860,11 @@
 				0FE5272E1CFB65EB00407AAE /* Encoder.swift in Sources */,
 				0FE5273E1CFD058700407AAE /* PostResponse.swift in Sources */,
 				0F3CEABA1DC4D64F003CD432 /* AppStyle.swift in Sources */,
-				0F97BDA21DF0C66D007E5F43 /* ServerEventMonitor.swift in Sources */,
 				0FC863421E0A0FE700AE3634 /* PersonResponse.swift in Sources */,
 				0FD324011E07330500C4C0CA /* AnimatedLabelTextField.swift in Sources */,
 				0FE527221CFB654300407AAE /* LoginResponse.swift in Sources */,
 				0FE5272F1CFB65EB00407AAE /* ExtensionArray.swift in Sources */,
+				0F807A6E1E0DE69800AB6C25 /* PushServerEvent.swift in Sources */,
 				0F6E12B51DD8F9AD00927810 /* CommonBaseViewController.swift in Sources */,
 				0F15F0091DF36AF500EECF87 /* CGSize+.swift in Sources */,
 				0F0F69CA1D3C9863009600F7 /* ConversationWithReplyViewController.swift in Sources */,
@@ -801,6 +880,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0F807A671E0DE35300AB6C25 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0FCF017F1CFA10E200924868 /* MobileTTDC */;
+			targetProxy = 0F807A661E0DE35300AB6C25 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0FCF01891CFA10E200924868 /* Main.storyboard */ = {
@@ -824,6 +911,41 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0F807A691E0DE35300AB6C25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = KRNJ229R7J;
+				INFOPLIST_FILE = MobileTTDCTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.ttdc.MobileTTDCTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobileTTDC.app/MobileTTDC";
+			};
+			name = Debug;
+		};
+		0F807A6A1E0DE35300AB6C25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = KRNJ229R7J;
+				INFOPLIST_FILE = MobileTTDCTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.ttdc.MobileTTDCTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobileTTDC.app/MobileTTDC";
+			};
+			name = Release;
+		};
 		0FCF01921CFA10E200924868 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -953,6 +1075,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0F807A681E0DE35300AB6C25 /* Build configuration list for PBXNativeTarget "MobileTTDCTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0F807A691E0DE35300AB6C25 /* Debug */,
+				0F807A6A1E0DE35300AB6C25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		0FCF017B1CFA10E100924868 /* Build configuration list for PBXProject "MobileTTDC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

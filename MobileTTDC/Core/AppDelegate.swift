@@ -15,6 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window : UIWindow?
     
     private(set) var applicationContext : ApplicationContext!
+    
+    
+    private var latestPostId : String?
 //    private(set) var serverEventMonitor : ServerEventMonitor!
     
 //    private(set) var serverEventMonitor
@@ -72,6 +75,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
+        application.applicationIconBadgeNumber = 0 //If the app is running, aways set to zero.
+        
 //        applicationContext.reloadAllData()
         print("did become active")
 //        applicationContext.loadState() //Calls reload data once any saved token is vaidated
@@ -81,6 +86,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             applicationContext.becomeActive()
         }
         
+        self.fetchLatestPostId(){
+            (postId) in
+            if self.latestPostId == nil {
+                //latesPost wasn't initialized
+                self.latestPostId = postId
+            } else if self.latestPostId != postId {
+                //New content exists
+                print("Became active and discovored new content.")
+                self.applicationContext.reloadPosts()
+            } else {
+                //Nothing to do.  No new content.
+            }
+            
+        }
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -103,8 +122,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        application.applicationIconBadgeNumber = 0
+//        application.applicationIconBadgeNumber = 0 //If the app is running, aways set to zero.
+        
+//        if let aps = userInfo["aps"] as? [String: AnyObject] {
+//            if let badge = aps["badge"] as? Int {
+//                application.applicationIconBadgeNumber = badge
+//            }
+//        }
+        
+        
+        
+        
+        // 1
+//        if (aps["content-available"] as? NSString)?.integerValue == 1 {
+//        if aps["content-available"] as? NSNumber == 1 {
+//            //This is being a good citizen letting the device know what happened.  If you set these up as silent, i think that the OS uses this to guage battery usage.
+////            completionHandler(didLoadNewItems ? .NewData : .NoData)
+//            completionHandler(.newData)
+//            
+////            if let event = userInfo["event"] as? [String: AnyObject] {
+////                let push = PushServerEvent(delegate: applicationContext)
+////                push.pushEvent(event: event)
+////            }
+//            
+//            if let event = userInfo["event"] as? [String: AnyObject] {
+//                let push = PushServerEvent(delegate: applicationContext)
+//                push.pushEvent(event: event)
+//            }
+//            
+//        }
+        if let event = userInfo["event"] as? [String: AnyObject] {
+            let push = PushServerEvent(delegate: applicationContext)
+            completionHandler(.newData)
+            push.pushEvent(event: event)
+        } else if let postId = userInfo["postId"] as? String {
+            completionHandler(.newData)
+            let push = PushServerEvent(delegate: applicationContext)
+            var event = [String : AnyObject]()
+            
+            event["type"] = "NEW" as AnyObject
+            event["guid"] = postId as AnyObject
+            push.pushEvent(event: event)
+        }else {
+            completionHandler(.noData)
+        }
+        
+        
+//        print("I was pushed: \(userInfo)")
     }
+    
+    
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let tokenChars = (deviceToken as NSData).bytes.bindMemory(to: CChar.self, capacity: deviceToken.count)
@@ -147,6 +214,23 @@ extension AppDelegate {
 //        completionHandler: { (granted, error) in
 //            application.registerForRemoteNotifications()
 //        }
+    }
+    
+    fileprivate func fetchLatestPostId(callback : @escaping (String?) -> Void){
+        let cmd = PostCommand(action: .LATEST_FLAT, pageNumber: 1, pageSize: 1)
+        
+        Network.performPostCommand(cmd){
+            (response, message) -> Void in
+            
+            guard let post = response?.list[0] else {
+                //This should never happen.
+                callback(nil)
+                return;
+            }
+            
+            callback(post.postId)
+        };
+        
     }
 }
 

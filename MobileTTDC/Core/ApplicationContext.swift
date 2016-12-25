@@ -24,7 +24,7 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
     private(set) var broadcaster : Broadcaster!
     private(set) var latestPostsModel : LatestPostsModel<LatestPostsViewController>! //TODO: Remove this class generic. Use method generic
 //    let latestPostsModel = LatestPostsModel(broadcaster: broadcaster)
-    private var serverEventMonitor : ServerEventMonitor!
+//    private var serverEventMonitor : ServerEventMonitor!
     
     private static let defaultStyle : String = styleLight
     private static let defaultDisplayMode : DisplayMode = .latestFlat
@@ -34,7 +34,8 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
 //            return nil
 //        }
 //        return id
-        return serverEventMonitor.connectionId
+//        return serverEventMonitor.connectionId
+        return deviceToken
     }
     
     public enum Style {
@@ -61,8 +62,8 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
         broadcaster = Broadcaster()
         latestPostsModel = LatestPostsModel(broadcaster: broadcaster)
         
-        serverEventMonitor = ServerEventMonitor(delegate: self)
-        serverEventMonitor.connect()
+//        serverEventMonitor = ServerEventMonitor(delegate: self)
+//        serverEventMonitor.connect()
         
         becomeActive(callback: callback)
         
@@ -70,7 +71,7 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
     }
     
     func resignActive(){
-        serverEventMonitor.stop()
+//        serverEventMonitor.stop()
     }
     
     func becomeActive(callback : @escaping (Person) -> Void = {_ in }){
@@ -85,7 +86,7 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
 //            }
             self.registerForPush()
             self.reloadAllData()
-            self.serverEventMonitor.start()
+//            self.serverEventMonitor.start()
             callback(person)
         }
     }
@@ -463,6 +464,10 @@ extension ApplicationContext : ServerEventMonitorDelegate {
     
     func reloadPosts() {
         self.broadcaster.reloadPosts()
+    }
+    
+    func traffic(person: Person) {
+        print("Push Traffic \(person.login)")
     }
 
 }

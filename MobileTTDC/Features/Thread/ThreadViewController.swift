@@ -81,6 +81,10 @@ class ThreadViewController: CommonBaseViewController {
     override func allowHierarchy() -> Bool {
         return true
     }
+    
+    override func shouldAllowTheadView(post: Post) -> Bool {
+        return false //You're alreayd in the thread view!
+    }
 }
 
 extension ThreadViewController : PostCollectionViewDelegate {

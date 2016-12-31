@@ -43,6 +43,8 @@ class CommentViewController: UIViewController {
     
     var parentId : String?
     
+    var hideCloseButton : Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let text = getApplicationContext().commentStash {
@@ -75,6 +77,9 @@ class CommentViewController: UIViewController {
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentViewController.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
         
+        if (hideCloseButton) {
+            closeBarButtonItem.isEnabled = false
+        }
         
     }
     

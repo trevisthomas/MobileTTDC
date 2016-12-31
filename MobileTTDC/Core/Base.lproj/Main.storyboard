@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -401,6 +401,7 @@
                         <segue destination="Rsi-aW-7qZ" kind="presentation" identifier="ConversationWithReplyView" modalPresentationStyle="formSheet" id="Tbg-Sh-HGH"/>
                         <segue destination="iT6-UF-28K" kind="show" identifier="ThreadView" id="gvA-9t-fNh"/>
                         <segue destination="43x-Ok-ykL" kind="presentation" identifier="Profile" modalPresentationStyle="formSheet" id="boa-GS-Aa5"/>
+                        <segue destination="dpp-45-G5n" kind="show" identifier="CommentViewController" id="KOh-qP-voA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Af-58-Ddn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -414,6 +415,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DYG-mx-0q2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2026" y="1552"/>
+        </scene>
+        <!--CommentViewController-->
+        <scene sceneID="jj0-RD-oU0">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Comment" referencedIdentifier="CommentViewController" id="dpp-45-G5n" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bNE-nZ-9LP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2035" y="1621"/>
         </scene>
         <!--Thread-->
         <scene sceneID="aHS-nB-6ui">

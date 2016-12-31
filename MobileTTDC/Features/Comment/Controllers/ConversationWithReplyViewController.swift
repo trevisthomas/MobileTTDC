@@ -126,6 +126,20 @@ class ConversationWithReplyViewController: CommonBaseViewController {
         return true
     }
    
+//    override func commentOnPost(_ post: Post) {
+//        if self.postId == post.postId {
+//            //You cant reply!
+//        } else {
+//            super.commentOnPost(post)
+//        }
+//    }
+    
+    override func shouldAllowComment(post: Post) -> Bool {
+        replyTextView.becomeFirstResponder()
+        let accessory = replyTextView.inputAccessoryView as! AccessoryCommentView
+        accessory.postTextView.becomeFirstResponder()
+        return false
+    }
 }
 
 extension ConversationWithReplyViewController {

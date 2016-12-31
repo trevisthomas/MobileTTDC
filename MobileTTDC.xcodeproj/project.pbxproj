@@ -1082,6 +1082,7 @@
 				0F807A6A1E0DE35300AB6C25 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0FCF017B1CFA10E100924868 /* Build configuration list for PBXProject "MobileTTDC" */ = {
 			isa = XCConfigurationList;

@@ -76,7 +76,7 @@ class CommonBaseViewController: UIViewController {
         
         if let destVC = segue.destination as? CommentViewController {
             let dict = sender as! [String: String]
-            
+            destVC.hideCloseButton = true //Added so that the close button doesnt show when linked from Topic tab
             destVC.parentId = dict["postId"]
             return
         }
@@ -293,7 +293,14 @@ class CommonBaseViewController: UIViewController {
         getCollectionView()?.reloadData()
     }
     
+    //These two methods only exist because Swift wont let me override the methods because they are defined in a protocol.  Sigh.
+    func shouldAllowComment(post : Post) -> Bool{
+        return true
+    }
     
+    func shouldAllowTheadView(post: Post) -> Bool {
+        return true
+    }
 }
 
 extension CommonBaseViewController : UICollectionViewDelegateFlowLayout {
@@ -391,6 +398,8 @@ extension CommonBaseViewController : UICollectionViewDataSource {
         
     }
     
+    
+    
 }
 
 
@@ -433,6 +442,9 @@ extension CommonBaseViewController : PostViewCellDelegate {
         performSegue(withIdentifier: "ConversationWithReplyView", sender: dict)
     }
     func commentOnPost(_ post: Post){
+        guard shouldAllowComment(post: post) else {
+            return
+        }
         
         guard getApplicationContext().isAuthenticated() else {
             self.presentAlert("Hey Guest", message: "You must be logged in to post comments.")
@@ -449,6 +461,11 @@ extension CommonBaseViewController : PostViewCellDelegate {
         }
     }
     func viewThread(_ post: Post) {
+        
+        guard shouldAllowTheadView(post: post) else {
+            return
+        }
+        
         performSegue(withIdentifier: "ThreadView", sender: post.postId)
     }
     

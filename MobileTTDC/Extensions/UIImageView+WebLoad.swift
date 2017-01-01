@@ -13,7 +13,11 @@ extension UIImageView {
     
     
     //http://stackoverflow.com/questions/24231680/loading-downloading-image-from-url-on-swift
-    func downloadedFrom(link:String, contentMode mode: UIViewContentMode) {
+    func downloadedFrom(link rawLink:String, contentMode mode: UIViewContentMode) {
+        guard let link = rawLink.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {
+            self.image = nil
+            return
+        }
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         if let img = appDelegate.applicationContext.imageCache[link] {
@@ -23,12 +27,14 @@ extension UIImageView {
         }
         
         
-        guard
-            let url = URL(string: link)
-            else {return}
+        guard let url = URL(string: link) else {
+            print("Image url cant be found: \(link)")
+            self.image = nil
+            return
+        }
         contentMode = mode
         
-        
+        print("Downloading image: \(link)")
         
 //        URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) -> Void in
         NetworkAdapter.getUrlSession().dataTask(with: url, completionHandler: { (data, response, error) -> Void in

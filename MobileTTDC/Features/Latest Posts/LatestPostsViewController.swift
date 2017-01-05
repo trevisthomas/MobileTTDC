@@ -23,6 +23,15 @@ class LatestPostsViewController: CommonBaseViewController, BroadcastPostAddConsu
     
     @IBOutlet weak var modeSelectionHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var loadingActivity: UIActivityIndicatorView!
+    @IBOutlet weak var loadingLabel: UILabel!
+    
+    @IBOutlet weak var loadingViewBottomConstraint: NSLayoutConstraint!
+    
+    let loadingBottomConstantHidden : CGFloat = -100
+    let loadingBottomConstantVisible : CGFloat = 30
+    
     @IBAction func modeSelectSegmentedControll(_ sender: UISegmentedControl) {
         super.removeAllPosts()
         
@@ -80,6 +89,7 @@ class LatestPostsViewController: CommonBaseViewController, BroadcastPostAddConsu
         
         loadDataFromModelOrFromService()
         
+        loadingViewBottomConstraint.constant = loadingBottomConstantHidden
         
     }
     
@@ -123,6 +133,12 @@ class LatestPostsViewController: CommonBaseViewController, BroadcastPostAddConsu
         collectionView.backgroundColor = getApplicationContext().getCurrentStyle().underneath()
         collectionView.indicatorStyle = getApplicationContext().getCurrentStyle().scrollBarStyle()
         view.backgroundColor = getApplicationContext().getCurrentStyle().underneath()
+        
+        loadingView.backgroundColor = getApplicationContext().getCurrentStyle().tabbarBackgroundColor().withAlphaComponent(0.6)
+        loadingLabel.textColor = getApplicationContext().getCurrentStyle().entryTextColor()
+        loadingActivity.color = getApplicationContext().getCurrentStyle().entryTextColor()
+        loadingView.layer.cornerRadius = 4
+        
     }
     
     //This is here so that the layout will adjust when you "maximize"
@@ -307,6 +323,29 @@ extension LatestPostsViewController /*: UIScrollViewDelegate*/ {
             modeSelectionView.frame.origin.y = -modeSelectionHeightConstraint.constant + statusBarHeight
         }
     }
+    
+    func showLoadingAnimation(){
+//        self.loadingView.layoutIfNeeded()
+        loadingViewBottomConstraint.constant = loadingBottomConstantVisible
+//        UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 6, options: [.curveEaseIn], animations: {
+//            self.loadingView.layoutIfNeeded()
+//        }, completion: nil)
+        
+        UIView.animate(withDuration: 0.5, delay: 0.2, options: [.curveEaseInOut], animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+        
+        
+    }
+    
+    func hideLoadingAnimation(){
+//        self.loadingView.layoutIfNeeded()
+        loadingViewBottomConstraint.constant = loadingBottomConstantHidden
+        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 10, options: [.curveEaseOut], animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+        
+    }
 }
 
 
@@ -387,6 +426,14 @@ extension LatestPostsViewController : LatestPostDelegate {
             self.posts = posts
         }
         print("Data updated, or at leastt that's what the model says")
+    }
+    
+    func willLoadData() {
+        self.showLoadingAnimation()
+    }
+    
+    func didLoadData() {
+        self.hideLoadingAnimation()
     }
 }
 

@@ -10,6 +10,7 @@ import UIKit
 
 class LoadingCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var loadingLabel: UILabel!
+    @IBOutlet weak var loadingActivity: UIActivityIndicatorView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,6 +22,7 @@ class LoadingCollectionViewCell: UICollectionViewCell {
         let style = getApplicationContext().getCurrentStyle()
         backgroundColor = style.underneath()
         loadingLabel.textColor = style.entryTextColor()
+        loadingActivity.color = style.entryTextColor()
     }
 
 

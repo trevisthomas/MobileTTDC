@@ -360,17 +360,47 @@
                                     <constraint firstItem="NIb-uI-8Dz" firstAttribute="leading" secondItem="Efd-hk-DWs" secondAttribute="leading" id="xwN-Ey-mSD"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FXS-ln-lkF">
+                                <rect key="frame" x="112" y="514" width="150" height="30"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="aBP-rF-sdy">
+                                        <rect key="frame" x="8" y="4" width="134" height="21"/>
+                                        <subviews>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="iHa-4B-1eY">
+                                                <rect key="frame" x="0.0" y="0.5" width="20" height="20"/>
+                                            </activityIndicatorView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHL-w1-MVa">
+                                                <rect key="frame" x="24" y="0.5" width="110" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="HC7-kD-quw"/>
+                                    <constraint firstItem="aBP-rF-sdy" firstAttribute="top" secondItem="FXS-ln-lkF" secondAttribute="top" constant="4" id="LE2-VG-mBf"/>
+                                    <constraint firstAttribute="width" constant="150" id="Rev-as-vNg"/>
+                                    <constraint firstAttribute="bottom" secondItem="aBP-rF-sdy" secondAttribute="bottom" constant="5" id="VK0-qT-71q"/>
+                                    <constraint firstItem="aBP-rF-sdy" firstAttribute="leading" secondItem="FXS-ln-lkF" secondAttribute="leading" constant="8" id="cYD-E1-mUt"/>
+                                    <constraint firstAttribute="trailing" secondItem="aBP-rF-sdy" secondAttribute="trailing" constant="8" id="wuF-z5-ytO"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Sdd-xr-J9t" firstAttribute="leading" secondItem="zL8-Xa-5Tc" secondAttribute="leading" id="4Rc-Yi-OqD">
                                 <variation key="heightClass=regular-widthClass=regular" constant="40"/>
                             </constraint>
+                            <constraint firstItem="mfP-mi-Qym" firstAttribute="top" secondItem="FXS-ln-lkF" secondAttribute="bottom" constant="10" id="Hxq-7X-2tP"/>
                             <constraint firstItem="mfP-mi-Qym" firstAttribute="top" secondItem="Sdd-xr-J9t" secondAttribute="bottom" constant="-64" id="NYh-ra-Vl3"/>
                             <constraint firstItem="Efd-hk-DWs" firstAttribute="top" secondItem="b5P-1q-Ixm" secondAttribute="bottom" id="Skn-OR-Bir"/>
                             <constraint firstItem="Sdd-xr-J9t" firstAttribute="top" secondItem="b5P-1q-Ixm" secondAttribute="bottom" constant="64" id="Zd9-NP-DJd"/>
                             <constraint firstItem="Efd-hk-DWs" firstAttribute="leading" secondItem="zL8-Xa-5Tc" secondAttribute="leading" id="bQf-qm-onF"/>
                             <constraint firstAttribute="trailing" secondItem="Efd-hk-DWs" secondAttribute="trailing" id="hHR-Fu-ofz"/>
+                            <constraint firstItem="FXS-ln-lkF" firstAttribute="centerX" secondItem="zL8-Xa-5Tc" secondAttribute="centerX" id="vBa-tN-Kq6"/>
                             <constraint firstAttribute="trailing" secondItem="Sdd-xr-J9t" secondAttribute="trailing" id="wMq-OY-t2X">
                                 <variation key="heightClass=regular-widthClass=regular" constant="40"/>
                             </constraint>
@@ -395,6 +425,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Sdd-xr-J9t" id="NRx-sG-irQ"/>
+                        <outlet property="loadingActivity" destination="iHa-4B-1eY" id="AMC-uM-3wm"/>
+                        <outlet property="loadingLabel" destination="DHL-w1-MVa" id="9gS-ql-hB2"/>
+                        <outlet property="loadingView" destination="FXS-ln-lkF" id="lEO-C7-sDI"/>
+                        <outlet property="loadingViewBottomConstraint" destination="Hxq-7X-2tP" id="0Qy-gY-fVh"/>
                         <outlet property="modeSegmentedControl" destination="XVd-yt-4Wc" id="Q6q-c9-gez"/>
                         <outlet property="modeSelectionHeightConstraint" destination="qGZ-qn-Dgk" id="by0-bz-VN3"/>
                         <outlet property="modeSelectionView" destination="Efd-hk-DWs" id="fSS-6n-iPS"/>
@@ -550,7 +584,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Mfq-eH-XQR"/>
-        <segue reference="dl3-XF-a5V"/>
-        <segue reference="Puv-hK-5Fo"/>
+        <segue reference="9Vg-Ml-7lr"/>
+        <segue reference="gvA-9t-fNh"/>
     </inferredMetricsTieBreakers>
 </document>

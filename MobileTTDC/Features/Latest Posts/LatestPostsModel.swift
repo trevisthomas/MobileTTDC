@@ -11,6 +11,8 @@ import Foundation
 protocol LatestPostDelegate {
     func dataLoadError(message : String)
     func dataUpdated(displayMode : DisplayMode, posts: [Post])
+    func willLoadData()
+    func didLoadData()
 }
 
 protocol PostUpdateListener : Hashable {
@@ -85,6 +87,7 @@ class LatestPostsModel <T : PostUpdateListener>{
     
     
     func loadFirstPage(displayMode : DisplayMode, completion: @escaping ([Post]?, Bool) -> Void){
+        self.delegate?.willLoadData()
         
         let localCompletion = {(posts : [Post], totalPosts : Int) -> Void in
             self.postDictionary[displayMode] = (list: posts, page: 1)
@@ -93,6 +96,7 @@ class LatestPostsModel <T : PostUpdateListener>{
             self.dataChanged = false // Because the completion block tells the caller what's up.
             
             completion(posts, true) //Warning, hard coding that there are more.
+            self.delegate?.didLoadData()
         }
         
         switch displayMode {
@@ -140,14 +144,12 @@ class LatestPostsModel <T : PostUpdateListener>{
     
     fileprivate func loadlatestPostDataFromWebservice(_ action: PostCommand.Action, flatten : Bool = false , pageNumber: Int = 1, pageSize: Int, completion: @escaping ([Post], Int) -> Void){
         let cmd = PostCommand(action: action, pageNumber: pageNumber, pageSize: pageSize)
-        
         Network.performPostCommand(cmd){
             (response, message) -> Void in
             //            guard (response != nil) else {
             //                self.delegate?.dataLoadError(message: message!)
             //                return;
             //            }
-            
             guard let r = response else {
                 self.delegate?.dataLoadError(message: message!)
                 //                completion(nil, nil)
@@ -168,7 +170,6 @@ class LatestPostsModel <T : PostUpdateListener>{
         
         Network.performSearchCommand(cmd){
             (response, message) -> Void in
-            
             guard let r = response else {
                 self.delegate?.dataLoadError(message: message!)
                 //                completion(nil, nil)

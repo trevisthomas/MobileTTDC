@@ -163,6 +163,15 @@ extension SearchViewController {
             vc.personId = sender as! String
         }
         
+        if let vc = segue.destination.childViewControllers.first as? ConversationWithReplyViewController {
+            let dict = sender as! [String: String]
+            
+            vc.postId = dict["threadId"]
+            if let postId = dict["postId"] {
+                vc.replyToPostId = postId
+            }
+            return
+        }
         
     }
 }

@@ -301,6 +301,9 @@ class CommonBaseViewController: UIViewController {
     func shouldAllowTheadView(post: Post) -> Bool {
         return true
     }
+    func shouldAllowViewComments(post: Post) -> Bool {
+        return true
+    }
 }
 
 extension CommonBaseViewController : UICollectionViewDelegateFlowLayout {
@@ -437,6 +440,10 @@ extension CommonBaseViewController : PostViewCellDelegate {
     }
     
     func viewComments(_ post: Post){
+        guard shouldAllowViewComments(post: post) else {
+            return
+        }
+        
         var dict = [String: String]()
         dict["threadId"] = post.threadId
         performSegue(withIdentifier: "ConversationWithReplyView", sender: dict)

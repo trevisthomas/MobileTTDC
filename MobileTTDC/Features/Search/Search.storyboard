@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Mic-U1-DU4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Mic-U1-DU4">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -88,6 +88,7 @@
                         <outlet property="tableView" destination="xie-yZ-WUa" id="2lX-sE-IqF"/>
                         <segue destination="Pr6-g5-bUn" kind="show" identifier="ThreadView" id="y7h-fR-xkr"/>
                         <segue destination="aA8-60-csl" kind="presentation" identifier="Profile" modalPresentationStyle="formSheet" id="xEd-1s-7uX"/>
+                        <segue destination="nkO-JR-9Ny" kind="show" identifier="ConversationWithReplyView" id="2wj-sV-w4H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BmA-YQ-zGK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -101,6 +102,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JJj-d6-NHJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1094.5" y="707"/>
+        </scene>
+        <!--Conversation-->
+        <scene sceneID="SjV-bG-UvM">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Conversation" id="nkO-JR-9Ny" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GJ5-Fm-eR3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1858" y="536"/>
         </scene>
         <!--Profile-->
         <scene sceneID="y0k-VN-viQ">

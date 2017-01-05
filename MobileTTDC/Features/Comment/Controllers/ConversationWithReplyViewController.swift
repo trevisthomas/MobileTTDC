@@ -140,6 +140,11 @@ class ConversationWithReplyViewController: CommonBaseViewController {
         accessory.postTextView.becomeFirstResponder()
         return false
     }
+    
+    override func shouldAllowViewComments(post: Post) -> Bool {
+        return false
+    }
+    
 }
 
 extension ConversationWithReplyViewController {

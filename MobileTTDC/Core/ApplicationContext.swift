@@ -29,6 +29,8 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
     private static let defaultStyle : String = styleLight
     private static let defaultDisplayMode : DisplayMode = .latestFlat
     
+    public var latestPostId : String?
+    
     public var connectionId : String? {
         return deviceToken
     }
@@ -44,6 +46,7 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
         case token = "token"
         case style = "style"
         case displayMode = "displayMode"
+        case latestPostKey = "ttdcLatestPostKey"
     }
     
     
@@ -179,22 +182,19 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
     //
     //    open var latestConversationsObserver : LatestConversationsObserver? = nil
 
-    
-    
-    
-    
-    
-    
     open func saveState(){
+        print("Save State Called")
         let defaults = UserDefaults.standard
         
         defaults.setValue(token, forKey: UserDefaultsKeys.token.rawValue)
         defaults.setValue(currentStyleName, forKeyPath: UserDefaultsKeys.style.rawValue)
         defaults.setValue(displayMode.rawValue, forKeyPath: UserDefaultsKeys.displayMode.rawValue)
+        defaults.setValue(latestPostId, forKeyPath: UserDefaultsKeys.latestPostKey.rawValue)
         defaults.synchronize()
     }
     
     private func loadState(callback : @escaping (Person) -> Void){
+        print("Load State Called")
         let defaults = UserDefaults.standard
       
         if let t = defaults.string(forKey: UserDefaultsKeys.token.rawValue){
@@ -233,7 +233,7 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
             callback(ApplicationContext.anonymous)
         }
         
-        
+        latestPostId = defaults.string(forKey: UserDefaultsKeys.latestPostKey.rawValue)
         loadStyle()
     }
     

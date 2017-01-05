@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private(set) var applicationContext : ApplicationContext!
     
     
-    private var latestPostId : String?
+//    private var latestPostId : String?
 //    private(set) var serverEventMonitor : ServerEventMonitor!
     
 //    private(set) var serverEventMonitor
@@ -88,13 +88,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.fetchLatestPostId(){
             (postId) in
-            if self.latestPostId == nil {
+            if self.applicationContext.latestPostId == nil {
                 //latesPost wasn't initialized
-                self.latestPostId = postId
-            } else if self.latestPostId != postId {
+                self.applicationContext.latestPostId = postId
+                self.applicationContext.saveState()
+            } else if self.applicationContext.latestPostId != postId {
                 //New content exists
                 print("Became active and discovored new content.")
                 self.applicationContext.reloadPosts()
+                self.applicationContext.latestPostId = postId
+                self.applicationContext.saveState()
             } else {
                 //Nothing to do.  No new content.
             }

@@ -208,7 +208,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.registerForPushNotifications(UIApplication.shared)
     }
 
-
+    public func buildSummary() -> String {
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
+        let build = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
+        
+        return "Mobile TTDC v\(version) build \(build)"
+    }
 }
 
 extension AppDelegate {

@@ -82,6 +82,8 @@ class SplashViewController: UIViewController {
                 })
 //            })
         }
+
+        footerLabel.text = appDelegate.buildSummary()
     }
     
     

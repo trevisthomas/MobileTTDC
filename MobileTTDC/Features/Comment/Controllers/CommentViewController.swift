@@ -231,8 +231,8 @@ extension CommentViewController {
             return
         }
         
-        self.getApplicationContext().broadcaster.postAdded(post: (response?.post)!)
-        self.getApplicationContext().reloadAllData()
+        getApplicationContext().broadcaster.postAdded(post: (response?.post)!)
+        getApplicationContext().reloadAllData()
         
         self.commentTextArea.attributedText = nil //So that it doesnt get stashed when you post!
         
@@ -276,9 +276,6 @@ extension CommentViewController: AccessoryCommentViewDelegate {
         //commentTextArea.setHtmlText(commentText)
         decidePostTypeAndPreview(commentText: commentText)
         
-        self.getApplicationContext().commentStash = commentText
-        
-        
-        
+        getApplicationContext().commentStash = commentText
     }
 }

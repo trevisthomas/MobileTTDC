@@ -30,13 +30,10 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
     private static let defaultDisplayMode : DisplayMode = .latestFlat
     
     public var connectionId : String? {
-//        guard let id = serverEventMonitor.connectionId else {
-//            return nil
-//        }
-//        return id
-//        return serverEventMonitor.connectionId
         return deviceToken
     }
+    
+    public var deviceToken: String? = nil
     
     public enum Style {
         case dark
@@ -79,15 +76,18 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
             //If the broadcaster isnt initialized i'm assuming that becomeActive is being called before init.
             return
         }
-        loadState() {
-            (person) in
-//            if self._currentUser?.personId != person.personId {
-                self._currentUser = person
-//            }
-            self.registerForPush()
-            self.reloadAllData()
-//            self.serverEventMonitor.start()
+        
+        if let person = _currentUser {
             callback(person)
+        } else {
+            _currentUser = ApplicationContext.anonymous //Setting this now so that subsequent calls wont loadState again
+            loadState() {
+                (person) in
+                self._currentUser = person
+                self.reloadAllData()
+                self.notifyUserChanged()
+                callback(person)
+            }
         }
     }
     
@@ -144,27 +144,17 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
 //    }
     
 //    fileprivate var previousUser: Person? = nil
-    fileprivate var _currentUser : Person? = nil {
-//        willSet{
-//            previousUser = _currentUser
-//        }
+    fileprivate var _currentUser : Person? = nil
         
-        didSet{
-            
-            guard oldValue?.login != _currentUser?.login else {
-                return
-            }
-//
-            var objects = [Any?]()
-            objects.append(_currentUser?.login)
-            
-            
-            if let login = _currentUser?.login {
-                NotificationCenter.default.post(name: Notification.Name(rawValue: ApplicationContext.currentUserKey), object: nil, userInfo: ["login" : login])
-            } else {
-                NotificationCenter.default.post(name: Notification.Name(rawValue: ApplicationContext.currentUserKey), object: nil, userInfo: [:])
-            }
-            
+    func notifyUserChanged() {
+        var objects = [Any?]()
+        objects.append(_currentUser?.login)
+        
+        
+        if let login = _currentUser?.login {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: ApplicationContext.currentUserKey), object: nil, userInfo: ["login" : login])
+        } else {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: ApplicationContext.currentUserKey), object: nil, userInfo: [:])
         }
     }
     fileprivate(set) open var token: String? = nil //WTF both?
@@ -190,11 +180,7 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
     //    open var latestConversationsObserver : LatestConversationsObserver? = nil
 
     
-    open var deviceToken: String? = nil {
-        didSet{
-            registerForPush()
-        }
-    }
+    
     
     
     
@@ -205,49 +191,48 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
         defaults.setValue(token, forKey: UserDefaultsKeys.token.rawValue)
         defaults.setValue(currentStyleName, forKeyPath: UserDefaultsKeys.style.rawValue)
         defaults.setValue(displayMode.rawValue, forKeyPath: UserDefaultsKeys.displayMode.rawValue)
-        
         defaults.synchronize()
     }
     
     private func loadState(callback : @escaping (Person) -> Void){
         let defaults = UserDefaults.standard
-        
+      
         if let t = defaults.string(forKey: UserDefaultsKeys.token.rawValue){
-            
-//            _currentUser = nil
             self.token = t
-            
             let cmd = ValidateCommand()
-            
             Network.performValidate(cmd){
-                (response, message) -> Void in
+                (response, error) -> Void in
+                
+                if let error = error {
+                    if error == "401" { //This is a hack that i put into the networkAdapter code
+                        self.logoff()
+                        callback(ApplicationContext.anonymous)
+                    } else {
+                        //Retry
+                        delay(seconds: 2, completion: {
+                            self.loadState(callback: callback)
+                        })
+                        return
+                    }
+                }
+                
                 guard let r = response else {
-                    self.logoff()
-                    callback(ApplicationContext.anonymous)
+                    delay(seconds: 2, completion: {
+                        self.loadState(callback: callback)
+                    })
                     return;
                 }
-                
-                DispatchQueue.main.async {
+                invokeLater {
                     self.token = response?.token
-//                    self._currentUser = response?.person
-//                    self.registerForPush()
-//                    self.reloadAllData()
                     callback(r.person!)
+                    getAppDelegate().registerForPushNotifications(delegate: self)
                 }
-                
             };
         } else {
-//            self.logoff()
             self.reloadAllData()
             callback(ApplicationContext.anonymous)
         }
         
-        
-//        if let style = defaults.string(forKey: PersistantKeys.style) {
-//            self.currentStyleName = style
-//        } else {
-//            self.currentStyleName = ApplicationContext.defaultStyle
-//        }
         
         loadStyle()
     }
@@ -302,6 +287,7 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
             guard (response != nil) else {
                 self._currentUser = ApplicationContext.anonymous
                 self.token = nil
+                self.notifyUserChanged()
                 completion(false, "Invalid login or password")
                 return;
             }
@@ -319,14 +305,17 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
             self.token = response?.token
             self._currentUser = response?.person
             self.saveState()
-            self.registerForPush()
+            self.notifyUserChanged()
+            getAppDelegate().registerForPushNotifications(delegate: self)
             completion(true, "Welcome back, \((response?.person?.name)!)")
             self.reloadAllData()
+            
         };
     }
     
-    fileprivate func registerForPush(){
-        guard let _ = token, let deviceToken = deviceToken else {
+    fileprivate func registerForPush(deviceToken : String){
+        self.deviceToken = deviceToken
+        guard let _ = token else {
             print("Conditions not ready to register for push.  Missing either token or device token.")
             return
         }
@@ -362,6 +351,7 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
         self.currentStyleName = ApplicationContext.defaultStyle
         self.displayMode = ApplicationContext.defaultDisplayMode
         self.saveState()
+        self.notifyUserChanged()
     }
     
 }
@@ -470,6 +460,15 @@ extension ApplicationContext : ServerEventMonitorDelegate {
         print("Push Traffic \(person.login)")
     }
 
+}
+
+extension ApplicationContext : PushNotificationDelegate {
+    func registerDeviceToken(deviceToken : String) {
+        registerForPush(deviceToken: deviceToken)
+    }
+    func failedToRegister() {
+        
+    }
 }
 
 

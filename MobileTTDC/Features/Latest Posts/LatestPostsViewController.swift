@@ -174,7 +174,7 @@ class LatestPostsViewController: CommonBaseViewController, BroadcastPostAddConsu
             
             let posts = (response?.list)!
             
-            if self.getApplicationContext().displayMode == .latestGrouped {
+            if getApplicationContext().displayMode == .latestGrouped {
                 completion(posts.flattenPosts())
             } else {
                 completion(posts)

@@ -430,7 +430,7 @@ extension CommonBaseViewController : PostViewCellDelegate {
             }
 
             if let post = response?.tagAssociation.post {
-                self.getApplicationContext().broadcaster.postUpdated(post: post)
+                getApplicationContext().broadcaster.postUpdated(post: post)
             }
 
         }

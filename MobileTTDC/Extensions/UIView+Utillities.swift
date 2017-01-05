@@ -32,13 +32,6 @@ extension UIView : UIWebViewDelegate {
     }
 }
 
-//Trevis, you also have this extension on ViewController.  Is that redundant?
-extension UIView {
-    func getApplicationContext() -> ApplicationContext {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.applicationContext
-    }
-}
 
 protocol DynamicAppStyle {
     func refreshStyle()
@@ -48,11 +41,6 @@ protocol CurrentUserProtocol {
     func onCurrentUserChanged()
 }
 
-//extension DynamicAppStyle {
-//    func refreshStyle() {
-//                //Default impl does nothing
-//            }
-//}
 
 extension UIView : DynamicAppStyle {
     

@@ -22,12 +22,6 @@ extension UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    func getApplicationContext() -> ApplicationContext {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.applicationContext
-    }
-    
-        
     func registerAndCreatePrototypeCellFromNib(_ withName: String, forReuseIdentifier: String) -> UICollectionViewCell{
         let nib = UINib(nibName: withName, bundle: nil)
         self.getCollectionView()!.register(nib, forCellWithReuseIdentifier: forReuseIdentifier)
@@ -44,46 +38,8 @@ extension UIViewController {
         return nil
     }
     
-    //TODO refactor this dequeue thing out to a common place
-//    func dequeueCell(post : Post, indexPath : NSIndexPath) -> UICollectionViewCell {
-//        if ((getApplicationContext().displayMode == .LatestGrouped) && !post.threadPost) {
-//            let cell =  self.getCollectionView()!.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.POST_REPLY_CELL, forIndexPath: indexPath) as! PostReplyCollectionViewCell
-//            
-//            cell.post = post
-//            cell.delegate = self
-//            return cell
-//        } else {
-//            let cell = self.getCollectionView()!.dequeueReusableCellWithReuseIdentifier(ReuseIdentifiers.POST_CELL, forIndexPath: indexPath) as! PostCollectionViewCell
-//            
-//            cell.post = post
-//            cell.delegate = self
-//            return cell
-//        }
-//    }
-//    
     
 }
 
 
 
-/*
-extension UIViewController : PostViewCellDelegate{
-    func likePost(post: Post){
-        
-    }
-    func viewComments(post: Post){
-        var dict = [String: String]()
-        dict["threadId"] = post.threadId
-        performSegueWithIdentifier("ConversationWithReplyView", sender: dict)
-    }
-    func commentOnPost(post: Post){
-        var dict = [String: String]()
-        dict["threadId"] = post.threadId
-        dict["postId"] = post.postId
-        performSegueWithIdentifier("ConversationWithReplyView", sender: dict)
-    }
-    func viewThread(post: Post) {
-        performSegueWithIdentifier("ThreadView", sender: post.postId)
-    }
-}
-*/

@@ -4,7 +4,7 @@ class NetworkAdapter {
     
     static func performCommand<R>(_ urlString: String, command: Command, completion: @escaping (_ response: R?, _ error: String?)->Void) where R: Response{
         
-        NetworkAdapter.performJsonRequest(urlString, json: command.toJSON()!, completion:{(data, error) -> Void in
+        NetworkAdapter.performJsonRequest(urlString, json: command.toJSON()!, completion:{(data, nsError) -> Void in
             //Jump to UI thread to send response
             func completeOnUiThread(response: R?, error: String?){
                 DispatchQueue.main.async {
@@ -34,8 +34,13 @@ class NetworkAdapter {
                 
                 
                 completeOnUiThread(response: decodableResponse, error: nil)
-            } else if let error = error {
-                completeOnUiThread(response: nil, error: error.localizedDescription)
+            } else if let err = nsError as? NSError{
+                if(err.code == 401) {
+                    completeOnUiThread(response: nil, error: "401") //Sad hack
+                } else {
+                    completeOnUiThread(response: nil, error: err.localizedDescription)
+                }
+                
             }
             else {
                 completeOnUiThread(response: nil, error: nil)
@@ -45,10 +50,13 @@ class NetworkAdapter {
     }
 
     public static func getUrlSession() -> URLSession {
-        return URLSession(
+        let session = URLSession(
             configuration: URLSessionConfiguration.ephemeral,
             delegate: NSURLSessionPinningDelegate(),
             delegateQueue: nil)
+        session.configuration.timeoutIntervalForRequest = 10
+        session.configuration.timeoutIntervalForResource = 20
+        return session
     }
     
     fileprivate static func performJsonRequest(_ urlString: String, json: JSON, completion:@escaping ( _ data: Data?, _ error: Error?) -> Void){
@@ -79,6 +87,9 @@ class NetworkAdapter {
                     else if httpResponse.statusCode == 202{
                         //Do nothing?
                         completion(nil, nil)
+                    }
+                    else if httpResponse.statusCode == 401{
+                        completion(nil, createError(httpResponse.statusCode, message: "Unauthorized!"))
                     }
                     else {
                         completion( nil, createError(httpResponse.statusCode, message: "Unepxected http response code:"))

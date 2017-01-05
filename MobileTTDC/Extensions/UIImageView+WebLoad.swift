@@ -45,7 +45,7 @@ extension UIImageView {
                 let image = UIImage(data: data)
                 else { return }
             
-            self.getApplicationContext().imageCache[link] = image
+            getApplicationContext().imageCache[link] = image
             
             DispatchQueue.main.async { () -> Void in
                 self.image = image

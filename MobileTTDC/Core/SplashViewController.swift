@@ -62,7 +62,7 @@ class SplashViewController: UIViewController {
         self.animateLoading()
         
         
-        appDelegate.initialize(appContext: applicationContext) //This will try to get a device token and try to store it. No worries, he cant send it to the server if he doesnt have a ttdc token.
+        appDelegate.initialize(appContext: applicationContext) 
         
         //This will also try to save the device token after the user is authenticated.
         applicationContext.initialize() {

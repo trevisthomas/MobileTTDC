@@ -242,8 +242,8 @@ extension ConversationWithReplyViewController {
         
         //Trevis!  This is a post being created!
         
-        self.getApplicationContext().broadcaster.postAdded(post: (response?.post)!)
-        self.getApplicationContext().reloadAllData()
+        getApplicationContext().broadcaster.postAdded(post: (response?.post)!)
+        getApplicationContext().reloadAllData()
         
 //        self.commentTextArea.attributedText = nil //So that it doesnt get stashed when you post!
         

@@ -74,6 +74,7 @@
 		0FA3F2631DBBC7FE00268DC1 /* PostReplyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FA3F2611DBBC7FE00268DC1 /* PostReplyCollectionViewCell.xib */; };
 		0FA3F2651DBBCAA100268DC1 /* UICollectionViewCell+TTDC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA3F2641DBBCAA100268DC1 /* UICollectionViewCell+TTDC.swift */; };
 		0FA556AF1D2077AC001CEA6E /* UIViewController+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA556AE1D2077AC001CEA6E /* UIViewController+Utilities.swift */; };
+		0FAA96231E1DAD9300078365 /* PushNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAA96221E1DAD9300078365 /* PushNotificationDelegate.swift */; };
 		0FACAC5F1DDEC5B80090F094 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FACAC5E1DDEC5B80090F094 /* UIColor+.swift */; };
 		0FAFE33C1DCD44F0000BE422 /* UISearchBar+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFE33B1DCD44F0000BE422 /* UISearchBar+Custom.swift */; };
 		0FB2F4941CFF9C77008F386A /* NSDate+Gloss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2F4931CFF9C77008F386A /* NSDate+Gloss.swift */; };
@@ -218,6 +219,7 @@
 		0FA3F2611DBBC7FE00268DC1 /* PostReplyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostReplyCollectionViewCell.xib; sourceTree = "<group>"; };
 		0FA3F2641DBBCAA100268DC1 /* UICollectionViewCell+TTDC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+TTDC.swift"; sourceTree = "<group>"; };
 		0FA556AE1D2077AC001CEA6E /* UIViewController+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utilities.swift"; sourceTree = "<group>"; };
+		0FAA96221E1DAD9300078365 /* PushNotificationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationDelegate.swift; sourceTree = "<group>"; };
 		0FACAC5E1DDEC5B80090F094 /* UIColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		0FAFE33B1DCD44F0000BE422 /* UISearchBar+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Custom.swift"; sourceTree = "<group>"; };
 		0FB2F4931CFF9C77008F386A /* NSDate+Gloss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Gloss.swift"; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 				0FCBD8581DBD101000DE8F2A /* style.css */,
 				0F807A6D1E0DE69800AB6C25 /* PushServerEvent.swift */,
 				0F807A711E0F42F300AB6C25 /* ServerEventMonitorDelegate.swift */,
+				0FAA96221E1DAD9300078365 /* PushNotificationDelegate.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -792,6 +795,7 @@
 				0FE527231CFB654300407AAE /* NetworkAdapter.swift in Sources */,
 				0F2B2BB21DFCA86D0024856A /* Sequence+.swift in Sources */,
 				0FC863401E0A0FD400AE3634 /* PersonCommand.swift in Sources */,
+				0FAA96231E1DAD9300078365 /* PushNotificationDelegate.swift in Sources */,
 				0F97BDA01DF0C3F0007E5F43 /* ServerEventListResponse.swift in Sources */,
 				0FF6309B1DFB889900DD3DD2 /* SplashViewController.swift in Sources */,
 				0FC8633E1E09DC7B00AE3634 /* SettingsViewController.swift in Sources */,

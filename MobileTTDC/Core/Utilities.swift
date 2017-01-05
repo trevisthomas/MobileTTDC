@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 func delay(seconds: Double, completion:@escaping ()->()) {
     let popTime = DispatchTime.now() + Double(Int64( Double(NSEC_PER_SEC) * seconds )) / Double(NSEC_PER_SEC)
@@ -21,6 +21,15 @@ func invokeLater(_ completion : @escaping () -> ()) {
     DispatchQueue.main.async {
         completion()
     }
+}
+
+func getApplicationContext() -> ApplicationContext {
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    return appDelegate.applicationContext
+}
+
+func getAppDelegate() -> AppDelegate {
+    return UIApplication.shared.delegate as! AppDelegate
 }
 
 

@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        serverEventMonitor.connect()
         
         // Override point for customization after application launch.
-        registerForPushNotifications(UIApplication.shared)
+//        registerForPushNotifications(UIApplication.shared)
         
     }
 
@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
-        application.applicationIconBadgeNumber = 0 //If the app is running, aways set to zero.
+        resetBadgeCount() //If the app is running, aways set to zero.
         
 //        applicationContext.reloadAllData()
         print("did become active")
@@ -100,6 +100,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
         }
+    }
+    
+    func resetBadgeCount(){
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -151,6 +155,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            }
 //            
 //        }
+        if let aps = userInfo["aps"] as? [String: AnyObject] {
+            if let badge = aps["badge"] as? Int {
+                application.applicationIconBadgeNumber = badge
+            }
+        }
+
         if let event = userInfo["event"] as? [String: AnyObject] {
             let push = PushServerEvent(delegate: applicationContext)
             completionHandler(.newData)
@@ -183,13 +193,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print("Device Token:", tokenString)
         
-        applicationContext.deviceToken = tokenString
-        
-        
+        pushNotificationDelegate?.registerDeviceToken(deviceToken: tokenString)
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Failed to register:", error)
+        pushNotificationDelegate?.failedToRegister()
+    }
+    
+    
+    fileprivate var pushNotificationDelegate : PushNotificationDelegate?
+    func registerForPushNotifications(delegate : PushNotificationDelegate){
+        pushNotificationDelegate = delegate
+        self.registerForPushNotifications(UIApplication.shared)
     }
 
 

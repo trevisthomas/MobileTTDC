@@ -125,58 +125,21 @@ class LatestPostsViewController: CommonBaseViewController, BroadcastPostAddConsu
         modeSegmentedControl.tintColor = getApplicationContext().getCurrentStyle().navigationTintColor()
         modeSelectionView.backgroundColor = getApplicationContext().getCurrentStyle().navigationBackgroundColor()
         
-        
-        //modeSegmentedControl.tintColor = getApplicationContext().getCurrentStyle().navigationTintColor()
-        //modeSelectionView.backgroundColor = getApplicationContext().getCurrentStyle().tintColor()
-//        modeSelectionView.backgroundColor = getApplicationContext().getCurrentStyle().underneath()
-//        collectionView.backgroundColor = getApplicationContext().getCurrentStyle().postBackgroundColor()
         collectionView.backgroundColor = getApplicationContext().getCurrentStyle().underneath()
         collectionView.indicatorStyle = getApplicationContext().getCurrentStyle().scrollBarStyle()
         view.backgroundColor = getApplicationContext().getCurrentStyle().underneath()
         
+        loadingView.layer.cornerRadius = 4
         loadingView.backgroundColor = getApplicationContext().getCurrentStyle().tabbarBackgroundColor().withAlphaComponent(0.6)
         loadingLabel.textColor = getApplicationContext().getCurrentStyle().entryTextColor()
         loadingActivity.color = getApplicationContext().getCurrentStyle().entryTextColor()
-        loadingView.layer.cornerRadius = 4
-        
     }
-    
-    //This is here so that the layout will adjust when you "maximize"
-//    override func viewWillLayoutSubviews() {
-//        collectionView?.collectionViewLayout.invalidateLayout()
-//    }
     
     override func viewDidLayoutSubviews() {
         originalTopOfCollectionView = collectionView.frame.origin.y
         originalTopOfDisapearingView = originalTopOfCollectionView - modeSelectionHeightConstraint.constant
         statusBarHeight = originalTopOfDisapearingView
     }
-    
-//    override func loadPosts(completion: @escaping ([Post]?) -> Void) {
-//        print("Load Posts - latest")
-//        switch getApplicationContext().displayMode {
-//        case .latestGrouped:
-//            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED, completion: completion)
-//        case .latestFlat:
-//            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT, completion: completion)
-//        case .latestConversations:
-//            loadlatestConversationsFromWebservice(pageNumber: 1, completion: completion)
-//        }
-//        
-//    }
-//    
-//    override func loadMorePosts(pageNumber: Int, completion: @escaping ([Post]?) -> Void) {
-//        print("Load More Posts - latest")
-//        switch getApplicationContext().displayMode {
-//        case .latestGrouped:
-//            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_GROUPED, pageNumber: pageNumber, completion: completion)
-//        case .latestFlat:
-//            loadlatestPostDataFromWebservice(PostCommand.Action.LATEST_FLAT, pageNumber: pageNumber, completion: completion)
-//        case .latestConversations:
-//            loadlatestConversationsFromWebservice(pageNumber: pageNumber, completion: completion)
-//        }
-//    }
-    
     
     fileprivate func loadlatestPostDataFromWebservice(_ action: PostCommand.Action, pageNumber: Int = 1, completion: @escaping ([Post]?) -> Void){
         let cmd = PostCommand(action: action, pageNumber: pageNumber)

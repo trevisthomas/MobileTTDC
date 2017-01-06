@@ -180,8 +180,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             completionHandler(.noData)
         }
         
-        
-//        print("I was pushed: \(userInfo)")
+    
     }
     
     
@@ -213,9 +212,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     public func buildSummary() -> String {
         let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
-        let build = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
-        
-        return "Mobile TTDC v\(version) build \(build)"
+        return "Mobile TTDC v\(version)"
+//        let build = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
+//        return "Mobile TTDC v\(version) build \(build)"
     }
 }
 

@@ -35,6 +35,8 @@ public protocol AppStyle {
     func tabbarBackgroundColor() -> UIColor
     
     func underneath() -> UIColor
+    
+    func blurEffectStyle() -> UIBlurEffectStyle
 }
 
 extension UIColor {
@@ -179,6 +181,10 @@ public struct AppStyleLight : AppStyle {
     public func starFill() -> UIColor {
         return UIColor.orange
     }
+    
+    public func blurEffectStyle() -> UIBlurEffectStyle {
+        return .light
+    }
 }
 
 public struct AppStyleDark : AppStyle {
@@ -263,7 +269,6 @@ public struct AppStyleDark : AppStyle {
     }
     
     public func postFooterBackgroundColor() -> UIColor {
-//        return UIColor(red:0.05, green:0.05, blue:0.05, alpha:1.0)
         return UIColor(red:0.12, green:0.12, blue:0.12, alpha:1.0)
     }
     
@@ -273,6 +278,10 @@ public struct AppStyleDark : AppStyle {
     
     public func starFill() -> UIColor {
         return UIColor.orange
+    }
+    
+    public func blurEffectStyle() -> UIBlurEffectStyle {
+        return .dark
     }
 
 }

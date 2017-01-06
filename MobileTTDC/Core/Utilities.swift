@@ -32,6 +32,15 @@ func getAppDelegate() -> AppDelegate {
     return UIApplication.shared.delegate as! AppDelegate
 }
 
+func addBlurEffect(view : UIView) {
+    view.backgroundColor = UIColor.clear
+    let blurEffect = UIBlurEffect(style: getApplicationContext().getCurrentStyle().blurEffectStyle())
+    let blurEffectView = UIVisualEffectView(effect: blurEffect)
+    blurEffectView.frame = view.bounds
+    blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    view.addSubview(blurEffectView)
+    view.sendSubview(toBack: blurEffectView)
+}
 
 open class Utilities{
     
@@ -48,7 +57,7 @@ open class Utilities{
         
         simpleDateTimeFormatter = DateFormatter()
         simpleDateTimeFormatter.locale = Locale(identifier: "en_US")
-        simpleDateTimeFormatter.dateFormat = "MMM d yyyy, H:mm a"
+        simpleDateTimeFormatter.dateFormat = "MMM d yyyy, h:mm a"
     }
     
     

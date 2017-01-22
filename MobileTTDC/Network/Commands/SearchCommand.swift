@@ -29,6 +29,8 @@ open class SearchCommand : Command {
     
     public enum SortOrder : String{
         case BY_DATE = "BY_DATE"
+        case BY_REPLY = "BY_REPLY"
+        case BY_DATE_ASC = "BY_DATE_ASC"
         //TODO: Add the rest
     }
     

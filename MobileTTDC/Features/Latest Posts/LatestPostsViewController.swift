@@ -162,7 +162,7 @@ class LatestPostsViewController: CommonBaseViewController, BroadcastPostAddConsu
     }
     
     fileprivate func loadlatestConversationsFromWebservice(pageNumber: Int, completion: @escaping ([Post]?) -> Void) {
-        let cmd = SearchCommand(postSearchType: SearchCommand.PostSearchType.CONVERSATIONS, pageNumber: pageNumber)
+        let cmd = SearchCommand(postSearchType: SearchCommand.PostSearchType.CONVERSATIONS, pageNumber: pageNumber, sortOrder: .BY_REPLY)
         
         Network.performSearchCommand(cmd){
             (response, message) -> Void in

@@ -1072,8 +1072,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = us.ttdc.MobileTTDC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8ec00ef5-772d-4812-acf3-9f79a7f69f92";
-				PROVISIONING_PROFILE_SPECIFIER = "MobileTTDC - App Store";
+				PROVISIONING_PROFILE = "9d0aefee-a8cf-4569-bfed-986aba8db5d8";
+				PROVISIONING_PROFILE_SPECIFIER = "MobileTTDC-AdHoc";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

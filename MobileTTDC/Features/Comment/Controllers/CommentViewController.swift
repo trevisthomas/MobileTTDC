@@ -130,11 +130,18 @@ class CommentViewController: UIViewController {
     }
     
     func decidePostTypeAndPost(){
+        
+        //I could not figure out how to get the html rich text out of the attributed text of the actual UITextView so i'm just grabbing it from the stash.
+        guard let htmlText = getApplicationContext().commentStash else {
+            self.presentAlert("Error", message: "Could not find text to post!")
+            return
+        }
+        
         if(parentId != nil) {
-            postComment(parentId!, body: commentTextArea.text)
+            postComment(parentId!, body: htmlText)
         }
         else {
-            postComment(forum.tagId, topicTitle: topicTitle, topicDescription: topicDescription, body: commentTextArea.text)
+            postComment(forum.tagId, topicTitle: topicTitle, topicDescription: topicDescription, body: htmlText)
         }
     }
     

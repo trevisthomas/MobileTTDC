@@ -27,7 +27,7 @@ open class ApplicationContext /*: AuthenticatedUserDataProvider*/  {
 //    private var serverEventMonitor : ServerEventMonitor!
     
     private static let defaultStyle : String = styleLight
-    private static let defaultDisplayMode : DisplayMode = .latestFlat
+    private static let defaultDisplayMode : DisplayMode = .latestThreads
     
     public var latestPostId : String?
     
